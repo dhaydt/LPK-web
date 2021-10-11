@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="moon"></div>
-    <div id="moon2"></div>
+    <div id="moontoon"></div>
     <b-jumbotron>
       <template #header>
         <h1>LPK PAZ AL KASAW</h1>
@@ -58,11 +58,11 @@ export default {
   position: absolute;
   top: -138px;
   right: -138px;
-  opacity: 15%;
+  opacity: 15% !important;
   border-radius: 50%;
 }
 
-#moon2 {
+#moontoon {
   font-size: 20em;
   display: inline-block;
   width: 0.4em;
@@ -72,8 +72,7 @@ export default {
   position: absolute;
   top: 142px;
   left: -149px;
-  opacity: 15%;
-  border-radius: 50%;
+  opacity: 15% !important;
   border-radius: 50%;
 }
 
