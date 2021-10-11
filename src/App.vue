@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       // apiUrl: "http://localhost:3001",
-      apiUrl: "http://generasiunggul/api",
+      apiUrl: "https://api.generasiunggul.com",
     };
   },
 
