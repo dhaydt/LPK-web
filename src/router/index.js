@@ -34,6 +34,10 @@ const routes = [
     path: "/admin",
     name: "Admin",
     component: Dashboard,
+    meta: {
+      requiresAuth: true,
+    },
+
     children: [
       // UserHome will be rendered inside User's <router-view>
       // when /user/:id is matched
@@ -92,6 +96,37 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem("auth") == null) {
+      next({
+        path: "/login",
+        params: { nextUrl: to.fullPath },
+      });
+    } else {
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (to.matched.some((record) => record.meta.isAdmin)) {
+        if (user.isAdmin == 1) {
+          next();
+        } else {
+          next({ name: "Admin" });
+        }
+      } else {
+        next();
+      }
+    }
+  } else if (to.matched.some((record) => record.meta.guest)) {
+    if (localStorage.getItem("auth") == null) {
+      next();
+    } else {
+      next({ name: "userboard" });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

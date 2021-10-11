@@ -82,6 +82,11 @@ export default {
   },
 
   created() {
+
+    if(localStorage.getItem("auth") !== null){
+      this.$router.push('/admin')
+    }
+
     const api = localStorage.apiUrl;
     this.loginUrl = api + "/login";
   },

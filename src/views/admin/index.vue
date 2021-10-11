@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import router from "@/router"
 import SideBar from "../../components/admin/partials/Sidebar";
 import Footer from "../../components/admin/partials/Footer";
 import Topbar from "../../components/admin/partials/Topbar";
