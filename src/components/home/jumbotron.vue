@@ -58,7 +58,7 @@ export default {
   position: absolute;
   top: -138px;
   right: -138px;
-  opacity: 15% !important;
+  opacity: 0.1;
   border-radius: 50%;
 }
 
@@ -72,7 +72,7 @@ export default {
   position: absolute;
   top: 142px;
   left: -149px;
-  opacity: 15% !important;
+  opacity: 0.1;
   border-radius: 50%;
 }
 
