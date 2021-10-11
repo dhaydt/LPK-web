@@ -4,23 +4,23 @@
 			<div class="d-flex">
 				<!-- LOGO -->
 				<div class="navbar-brand-box">
-					<a href="index.html" class="logo logo-dark">
+					<router-link to="/" class="logo logo-dark">
 						<span class="logo-sm">
 							<img src="@/assets/images/logo-sm-dark.png" alt height="22" />
 						</span>
 						<span class="logo-lg">
 							<img src="@/assets/images/logo-dark.png" alt height="20" />
 						</span>
-					</a>
+					</router-link>
 
-					<a href="index.html" class="logo logo-light">
+					<router-link to="/" class="logo logo-light">
 						<span class="logo-sm">
 							<img src="@/assets/images/logo-sm-light.png" alt height="22" />
 						</span>
 						<span class="logo-lg">
 							<img src="@/assets/images/logo-light.png" alt height="20" />
 						</span>
-					</a>
+					</router-link>
 				</div>
 
 				<!-- <button
@@ -82,52 +82,52 @@
 					<div class="px-lg-2">
 						<div class="row no-gutters">
 							<div class="col">
-								<a class="dropdown-icon-item" href="javascript: void(0);">
+								<router-link class="dropdown-icon-item" to="javascript: void(0);">
 									<img src="@/assets/images/brands/github.png" alt="Github" />
 									<span>{{ ("navbar.dropdown.site.list.github") }}</span>
-								</a>
+								</router-link>
 							</div>
 							<div class="col">
-								<a class="dropdown-icon-item" href="javascript: void(0);">
+								<router-link class="dropdown-icon-item" to="javascript: void(0);">
 									<img
 										src="@/assets/images/brands/bitbucket.png"
 										alt="bitbucket"
 									/>
 									<span>{{ ("navbar.dropdown.site.list.github") }}</span>
-								</a>
+								</router-link>
 							</div>
 							<div class="col">
-								<a class="dropdown-icon-item" href="javascript: void(0);">
+								<router-link class="dropdown-icon-item" to="javascript: void(0);">
 									<img
 										src="@/assets/images/brands/dribbble.png"
 										alt="dribbble"
 									/>
 									<span>{{ ("navbar.dropdown.site.list.dribbble") }}</span>
-								</a>
+								</router-link>
 							</div>
 						</div>
 
 						<div class="row no-gutters">
 							<div class="col">
-								<a class="dropdown-icon-item" href="javascript: void(0);">
+								<router-link class="dropdown-icon-item" to="javascript: void(0);">
 									<img src="@/assets/images/brands/dropbox.png" alt="dropbox" />
 									<span>{{ ("navbar.dropdown.site.list.dropbox") }}</span>
-								</a>
+								</router-link>
 							</div>
 							<div class="col">
-								<a class="dropdown-icon-item" href="javascript: void(0);">
+								<router-link class="dropdown-icon-item" to="javascript: void(0);">
 									<img
 										src="@/assets/images/brands/mail_chimp.png"
 										alt="mail_chimp"
 									/>
 									<span>{{ ("navbar.dropdown.site.list.mailchimp") }}</span>
-								</a>
+								</router-link>
 							</div>
 							<div class="col">
-								<a class="dropdown-icon-item" href="javascript: void(0);">
+								<router-link class="dropdown-icon-item" to="javascript: void(0);">
 									<img src="@/assets/images/brands/slack.png" alt="slack" />
 									<span>{{ ("navbar.dropdown.site.list.slack") }}</span>
-								</a>
+								</router-link>
 							</div>
 						</div>
 					</div>
@@ -161,14 +161,14 @@
 								</h6>
 							</div>
 							<div class="col-auto">
-								<a href="#!" class="small">{{
+								<router-link to="#!" class="small">{{
 									("navbar.dropdown.notification.subtext")
-								}}</a>
+								}}</router-link>
 							</div>
 						</div>
 					</div>
 					<simplebar style="max-height: 230px;">
-						<a href class="text-reset notification-item">
+						<router-link to class="text-reset notification-item">
 							<div class="media">
 								<div class="avatar-xs mr-3">
 									<span
@@ -192,8 +192,8 @@
 									</div>
 								</div>
 							</div>
-						</a>
-						<a href class="text-reset notification-item">
+						</router-link>
+						<router-link to class="text-reset notification-item">
 							<div class="media">
 								<img
 									src="@/assets/images/users/avatar-3.jpg"
@@ -215,8 +215,8 @@
 									</div>
 								</div>
 							</div>
-						</a>
-						<a href class="text-reset notification-item">
+						</router-link>
+						<router-link to class="text-reset notification-item">
 							<div class="media">
 								<div class="avatar-xs mr-3">
 									<span
@@ -240,8 +240,8 @@
 									</div>
 								</div>
 							</div>
-						</a>
-						<a href class="text-reset notification-item">
+						</router-link>
+						<router-link to class="text-reset notification-item">
 							<div class="media">
 								<img
 									src="@/assets/images/users/avatar-4.jpg"
@@ -263,16 +263,16 @@
 									</div>
 								</div>
 							</div>
-						</a>
+						</router-link>
 					</simplebar>
 					<div class="p-2 border-top">
-						<a
+						<router-link
 							class="btn btn-sm btn-link font-size-14 btn-block text-center"
-							href="javascript:void(0)"
+							to="javascript:void(0)"
 						>
 							<i class="mdi mdi-arrow-right-circle mr-1"></i>
 							{{ ("navbar.dropdown.notification.button") }}
-						</a>
+						</router-link>
 					</div>
 				</b-dropdown> -->
 
@@ -294,15 +294,15 @@
 						<i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
 					</template>
 					<!-- item-->
-					<a class="dropdown-item" href="#">
+					<router-link class="dropdown-item" to="#">
 						<i class="ri-user-line align-middle mr-1"></i>
 						Profile
-					</a>
-					<a class="dropdown-item d-block" href="#">
+					</router-link>
+					<router-link class="dropdown-item d-block" to="#">
 						<span class="badge badge-success float-right mt-1">11</span>
 						<i class="ri-settings-2-line align-middle mr-1"></i>
 						Setting
-					</a>
+					</router-link>
 					<div class="dropdown-divider"></div>
 					<router-link class="dropdown-item text-danger" to="/">
 						<i class="ri-shut-down-line align-middle mr-1 text-danger"></i>
