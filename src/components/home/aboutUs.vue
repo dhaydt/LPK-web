@@ -11,8 +11,8 @@
             </template>
 
             <b-card-body>
-              <b-card-title>LPK PAZ AL KASAW</b-card-title>
-              <b-card-text class="mt-2">
+              <b-card-title>LKP PAZ AL KASAW</b-card-title>
+              <b-card-text class="mt-4">
                 <em>"</em> Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Rerum officiis ipsam natus aspernatur eaque dolor adipisci
                 neque aliquid voluptates quaerat, voluptatum, quibusdam
@@ -21,8 +21,30 @@
               </b-card-text>
             </b-card-body>
 
-            <!-- <a href="#" class="card-link">Card link</a> -->
-            <!-- <b-link href="#" class="card-link">Another link</b-link> -->
+            <div class="card-body border-top text-center">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="d-inline-flex">
+                    <h5 class="mr-2 student">80 +</h5>
+                  </div>
+                  <p class="text-muted text-truncate mb-0">Terapis bergabung</p>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="d-inline-flex">
+                    <h5 class="mr-2 student">900 +</h5>
+                  </div>
+                  <p class="text-muted text-truncate mb-0">Pasien terobati</p>
+                </div>
+
+                <div class="col-sm-4">
+                  <div class="d-inline-flex">
+                    <h5 class="mr-2 student">50 +</h5>
+                  </div>
+                  <p class="text-muted text-truncate mb-0">Pelatihan sukses</p>
+                </div>
+              </div>
+            </div>
           </b-card>
         </b-col>
       </b-row>
@@ -65,8 +87,7 @@ section {
   line-height: 38px;
   letter-spacing: 0px;
   text-align: center;
-  color: #757682;
-
+  color: #686870;
 }
 
 em {
@@ -85,5 +106,26 @@ em {
     padding-bottom: 5px;
     border-bottom: 2px solid #07a148;
   }
+}
+
+.student {
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #fd7d24;
+}
+
+.text-muted {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #aaacba;
+  text-transform: capitalize;
 }
 </style>

@@ -1,5 +1,5 @@
 {
-  "name": "LPK-WEB",
+  "name": "LKP-WEB",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -18,12 +18,14 @@
     "metismenujs": "^1.2.1",
     "simplebar-vue": "^1.6.0",
     "sweetalert2": "^10.10.1",
+    "swiper": "^7.0.8",
     "tiptap": "^1.32.2",
     "tiptap-extensions": "^1.35.2",
     "v-click-outside": "^3.1.2",
     "v-mask": "^2.2.3",
     "vue": "^2.6.11",
     "vue-append": "^2.0.1",
+    "vue-awesome-swiper": "^3.1.3",
     "vue-chartjs": "^3.5.1",
     "vue-easy-lightbox": "^0.13.0",
     "vue-form-wizard": "^0.8.4",

@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <div id="moon"></div>
-    <div id="moontoon"></div>
+  <div class="landing">
     <b-jumbotron>
+      <!-- <div id="moon"></div> -->
+      <div id="moontoon"></div>
       <template #header>
-        <h1>LPK PAZ AL KASAW</h1>
+        <h1>LKP PAZ AL KASAW</h1>
       </template>
 
       <template #lead>
@@ -22,17 +22,40 @@
       <b-container>
         <b-row no-gutters class="justify-content-center">
           <b-col md="3" class="mr-2">
-            <b-img src="/assets/images/potrait1.png" fluid-grow alt="Responsive image" class="h-100" />
+            <b-img
+              src="/assets/images/potrait1.png"
+              fluid-grow
+              alt="Responsive image"
+              class="h-100"
+            />
           </b-col>
           <b-col md="4">
             <b-row style="height:50%" class="mb-2">
-              <b-col><b-img src="/assets/images/land1.png" fluid alt="Responsive image" class="h-100" /></b-col>
+              <b-col
+                ><b-img
+                  src="/assets/images/land1.png"
+                  fluid
+                  alt="Responsive image"
+                  class="h-100"
+              /></b-col>
             </b-row>
             <b-row style="height: 48%">
-              <b-col><b-img src="/assets/images/land2.png" fluid alt="Responsive image" class="h-100" /></b-col>
+              <b-col
+                ><b-img
+                  src="/assets/images/land2.png"
+                  fluid
+                  alt="Responsive image"
+                  class="h-100"
+              /></b-col>
             </b-row>
           </b-col>
-          <b-col md="3" class="ml-2"><b-img src="/assets/images/potrait2.png" fluid alt="Responsive image" class="h-100" /></b-col>
+          <b-col md="3" class="ml-2"
+            ><b-img
+              src="/assets/images/potrait2.png"
+              fluid
+              alt="Responsive image"
+              class="h-100"
+          /></b-col>
         </b-row>
       </b-container>
     </section>
@@ -42,7 +65,7 @@
 <script>
 export default {
   data() {
-    return {}
+    return {};
   },
 };
 </script>
