@@ -14,7 +14,7 @@
       </b-collapse>
 
       <b-navbar-brand to="/" class="logoPaz"
-        ><img src="../assets/images/logo.png" alt="PAZ" height="35"
+        ><img src="../assets/images/logo.png" alt="PAZ" height="50"
       /></b-navbar-brand>
 
       <b-navbar-nav class="ml-auto">
@@ -39,7 +39,7 @@ export default {
 <style lang="scss">
 .navbar.navbar-dark {
   padding: 10px 104px;
-  padding-top: 5vh;
+  padding-top: 8vh;
   width: 100%;
   background-color: transparent;
   position: fixed;
@@ -58,7 +58,7 @@ nav.navbar.sticky {
   transition: 0.6s;
 }
 
-.nav-item.login-btn {
+.navbar-nav .nav-item.login-btn {
   border-radius: 4px;
   background-color: #fff;
   transition: 0.3s;
@@ -72,9 +72,13 @@ nav.navbar.sticky {
   z-index: 99;
 }
 
-a.nav-link {
+.navbar-nav .nav-item a.nav-link {
   font-weight: 700;
-  opacity: 1;
+  color: #fff;
+}
+
+.navbar-nav .nav-item a.nav-link:hover {
+  color: #FD7D24;
 }
 
 // X-Small devices (portrait phones, less than 576px)
@@ -99,6 +103,7 @@ a.nav-link {
 
   .navbar.navbar-dark {
     padding: 8px 60px;
+    background-color: #07a148;
   }
 }
 

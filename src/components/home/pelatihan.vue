@@ -26,42 +26,7 @@
     <section class="galeri">
       <b-row class="justify-content-end">
         <b-col md="10">
-          <swiper class="swiper" :options="swiperOption">
-            <swiper-slide v-for="(slide, i) in swiperSlides" :key="i">
-              <b-card
-                :title="slide.title"
-                :img-src="slide.img"
-                img-alt="Image"
-                img-height="250"
-                img-top
-                style="width: 20rem;"
-                class="mb-2"
-              >
-                <b-card-text>
-                  {{ slide.desc }}
-                </b-card-text>
-                <b-row>
-                  <b-col>
-                    <div class="calender text-left">
-                      <i class="far fa-calendar"></i>
-                      <span>{{ slide.date }}</span>
-                    </div>
-                  </b-col>
-                </b-row>
-                <b-row>
-                  <b-col>
-                    <div class="time text-left">
-                      <i class="far fa-clock"></i>
-                      <span>{{ slide.time }}</span>
-                    </div>
-                  </b-col>
-                </b-row>
-              </b-card>
-            </swiper-slide>
-            <div class="swiper-pagination" slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
-          </swiper>
+          <PelatihanCard></PelatihanCard>
         </b-col>
       </b-row>
     </section>
@@ -69,121 +34,21 @@
 </template>
 
 <script>
-import { swiper, swiperSlide } from "vue-awesome-swiper";
-import "swiper/swiper-bundle.css";
+import PelatihanCard from './pelatihanCard'
 export default {
   data() {
     return {
-      swiperOption: {
-        slidesPerView: 3,
-        centeredSlides: true,
-        spaceBetween: 10,
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      },
-      swiperSlides: [
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait1.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait2.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait3.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait4.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait5.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait6.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-      ],
+      
     };
   },
   methods: {},
   components: {
-    swiper,
-    swiperSlide,
+    PelatihanCard,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.example {
-  height: auto;
-
-  .toolbar {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 2rem;
-    border-bottom: 1px solid grey;
-    margin-bottom: 10px;
-
-    button {
-      flex: 1;
-      padding: 0;
-      margin: 0;
-      border: none;
-      border-right: 1px solid grey;
-      background-color: #fff;
-      cursor: pointer;
-      &:last-child {
-        border: none;
-      }
-
-      &:hover {
-        background-color: #999;
-      }
-    }
-  }
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  font-weight: 900;
-  color: #fff;
-  opacity: 1;
-}
-
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-  color: #07a148;
-}
-
 .card {
   box-shadow: 0px 21.6792px 32.5188px rgba(0, 0, 0, 0.06),
     0px 2.7099px 8.12969px rgba(0, 0, 0, 0.04),
@@ -234,7 +99,7 @@ section {
 }
 
 section.galeri {
-  margin-top: -280px;
+  margin-top: -380px;
 }
 
 .jumbotron {
