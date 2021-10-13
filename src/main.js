@@ -8,6 +8,7 @@ import router from './router'
 import store from './store'
 
 import "@/assets/scss/app.scss";
+import "@/assets/main.scss";
 import vco from "v-click-outside";
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

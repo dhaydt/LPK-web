@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="register">
     <b-container>
       <b-row class="justify-content-center">
         <b-card-group deck>
@@ -19,10 +19,23 @@
                 >
                   <i class="fas fa-home"></i> </b-button
               ></router-link>
-              <b-alert v-model="alert" :variant="variant" dismissible>
-                {{ message }}
-              </b-alert>
               <b-form @submit="onSubmit">
+                <b-form-group
+                  id="input-group-0"
+                  class="text-left"
+                  label="Nama:"
+                  label-for="username"
+                >
+                  <b-form-input
+                    id="username"
+                    name="username"
+                    v-model="form.username"
+                    type="text"
+                    placeholder="Masukan nama anda"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+
                 <b-form-group
                   id="input-group-1"
                   class="text-left"
@@ -32,10 +45,26 @@
                 >
                   <b-form-input
                     id="email"
+                    name="email"
                     v-model="form.email"
                     type="email"
-                    placeholder="Enter email"
+                    placeholder="Masukan email"
                     required
+                  ></b-form-input>
+                </b-form-group>
+
+                <b-form-group
+                  id="company"
+                  class="text-left"
+                  label="Perusahaan:"
+                  label-for="company"
+                >
+                  <b-form-input
+                    id="company"
+                    name="company"
+                    v-model="form.company"
+                    type="text"
+                    placeholder="Masukan perusahaan"
                   ></b-form-input>
                 </b-form-group>
 
@@ -47,8 +76,24 @@
                 >
                   <b-form-input
                     id="password"
+                    name="password"
                     v-model="form.password"
-                    placeholder="Enter password"
+                    placeholder="Masukan password"
+                    required
+                  ></b-form-input>
+                </b-form-group>
+
+                <b-form-group
+                  id="c_password"
+                  class="text-left"
+                  label="Confirm Password"
+                  label-for="password"
+                >
+                  <b-form-input
+                    id="c_password"
+                    name="c_password"
+                    v-model="form.c_password"
+                    placeholder="Konfirmasi password"
                     required
                   ></b-form-input>
                 </b-form-group>
@@ -56,13 +101,16 @@
                 <b-row class="flex-column">
                   <b-col class="mb-2 reg text-left">
                     <span
-                      >Tidak memiliki akun?
-                      <router-link to="/register"
-                        >Daftar sekarang</router-link
+                      >Sudah memiliki akun?
+                      <router-link to="/login"
+                        >Login sekarang</router-link
                       ></span
                     >
                   </b-col>
                   <b-col>
+                    <b-alert v-model="alert" :variant="variant" dismissible>
+                      {{ message }}
+                    </b-alert>
                     <b-button class="ml-auto" type="submit" variant="success"
                       ><span v-if="loading"
                         ><b-spinner
@@ -72,7 +120,7 @@
                         ></b-spinner
                         >Wait...</span
                       ><span v-else
-                        ><i class="fas fa-lock mr-2"></i>Login</span
+                        ><i class="fas fa-user-plus"></i> Daftar</span
                       ></b-button
                     >
                   </b-col>
@@ -99,21 +147,20 @@ export default {
       loading: "",
       message: "",
       form: {
+        username: "",
         email: "",
+        company: "",
         password: "",
+        c_password: "",
       },
       // url
-      loginUrl: "",
+      regUrl: "",
     };
   },
 
   created() {
-    if (localStorage.getItem("auth") !== null) {
-      this.$router.push("/admin");
-    }
-
     const api = localStorage.apiUrl;
-    this.loginUrl = api + "/login";
+    this.regUrl = api + "/sign-up";
   },
 
   methods: {
@@ -121,14 +168,23 @@ export default {
       event.preventDefault();
       this.loading = "true";
       try {
-        let res = await axios.post(this.loginUrl, this.form);
+        if (this.form.password !== this.form.c_password) {
+          this.variant = "danger";
+          this.alert = true;
+          this.message = "Password tidak sama!!!";
+          this.form.password =""
+          this.form.c_password =""
+          this.loading = false;
+        }
+
+        let res = await axios.post(this.regUrl, this.form);
         console.log(res.token);
         if (res.token !== null) {
           this.variant = "success";
-          this.message = "You are Logged in";
+          this.message = "Berhasil mendaftar";
           this.alert = true;
           console.log(res);
-          localStorage.setItem("auth", JSON.stringify(res.data));
+          // localStorage.setItem("auth", JSON.stringify(res.data));
           this.loading = "";
           this.$router.push("/admin");
         }

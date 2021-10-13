@@ -8,13 +8,13 @@ const userMiddleware = require("../middleware/users.js");
 
 router.post("/sign-up", userMiddleware.validateRegister, (req, res, next) => {
   db.query(
-    `SELECT * FROM users WHERE LOWER(username) = LOWER(${db.escape(
-      req.body.username
+    `SELECT * FROM users WHERE LOWER(email) = LOWER(${db.escape(
+      req.body.email
     )});`,
     (err, result) => {
       if (result.length) {
         return res.status(409).send({
-          msg: "This username is already in use!"
+          msg: "This email is already in use!"
         });
       } else {
         // username is available

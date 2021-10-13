@@ -1,5 +1,5 @@
 <template>
-  <section class="aboutUs">
+  <section class="Legalitas">
     <b-container>
       <div id="moon"></div>
       <b-row class="justify-content-center">
@@ -7,44 +7,14 @@
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
-                <span>Tentang Kami</span>
+                <span>Legalitas</span>
               </div>
             </template>
             <b-card-body>
-              <b-card-title>LKP PAZ AL KASAW</b-card-title>
-              <b-card-text class="mt-4">
-                <em>"</em> Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Rerum officiis ipsam natus aspernatur eaque dolor adipisci
-                neque aliquid voluptates quaerat, voluptatum, quibusdam
-                doloribus alias vitae, explicabo consectetur et. Vero,
-                commodi.<em>"</em>
-              </b-card-text>
+              <b-card-title>LKP PAZ Al Kasaw Telah Terdaftar Secara Sah Sebagai Lembaga Kursus Pelatihan</b-card-title>
             </b-card-body>
 
-            <div class="card-body border-top text-center">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="d-inline-flex">
-                    <h5 class="mr-2 student">80 +</h5>
-                  </div>
-                  <p class="text-muted text-truncate mb-0">Terapis bergabung</p>
-                </div>
-
-                <div class="col-sm-4">
-                  <div class="d-inline-flex">
-                    <h5 class="mr-2 student">900 +</h5>
-                  </div>
-                  <p class="text-muted text-truncate mb-0">Pasien terobati</p>
-                </div>
-
-                <div class="col-sm-4">
-                  <div class="d-inline-flex">
-                    <h5 class="mr-2 student">50 +</h5>
-                  </div>
-                  <p class="text-muted text-truncate mb-0">Pelatihan sukses</p>
-                </div>
-              </div>
-            </div>
+            
           </b-card>
         </b-col>
       </b-row>
@@ -56,7 +26,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  components: {
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -77,13 +53,12 @@ section {
   border-radius: 50%;
 }
 
-
 #shape {
-    position: absolute;
-    right: 0;
-    top: 1080px;
-    overflow: hidden;
-    width: 60px;
+  position: absolute;
+  right: 0;
+  top: 1080px;
+  overflow: hidden;
+  width: 60px;
 }
 
 #moons {

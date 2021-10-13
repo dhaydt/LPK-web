@@ -1,13 +1,13 @@
 <template>
-  <div class="navbarHome">
+  <div class="navbarHome w-100">
     <b-navbar toggleable="lg" type="dark">
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="#">Home</b-nav-item>
-          <b-nav-item to="#">About Us</b-nav-item>
-          <b-nav-item to="#">Instruktur</b-nav-item>
-          <b-nav-item to="#">Event</b-nav-item>
-          <b-nav-item to="#">Lowongan Kerja</b-nav-item>
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item to="/aboutus">About Us</b-nav-item>
+          <b-nav-item to="/instruktur">Instruktur</b-nav-item>
+          <b-nav-item to="/event">Event</b-nav-item>
+          <b-nav-item to="/loker">Lowongan Kerja</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -37,6 +37,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/main.scss";
 .navbar.navbar-dark {
   padding: 10px 104px;
   padding-top: 8vh;
@@ -49,13 +50,18 @@ export default {
 nav.navbar.sticky {
   padding: 10px 110px;
   z-index: 9;
-  background-color: #07a147ea;
+  width: 100%;
+  background-color: $paz-main;
 }
 
 .logoPaz {
   position: absolute;
   left: 46%;
   transition: 0.6s;
+}
+
+.nav-link.router-link-exact-active.router-link-active {
+  color: #FD7D24 !important;
 }
 
 .navbar-nav .nav-item.login-btn {

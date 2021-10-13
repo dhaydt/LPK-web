@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-4">
+  <section class="mb-4 gallery">
     <b-container>
       <b-row class="justify-content-center">
         <b-col lg="9">
@@ -9,7 +9,7 @@
                 <span>Galeri pelatihan</span>
               </div>
             </template>
-
+            <div id="moon"></div>
             <b-card-body>
               <b-card-title>PELATIHAN YANG KAMI SELENGGARAKAN</b-card-title>
               <b-card-text class="mt-4">
@@ -35,33 +35,15 @@
         </b-col>
       </b-row>
     </b-container>
-    <b-row class="justify-content-center">
+    <div id="shape">
+      <div id="moons"></div>
+    </div>
+    <b-row class="justify-content-center w-100">
       <b-col md="10">
         <div class="card-body border-top text-center">
-          <b-row cols-md="4" cols-sm="2">
-            <b-col
-              ><b-img
-                src="../../assets/images/potrait3.png"
-                alt="gallery"
-              ></b-img
-            ></b-col>
-            <b-col
-              ><b-img
-                src="../../assets/images/potrait4.png"
-                alt="gallery"
-              ></b-img
-            ></b-col>
-            <b-col
-              ><b-img
-                src="../../assets/images/potrait5.png"
-                alt="gallery"
-              ></b-img
-            ></b-col>
-            <b-col
-              ><b-img
-                src="../../assets/images/potrait6.png"
-                alt="gallery"
-              ></b-img
+          <b-row>
+            <b-col md="3" v-for="img in images" :key="img"
+              ><b-img :src="img" alt="gallery"></b-img
             ></b-col>
           </b-row>
         </div>
@@ -71,10 +53,53 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      images: [
+        require("../../assets/images/potrait3.png"),
+        require("../../assets/images/potrait4.png"),
+        require("../../assets/images/potrait5.png"),
+        require("../../assets/images/potrait6.png"),
+      ],
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
+#moon {
+  font-size: 20em;
+  display: inline-block;
+  width: 0.4em;
+  box-sizing: content-box;
+  height: 0.4em;
+  background-color: #fd7d24;
+  border: 0.3em solid #fd7d24;
+  position: absolute;
+  left: -264px;
+  opacity: 0.1;
+  top: 300px;
+}
+
+#shape {
+  position: absolute;
+  right: 0;
+  top: 1700px;
+  width: 60px;
+  overflow: hidden;
+}
+
+#moons {
+  font-size: 20em;
+  display: inline-block;
+  width: 0.2em;
+  box-sizing: content-box;
+  height: 0.2em;
+  border: 0.1em solid #fd7d24;
+  background-color: #fd7d24;
+  opacity: 0.1;
+}
 section {
   margin-top: 100px;
 }

@@ -1,6 +1,15 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
+// Home section
 import Home from "../views/index.vue";
+import HomeAbout from "../views/about/index.vue"
+import HomeInstruktur from "../views/instruktur/index.vue"
+import HomeEvent from "../views/event/index.vue"
+import HomeLoker from "../views/loker/index.vue"
+
+// Admin panel
+import Register from "../views/auth/register.vue"
 import Login from "../views/auth/login.vue";
 import Dashboard from "../views/admin/index.vue";
 import About from "../views/admin/about";
@@ -22,12 +31,38 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+    children: [
+      // UserHome will be rendered inside User's <router-view>
+      // when /user/:id is matched
+      {
+        path: "/",
+        component: () => import("../views/home/index.vue"),
+      },{
+        path: "/aboutus",
+        component: HomeAbout,
+      },{
+        path: "/instruktur",
+        component: HomeInstruktur,
+      },{
+        path: "/event",
+        component: HomeEvent,
+      },{
+        path: "/loker",
+        component: HomeLoker,
+      },
+    ]
   },
 
   {
     path: "/login",
     name: "Login",
     component: Login,
+  },
+  
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
 
   {

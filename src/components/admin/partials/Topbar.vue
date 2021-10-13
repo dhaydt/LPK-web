@@ -278,7 +278,7 @@
               src="@/assets/images/users/avatar-2.jpg"
               alt="Header Avatar"
             />
-            <span class="d-none d-xl-inline-block ml-1">{{
+            <span class="d-none d-xl-inline-block ml-1">Welcome, {{
               user.username
             }}</span>
             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
