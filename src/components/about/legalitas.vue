@@ -11,26 +11,30 @@
               </div>
             </template>
             <b-card-body>
-              <b-card-title>LKP PAZ Al Kasaw Telah Terdaftar Secara Sah Sebagai Lembaga Kursus Pelatihan</b-card-title>
+              <b-card-title
+                >LKP PAZ Al Kasaw Telah Terdaftar Secara Sah Sebagai Lembaga
+                Kursus Pelatihan</b-card-title
+              >
             </b-card-body>
-
-            
           </b-card>
         </b-col>
+        <LegalitasCard></LegalitasCard>
       </b-row>
-      <div id="shape">
+      <!-- <div id="shape">
         <div id="moons"></div>
-      </div>
+      </div> -->
     </b-container>
   </section>
 </template>
 
 <script>
+import LegalitasCard from "./legalitasCard";
 export default {
   data() {
     return {};
   },
   components: {
+    LegalitasCard,
   },
 };
 </script>

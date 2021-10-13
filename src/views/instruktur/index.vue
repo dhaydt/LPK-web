@@ -1,15 +1,14 @@
 <template>
   <div class="instruktur">
-instruktur
+    <InstrukturJumbotron></InstrukturJumbotron>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+import InstrukturJumbotron from "../../components/instruktur/instrukturJumbotron";
+export default {
+  components: { InstrukturJumbotron },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
