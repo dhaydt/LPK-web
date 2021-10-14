@@ -1,6 +1,11 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const corsOptions = {
+  origin: "https://generasiunggul.com",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
 
 // Create express instance
 const app = express();
@@ -12,7 +17,7 @@ const auth = require("./routes/auth");
 const visi = require("./routes/visi");
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 // Import API Routes
 app.use(users);
 app.use(test);
