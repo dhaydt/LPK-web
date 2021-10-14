@@ -1,40 +1,30 @@
 <template>
-  <div class="pelatihanJumbotron">
+  <div class="aboutJumbotron">
     <b-jumbotron>
       <!-- <div id="moon"></div> -->
       <div id="moontoon"></div>
       <b-row class="justify-content-center align-items-center h-100">
         <b-col md="8" sm="12">
           <div id="header">
-            <h1>Pelatihan</h1>
+            <h1>Lowongan Kerja</h1>
           </div>
 
           <div id="subheader">
             <h4>
-              Ikuti pelatihan dan pembelajaran baik secara online maupun offline
-              untuk mendapatkan ilmu terbaru dari trainer yang berpengalaman
+              PAZ Generasi Unggul lembaga yang mengelola dan meneruskan
+              pengajaran temuan Hak Cipta Intelektual dari Ustadz Haris
+              Moedjahid Rahimahullah berupa Ilmu Pengobatan dan Konsep hidup Ala
+              PAZ Al Kasaw.
             </h4>
           </div>
         </b-col>
       </b-row>
     </b-jumbotron>
-    <section class="eventCard">
-      <PelatihanOffline></PelatihanOffline>
-    </section>
-    <section class="eventOnline mt-4">
-      <PelatihanOnline></PelatihanOnline>
-    </section>
   </div>
 </template>
 
 <script>
-import PelatihanOnline from "./pelatihanOnline ";
-import PelatihanOffline from "./pelatihanOffline";
 export default {
-  components: {
-    PelatihanOnline,
-    PelatihanOffline,
-  },
   data() {
     return {};
   },
@@ -111,7 +101,7 @@ span {
   background-color: #07a148;
 }
 
-section.eventCard {
-  margin-top: -230px;
+section {
+  margin-top: -50vh;
 }
 </style>

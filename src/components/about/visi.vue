@@ -14,14 +14,12 @@
           <div class="title">
             <h5>Misi kami</h5>
           </div>
-          <b-row v-for="mis in mission" :key="mis.id" class="mt-3">
+          <b-row v-for="(mis, index) in mission" :key="index" class="mt-3">
             <b-col sm="2" class="d-flex align-items-center"
-              ><b-avatar :text="mis.id" size="lg"></b-avatar
+              ><b-avatar :text="JSON.stringify(mis.id)" size="lg"></b-avatar
             ></b-col>
             <b-col sm="10" class="misi text-left"
-              ><span
-                >{{ mis.desc }}</span
-              >
+              ><span>{{ mis.misi }}</span>
             </b-col>
           </b-row>
         </b-col>
@@ -31,37 +29,27 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      mission: [
-        {
-          id: '1',
-          desc:
-            "Riset dan pengembangan Keilmuan PAZ Al Kasaw dalam konteks pondasi yang sudah diletakkan oleh Ustadz Haris Moedjahid Rahimahullah",
-        },
-        {
-          id: '2',
-          desc:
-            "Pendidikan dan pelatihan ilmu paz al kasaw berketerlanjutan dengan karakter paztrooper yang unggul",
-        },
-        {
-          id: '3',
-          desc:
-            "Pengelolaan manajerial alumni berbasis IT untuk kemudahan masyarakat mendapat layanan terapi PAZ Al Kasaw",
-        },
-        {
-          id: '4',
-          desc:
-            "Menjadi perusahaan yang profitable, high margin, dan memberikan intangiable values bagi stakeholder yang terlibat",
-        },
-        {
-          id: '5',
-          desc:
-            "Memberikan inspirasi cara sehat alamiah, islami, dan praktis ke seluas luas umat muslim di dunia",
-        },
-      ],
+      mission: [],
+      visiUrl: "",
     };
+  },
+
+  created() {
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.visiUrl = mainUrl + "/visi";
+    this.getVisi();
+  },
+
+  methods: {
+    async getVisi() {
+      const resp = await axios.get(this.visiUrl);
+      console.log(resp.data.data);
+      this.mission = resp.data.data;
+    },
   },
 };
 </script>

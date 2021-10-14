@@ -1,15 +1,14 @@
 <template>
   <div class="loker">
-loker
+    <LokerJumbotron></LokerJumbotron>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+import LokerJumbotron from "../../components/loker/lokerJumbotron";
+export default {
+  components: { LokerJumbotron },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

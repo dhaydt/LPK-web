@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 14, 2021 at 09:15 PM
+-- Generation Time: Oct 15, 2021 at 12:43 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -113,7 +113,11 @@ CREATE TABLE `visi` (
 --
 
 INSERT INTO `visi` (`id`, `visi`, `misi`, `created_at`) VALUES
-(5, '', 'membangun bibit berkualitas', '2021-10-14 16:27:39');
+(1, '', 'Riset dan pengembangan Keilmuan PAZ Al Kasaw dalam konteks pondasi yang sudah diletakkan oleh Ustadz Haris Moedjahid Rahimahullah', '2021-10-14 22:30:13'),
+(2, '', 'Pendidikan dan pelatihan ilmu paz al kasaw berketerlanjutan dengan karakter paztrooper yang unggul', '2021-10-14 22:30:39'),
+(3, '', 'Pengelolaan manajerial alumni berbasis IT untuk kemudahan masyarakat mendapat layanan terapi PAZ Al Kasaw', '2021-10-14 22:30:57'),
+(4, '', 'Menjadi perusahaan yang profitable, high margin, dan memberikan intangiable values bagi stakeholder yang terlibat', '2021-10-14 22:31:16'),
+(6, '', 'Memberikan inspirasi cara sehat alamiah, islami, dan praktis ke seluas luas umat muslim di dunia', '2021-10-14 22:42:30');
 
 --
 -- Indexes for dumped tables
@@ -175,7 +179,7 @@ ALTER TABLE `legalitas`
 -- AUTO_INCREMENT for table `visi`
 --
 ALTER TABLE `visi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

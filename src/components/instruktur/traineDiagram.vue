@@ -1,9 +1,10 @@
 <template>
   <div class="traineDiagram">
-    <div
-      id="myDiagramDiv"
-      style="width:400px; height:150px; background-color: #DAE4E4;"
-    ></div>
+    <b-card>
+      <b-card-img-lazy
+        src="/assets/images/strukturTrainer.png"
+      ></b-card-img-lazy>
+    </b-card>
   </div>
 </template>
 
