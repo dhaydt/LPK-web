@@ -9,7 +9,7 @@
               <img src="@/assets/images/logo-col-sm.png" alt height="22" />
             </span>
             <span class="logo-lg">
-              <img src="@/assets/images/logo-col.png" alt height="45" />
+              <img src="@/assets/images/logo.png" alt height="45" />
             </span>
           </router-link>
         </div>
@@ -278,9 +278,9 @@
               src="@/assets/images/users/avatar-2.jpg"
               alt="Header Avatar"
             />
-            <span class="d-none d-xl-inline-block ml-1">Welcome, {{
-              user.username
-            }}</span>
+            <span class="d-none d-xl-inline-block ml-1"
+              >Welcome, {{ user.nama_depan }}</span
+            >
             <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
           </template>
           <!-- item-->
@@ -317,10 +317,10 @@ export default {
     this.user = auth.user;
   },
   methods: {
-		logout(){
-			localStorage.removeItem("auth");
-			this.$router.push("/");
-		},
+    logout() {
+      localStorage.removeItem("auth");
+      this.$router.push("/");
+    },
     toggleMenu() {
       this.$parent.toggleMenu();
     },

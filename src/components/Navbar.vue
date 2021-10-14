@@ -6,7 +6,7 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/aboutus">About Us</b-nav-item>
           <b-nav-item to="/instruktur">Instruktur</b-nav-item>
-          <b-nav-item to="/event">Event</b-nav-item>
+          <b-nav-item to="/event">Pelatihan</b-nav-item>
           <b-nav-item to="/loker">Lowongan Kerja</b-nav-item>
         </b-navbar-nav>
 
@@ -45,6 +45,7 @@ export default {
   background-color: transparent;
   position: fixed;
   transition: 0.6s;
+  z-index: 999;
 }
 
 nav.navbar.sticky {
@@ -61,7 +62,7 @@ nav.navbar.sticky {
 }
 
 .nav-link.router-link-exact-active.router-link-active {
-  color: #FD7D24 !important;
+  color: #fd7d24 !important;
 }
 
 .navbar-nav .nav-item.login-btn {
@@ -84,7 +85,7 @@ nav.navbar.sticky {
 }
 
 .navbar-nav .nav-item a.nav-link:hover {
-  color: #FD7D24;
+  color: #fd7d24;
 }
 
 // X-Small devices (portrait phones, less than 576px)

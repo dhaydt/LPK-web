@@ -1,15 +1,14 @@
 <template>
-  <div class="event">
-event
+  <div class="pelatihanEvent">
+    <PelatihanJumbotron></PelatihanJumbotron>
   </div>
 </template>
 
 <script>
-  export default {
-    
-  }
+import PelatihanJumbotron from "../../components/pelatihan/pelatihanJumbotron";
+export default {
+  components: { PelatihanJumbotron },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

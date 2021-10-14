@@ -1,6 +1,15 @@
 <template>
   <div class="container">
     <div class="row">
+      <div>
+        <vue-easy-lightbox
+          :visible="visible"
+          :imgs="lightboximgs"
+          :index="index"
+          @hide="visible = false"
+        ></vue-easy-lightbox>
+      </div>
+
       <div
         class="MultiCarousel"
         data-items="1,3,5,6"
@@ -10,17 +19,21 @@
       >
         <div class="MultiCarousel-inner">
           <div class="cont item" v-for="(slide, i) in testi" :key="i">
-            <b-card
-              :title="slide.title"
-              :img-src="slide.img"
-              img-alt="license"
-              img-top
-              tag="article"
-              style="max-width: 20rem;"
-              class="mb-2"
-            >
-              <b-card-text>{{ slide.instansi }} </b-card-text>
-            </b-card>
+            <a @click="() => showImg(i)">
+              <b-card
+                tag="article"
+                img-top
+                style="max-width: 20rem;"
+                class="mb-2"
+                no-body
+              >
+                <b-card-img-lazy :src="slide.thumbnail" fluid></b-card-img-lazy>
+                <b-card-title class="px-4 pt-3 pb-2">{{
+                  slide.title
+                }}</b-card-title>
+                <b-card-text class="px-4">{{ slide.instansi }} </b-card-text>
+              </b-card>
+            </a>
           </div>
         </div>
         <button class="btn btn-success leftLst">
@@ -36,32 +49,74 @@
 
 <script>
 import $ from "jquery";
+import VueEasyLightbox from "vue-easy-lightbox";
 export default {
   data() {
     return {
+      imgs: "", // Img Url , string or Array of string
+      visible: false,
+      index: 0, // default: 0
+      lightboximgs: [],
       testi: [
         {
-          img: require("../../assets/images/izin1.png"),
+          thumbnail: "/assets/images/izin1.png",
+          img: "/assets/images/izinfull1.png",
           title: "Izin Menyelenggarakan Kursus",
           instansi: "Disdik / Kemendisbud",
         },
         {
-          img: require("../../assets/images/izin2.png"),
+          thumbnail: "/assets/images/izin2.png",
+          img: "/assets/images/izin2.png",
           title: "Izin Penyelenggaraan Pelatihan",
           instansi: "Disnaker / Depnaker",
         },
         {
-          img: require("../../assets/images/izin3.png"),
+          thumbnail: "/assets/images/izin3.png",
+          img: "/assets/images/izin3.png",
           title: "Sertifikat NPSN",
           instansi: "Kemendisbud",
         },
         {
-          img: require("../../assets/images/izin1.png"),
+          thumbnail: "/assets/images/izin1.png",
+          img: "/assets/images/izin1.png",
           title: "Izin Menyelenggarakan Kursus",
           instansi: "Disdik / Kemendisbud",
         },
       ],
     };
+  },
+
+  components: {
+    VueEasyLightbox,
+  },
+
+  mounted() {
+    this.lightboximgs = this.testi.map((e) => e["img"]);
+    // console.log(this.lightboximgs);
+  },
+
+  methods: {
+    showSingle() {
+      this.imgs = require("../../assets/images/izin1.png");
+      // or
+      // this.imgs = {
+      //   title: "A placeholder",
+      //   src: "1.jpg",
+      // };
+      this.show();
+    },
+
+    show() {
+      this.visible = true;
+    },
+
+    handleHide() {
+      this.visible = false;
+    },
+    showImg(i) {
+      this.index = i;
+      this.visible = true;
+    },
   },
 
   created() {
@@ -234,13 +289,19 @@ button.btn-success.rightLst:hover {
 
 .card {
   background: #ffffff;
+  cursor: pointer;
   /* Neutral / 05 */
   min-height: 320px;
+  transition: 0.6s;
   border: 1px solid #e8eaed;
   box-sizing: border-box;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
     0px 0px 1px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
+}
+
+.card:hover {
+  background-color: #12152718;
 }
 
 .card-title {

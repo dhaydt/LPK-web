@@ -32,13 +32,16 @@
                   :show="overlay"
                   rounded="bottom"
                 >
-                  <b-img class="w-100" :src="cab.img"></b-img>
+                  <b-img-lazy class="w-100" :src="cab.img"></b-img-lazy>
                   <template #overlay>
                     <div class="card-title text-left w-100">
                       <h3 class="mb-0">{{ cab.title }}</h3>
                       <b-row
                         ><b-col md="1" class="d-flex align-items-center"
-                          ><i class="fas fa-map-marker-alt text-white" style="font-size: 18px;"></i
+                          ><i
+                            class="fas fa-map-marker-alt text-white"
+                            style="font-size: 18px;"
+                          ></i
                         ></b-col>
                         <b-col md="11">
                           <b-card-text class="mb-0">
@@ -47,8 +50,15 @@
                         </b-col></b-row
                       >
                       <b-row class="mt-2">
-                        <b-col md="1" class="d-flex align-items-center"><i class="fas fa-phone-alt text-white" style="font-size: 18px;"></i></b-col>
-                        <b-col md="11" class="d-flex align-items-center"><span>{{ cab.contact }}</span></b-col>
+                        <b-col md="1" class="d-flex align-items-center"
+                          ><i
+                            class="fas fa-phone-alt text-white"
+                            style="font-size: 18px;"
+                          ></i
+                        ></b-col>
+                        <b-col md="11" class="d-flex align-items-center"
+                          ><span>{{ cab.contact }}</span></b-col
+                        >
                       </b-row>
                     </div>
                   </template>
@@ -199,5 +209,6 @@ span {
 .b-overlay .position-absolute {
   width: 100%;
   padding: 20px;
+  z-index: 10 !important;
 }
 </style>

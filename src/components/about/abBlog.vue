@@ -33,12 +33,12 @@
             <b-card no-body class="overflow-hidden m-2" style="">
               <b-row no-gutters>
                 <b-col md="6">
-                  <b-card-img
+                  <b-card-img-lazy
                     :src="n.img"
                     alt="Image"
                     height="100"
                     class="rounded-0"
-                  ></b-card-img>
+                  ></b-card-img-lazy>
                 </b-col>
                 <b-col md="6">
                   <b-card-body class="p-0">

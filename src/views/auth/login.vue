@@ -1,95 +1,67 @@
 <template>
   <div class="login">
-    <b-container>
-      <b-row class="justify-content-center">
-        <b-card-group deck>
-          <b-col lg="12" md="6">
-            <b-card class="loginCard">
-              <div class="card-title">
-                <b-img
-                  src="../../assets/images/logo-col.png"
-                  height="50"
-                ></b-img>
-              </div>
-              <router-link to="/">
-                <b-button
-                  variant="outline-success"
-                  size="lg"
-                  class="mb-2 flaticon"
-                >
-                  <i class="fas fa-home"></i> </b-button
-              ></router-link>
+    <b-row id="loginRow">
+      <b-col class="left text-left">
+        <router-link to="/"
+          ><b-img class="p-4 m-4" src="/assets/images/logo.png"></b-img
+        ></router-link>
+      </b-col>
+      <b-col class="right d-flex align-items-center justify-content-center">
+        <b-container>
+          <b-card
+            class="w-100"
+            title="Masuk ke akun PAZ"
+            sub-title="Masuk menggunakan akun yang telah terdaftar sebelumnya"
+          >
+            <b-form @submit="onSubmit" class="mt-4">
+              <b-form-group id="email" class="mb-4">
+                <b-form-input
+                  id="email"
+                  v-model="form.email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                ></b-form-input>
+              </b-form-group>
+
+              <b-form-group id="password">
+                <b-form-input
+                  id="password"
+                  v-model="form.password"
+                  type="password"
+                  placeholder="Password"
+                  required
+                ></b-form-input>
+              </b-form-group>
               <b-alert v-model="alert" :variant="variant" dismissible>
                 {{ message }}
               </b-alert>
-              <b-form @submit="onSubmit">
-                <b-form-group
-                  id="input-group-1"
-                  class="text-left"
-                  label="Email:"
-                  label-for="email"
-                  description="We'll never share your email with anyone else."
-                >
-                  <b-form-input
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    placeholder="Enter email"
-                    required
-                  ></b-form-input>
-                </b-form-group>
-
-                <b-form-group
-                  id="password"
-                  class="text-left"
-                  label="Password"
-                  label-for="password"
-                >
-                  <b-form-input
-                    id="password"
-                    v-model="form.password"
-                    placeholder="Enter password"
-                    required
-                  ></b-form-input>
-                </b-form-group>
-
-                <b-row class="flex-column">
-                  <b-col class="mb-2 reg text-left">
-                    <span
-                      >Tidak memiliki akun?
-                      <router-link to="/register"
-                        >Daftar sekarang</router-link
-                      ></span
-                    >
-                  </b-col>
-                  <b-col>
-                    <b-button class="ml-auto" type="submit" variant="success"
-                      ><span v-if="loading"
-                        ><b-spinner
-                          small
-                          variant="warning"
-                          class="mr-2"
-                        ></b-spinner
-                        >Wait...</span
-                      ><span v-else
-                        ><i class="fas fa-lock mr-2"></i>Login</span
-                      ></b-button
-                    >
-                  </b-col>
-                </b-row>
-              </b-form>
-              <!-- <b-card class="mt-3" header="Form Data Result">
-					<pre class="m-0">{{ form }}</pre>
-				</b-card> -->
-            </b-card>
-          </b-col>
-        </b-card-group>
-      </b-row>
-    </b-container>
+              <div class="text-right forget">
+                <router-link to="#forget">Lupa password?</router-link>
+              </div>
+              <b-button type="submit" class="login-btn w-100 mt-4 py-3"
+                ><span v-if="loading"
+                  ><b-spinner small variant="warning" class="mr-2"></b-spinner
+                  >Wait...</span
+                ><span v-else
+                  ><i class="fas fa-lock mr-2"></i>Login</span
+                ></b-button
+              >
+              <div class="text-center reg">
+                Belum punya akun?
+                <router-link to="/register">Daftar baru</router-link>
+              </div>
+            </b-form>
+          </b-card>
+        </b-container>
+      </b-col>
+    </b-row>
+    <!-- <Footer></Footer> -->
   </div>
 </template>
 
 <script>
+// import Footer from "../../components/footer";
 import axios from "axios";
 export default {
   data() {
@@ -106,6 +78,7 @@ export default {
       loginUrl: "",
     };
   },
+  // components: { Footer },
 
   created() {
     if (localStorage.getItem("auth") !== null) {
@@ -143,21 +116,119 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
-.loginCard {
-  // max-width: 50%;
-  margin-top: 20vh;
+@import "@/assets/main.scss";
+
+#loginRow {
+  height: 90vh;
 }
-.flaticon {
-  position: absolute;
-  right: -15px;
-  top: -15px;
-  border-radius: 50%;
-  background-color: white;
+.left {
+  background: linear-gradient(
+    181.98deg,
+    #07a148 26.57%,
+    rgba(7, 161, 72, 0) 283.01%
+  );
 }
 
-.reg span {
-  font-size: 0.8rem;
+.right {
+  background-color: #fff;
+}
+
+.card {
+  box-shadow: none;
+  padding: 0 50px;
+}
+
+.card-title {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  /* identical to box height */
   text-align: left;
+  letter-spacing: 0.01em;
+
+  /* Black/3 */
+
+  color: #121527;
+}
+
+.card-subtitle {
+  font-style: normal;
+  font-weight: normal;
+  margin: 16px 0;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+  color: #757682;
+}
+
+#email {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+}
+
+#password {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+}
+
+.forget a {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.01em;
+  color: #07a148;
+}
+
+.forget a:hover {
+  color: $paz-secondary;
+}
+
+.login-btn {
+  background-color: $paz-main;
+  span {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.04em;
+  }
+  // color: #ffffff;
+}
+
+.login-btn:hover {
+  background-color: $paz-secondary;
+  border: none;
+}
+
+.reg {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 10px;
+  /* identical to box height, or 143% */
+
+  letter-spacing: 0.01em;
+
+  /* Black/2 */
+
+  color: #757682;
+  a {
+    color: $paz-main;
+  }
 }
 </style>

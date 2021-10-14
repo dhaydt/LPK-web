@@ -43,7 +43,7 @@
         <div class="card-body border-top text-center">
           <b-row>
             <b-col md="3" v-for="img in images" :key="img"
-              ><b-img :src="img" alt="gallery"></b-img
+              ><b-img-lazy :src="img" alt="gallery"></b-img-lazy
             ></b-col>
           </b-row>
         </div>

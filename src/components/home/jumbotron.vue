@@ -22,7 +22,7 @@
       <b-container>
         <b-row no-gutters class="justify-content-center">
           <b-col md="3" class="mr-2">
-            <b-img
+            <b-img-lazy
               src="/assets/images/potrait1.png"
               fluid-grow
               alt="Responsive image"
@@ -32,7 +32,7 @@
           <b-col md="4">
             <b-row style="height:50%" class="mb-2">
               <b-col
-                ><b-img
+                ><b-img-lazy
                   src="/assets/images/land1.png"
                   fluid
                   alt="Responsive image"
@@ -41,7 +41,7 @@
             </b-row>
             <b-row style="height: 48%">
               <b-col
-                ><b-img
+                ><b-img-lazy
                   src="/assets/images/land2.png"
                   fluid
                   alt="Responsive image"
@@ -50,7 +50,7 @@
             </b-row>
           </b-col>
           <b-col md="3" class="ml-2"
-            ><b-img
+            ><b-img-lazy
               src="/assets/images/potrait2.png"
               fluid
               alt="Responsive image"

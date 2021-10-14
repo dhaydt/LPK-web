@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Header from "./partials/page-header.vue";
+import Header from "@/components/admin/partials/page-header.vue";
 export default {
   data() {
     return {

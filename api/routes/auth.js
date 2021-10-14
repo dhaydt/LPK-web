@@ -14,29 +14,34 @@ router.post("/sign-up", userMiddleware.validateRegister, (req, res, next) => {
     (err, result) => {
       if (result.length) {
         return res.status(409).send({
-          msg: "This email is already in use!"
+          msg: "This email is already in use!",
         });
       } else {
         // username is available
         bcrypt.hash(req.body.password, 10, (err, hash) => {
           if (err) {
             return res.status(500).send({
-              msg: err
+              msg: err,
             });
           } else {
             // has hashed pw => add to database
             db.query(
-              `INSERT INTO users (id, username, email, password, company) VALUES ('${uuid.v4()}', ${db.escape(
-                req.body.username)}, ${db.escape(req.body.email)}, ${db.escape(hash)}, ${db.escape(req.body.company)})`,
+              `INSERT INTO users (id, nama_depan, nama_bel, email, telp, alamat, password) VALUES ('${uuid.v4()}', ${db.escape(
+                req.body.nama_depan
+              )}, ${db.escape(req.body.nama_bel)}, ${db.escape(
+                req.body.email
+              )}, ${db.escape(req.body.telp)},${db.escape(
+                req.body.alamat
+              )}, ${db.escape(hash)})`,
               (err, result) => {
                 if (err) {
                   throw err;
                   return res.status(400).send({
-                    msg: err
+                    msg: err,
                   });
                 }
                 return res.status(201).send({
-                  msg: "Registered!"
+                  msg: "Registered!",
                 });
               }
             );
@@ -55,12 +60,12 @@ router.post("/login", (req, res, next) => {
       if (err) {
         throw err;
         return res.status(400).send({
-          msg: err
+          msg: err,
         });
       }
       if (!result.length) {
         return res.status(401).send({
-          msg: "Email or password is incorrect!"
+          msg: "Email or password is incorrect!",
         });
       }
       // check password
@@ -72,18 +77,18 @@ router.post("/login", (req, res, next) => {
           if (bErr) {
             throw bErr;
             return res.status(401).send({
-              msg: "Username or password is incorrect!"
+              msg: "Username or password is incorrect!",
             });
           }
           if (bResult) {
             const token = jwt.sign(
               {
                 email: result[0].email,
-                userId: result[0].id
+                userId: result[0].id,
               },
               "SECRETKEY",
               {
-                expiresIn: "7d"
+                expiresIn: "7d",
               }
             );
             db.query(
@@ -92,11 +97,11 @@ router.post("/login", (req, res, next) => {
             return res.status(200).send({
               msg: "Logged in!",
               token,
-              user: result[0]
+              user: result[0],
             });
           }
           return res.status(401).send({
-            msg: "Username or password is incorrect!"
+            msg: "Username or password is incorrect!",
           });
         }
       );
