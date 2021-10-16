@@ -80,6 +80,10 @@ export default {};
 
 <style lang="scss" scoped>
 footer {
+  z-index: 1;
+  position: relative;
+}
+footer {
   background-color: #04162c;
 }
 

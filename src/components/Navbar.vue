@@ -1,12 +1,12 @@
 <template>
   <div class="navbarHome w-100">
-    <b-navbar toggleable="lg" type="dark">
+    <b-navbar toggleable="lg" type="dark" class="navfront">
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/aboutus">About Us</b-nav-item>
           <b-nav-item to="/instruktur">Instruktur</b-nav-item>
-          <b-nav-item to="/event">Pelatihan</b-nav-item>
+          <b-nav-item to="/pelatihan">Pelatihan</b-nav-item>
           <b-nav-item to="/loker">Lowongan Kerja</b-nav-item>
         </b-navbar-nav>
 
@@ -18,7 +18,7 @@
       /></b-navbar-brand>
 
       <b-navbar-nav class="ml-auto">
-        <b-nav-item to="/login" class="login-btn px-2 mr-2">Login</b-nav-item>
+        <b-nav-item href="/login" class="login-btn px-2 mr-2">Login</b-nav-item>
       </b-navbar-nav>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     </b-navbar>
@@ -29,8 +29,8 @@
 export default {
   created() {
     window.addEventListener("scroll", function() {
-      var header = this.document.querySelector("nav");
-      header.classList.toggle("sticky", window.scrollY > 0);
+      var navi = this.document.querySelector(".navfront");
+      navi.classList.toggle("sticky", window.scrollY > 0);
     });
   },
 };

@@ -1,17 +1,35 @@
 <template>
-  <section class="mb-4 cabang">
+  <section class="mb-4 gallery">
     <b-container>
       <b-row class="justify-content-center">
         <b-col lg="9">
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
-                <span>KOPDAR ALUMNI</span>
+                <span>Kopi darat alumni PAZ</span>
               </div>
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-title>Kopi Darat Alumni Pelatihan PAZ</b-card-title>
+              <b-card-title>GALERI FOTO PAZ</b-card-title>
+              <b-card-text class="mt-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
+                aliquam, purus sit amet luctus venenatis, lectus magna fringilla
+                urna
+              </b-card-text>
+              <b-button
+                variant="outline-success seemore"
+                href="#"
+                class="mt-4 px-4"
+                ><span
+                  ><img
+                    src="../../assets/images/pict.svg"
+                    alt="info"
+                    height="25"
+                  />
+                  Lihat semua foto</span
+                ></b-button
+              >
             </b-card-body>
           </b-card>
         </b-col>
@@ -20,51 +38,13 @@
     <div id="shape">
       <div id="moons"></div>
     </div>
-    <b-row class="justify-content-center w-100 m-0">
-      <b-col md="12">
+    <b-row class="justify-content-center w-100">
+      <b-col md="10">
         <div class="card-body border-top text-center">
           <b-row>
-            <b-col v-for="(cab, i) in cabang" :key="i">
-              <b-card>
-                <b-overlay
-                  variant="dark"
-                  opacity="0.7"
-                  :show="overlay"
-                  rounded="bottom"
-                >
-                  <b-img-lazy class="w-100" :src="cab.img"></b-img-lazy>
-                  <template #overlay>
-                    <div class="card-title text-left w-100">
-                      <h3 class="mb-0">{{ cab.title }}</h3>
-                      <b-row
-                        ><b-col md="1" class="d-flex align-items-center"
-                          ><i
-                            class="fas fa-map-marker-alt text-white"
-                            style="font-size: 18px;"
-                          ></i
-                        ></b-col>
-                        <b-col md="11">
-                          <b-card-text class="mb-0">
-                            {{ cab.address }}
-                          </b-card-text>
-                        </b-col></b-row
-                      >
-                      <b-row class="mt-2">
-                        <b-col md="1" class="d-flex align-items-center"
-                          ><i
-                            class="fas fa-phone-alt text-white"
-                            style="font-size: 18px;"
-                          ></i
-                        ></b-col>
-                        <b-col md="11" class="d-flex align-items-center"
-                          ><span>{{ cab.contact }}</span></b-col
-                        >
-                      </b-row>
-                    </div>
-                  </template>
-                </b-overlay>
-              </b-card>
-            </b-col>
+            <b-col md="3" v-for="img in images" :key="img"
+              ><b-img-lazy :src="img" alt="gallery"></b-img-lazy
+            ></b-col>
           </b-row>
         </div>
       </b-col>
@@ -76,22 +56,11 @@
 export default {
   data() {
     return {
-      overlay: true,
-      cabang: [
-        {
-          title: "Ayub camp",
-          img: require("../../assets/images/cabang.png"),
-          address:
-            "Gang H Wignyo Sudarto, Sidorejo RT 1 RW 14, Belang Wetan, Klaten, Jawa Tengah",
-          contact: "+62 858-2177-0740",
-        },
-        {
-          title: "Ayub camp",
-          img: require("../../assets/images/cabang.png"),
-          address:
-            "Gang H Wignyo Sudarto, Sidorejo RT 1 RW 14, Belang Wetan, Klaten, Jawa Tengah",
-          contact: "+62 858-2177-0740",
-        },
+      images: [
+        require("../../assets/images/potrait3.png"),
+        require("../../assets/images/potrait4.png"),
+        require("../../assets/images/potrait5.png"),
+        require("../../assets/images/potrait6.png"),
       ],
     };
   },
@@ -135,18 +104,6 @@ section {
   margin-top: 100px;
 }
 
-.head span {
-  font-weight: 600;
-  font-size: 16px;
-  font-style: normal;
-  line-height: 26px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #07a148;
-  padding-bottom: 5px;
-  border-bottom: 2px solid #07a148;
-}
-
 .card {
   border: none;
   box-shadow: none;
@@ -157,58 +114,51 @@ section {
 }
 
 .card-title {
+  font-size: 32px;
   font-style: normal;
   font-weight: 600;
-  font-size: 32px;
-  line-height: 140%;
-  text-align: center;
+  line-height: 45px;
   letter-spacing: 0.5px;
+  text-align: center;
   color: #2e3e5c;
 }
 
-.card-title h3 {
-  font-style: normal;
-  font-weight: 800;
-  font-size: 20px;
-  text-transform: uppercase;
-  line-height: 160%;
-  /* or 38px */
-  letter-spacing: 0.01em;
-  color: #ffffff;
-  text-align: left;
-}
-
 .card-text {
+  font-size: 24px;
   font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
-  text-align: left;
-  /* White */
-  color: #ffffff;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #686870;
 }
 
-span {
+em {
+  font-size: 20px;
+}
+
+.head {
+  span {
+    font-weight: 600;
+    font-size: 16px;
+    font-style: normal;
+    line-height: 26px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #07a148;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #07a148;
+  }
+}
+
+.seemore span {
+  font-size: 16px;
   font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
+  font-weight: 600;
   line-height: 19px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.04em;
   text-align: left;
-  /* White */
-  color: #ffffff;
-}
-</style>
-
-<style lang="scss">
-.card-body .b-overlay-wrap div.b-overlay {
-  height: 40%;
-  top: 60% !important;
-}
-
-.b-overlay .position-absolute {
-  width: 100%;
-  padding: 20px;
-  z-index: 10 !important;
+  color: #07a148;
+  text-transform: capitalize;
 }
 </style>

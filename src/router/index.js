@@ -3,13 +3,13 @@ import VueRouter from "vue-router";
 
 // Home section
 import Home from "../views/index.vue";
-import HomeAbout from "../views/about/index.vue"
-import HomeInstruktur from "../views/instruktur/index.vue"
-import HomeEvent from "../views/event/index.vue"
-import HomeLoker from "../views/loker/index.vue"
+import HomeAbout from "../views/about/index.vue";
+import HomeInstruktur from "../views/instruktur/index.vue";
+import HomeEvent from "../views/event/index.vue";
+import HomeLoker from "../views/loker/index.vue";
 
 // Admin panel
-import Register from "../views/auth/register.vue"
+import Register from "../views/auth/register.vue";
 import Login from "../views/auth/login.vue";
 import Dashboard from "../views/admin/index.vue";
 import About from "../views/admin/about";
@@ -17,19 +17,18 @@ import Legal from "../views/admin/about/legalitas.vue";
 import Struktur from "../views/admin/about/struktur.vue";
 import Liputan from "../views/admin/about/liputan.vue";
 import Cabang from "../views/admin/about/cabang.vue";
-import Instruktur from "../views/admin/instruktur"
-import Images from "../views/admin/images"
-import Alumni from "../views/admin/images/alumni.vue"
-import Loker from "../views/admin/loker"
-import Status from "../views/admin/loker/status.vue"
-import Setting from "../views/admin/setting"
+import Instruktur from "../views/admin/instruktur";
+import Images from "../views/admin/images";
+import Alumni from "../views/admin/images/alumni.vue";
+import Loker from "../views/admin/loker";
+import Status from "../views/admin/loker/status.vue";
+import Setting from "../views/admin/setting";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
     component: Home,
     children: [
       // UserHome will be rendered inside User's <router-view>
@@ -37,20 +36,24 @@ const routes = [
       {
         path: "/",
         component: () => import("../views/home/index.vue"),
-      },{
+      },
+      {
         path: "/aboutus",
         component: HomeAbout,
-      },{
+      },
+      {
         path: "/instruktur",
         component: HomeInstruktur,
-      },{
-        path: "/event",
+      },
+      {
+        path: "/pelatihan",
         component: HomeEvent,
-      },{
+      },
+      {
         path: "/loker",
         component: HomeLoker,
       },
-    ]
+    ],
   },
 
   {
@@ -58,7 +61,7 @@ const routes = [
     name: "Login",
     component: Login,
   },
-  
+
   {
     path: "/register",
     name: "Register",
@@ -67,7 +70,6 @@ const routes = [
 
   {
     path: "/admin",
-    name: "Admin",
     component: Dashboard,
     meta: {
       requiresAuth: true,
@@ -119,7 +121,8 @@ const routes = [
       {
         path: "/admin/loker/status",
         component: Status,
-      },{
+      },
+      {
         path: "/admin/setting",
         component: Setting,
       },
@@ -132,7 +135,6 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {

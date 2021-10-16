@@ -2,30 +2,43 @@
   <div class="dash">
     <Header :title="title" :items="items"></Header>
     <b-card>
-      Liputan
+      <b-tabs content-class="mt-3" fill>
+        <b-tab title="Liputan Media" active>
+          <ListLiputan></ListLiputan>
+        </b-tab>
+        <b-tab title="Tambah Data">
+          <b-container>
+            <AddLiputan></AddLiputan>
+          </b-container>
+        </b-tab>
+      </b-tabs>
     </b-card>
   </div>
 </template>
 
 <script>
+import AddLiputan from "./liputan/addLiputan";
+import ListLiputan from "./liputan/listLiputan";
 import Header from "../../../components/admin/partials/page-header.vue";
 export default {
   data() {
     return {
       title: "Liputan",
-items: [
+      items: [
         {
           text: "About",
-          href: "/admin/about"
+          href: "/admin/about",
         },
         {
           text: "Liputan",
-          active: true
-        }
+          active: true,
+        },
       ],
     };
   },
   components: {
+    AddLiputan,
+    ListLiputan,
     Header,
   },
 };

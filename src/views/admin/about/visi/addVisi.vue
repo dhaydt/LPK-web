@@ -2,7 +2,8 @@
   <div class="addVisi">
     <b-row class="justify-content-center">
       <b-col md="8" sm="12">
-        <b-card title="Tambah Visi / Misi">
+        <b-card>
+          <b-card-title class="text-left">Tambah Visi / Misi</b-card-title>
           <b-alert
             :show="dismissCountDown"
             dismissible
@@ -103,4 +104,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.input-group-prepend {
+  margin-right: -1px;
+  display: flex;
+  .input-group-text {
+    min-width: 100px;
+  }
+}
+</style>

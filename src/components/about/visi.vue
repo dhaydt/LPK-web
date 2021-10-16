@@ -7,17 +7,25 @@
             <h5>Visi kami</h5>
           </div>
           <div class="subtitle">
-            <h1>PAZtrooper Profesional, Beradab, dan Berdaya Juang</h1>
+            <h1>
+              {{ visi }}
+            </h1>
           </div>
         </b-col>
         <b-col>
           <div class="title">
             <h5>Misi kami</h5>
           </div>
-          <b-row v-for="(mis, index) in mission" :key="index" class="mt-3">
-            <b-col sm="2" class="d-flex align-items-center"
-              ><b-avatar :text="JSON.stringify(mis.id)" size="lg"></b-avatar
-            ></b-col>
+          <b-row
+            v-for="(mis, index) in mission.slice(0, 5)"
+            :key="index"
+            class="mt-3"
+          >
+            <b-col sm="2" class="d-flex align-items-center">
+              <div class="numVisi">
+                <span>{{ index + 1 }}</span>
+              </div>
+            </b-col>
             <b-col sm="10" class="misi text-left"
               ><span>{{ mis.misi }}</span>
             </b-col>
@@ -34,21 +42,34 @@ export default {
   data() {
     return {
       mission: [],
+      visi: "",
       visiUrl: "",
+      visiOnlyUrl: "",
     };
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
     this.visiUrl = mainUrl + "/visi";
+    this.visiOnlyUrl = mainUrl + "/visiOnly";
     this.getVisi();
+    this.getVO();
   },
 
   methods: {
     async getVisi() {
       const resp = await axios.get(this.visiUrl);
       console.log(resp.data.data);
+      let data = resp.data.data;
+
+      console.log("visi", data);
       this.mission = resp.data.data;
+    },
+
+    async getVO() {
+      const resp = await axios.get(this.visiOnlyUrl);
+      const data = resp.data.data[0].visi;
+      this.visi = data;
     },
   },
 };
@@ -82,6 +103,29 @@ h1 {
   text-align: left;
   font-size: 40px;
   line-height: 140%;
+}
+
+.numVisi {
+  width: 64px;
+  height: 64px;
+  left: 0px;
+  text-align: center;
+  padding: 0;
+  top: 16px;
+  margin: 0;
+  background-color: #fd7d24;
+  border-radius: 32px;
+  border: none;
+
+  span {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 2.3;
+    text-align: center;
+    color: #ffffff;
+  }
 }
 
 span.b-avatar {

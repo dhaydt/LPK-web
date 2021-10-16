@@ -14,7 +14,7 @@
             sub-title="Masuk menggunakan akun yang telah terdaftar sebelumnya"
           >
             <b-form @submit="onSubmit" class="mt-4">
-              <b-form-group id="email" class="mb-4">
+              <b-form-group id="email-grup" class="mb-4">
                 <b-form-input
                   id="email"
                   v-model="form.email"
@@ -24,7 +24,7 @@
                 ></b-form-input>
               </b-form-group>
 
-              <b-form-group id="password">
+              <b-form-group id="password-grup">
                 <b-form-input
                   id="password"
                   v-model="form.password"

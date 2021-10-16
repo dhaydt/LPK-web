@@ -23,46 +23,43 @@
     <b-row class="justify-content-center w-100 m-0">
       <b-col md="12">
         <div class="card-body border-top text-center">
-          <b-row>
-            <b-col v-for="(cab, i) in cabang" :key="i">
-              <b-card>
-                <b-overlay
-                  variant="dark"
-                  opacity="0.7"
-                  :show="overlay"
-                  rounded="bottom"
-                >
-                  <b-img-lazy class="w-100" :src="cab.img"></b-img-lazy>
-                  <template #overlay>
-                    <div class="card-title text-left w-100">
-                      <h3 class="mb-0">{{ cab.title }}</h3>
-                      <b-row
-                        ><b-col md="1" class="d-flex align-items-center"
-                          ><i
-                            class="fas fa-map-marker-alt text-white"
-                            style="font-size: 18px;"
-                          ></i
-                        ></b-col>
-                        <b-col md="11">
-                          <b-card-text class="mb-0">
-                            {{ cab.address }}
-                          </b-card-text>
-                        </b-col></b-row
-                      >
-                      <b-row class="mt-2">
-                        <b-col md="1" class="d-flex align-items-center"
-                          ><i
-                            class="fas fa-phone-alt text-white"
-                            style="font-size: 18px;"
-                          ></i
-                        ></b-col>
-                        <b-col md="11" class="d-flex align-items-center"
-                          ><span>{{ cab.contact }}</span></b-col
-                        >
-                      </b-row>
-                    </div>
-                  </template>
-                </b-overlay>
+          <b-row class="justify-content-center">
+            <b-col md="5" sm="10" v-for="cab in cabang" :key="cab.id">
+              <b-card class="card-overlay" no-body>
+                <b-card-img-lazy
+                  top
+                  :src="imgUrl + cab.img"
+                  fluid
+                ></b-card-img-lazy>
+                <div class="overlay-bg">
+                  <b-card-title>
+                    {{ cab.name }}
+                  </b-card-title>
+                  <b-row class="px-3"
+                    ><b-col md="1" class="d-flex align-items-center"
+                      ><i
+                        class="fas fa-map-marker-alt text-white"
+                        style="font-size: 18px;"
+                      ></i
+                    ></b-col>
+                    <b-col md="11">
+                      <b-card-text class="mb-0">
+                        {{ cab.address }}
+                      </b-card-text>
+                    </b-col></b-row
+                  >
+                  <b-row class="mt-2 px-3 pb-3">
+                    <b-col md="1" class="d-flex align-items-center"
+                      ><i
+                        class="fas fa-phone-alt text-white"
+                        style="font-size: 18px;"
+                      ></i
+                    ></b-col>
+                    <b-col md="11" class="d-flex align-items-center"
+                      ><span>{{ cab.telp }}</span></b-col
+                    >
+                  </b-row>
+                </div>
               </b-card>
             </b-col>
           </b-row>
@@ -73,32 +70,53 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
       overlay: true,
-      cabang: [
-        {
-          title: "Ayub camp",
-          img: require("../../assets/images/cabang.png"),
-          address:
-            "Gang H Wignyo Sudarto, Sidorejo RT 1 RW 14, Belang Wetan, Klaten, Jawa Tengah",
-          contact: "+62 858-2177-0740",
-        },
-        {
-          title: "Ayub camp",
-          img: require("../../assets/images/cabang.png"),
-          address:
-            "Gang H Wignyo Sudarto, Sidorejo RT 1 RW 14, Belang Wetan, Klaten, Jawa Tengah",
-          contact: "+62 858-2177-0740",
-        },
-      ],
+      cabangUrl: "",
+      imgUrl: "",
+      cabang: [],
     };
+  },
+  created() {
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.cabangUrl = mainUrl + "/cabang";
+    this.imgUrl = mainUrl + "/images/cabang/";
+    this.getCabang();
+  },
+  methods: {
+    async getCabang() {
+      const resp = await axios.get(this.cabangUrl);
+      this.cabang = resp.data.data;
+    },
   },
 };
 </script>
-
 <style lang="scss" scoped>
+.overlay-bg {
+  background-color: rgba(26, 30, 39, 0.7);
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+}
+.card-overlay {
+  .card-title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 10px;
+    line-height: 160%;
+    letter-spacing: 0.01em;
+    color: #ffffff;
+  }
+}
 #moon {
   font-size: 20em;
   display: inline-block;
@@ -197,18 +215,5 @@ span {
   text-align: left;
   /* White */
   color: #ffffff;
-}
-</style>
-
-<style lang="scss">
-.card-body .b-overlay-wrap div.b-overlay {
-  height: 40%;
-  top: 60% !important;
-}
-
-.b-overlay .position-absolute {
-  width: 100%;
-  padding: 20px;
-  z-index: 10 !important;
 }
 </style>

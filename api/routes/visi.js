@@ -22,7 +22,26 @@ router.post("/visi", (req, res) => {
 });
 
 router.get("/visi", (req, res) => {
-  db.query("SELECT * FROM visi ORDER BY id asc", (err, rows) => {
+  db.query(
+    "SELECT * FROM visi WHERE misi IS NOT NULL ORDER BY id desc",
+    (err, rows) => {
+      if (err) {
+        return res.status(400).send({
+          msg: "Database error",
+        });
+      } else {
+        //render ke view posts index
+        return res.status(200).send({
+          data: rows, // <-- data posts
+        });
+      }
+    }
+  );
+});
+
+router.get("/visiOnly", (req, res) => {
+  var sql = "SELECT * FROM visi WHERE visi IS NOT NULL  ORDER BY id desc";
+  db.query(sql, (err, rows) => {
     if (err) {
       return res.status(400).send({
         msg: "Database error",
