@@ -3,6 +3,11 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
 const fileUpload = require("express-fileupload");
+const corsOptions = {
+  origin: "https://generasiunggul.com",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
 // const fileURLToPath = require("url");
 // Create express instance
 const app = express();
@@ -20,7 +25,7 @@ const pelatihan = require("./routes/pelatihan");
 const testi = require("./routes/testimoni");
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // UPLOAD
 app.use(express.static("public"));

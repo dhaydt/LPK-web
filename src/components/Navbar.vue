@@ -7,7 +7,7 @@
           <b-nav-item to="/aboutus">About Us</b-nav-item>
           <b-nav-item to="/instruktur">Instruktur</b-nav-item>
           <b-nav-item to="/pelatihan">Pelatihan</b-nav-item>
-          <b-nav-item to="/loker">Lowongan Kerja</b-nav-item>
+          <b-nav-item to="/loker">Loker</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
