@@ -237,8 +237,8 @@ export default {
 
 button.btn-success.leftLst,
 button.btn-success.rightLst {
-  background-color: #ffffff;
-  color: #000;
+  background-color: $paz-main;
+  color: #fff;
 }
 
 button.btn-success.rightLst {
