@@ -71,7 +71,7 @@ CREATE TABLE `gallery` (
   `title` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'galeri',
   `img` varchar(255) NOT NULL,
-  `date` date DEFAULT current_timestamp(),
+  `date` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
