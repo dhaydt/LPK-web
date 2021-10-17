@@ -39,21 +39,15 @@
       <div id="moons"></div>
     </div>
     <b-row class="justify-content-center w-100">
-      <b-col md="10">
-        <div class="card-body border-top text-center">
-          <b-row>
-            <b-col md="3" v-for="img in images" :key="img"
-              ><b-img-lazy :src="img" alt="gallery"></b-img-lazy
-            ></b-col>
-          </b-row>
-        </div>
-      </b-col>
+      <GaleriCard></GaleriCard>
     </b-row>
   </section>
 </template>
 
 <script>
+import GaleriCard from "../pelatihan/galeriCard";
 export default {
+  components: { GaleriCard },
   data() {
     return {
       images: [

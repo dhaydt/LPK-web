@@ -6,36 +6,36 @@ export const menuItems = [
   },
   {
     id: 2,
-    label: "Dashboard",
-    icon: "ri-dashboard-line",
+    label: "Home",
+    icon: "ri-home-line",
     link: "/admin",
   },
   {
     id: 3,
     label: "About",
-    icon: "ri-user-settings-fill",
+    icon: "ri-honour-fill",
     subItems: [
       {
         id: 31,
         label: "Visi Misi",
         link: "/admin/about",
       },
-			{
+      {
         id: 32,
         label: "Legalitas",
         link: "/admin/about/legalitas",
       },
-			{
+      {
         id: 33,
         label: "Struktur LPK",
         link: "/admin/about/struktur",
       },
-			{
+      {
         id: 34,
         label: "Liputan",
-        link: "/admin/about/liputan"
+        link: "/admin/about/liputan",
       },
-			{
+      {
         id: 35,
         label: "Cabang",
         link: "/admin/about/cabang",
@@ -45,30 +45,36 @@ export const menuItems = [
   {
     id: 4,
     label: "Instruktur",
-    icon: "ri-book-line",
+    icon: "ri-customer-service-line",
     link: "/admin/instruktur",
   },
-	{
+  {
+    id: 41,
+    label: "Pelatihan",
+    icon: "ri-at-fill",
+    link: "/admin/pelatihan",
+  },
+  {
     id: 5,
     label: "Images",
-    icon: "ri-book-line",
-		subItems: [
-			{
-				id: 51,
-				label: "Gallery",
-				link: "/admin/images",
-			},
-			{
-				id: 52,
-				label: "Kopdar Alumni",
-				link: "/admin/images/alumni",
-			}
-		]
+    icon: "ri-gallery-line",
+    subItems: [
+      {
+        id: 51,
+        label: "Galeri",
+        link: "/admin/images",
+      },
+      {
+        id: 52,
+        label: "Kopdar Alumni",
+        link: "/admin/images/alumni",
+      },
+    ],
   },
   {
     id: 6,
     label: "Loker",
-    icon: "ri-translate",
+    icon: "ri-hotel-line",
     subItems: [
       {
         id: 61,
@@ -83,9 +89,15 @@ export const menuItems = [
     ],
   },
   {
+    id: 8,
+    label: "Testimoni",
+    icon: "ri-feedback-line",
+    link: "/admin/testimoni",
+  },
+  {
     id: 7,
     label: "Setting",
-    icon: "ri-price-tag-3-fill",
+    icon: "ri-settings-2-line",
     link: "/admin/setting",
-  }
+  },
 ];

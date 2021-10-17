@@ -9,13 +9,13 @@
             <h1>Instruktur</h1>
           </div>
 
-          <div id="subheader">
-            <h4>
+          <div id="subheader" class="mt-4">
+            <p>
               PAZ Generasi Unggul lembaga yang mengelola dan meneruskan
               pengajaran temuan Hak Cipta Intelektual dari Ustadz Haris
               Moedjahid Rahimahullah berupa Ilmu Pengobatan dan Konsep hidup Ala
               PAZ Al Kasaw.
-            </h4>
+            </p>
           </div>
         </b-col>
       </b-row>
@@ -81,7 +81,7 @@ h1 {
   text-transform: uppercase;
 }
 
-h4 {
+p {
   font-weight: 400;
   font-style: normal;
   font-size: 20px;

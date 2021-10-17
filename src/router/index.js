@@ -18,9 +18,11 @@ import Struktur from "../views/admin/about/struktur.vue";
 import Liputan from "../views/admin/about/liputan.vue";
 import Cabang from "../views/admin/about/cabang.vue";
 import Instruktur from "../views/admin/instruktur";
+import Pelatihan from "../views/admin/pelatihan";
 import Images from "../views/admin/images";
 import Alumni from "../views/admin/images/alumni.vue";
 import Loker from "../views/admin/loker";
+import Testimoni from "../views/admin/testimoni";
 import Status from "../views/admin/loker/status.vue";
 import Setting from "../views/admin/setting";
 
@@ -107,6 +109,10 @@ const routes = [
         component: Instruktur,
       },
       {
+        path: "/admin/pelatihan",
+        component: Pelatihan,
+      },
+      {
         path: "/admin/images",
         component: Images,
       },
@@ -121,6 +127,10 @@ const routes = [
       {
         path: "/admin/loker/status",
         component: Status,
+      },
+      {
+        path: "/admin/testimoni",
+        component: Testimoni,
       },
       {
         path: "/admin/setting",

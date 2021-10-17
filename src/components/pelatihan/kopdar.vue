@@ -6,12 +6,12 @@
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
-                <span>Kopi darat alumni PAZ</span>
+                <span>kopdar alumni PAZ</span>
               </div>
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-title>GALERI FOTO PAZ</b-card-title>
+              <b-card-title>kegiatan alumni paz</b-card-title>
               <b-card-text class="mt-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
                 aliquam, purus sit amet luctus venenatis, lectus magna fringilla
@@ -42,8 +42,8 @@
       <b-col md="10">
         <div class="card-body border-top text-center">
           <b-row>
-            <b-col md="3" v-for="img in images" :key="img"
-              ><b-img-lazy :src="img" alt="gallery"></b-img-lazy
+            <b-col md="3" v-for="img in kopdar" :key="img.id" class="kopdar"
+              ><b-img-lazy :src="imgUrl + img.img" alt="gallery"></b-img-lazy
             ></b-col>
           </b-row>
         </div>
@@ -53,21 +53,44 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
-      images: [
-        require("../../assets/images/potrait3.png"),
-        require("../../assets/images/potrait4.png"),
-        require("../../assets/images/potrait5.png"),
-        require("../../assets/images/potrait6.png"),
-      ],
+      kopdarUrl: "",
+      imgUrl: "",
+      kopdar: [],
+      // images: [
+      //   require("../../assets/images/potrait3.png"),
+      //   require("../../assets/images/potrait4.png"),
+      //   require("../../assets/images/potrait5.png"),
+      //   require("../../assets/images/potrait6.png"),
+      // ],
     };
+  },
+
+  created() {
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.kopdarUrl = mainUrl + "/imageKopdar";
+    this.imgUrl = mainUrl + "/images/galeri/";
+    this.getKopdar();
+  },
+
+  methods: {
+    async getKopdar() {
+      const resp = await axios.get(this.kopdarUrl);
+      console.log(resp.data.data);
+      this.kopdar = resp.data.data;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.kopdar img {
+  height: 308px;
+  width: 250px;
+}
 #moon {
   font-size: 20em;
   display: inline-block;
@@ -117,6 +140,7 @@ section {
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
+  text-transform: uppercase;
   line-height: 45px;
   letter-spacing: 0.5px;
   text-align: center;

@@ -4,14 +4,14 @@
       <div class="d-flex">
         <!-- LOGO -->
         <div class="navbar-brand-box">
-          <router-link to="/" class="logo logo-light">
+          <a href="/" class="logo logo-light">
             <span class="logo-sm">
               <img src="@/assets/images/logo-col-sm.png" alt height="22" />
             </span>
             <span class="logo-lg">
               <img src="@/assets/images/logo.png" alt height="45" />
             </span>
-          </router-link>
+          </a>
         </div>
 
         <button
@@ -275,7 +275,7 @@
           <template v-slot:button-content>
             <img
               class="rounded-circle header-profile-user"
-              src="@/assets/images/users/avatar-2.jpg"
+              src="@/assets/images/user.png"
               alt="Header Avatar"
             />
             <span class="d-none d-xl-inline-block ml-1"

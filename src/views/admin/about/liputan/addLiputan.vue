@@ -38,11 +38,16 @@
               ></b-form-input>
             </b-input-group>
 
-            <b-input-group prepend="Tanggal" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-input-group
+              prepend="Tanggal"
+              id="date"
+              class="date mb-2 mt-4 mr-sm-2 mb-sm-0"
+            >
               <b-form-datepicker
                 id="example-datepicker"
                 v-model="formFields.date"
                 class="mb-2"
+                :max="max"
                 required
               ></b-form-datepicker>
             </b-input-group>
@@ -92,6 +97,15 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import axios from "axios";
 export default {
   data() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    // 15th two months prior
+    // const minDate = new Date(today)
+    // minDate.setMonth(minDate.getMonth() - 2)
+    // minDate.setDate(15)
+    // 15th in two months
+    const maxDate = new Date(today);
+    maxDate.setMonth(maxDate.getMonth());
     return {
       formFields: {
         title: null,
@@ -101,9 +115,11 @@ export default {
         user_id: null,
         img: null,
       },
+      max: maxDate,
       editor: ClassicEditor,
       file: null,
       legalUrl: "",
+      dateNow: "",
       loading: "",
       variant: "",
       dismissSecs: 5,
@@ -122,6 +138,18 @@ export default {
     // console.log(user.user.id);
     this.formFields.user_id = user.user.id;
     this.legalUrl = mainUrl + "/liputan";
+
+    var d = new Date();
+    var datestring =
+      d.getFullYear() +
+      "-" +
+      ("0" + (d.getMonth() + 1)).slice(-2) +
+      "-" +
+      ("0" + d.getDate()).slice(-2);
+    // console.log(datestring);
+    // 16-05-2015 09:50
+    this.formFields.date = datestring;
+    this.dateNow = datestring;
   },
 
   methods: {
@@ -151,7 +179,7 @@ export default {
         });
       this.formFields.title = "";
       this.formFields.subtitle = "";
-      this.formFields.date = "";
+      this.formFields.date = this.dateNow;
       this.formFields.content = "";
       this.formFields.img = "";
       this.loading = false;
@@ -178,6 +206,10 @@ export default {
   .input-group-text {
     min-width: 100px;
   }
+}
+
+#date.date .input-group-prepend .input-group-text {
+  height: 38px;
 }
 
 .card-title {

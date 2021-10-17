@@ -43,15 +43,17 @@
           </b-card>
         </b-col>
       </b-row>
-      <KurikulumUpgrading></KurikulumUpgrading>
+      <KurikulumCard></KurikulumCard>
     </b-container>
   </section>
 </template>
 
 <script>
-import KurikulumUpgrading from "./kurikulumUpgrading";
+import KurikulumCard from "./kurikulumCard";
 export default {
-  components: { KurikulumUpgrading },
+  components: {
+    KurikulumCard,
+  },
   data() {
     return {};
   },

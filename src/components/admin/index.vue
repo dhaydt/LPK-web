@@ -2,7 +2,7 @@
   <div class="dash">
     <Header :title="title"></Header>
     <b-card>
-      Dasboard
+      Home
     </b-card>
   </div>
 </template>
@@ -12,7 +12,7 @@ import Header from "@/components/admin/partials/page-header.vue";
 export default {
   data() {
     return {
-      title: "Dashboard",
+      title: "Home",
     };
   },
   components: {

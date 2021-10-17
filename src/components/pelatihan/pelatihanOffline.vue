@@ -15,7 +15,7 @@
           <div class="cont item" v-for="(slide, i) in training" :key="i">
             <b-card
               :title="slide.title"
-              :img-src="slide.img"
+              :img-src="imgUrl + slide.img"
               img-alt="Image"
               img-height="250"
               img-top
@@ -23,13 +23,13 @@
               class="mb-2"
             >
               <b-card-text>
-                {{ slide.desc }}
+                {{ slide.subtitle }}
               </b-card-text>
               <b-row>
                 <b-col>
                   <div class="calender text-left">
                     <i class="far fa-calendar"></i>
-                    <span>{{ slide.date }}</span>
+                    <span>{{ slide.akses }}</span>
                   </div>
                 </b-col>
               </b-row>
@@ -37,7 +37,7 @@
                 <b-col>
                   <div class="time text-left">
                     <i class="far fa-clock"></i>
-                    <span>{{ slide.time }}</span>
+                    <span>{{ slide.expire }}</span>
                   </div>
                 </b-col>
               </b-row>
@@ -60,54 +60,20 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      training: [
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait1.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait2.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait3.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait4.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait5.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-        {
-          title: "Pelatihan Online PAZ Al Kasaw Basic Mei 2021",
-          img: require("../../assets/images/potrait6.png"),
-          desc: "Khusus muslim dan muslimah",
-          date: "Waktu Akses Lifetime",
-          time: "Kapanpun",
-        },
-      ],
+      offUrl: "",
+      imgUrl: "",
+      training: [],
     };
   },
 
   created() {
+    const pelOffData = localStorage.getItem("pelOffline");
+    this.training = JSON.parse(pelOffData);
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.imgUrl = mainUrl + "/images/pelatihan/";
+  },
+
+  mounted() {
     $(document).ready(function() {
       var itemsMainDiv = ".MultiCarousel";
       var itemsDiv = ".MultiCarousel-inner";
@@ -237,6 +203,8 @@ export default {
 .MultiCarousel .MultiCarousel-inner {
   transition: 1s ease all;
   width: 400px;
+  display: flex;
+  flex-direction: row;
   float: left;
   padding-top: 50px;
 }

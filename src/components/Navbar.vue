@@ -26,12 +26,48 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  data() {
+    return {
+      onUrl: "",
+      offUrl: "",
+      testiUrl: "",
+    };
+  },
+
   created() {
     window.addEventListener("scroll", function() {
       var navi = this.document.querySelector(".navfront");
       navi.classList.toggle("sticky", window.scrollY > 0);
     });
+
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.testiUrl = mainUrl + "/testi";
+    this.getTesti();
+    this.onUrl = mainUrl + "/pelatihanOnline";
+    this.getOn();
+    this.offUrl = mainUrl + "/pelatihanOffline";
+    this.getOff();
+  },
+
+  methods: {
+    async getTesti() {
+      const resp = await axios.get(this.testiUrl);
+      const data = JSON.stringify(resp.data.data);
+      localStorage.setItem("testi", data);
+    },
+    async getOn() {
+      const resp = await axios.get(this.onUrl);
+      const data = JSON.stringify(resp.data.data);
+      localStorage.setItem("pelOnline", data);
+    },
+
+    async getOff() {
+      const resp = await axios.get(this.offUrl);
+      const data = JSON.stringify(resp.data.data);
+      localStorage.setItem("pelOffline", data);
+    },
   },
 };
 </script>
@@ -39,17 +75,17 @@ export default {
 <style lang="scss">
 @import "@/assets/main.scss";
 .navbar.navbar-dark {
-  padding: 10px 104px;
-  padding-top: 8vh;
+  padding: 10px 80px;
+  padding-top: 60px;
   width: 100%;
   background-color: transparent;
   position: fixed;
-  transition: 0.6s;
+  transition: 1.4s;
   z-index: 999;
 }
 
 nav.navbar.sticky {
-  padding: 10px 110px;
+  padding: 15px 110px;
   z-index: 9;
   width: 100%;
   background-color: $paz-main;
@@ -62,7 +98,7 @@ nav.navbar.sticky {
 }
 
 .nav-link.router-link-exact-active.router-link-active {
-  color: #fd7d24 !important;
+  color: #fff !important;
 }
 
 .navbar-nav .nav-item.login-btn {
@@ -71,6 +107,7 @@ nav.navbar.sticky {
   transition: 0.3s;
   a.nav-link {
     color: #07a148;
+    font-size: 16px;
   }
 }
 
@@ -80,8 +117,12 @@ nav.navbar.sticky {
 }
 
 .navbar-nav .nav-item a.nav-link {
-  font-weight: 700;
-  color: #fff;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .navbar-nav .nav-item a.nav-link:hover {

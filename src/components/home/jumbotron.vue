@@ -8,7 +8,16 @@
       </template>
 
       <template #lead>
-        <h4>Mencetak Paztrooper Profesional, Beradab, dan Berdaya Juang</h4>
+        <b-row class="justify-content-center">
+          <b-col sm="12" md="8">
+            <p>
+              PAZ Generasi Unggul merupakan lembaga yang mengelola dan
+              meneruskan pengajaran temuan Hak Cipta Intelektual dari Ustadz
+              Haris Moedjahid Rahimahullah berupa Ilmu Pengobatan dan Konsep
+              hidup Ala PAZ Al Kasaw.
+            </p>
+          </b-col>
+        </b-row>
       </template>
 
       <b-button variant="outline-light" href="#" class="mt-4"
@@ -19,45 +28,41 @@
       >
     </b-jumbotron>
     <section>
-      <b-container>
-        <b-row no-gutters class="justify-content-center">
-          <b-col md="3" class="mr-2">
+      <b-row no-gutters class="justify-content-center">
+        <b-col md="3" class="mr-2">
+          <b-img-lazy
+            src="/assets/images/potrait1.png"
+            fluid-grow
+            alt="Responsive image"
+            class="h-100 imgPort"
+          />
+        </b-col>
+        <b-col md="4">
+          <b-row style="height:50%; width: 100%;" class="mb-2" no-gutters>
             <b-img-lazy
-              src="/assets/images/potrait1.png"
-              fluid-grow
-              alt="Responsive image"
-              class="h-100"
-            />
-          </b-col>
-          <b-col md="4">
-            <b-row style="height:50%" class="mb-2">
-              <b-col
-                ><b-img-lazy
-                  src="/assets/images/land1.png"
-                  fluid
-                  alt="Responsive image"
-                  class="h-100"
-              /></b-col>
-            </b-row>
-            <b-row style="height: 48%">
-              <b-col
-                ><b-img-lazy
-                  src="/assets/images/land2.png"
-                  fluid
-                  alt="Responsive image"
-                  class="h-100"
-              /></b-col>
-            </b-row>
-          </b-col>
-          <b-col md="3" class="ml-2"
-            ><b-img-lazy
-              src="/assets/images/potrait2.png"
+              src="/assets/images/land1.png"
               fluid
               alt="Responsive image"
-              class="h-100"
-          /></b-col>
-        </b-row>
-      </b-container>
+              class="h-100 imgLand w-100"
+            />
+          </b-row>
+          <b-row style="height: 48%; width: 100%;" no-gutters>
+            <b-img-lazy
+              src="/assets/images/land2.png"
+              fluid
+              alt="Responsive image"
+              class="h-100 imgLand w-100"
+            />
+          </b-row>
+        </b-col>
+        <b-col md="3" class="ml-2"
+          ><b-img-lazy
+            src="/assets/images/potrait2.png"
+            fluid
+            alt="Responsive image"
+            class="h-100 imgPort"
+        /></b-col>
+      </b-row>
     </section>
   </div>
 </template>
@@ -71,6 +76,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.imgPort {
+  max-width: 340px;
+  max-height: 500px;
+}
+
+.imgLand {
+  max-width: 528px;
+  max-height: 244;
+}
 #moon {
   font-size: 20em;
   display: inline-block;
@@ -102,7 +116,7 @@ export default {
 .jumbotron {
   // background-color: #07a148;
   border-radius: 0;
-  height: 110vh;
+  height: 828px;
   min-height: 528px;
   background: linear-gradient(
     181.98deg,
@@ -117,10 +131,10 @@ h1 {
   font-style: normal;
   line-height: 73px;
   color: #fff;
-  margin-top: 10vh;
+  margin-top: 107px;
 }
 
-h4 {
+p {
   font-weight: 400;
   font-style: normal;
   font-size: 20px;
@@ -141,6 +155,6 @@ span {
 }
 
 section {
-  margin-top: -50vh;
+  margin-top: -380px;
 }
 </style>

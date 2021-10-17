@@ -13,19 +13,14 @@
             <b-card class="inner-border" no-body>
               <b-row>
                 <b-col sm="3"
-                  ><b-avatar
-                    variant="info"
-                    :src="slide.avatar"
-                  ></b-avatar
+                  ><b-avatar variant="info" :src="imgUrl + slide.img"></b-avatar
                 ></b-col>
                 <b-col sm="9" class="text-left">
                   <h5>{{ slide.name }}</h5>
                   <span>{{ slide.address }}</span>
                 </b-col>
               </b-row>
-              <b-card-text class="p-2"
-                >{{ slide.comment }}</b-card-text
-              >
+              <b-card-text class="p-2">{{ slide.content }}</b-card-text>
             </b-card>
           </div>
         </div>
@@ -45,37 +40,18 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      testi: [
-        {
-          avatar: require("../../assets/images/avatar.png"),
-          name: "Pak Harianto",
-          address: "Klaten",
-          comment:
-            "Bukan sekedar cerita orang, tapi saya alami sendiri asma menahun bahkan setiap bangun tidur asma saya kambuh, dalam sehari minimal 3 kali saya menyemprotkan ventolin ke dalam mulut. Namun Alhamdullillah setelah terapi dengan pengobatan akhir jaman oleh ustadz Haris Moedjahid asma saya sudah sembuh",
-        },{
-          avatar: require("../../assets/images/avatar1.png"),
-          name: "Ibu Noviyani",
-          address: "Jakarta",
-          comment:
-            "Wasilah PAZ yang membuat saya sembuh dari syaraf kejepit yang selama 7 tahun di derita dan asma dari kecil. Bukan sekedar omdo ya, tapi real. Alhamdulillah sekarang jadi terapis yang menyembuhkan syaraf kejepit yang dulu bagi saya tuh hal ga mungkin, wong buat berdiri aja susah kog, Biidznillah",
-        },{
-          avatar: require("../../assets/images/avatar2.png"),
-          name: "Darmansyah",
-          address: "Samarinda",
-          comment:
-            "Saya kemaren sakit bagian leher. Sekali paz, bi idznillah sakit hilang. Kata istri enak ya kalau ada sakit bisa langsung mengobati sendiri. Istri hasil scan getah bening agak besar, diperiksa ala s.o.p paz terasa sakit. Sekali paz bi idznillah sakit berkurang drastis, 2x paz sakit hilang. Saya belajar baru weekend kemaren",
-        },{
-          avatar: require("../../assets/images/avatar.png"),
-          name: "Dayat",
-          address: "Padang",
-          comment:
-            "Bukan sekedar cerita orang, tapi saya alami sendiri asma menahun bahkan setiap bangun tidur asma saya kambuh, dalam sehari minimal 3 kali saya menyemprotkan ventolin ke dalam mulut. Namun Alhamdullillah setelah terapi dengan pengobatan akhir jaman oleh ustadz Haris Moedjahid asma saya sudah sembuh",
-        },
-      ],
+      testi: [],
+      imgUrl: "",
     };
   },
 
   created() {
+    this.testi = JSON.parse(localStorage.getItem("testi"));
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.imgUrl = mainUrl + "/images/testi/";
+  },
+
+  mounted() {
     $(document).ready(function() {
       var itemsMainDiv = ".MultiCarousel";
       var itemsDiv = ".MultiCarousel-inner";

@@ -86,7 +86,7 @@ const index = function(req, res) {
     } else {
       const message =
         "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-      res.render("index.ejs", { message: message });
+      res.send({ message: message });
     }
   } else {
     res.send("Legalitas tersimpan");

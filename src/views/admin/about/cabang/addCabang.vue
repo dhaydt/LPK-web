@@ -21,18 +21,27 @@
           </b-alert>
           <b-form @submit="onSubmit">
             <b-input-group prepend="Nama" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
-              <b-form-input id="name" v-model="formFields.name"></b-form-input>
+              <b-form-input
+                id="name"
+                v-model="formFields.name"
+                required
+              ></b-form-input>
             </b-input-group>
 
             <b-input-group prepend="Alamat" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-input
                 id="address"
                 v-model="formFields.address"
+                required
               ></b-form-input>
             </b-input-group>
 
             <b-input-group prepend="Telepon" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
-              <b-form-input id="telp" v-model="formFields.telp"></b-form-input>
+              <b-form-input
+                id="telp"
+                v-model="formFields.telp"
+                required
+              ></b-form-input>
             </b-input-group>
 
             <b-input-group prepend="Image" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
@@ -42,6 +51,7 @@
                 accept="image/jpeg, image/png, image/gif"
                 name="image"
                 id="image"
+                required
               />
             </b-input-group>
 

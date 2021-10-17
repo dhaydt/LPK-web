@@ -15,6 +15,9 @@ const visi = require("./routes/visi");
 const legal = require("./routes/legal");
 const liputan = require("./routes/liputan");
 const cabang = require("./routes/cabang");
+const image = require("./routes/image");
+const pelatihan = require("./routes/pelatihan");
+const testi = require("./routes/testimoni");
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -32,6 +35,9 @@ app.use(visi);
 app.use(legal);
 app.use(liputan);
 app.use(cabang);
+app.use(image);
+app.use(pelatihan);
+app.use(testi);
 
 // Export express app
 module.exports = app;

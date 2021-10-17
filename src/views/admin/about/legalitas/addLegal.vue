@@ -21,13 +21,18 @@
           </b-alert>
           <b-form @submit="onSubmit">
             <b-input-group prepend="Nama" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
-              <b-form-input id="name" v-model="formFields.name"></b-form-input>
+              <b-form-input
+                id="name"
+                v-model="formFields.name"
+                required
+              ></b-form-input>
             </b-input-group>
 
             <b-input-group prepend="Instansi" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-input
                 id="instansi"
                 v-model="formFields.instansi"
+                required
               ></b-form-input>
             </b-input-group>
 
@@ -37,6 +42,7 @@
                 v-on:change="onSelect()"
                 accept="image/jpeg, image/png, image/gif"
                 name="image"
+                required
                 id="image"
               />
             </b-input-group>

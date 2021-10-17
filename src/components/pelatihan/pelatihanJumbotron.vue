@@ -3,17 +3,17 @@
     <b-jumbotron>
       <!-- <div id="moon"></div> -->
       <div id="moontoon"></div>
-      <b-row class="justify-content-center align-items-center h-100">
+      <b-row class="justify-content-center h-100">
         <b-col md="8" sm="12">
           <div id="header">
             <h1>Pelatihan</h1>
           </div>
 
           <div id="subheader">
-            <h4>
+            <p>
               Ikuti pelatihan dan pembelajaran baik secara online maupun offline
               untuk mendapatkan ilmu terbaru dari trainer yang berpengalaman
-            </h4>
+            </p>
           </div>
         </b-col>
       </b-row>
@@ -21,7 +21,7 @@
     <section class="eventCard">
       <PelatihanOffline></PelatihanOffline>
     </section>
-    <section class="eventOnline mt-4">
+    <section class="eventOnline">
       <PelatihanOnline></PelatihanOnline>
     </section>
   </div>
@@ -73,7 +73,7 @@ export default {
 .jumbotron {
   // background-color: #07a148;
   border-radius: 0;
-  height: 720px;
+  height: 957px;
   min-height: 528px;
   background: linear-gradient(
     181.98deg,
@@ -86,12 +86,13 @@ h1 {
   font-weight: 700;
   font-size: 60px;
   font-style: normal;
+  margin-top: 190px;
   line-height: 73px;
   color: #fff;
   text-transform: uppercase;
 }
 
-h4 {
+p {
   font-weight: 400;
   font-style: normal;
   font-size: 20px;
@@ -112,6 +113,10 @@ span {
 }
 
 section.eventCard {
-  margin-top: -230px;
+  margin-top: -500px;
+}
+
+.eventOnline {
+  margin-top: 100px;
 }
 </style>

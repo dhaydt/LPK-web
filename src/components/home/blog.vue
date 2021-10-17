@@ -4,7 +4,7 @@
       <b-row class="justify-content-center">
         <b-col md="7">
           <div class="head">
-            <span>BLOG</span>
+            <span>Liputan Media</span>
           </div>
           <h2 class="mt-4">
             Dapatkan informasi tentang kegiatan yang telah kami selenggarakan
@@ -13,13 +13,14 @@
           <b-button variant="outline-success seemore" href="#" class="mt-4 px-4"
             ><span
               ><img src="../../assets/images/blog.png" alt="info" height="25" />
-              Lihat semua blog</span
+              Lihat semua liputan</span
             ></b-button
           >
         </b-col>
       </b-row>
       <b-row class="mt-4" style="max-height: 434px !important;">
-        <b-col>
+        <LiputanCard></LiputanCard>
+        <!-- <b-col>
           <b-card overlay :img-src="img1" img-alt="news" text-variant="white">
             <div class="card-overlay">
               <b-card-title class="mx-4">
@@ -51,14 +52,16 @@
               </b-row>
             </b-card>
           </b-card-group>
-        </b-col>
+        </b-col> -->
       </b-row>
     </b-container>
   </section>
 </template>
 
 <script>
+import LiputanCard from "../about/liputanCard";
 export default {
+  components: { LiputanCard },
   data() {
     return {
       img1: require("../../assets/images/police.png"),

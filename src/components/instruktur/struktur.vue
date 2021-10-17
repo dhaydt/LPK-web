@@ -7,11 +7,11 @@
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
-                <span>Struktur trainer</span>
+                <span>instruktur PAZ</span>
               </div>
             </template>
             <b-card-body>
-              <b-card-title>TIM LKP PAZ AL KASAW</b-card-title>
+              <b-card-title>Instruktur LPK PAZ Al Kasaw</b-card-title>
             </b-card-body>
           </b-card>
         </b-col>

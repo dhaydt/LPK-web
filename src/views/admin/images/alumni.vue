@@ -2,12 +2,21 @@
   <div class="dash">
     <Header :title="title" :items="items"></Header>
     <b-card>
-      Kopdar Alumni
+      <b-tabs content-class="mt-3" fill>
+        <b-tab title="Kopdar Alumni" active>
+          <ListKopdar></ListKopdar>
+        </b-tab>
+        <b-tab title="Tambah data">
+          <AddKopdar></AddKopdar>
+        </b-tab>
+      </b-tabs>
     </b-card>
   </div>
 </template>
 
 <script>
+import AddKopdar from "./kopdar/addKopdar";
+import ListKopdar from "./kopdar/listKopdar";
 import Header from "../../../components/admin/partials/page-header.vue";
 export default {
   data() {
@@ -16,15 +25,18 @@ export default {
       items: [
         {
           text: "Gallery",
-          href: '/admin/images'
-        },{
+          href: "/admin/images",
+        },
+        {
           text: "Kopdar Alumni",
-          active: true
-        }
+          active: true,
+        },
       ],
     };
   },
   components: {
+    AddKopdar,
+    ListKopdar,
     Header,
   },
 };
