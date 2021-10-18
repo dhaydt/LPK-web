@@ -115,7 +115,7 @@ export default {
     return {
       randomUrl: "",
       random: [],
-      lokers: this.loker,
+      lokers: {},
       mainUrl: "",
     };
   },
@@ -128,7 +128,7 @@ export default {
   },
 
   mounted() {
-    console.log("prop", this.loker);
+    this.lokers = this.loker;
   },
 
   methods: {
