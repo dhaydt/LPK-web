@@ -1,7 +1,9 @@
 <template>
   <div class="landing">
-    <b-jumbotron>
-      <!-- <div id="moon"></div> -->
+    <b-jumbotron class="w-100" style="overflow: hidden">
+      <div id="shape">
+        <div id="moon"></div>
+      </div>
       <div id="moontoon"></div>
       <template #header>
         <h1>LKP PAZ AL KASAW</h1>
@@ -85,16 +87,22 @@ export default {
   max-width: 528px;
   max-height: 244;
 }
+
+#shape {
+  position: absolute;
+  top: -98px;
+  right: 0;
+  overflow: hidden;
+  width: 130px;
+}
 #moon {
   font-size: 20em;
   display: inline-block;
   width: 0.4em;
   box-sizing: content-box;
   height: 0.4em;
-  border: 0.3em solid #fff;
-  position: absolute;
-  top: -138px;
-  right: -138px;
+  border: 0.2em solid #fff;
+
   opacity: 0.1;
   border-radius: 50%;
 }

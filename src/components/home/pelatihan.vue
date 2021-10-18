@@ -23,7 +23,7 @@
         </b-row>
       </b-container>
     </b-jumbotron>
-    <section class="galeri">
+    <section class="galeri w-100" style="overflow: hidden">
       <b-row class="justify-content-end">
         <b-col md="10">
           <PelatihanCard></PelatihanCard>
@@ -34,12 +34,10 @@
 </template>
 
 <script>
-import PelatihanCard from './pelatihanCard'
+import PelatihanCard from "./pelatihanCard";
 export default {
   data() {
-    return {
-      
-    };
+    return {};
   },
   methods: {},
   components: {

@@ -5,6 +5,7 @@ const path = require("path");
 const fileUpload = require("express-fileupload");
 const corsOptions = {
   origin: "https://generasiunggul.com",
+  // origin: "http://localhost:8080",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -23,6 +24,7 @@ const cabang = require("./routes/cabang");
 const image = require("./routes/image");
 const pelatihan = require("./routes/pelatihan");
 const testi = require("./routes/testimoni");
+const loker = require("./routes/loker");
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
@@ -43,6 +45,7 @@ app.use(cabang);
 app.use(image);
 app.use(pelatihan);
 app.use(testi);
+app.use(loker);
 
 // Export express app
 module.exports = app;

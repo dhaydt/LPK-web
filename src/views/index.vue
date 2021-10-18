@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Footer from '../components/footer'
+import Footer from "../components/footer";
 import Navbar from "../components/Navbar";
 export default {
   components: {

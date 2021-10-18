@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 17, 2021 at 10:20 PM
+-- Generation Time: Oct 19, 2021 at 01:02 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -71,7 +71,7 @@ CREATE TABLE `gallery` (
   `title` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'galeri',
   `img` varchar(255) NOT NULL,
-  `date` date DEFAULT NULL,
+  `date` date DEFAULT current_timestamp(),
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -139,6 +139,78 @@ INSERT INTO `liputan` (`id`, `title`, `subtitle`, `date`, `content`, `img`, `use
 (7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet', 'pencarian', '2021-10-15 00:00:00', '<p>adadadadada dad ddddaaa</p>', '1634392469162police.png', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-16 13:54:29'),
 (8, 'Google Hanya Izinkan Pinjol yang Terdaftar di OJK sejak 28 Juli 2021', 'null', '2021-10-15 00:00:00', '<p>Mulai 28 Juli 2021, Google memperbarui kebijakan bagi para pengembang aplikasi pinjaman online di India dan Indonesia. Khusus di Indonesia, Google hanya akan mengizinkan aplikasi pinjaman pribadi yang diberi lisensi oleh, atau terdaftar di OJK. \"Sesuai dengan kebijakan kami, harus ada nomor yang terdaftar di OJK atau minimal nomor registrasi pendaftaran ke OJK,\" jelas perwakilan Google Indonesia ketika dihubungi KompasTekno melalui pesan singkat, Jumat (15/10/2021).</p>', '1634405166567newssss.jpg', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-16 17:26:07'),
 (9, 'Dianggap Langgar Privasi, Google Blokir Iklan Aplikasi Penyadap', 'null', '2021-10-16 00:00:00', '<p><strong>RAKSASA </strong>Google memperketat privasi untuk para penggunanya dengan menutup beberapa iklan yang dianggap memata-matai. Iklan tersebut dianggap mempromosikan aplikasi yang mendorong pengguna memata-matai ponsel pasangan.</p><p>Aplikasi spyware ini memang biasa digunakan orangtua yang ingin memantau panggilan, pesan, aplikasi, foto dan lokasi anak mereka. Namun, aplikasi tersebut sering dirancang untuk dipasang secara diam-diam tanpa persetujuan pemilik perangkat.</p><p>“Kami tidak mengizinkan iklan yang mempromosikan spyware untuk pengawasan pengguna,\" kata juru bicara Google, dikutip dari TechCrunch, Sabtu (16/19/2021).</p>', '1634405373201google.jpg', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-16 17:29:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loker`
+--
+
+CREATE TABLE `loker` (
+  `id` int(11) NOT NULL,
+  `judul` varchar(255) NOT NULL,
+  `bidang` varchar(100) DEFAULT NULL,
+  `kriteria` varchar(255) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `kualifikasi` text DEFAULT NULL,
+  `jenis` varchar(100) DEFAULT NULL,
+  `gaji` varchar(50) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `deadline` date DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
+  `pengalaman` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `loker`
+--
+
+INSERT INTO `loker` (`id`, `judul`, `bidang`, `kriteria`, `deskripsi`, `kualifikasi`, `jenis`, `gaji`, `note`, `deadline`, `alamat`, `pengalaman`, `created_at`) VALUES
+(4, 'Admin Online', 'Administrasi', NULL, '<ul><li>Edit foto dan upload produk ke marketplace seperti Tokopedia, Shopee, Lazada, Blibli, dsb</li><li>Mengurus sistem Jubelio</li><li>Melakukan photo dan video editing untuk content social media perusahaan</li><li>Melakukan rekaman video semacam menjual/mengulas/review produk</li><li>Bila dibutuhkan, siap menjadi talent untuk content media</li><li>Pekerjaan digital marketing, administrasi dan operasional lainnya</li></ul>', '<p>Syarat Wajib:</p><ul><li>Usia 18-25</li><li>Mahir menggunakan Adobe Photoshop atau punya basic editing Design Grafis</li><li>Jujur, Bertanggung Jawab, Loyal/Setia, Semangat kerja yang tinggi</li><li>Rajin dan mampu bekerja sendiri tanpa harus dipantau</li><li>FULL TIME, jangka panjang, tidak sedang/tidak akan kuliah/tidak sedang kelas karyawan</li></ul><p>Syarat Opsional (nilai lebih jika ada):</p><ul><li>Bisa menggunakan software video editing</li></ul>', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', NULL, 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 14:37:56'),
+(8, 'Admin Online', 'Administrasi', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang admin online', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(9, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(10, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(11, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(12, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(13, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(14, 'Admin Online', 'Administrasi', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang admin online', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(15, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(16, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(17, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(18, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(19, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(20, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(21, 'Admin Online', 'Administrasi', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang admin online', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(22, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(23, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(24, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(25, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(26, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(27, 'Admin Online', 'Administrasi', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang admin online', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(28, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(29, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(30, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(31, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(32, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(33, 'Admin Online', 'Administrasi', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang admin online', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(34, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(35, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(36, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(37, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(38, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(39, 'Admin Online', 'Administrasi', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang admin online', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(40, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(41, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(42, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(43, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(44, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(45, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(46, 'Admin Online', 'Administrasi', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang admin online', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(47, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(48, 'Social Media Specialist', 'Medsos', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang sosial media', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48'),
+(49, 'Desain Grafis', 'Design', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang desain grafis', '', '', '[\"Penuh waktu\",\"Fresh Graduate\",\"Kontrak\"]', 'Rp. 3.000.000 - Rp 4.000.000', 'Kirimkan portfolio dari hasil kerja yang pernah dilakukan (bisa berupa URL/link ke sosmed, youtube, dsb), informasikan kontribusi pribadi bila project dilakukan bbrp orang dlm 1 team.', '2023-10-26', 'Sidoarjo, Jawa Timur', '< 1 Tahun', '2021-10-18 16:40:21'),
+(50, 'Therapist', 'Layanan', 'Memiliki motivasi yang kuat untuk belajar hal baru terutama bidang terapi dan kesehatan', '', '', '[]', 'Rp. 3.000.000 - Rp 4.000.000', '', '2021-10-21', 'Semarang, Jawa Tengah', '< 1 Tahun', '2021-10-18 16:47:48');
 
 -- --------------------------------------------------------
 
@@ -288,6 +360,12 @@ ALTER TABLE `liputan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `loker`
+--
+ALTER TABLE `loker`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pelatihan`
 --
 ALTER TABLE `pelatihan`
@@ -344,6 +422,12 @@ ALTER TABLE `legalitas`
 --
 ALTER TABLE `liputan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `loker`
+--
+ALTER TABLE `loker`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `pelatihan`

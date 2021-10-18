@@ -7,6 +7,7 @@ import HomeAbout from "../views/about/index.vue";
 import HomeInstruktur from "../views/instruktur/index.vue";
 import HomeEvent from "../views/event/index.vue";
 import HomeLoker from "../views/loker/index.vue";
+import DetailLoker from "../views/loker/detailLoker.vue";
 
 // Admin panel
 import Register from "../views/auth/register.vue";
@@ -54,6 +55,10 @@ const routes = [
       {
         path: "/loker",
         component: HomeLoker,
+      },
+      {
+        path: "/loker/:id",
+        component: DetailLoker,
       },
     ],
   },

@@ -1,6 +1,7 @@
 <template>
   <section class="blog">
     <b-container>
+      <div id="moontoon"></div>
       <b-row class="justify-content-center">
         <b-col md="7">
           <div class="head">
@@ -20,41 +21,11 @@
       </b-row>
       <b-row class="mt-4" style="max-height: 434px !important;">
         <LiputanCard></LiputanCard>
-        <!-- <b-col>
-          <b-card overlay :img-src="img1" img-alt="news" text-variant="white">
-            <div class="card-overlay">
-              <b-card-title class="mx-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </b-card-title>
-            </div>
-          </b-card>
-        </b-col>
-        <b-col>
-          <b-card-group v-for="(n, i) in news" :key="i">
-            <b-card no-body class="overflow-hidden m-2" style="">
-              <b-row no-gutters>
-                <b-col md="6">
-                  <b-card-img-lazy
-                    :src="n.img"
-                    alt="Image"
-                    height="100"
-                    class="rounded-0"
-                  ></b-card-img-lazy>
-                </b-col>
-                <b-col md="6">
-                  <b-card-body class="p-0">
-                    <b-card-title>{{ n.title }}</b-card-title>
-                    <b-card-text>
-                      {{ n.content }}
-                    </b-card-text>
-                  </b-card-body>
-                </b-col>
-              </b-row>
-            </b-card>
-          </b-card-group>
-        </b-col> -->
       </b-row>
     </b-container>
+    <div id="shape">
+      <div id="moons"></div>
+    </div>
   </section>
 </template>
 
@@ -63,37 +34,45 @@ import LiputanCard from "../about/liputanCard";
 export default {
   components: { LiputanCard },
   data() {
-    return {
-      img1: require("../../assets/images/police.png"),
-      news: [
-        {
-          title:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
-          img: require("../../assets/images/news1.png"),
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet bibendum iaculis nisl elementum odio nis... Baca Selengkapnya",
-        },
-        {
-          title:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
-          img: require("../../assets/images/news2.png"),
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet bibendum iaculis nisl elementum odio nis... Baca Selengkapnya",
-        },
-        {
-          title:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet",
-          img: require("../../assets/images/news3.png"),
-          content:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Amet bibendum iaculis nisl elementum odio nis... Baca Selengkapnya",
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>
 
 <style lang="scss" scoped>
+#shape {
+  position: absolute;
+  right: 0px;
+  top: 3524px;
+  overflow: hidden;
+  width: 130px;
+}
+
+#moons {
+  font-size: 20em;
+  display: inline-block;
+  width: 0.3em;
+  box-sizing: content-box;
+  height: 0.3em;
+  border: 0.2em solid #07a148;
+  opacity: 0.1;
+  border-radius: 50%;
+}
+
+#moontoon {
+  font-size: 20em;
+  display: inline-block;
+  width: 0.4em;
+  box-sizing: content-box;
+  height: 0.4em;
+  border: 0.2em solid #07a148;
+  position: absolute;
+  top: 3239px;
+  left: -90px;
+  opacity: 0.08;
+  border-radius: 50%;
+}
+
 section {
   margin-top: 110px;
 }
@@ -130,26 +109,6 @@ h2 {
   text-align: left;
   color: #07a148;
   text-transform: capitalize;
-}
-
-.card-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(26, 30, 39, 0.7);
-
-  .card-title {
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 160%;
-    /* or 38px */
-    text-align: left;
-    letter-spacing: 0.5px;
-
-    color: #ffffff;
-  }
 }
 
 .card-title {

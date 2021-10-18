@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import Testimoni from '../../components/home/testimoni'
-import Loker from '../../components/home/loker'
-import Blog from '../../components/home/blog'
-import Pelatihan from '../../components/home/pelatihan'
-import Gallery from '../../components/home/gallery'
-import AboutUs from '../../components/home/aboutUs'
+import Testimoni from "../../components/home/testimoni";
+import Loker from "../../components/home/loker";
+import Blog from "../../components/home/blog";
+import Pelatihan from "../../components/home/pelatihan";
+import Gallery from "../../components/home/gallery";
+import AboutUs from "../../components/home/aboutUs";
 import Jumbotron from "../../components/home/jumbotron";
 export default {
   components: {
@@ -25,7 +25,9 @@ export default {
     Blog,
     Pelatihan,
     Gallery,
-    AboutUs, Jumbotron },
+    AboutUs,
+    Jumbotron,
+  },
 };
 </script>
 

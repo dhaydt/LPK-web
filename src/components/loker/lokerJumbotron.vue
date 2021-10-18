@@ -1,22 +1,38 @@
 <template>
-  <div class="aboutJumbotron">
+  <div class="lokerJumbotron">
     <b-jumbotron>
       <!-- <div id="moon"></div> -->
       <div id="moontoon"></div>
       <b-row class="justify-content-center align-items-center h-100">
         <b-col md="8" sm="12">
           <div id="header">
-            <h1>Lowongan Kerja</h1>
+            <h1>Lowongan Pekerjaan</h1>
           </div>
 
           <div id="subheader">
-            <h4>
-              PAZ Generasi Unggul lembaga yang mengelola dan meneruskan
-              pengajaran temuan Hak Cipta Intelektual dari Ustadz Haris
-              Moedjahid Rahimahullah berupa Ilmu Pengobatan dan Konsep hidup Ala
-              PAZ Al Kasaw.
-            </h4>
+            <p>
+              Cari lowongan pekerjaan dengan berbagai jenis bidang sesuai dengan
+              dirimu dengan mudah di platform Jaringan PAZ Al Kasaw,
+            </p>
           </div>
+        </b-col>
+      </b-row>
+      <b-row class="justify-content-center">
+        <b-col md="8">
+          <b-input-group class="mt-3 search-box">
+            <template #append>
+              <b-input-group-text
+                ><div
+                  class="icon-box d-flex align-items-center justify-content-center"
+                >
+                  <i class="fas fa-search"></i></div
+              ></b-input-group-text>
+            </template>
+            <b-form-input
+              class="search"
+              placeholder="Cari Lowongan Pekerjaan"
+            ></b-form-input>
+          </b-input-group>
         </b-col>
       </b-row>
     </b-jumbotron>
@@ -32,6 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/main.scss";
 #moon {
   font-size: 20em;
   display: inline-block;
@@ -60,10 +77,45 @@ export default {
   border-radius: 50%;
 }
 
+.input-group-append .input-group-text {
+  background-color: #fff;
+  border-left: none;
+}
+
+.icon-box {
+  width: 48px;
+  height: 48px;
+  background-color: $paz-secondary;
+  border-radius: 4px;
+  i {
+    font-size: 24px;
+    color: #fff;
+  }
+}
+
+.search-box {
+  height: 72px;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+
+  .search {
+    height: 72px;
+    border-right: none;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    padding: 20px;
+    line-height: 140%;
+    letter-spacing: 0.01em;
+    color: #757682;
+  }
+}
+
 .jumbotron {
   // background-color: #07a148;
   border-radius: 0;
-  height: 720px;
+  height: 557px;
   min-height: 528px;
   background: linear-gradient(
     181.98deg,
@@ -81,7 +133,7 @@ h1 {
   text-transform: uppercase;
 }
 
-h4 {
+p {
   font-weight: 400;
   font-style: normal;
   font-size: 20px;

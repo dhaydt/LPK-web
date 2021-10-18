@@ -77,13 +77,12 @@ section {
   border-radius: 50%;
 }
 
-
 #shape {
-    position: absolute;
-    right: 0;
-    top: 1080px;
-    overflow: hidden;
-    width: 60px;
+  position: absolute;
+  right: 0;
+  top: 1080px;
+  overflow: hidden;
+  width: 60px;
 }
 
 #moons {
@@ -93,7 +92,6 @@ section {
   box-sizing: content-box;
   height: 0.2em;
   border: 0.1em solid #fd7d24;
-
   opacity: 0.1;
   border-radius: 50%;
 }
