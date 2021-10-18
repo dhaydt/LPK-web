@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2021 at 01:02 AM
+-- Generation Time: Oct 19, 2021 at 01:07 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -71,7 +71,7 @@ CREATE TABLE `gallery` (
   `title` varchar(100) NOT NULL,
   `status` varchar(10) NOT NULL DEFAULT 'galeri',
   `img` varchar(255) NOT NULL,
-  `date` date DEFAULT current_timestamp(),
+  `date` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
