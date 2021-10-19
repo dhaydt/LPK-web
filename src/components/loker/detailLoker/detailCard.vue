@@ -4,15 +4,15 @@
       <b-row cols="2">
         <b-col md="7" sm="12">
           <b-card no-body class="text-left main">
-            <b-card-title>{{ lokers.judul }}</b-card-title>
+            <b-card-title>{{ newLoker.judul }}</b-card-title>
             <div class="location d-flex mt-3">
               <i class="fas fa-map-marker-alt mr-2"></i
-              ><b-card-text>{{ lokers.alamat }}</b-card-text>
+              ><b-card-text>{{ newLoker.alamat }}</b-card-text>
             </div>
 
             <div class="location d-flex mt-4">
               <i class="fas fa-briefcase mr-2"></i
-              ><b-card-text>{{ lokers.pengalaman }}</b-card-text>
+              ><b-card-text>{{ newLoker.pengalaman }}</b-card-text>
             </div>
 
             <div class="deskripsi mt-5">
@@ -22,25 +22,25 @@
               <div class="subtitle mb-2">
                 deskripsi pekerjaan :
               </div>
-              <span v-html="lokers.deskripsi"></span>
+              <span v-html="newLoker.deskripsi"></span>
               <div class="subtitle mt-3 mb-2">
                 kualifikasi persyaratan :
               </div>
-              <span v-html="lokers.kualifikasi"></span>
+              <span v-html="newLoker.kualifikasi"></span>
               <div class="subtitle mt-3 mb-2">
                 Jenis pekerjaan :
               </div>
-              <div v-if="lokers.jenis">
-                <span v-for="(jenis, i) in JSON.parse(lokers.jenis)" :key="i">
+              <div v-if="newLoker.jenis">
+                <span v-for="(jenis, i) in JSON.parse(newLoker.jenis)" :key="i">
                   {{ jenis }},
                 </span>
               </div>
               <div class="subtitle mt-3 mb-2">
                 Besaran gaji :
               </div>
-              <span>{{ lokers.gaji }} </span>
+              <span>{{ newLoker.gaji }} </span>
 
-              <span class="mt-3 d-block">{{ lokers.note }} </span>
+              <span class="mt-3 d-block">{{ newLoker.note }} </span>
             </div>
 
             <div class="action mt-5">
@@ -110,38 +110,45 @@
 <script>
 import axios from "axios";
 export default {
-  props: ["loker"],
   data() {
     return {
       randomUrl: "",
       random: [],
-      lokers: {},
+      newLoker: {},
       mainUrl: "",
+      idUrl: "",
     };
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
     this.mainUrl = mainUrl;
+    this.idUrl = mainUrl + "/loker/";
     this.randomUrl = mainUrl + "/loker-random";
+    const id = this.$route.params.id;
+    this.getLoker(id);
     this.getRandom();
   },
 
-  mounted() {
-    this.lokers = this.loker;
-  },
+  mounted() {},
 
   methods: {
+    async getLoker(id) {
+      // const id = this.$route.params.id;
+      const resp = await axios.get(this.idUrl + id);
+      this.newLoker = resp.data.data[0];
+    },
     async getRandom() {
       const resp = await axios.get(this.randomUrl);
       this.random = resp.data.data;
-      console.log(this.random);
+      // console.log(this.random);
     },
 
     async getId(val) {
       history.pushState(null, null, "/loker/" + val);
-      const resp = await axios.get(this.mainUrl + "/loker/" + val);
-      this.lokers = resp.data.data[0];
+      this.getLoker(val);
+      // const resp = await axios.get(this.idUrl + val);
+      // this.newLoker = resp.data.data[0];
     },
   },
 };

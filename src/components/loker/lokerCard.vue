@@ -176,13 +176,22 @@ export default {
   border-top: 5px solid #07a148;
 }
 </style>
+
 <style lang="scss">
 li.page-item:first-child {
   .page-link {
     margin-right: 25px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
   }
+}
+
+li.page-item.disabled:first-child span span i,
+li.page-item.disabled:last-child span span i {
+  color: #fff;
 }
 
 li.page-item:last-child {
@@ -199,14 +208,16 @@ li.page-item:last-child {
   border-radius: 4px;
 }
 
-.page-link {
+.page-item .page-link {
   width: 32px;
   height: 32px;
   margin: 0 10px;
-  background: #ffffff;
+  background-color: #fff;
   border: 1px solid #e9e9e9;
   box-sizing: border-box;
   border-radius: 4px;
+  text-align: center;
+  padding: 0;
 
   i {
     font-style: normal;

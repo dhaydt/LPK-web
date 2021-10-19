@@ -5,7 +5,7 @@ const path = require("path");
 const fileUpload = require("express-fileupload");
 const corsOptions = {
   origin: "https://generasiunggul.com",
-  // origin: "http://localhost:8080"g,
+  // origin: "http://localhost:8080",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
