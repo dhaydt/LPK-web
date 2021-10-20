@@ -1,5 +1,5 @@
 <template>
-  <div class="navbarHome w-100">
+  <div class="navbarHome w-100" v-if="navbar">
     <b-navbar toggleable="lg" type="dark" class="navfront">
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       onUrl: "",
+      navbar: true,
       offUrl: "",
       testiUrl: "",
     };
@@ -39,7 +40,9 @@ export default {
   created() {
     window.addEventListener("scroll", function() {
       var navi = this.document.querySelector(".navfront");
-      navi.classList.toggle("sticky", window.scrollY > 0);
+      if (navi !== null) {
+        navi.classList.toggle("sticky", window.scrollY > 0);
+      }
     });
 
     const mainUrl = localStorage.getItem("apiUrl");
@@ -49,6 +52,7 @@ export default {
     this.getOn();
     this.offUrl = mainUrl + "/pelatihanOffline";
     this.getOff();
+    this.$root.$on("hideNavbar", this.hideNav);
   },
 
   methods: {
@@ -67,6 +71,10 @@ export default {
       const resp = await axios.get(this.offUrl);
       const data = JSON.stringify(resp.data.data);
       localStorage.setItem("pelOffline", data);
+    },
+
+    hideNav() {
+      this.navbar = !this.navbar;
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="listVisi">
+  <div class="listApply">
     <b-card>
       <div class="row my-4">
         <div class="col-sm-12 col-md-6 d-flex justify-content-start">
@@ -52,9 +52,9 @@
       <!-- Table -->
       <div class="table-responsive mb-0">
         <b-table
+          striped
           :items="tableData"
           :fields="fields"
-          striped
           responsive="md"
           :per-page="perPage"
           :current-page="currentPage"
@@ -64,48 +64,46 @@
           :filter-included-fields="filterOn"
           @filtered="onFiltered"
         >
-          <template v-slot:cell(deskripsi)="data">
-            <span v-html="data.item.deskripsi"></span>
+          <template v-slot:cell(portfolio)="data">
+            <a
+              :href="pdfUrl + data.item.portfolio"
+              target="_blank"
+              v-b-tooltip.hover
+              title="Lihat Portfolio"
+              ><i class="fas fa-eye"></i> Portfolio</a
+            >
           </template>
 
-          <template v-slot:cell(kualifikasi)="data">
-            <span v-html="data.item.kualifikasi"></span>
-          </template>
-
-          <template v-slot:cell(deadline)="data">
-            <p>{{ data.item.deadline | moment("MMMM Do YYYY") }}</p>
-          </template>
-
-          <template v-slot:cell(jenis)="data">
+          <template v-slot:cell(kuis)="data">
             <span
               class="no-border d-block mb-2"
               style="min-width: 100px"
-              v-for="jen in JSON.parse(data.item.jenis)"
+              v-for="jen in JSON.parse(data.item.kuis)"
               :key="jen"
             >
               {{ jen }}
             </span>
           </template>
           <template v-slot:cell(action)="data" class="d-flex">
-            <!-- <a
-              href="javascript:void(0);"
-              class="mr-3 text-primary"
-              v-b-tooltip.hover
-              data-toggle="tooltip"
-              title="Edit"
-            >
-              <i class="mdi mdi-pencil font-size-18"></i>
-            </a> -->
-            <a
-              href="javascript:void(0);"
-              class="text-danger"
-              v-b-tooltip.hover
-              title="Delete"
-              @click="deleteVisi(data.item.id)"
-            >
-              <b-spinner v-if="loading" small variant="primary"></b-spinner>
-              <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
-            </a>
+            <b-row no-gutters class="flex-row align-items-center">
+              <router-link
+                :to="{ name: 'ViewApply', params: data.item }"
+                v-b-tooltip.hover
+                title="Lihat Biodata"
+              >
+                <i class="fas fa-eye font-size-18"></i>
+              </router-link>
+              <a
+                href="javascript:void(0);"
+                class="text-danger ml-2"
+                v-b-tooltip.hover
+                title="Delete"
+                @click="deleteVisi(data.item.id)"
+              >
+                <b-spinner v-if="loading" small variant="primary"></b-spinner>
+                <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
+              </a>
+            </b-row>
           </template>
         </b-table>
       </div>
@@ -144,21 +142,18 @@ export default {
       sortDesc: false,
       fields: [
         { key: "id", sortable: true, label: "ID" },
-        { key: "judul", sortable: true, label: "Judul" },
-        { key: "bidang", sortable: true, label: "Bidang" },
-        { key: "kriteria", sortable: true, label: "Kriteria" },
-        { key: "deskripsi", sortable: true, label: "Deskripsi" },
-        { key: "kualifikasi", sortable: true, label: "Kualifikasi" },
-        { key: "jenis", sortable: true, label: "Jenis" },
-        { key: "gaji", sortable: true, label: "Gaji" },
-        { key: "note", sortable: true, label: "Note" },
-        { key: "deadline", sortable: true, label: "Deadline" },
-        { key: "alamat", sortable: true, label: "Alamat" },
-        { key: "pengalaman", sortable: true, label: "Pengalaman" },
+        { key: "nama", sortable: true, label: "Nama" },
+        { key: "provinsi", sortable: true, label: "Provinsi" },
+        { key: "pendidikan", sortable: true, label: "Pendidikan" },
+        { key: "agama", sortable: true, label: "Agama" },
+        { key: "portfolio", sortable: true, label: "Portfolio" },
+        { key: "judul", sortable: true, label: "Loker" },
+        { key: "status", sortable: true, label: "status" },
         { key: "action" },
       ],
       visiUrl: "",
       loading: "",
+      pdfUrl: "",
       dismissSecs: 5,
       dismissCountDown: 0,
       messages: "",
@@ -182,7 +177,8 @@ export default {
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.visiUrl = mainUrl + "/loker";
+    this.visiUrl = mainUrl + "/apply";
+    this.pdfUrl = mainUrl + "/documents/apply/";
     this.getVisi();
   },
 

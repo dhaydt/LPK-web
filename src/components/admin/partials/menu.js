@@ -85,6 +85,10 @@ export const menuItems = [
         id: 62,
         label: "Status",
         link: "/admin/loker/status",
+      },{
+        id: 63,
+        label: "Kuis",
+        link: "/admin/loker/kuis",
       },
     ],
   },

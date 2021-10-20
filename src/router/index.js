@@ -8,6 +8,7 @@ import HomeInstruktur from "../views/instruktur/index.vue";
 import HomeEvent from "../views/event/index.vue";
 import HomeLoker from "../views/loker/index.vue";
 import DetailLoker from "../views/loker/detailLoker.vue";
+import Apply from "../views/loker/applyLoker.vue";
 
 // Admin panel
 import Register from "../views/auth/register.vue";
@@ -23,8 +24,10 @@ import Pelatihan from "../views/admin/pelatihan";
 import Images from "../views/admin/images";
 import Alumni from "../views/admin/images/alumni.vue";
 import Loker from "../views/admin/loker";
+import ViewApply from "../views/admin/loker/status/viewApply.vue";
 import Testimoni from "../views/admin/testimoni";
 import Status from "../views/admin/loker/status.vue";
+import Kuis from "../views/admin/loker/kuis.vue";
 import Setting from "../views/admin/setting";
 
 Vue.use(VueRouter);
@@ -59,6 +62,10 @@ const routes = [
       {
         path: "/loker/:id",
         component: DetailLoker,
+      },
+      {
+        path: "/apply/:id/:name",
+        component: Apply,
       },
     ],
   },
@@ -130,8 +137,18 @@ const routes = [
         component: Loker,
       },
       {
+        path: "/admin/lokerView",
+        name: "ViewApply",
+        component: ViewApply,
+        props: true,
+      },
+      {
         path: "/admin/loker/status",
         component: Status,
+      },
+      {
+        path: "/admin/loker/kuis",
+        component: Kuis,
       },
       {
         path: "/admin/testimoni",

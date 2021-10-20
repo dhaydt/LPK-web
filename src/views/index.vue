@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <Navbar></Navbar>
+    <Navbar v-if="navbar"></Navbar>
     <router-view></router-view>
     <Footer></Footer>
   </div>
@@ -10,9 +10,24 @@
 import Footer from "../components/footer";
 import Navbar from "../components/Navbar";
 export default {
+  data() {
+    return {
+      navbar: true,
+    };
+  },
   components: {
     Footer,
     Navbar,
+  },
+
+  mounted() {
+    this.$root.$on("navbar", this.switch);
+  },
+
+  methods: {
+    switch() {
+      this.navbar = false;
+    },
   },
 };
 </script>

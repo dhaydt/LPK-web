@@ -2,36 +2,33 @@
   <div class="dash">
     <Header :title="title" :items="items"></Header>
     <b-card>
-      <b-tabs content-class="mt-3">
-        <b-tab title="Lamaran Masuk" active>
-          <ListApply></ListApply>
-        </b-tab>
+      <b-tabs content-class="mt-3" fill>
+        <b-tab title="List Pertanyaan" active> </b-tab>
+        <b-tab title="Tambah Pertanyaan"> </b-tab>
       </b-tabs>
     </b-card>
   </div>
 </template>
 
 <script>
-import ListApply from "./status/listApply";
 import Header from "../../../components/admin/partials/page-header.vue";
 export default {
   data() {
     return {
-      title: "Status Pelamar",
+      title: "Manajemen Kuis",
       items: [
         {
           text: "Loker",
-          href: "/admin/loker",
+          to: "/admin/loker",
         },
         {
-          text: "Status",
+          text: "Kuis",
           active: true,
         },
       ],
     };
   },
   components: {
-    ListApply,
     Header,
   },
 };

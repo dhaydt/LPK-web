@@ -46,7 +46,9 @@
             <div class="action mt-5">
               <b-row>
                 <b-col>
-                  <router-link to="#">
+                  <router-link
+                    :to="'/apply/' + newLoker.id + '/' + newLoker.judul"
+                  >
                     <b-button class="w-100 lamar">Lamar Pekerjaan</b-button>
                   </router-link>
                 </b-col>
@@ -130,7 +132,9 @@ export default {
     this.getRandom();
   },
 
-  mounted() {},
+  mounted() {
+    this.$root.$emit("navbar");
+  },
 
   methods: {
     async getLoker(id) {

@@ -116,6 +116,7 @@ export default {
     },
     onSelect() {
       // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+      console.log(event.target.files[0]);
       this.formFields.img = event.target.files[0];
     },
 
