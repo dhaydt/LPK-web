@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 19, 2021 at 01:07 AM
+-- Generation Time: Oct 22, 2021 at 11:03 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -20,6 +20,45 @@ SET time_zone = "+00:00";
 --
 -- Database: `lpk`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `apply`
+--
+
+CREATE TABLE `apply` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `wa` varchar(20) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `domisili` varchar(255) DEFAULT NULL,
+  `provinsi` varchar(50) DEFAULT NULL,
+  `kelamin` varchar(20) DEFAULT NULL,
+  `pendidikan` varchar(20) DEFAULT NULL,
+  `jurusan` varchar(20) DEFAULT NULL,
+  `agama` varchar(20) DEFAULT NULL,
+  `pengalaman` varchar(100) NOT NULL,
+  `alasan` text DEFAULT NULL,
+  `tempat_lhr` varchar(100) DEFAULT NULL,
+  `tgl_lhr` date DEFAULT NULL,
+  `menikah` varchar(20) DEFAULT NULL,
+  `komputer` varchar(10) DEFAULT NULL,
+  `bahasa` text DEFAULT NULL,
+  `instagram` varchar(100) DEFAULT NULL,
+  `facebook` varchar(100) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `ktp` varchar(255) DEFAULT NULL,
+  `ijazah` varchar(255) DEFAULT NULL,
+  `sertifikat` varchar(255) DEFAULT NULL,
+  `skck` varchar(255) DEFAULT NULL,
+  `portfolio` varchar(255) DEFAULT NULL,
+  `pertanyaan` text DEFAULT NULL,
+  `jawaban` text DEFAULT NULL,
+  `loker_id` int(11) NOT NULL,
+  `status` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -88,6 +127,28 @@ INSERT INTO `gallery` (`id`, `title`, `status`, `img`, `date`, `created_at`) VAL
 (12, '2', 'galeri', '1634477189699pelatihan-Apps-orlokjakbar-2020-3.jpg', '2021-10-17', '2021-10-17 13:26:29'),
 (13, '3', 'galeri', '1634477213431images.jpeg', '2021-10-17', '2021-10-17 13:26:53'),
 (14, '4', 'galeri', '1634477238811Bimtek-Pelatihan-Perpajakan-Omnibus-Law-Pada-Instansi-Pemerintah.jpeg', '2021-10-17', '2021-10-17 13:27:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kuis`
+--
+
+CREATE TABLE `kuis` (
+  `id` int(11) NOT NULL,
+  `pertanyaan` varchar(255) NOT NULL,
+  `options` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kuis`
+--
+
+INSERT INTO `kuis` (`id`, `pertanyaan`, `options`, `created_at`) VALUES
+(4, 'Jumlah rukun islam ada?', '{\"a\":\"3\",\"b\":\"7\",\"c\":\"5\",\"d\":\"2\"}', '2021-10-21 09:51:33'),
+(5, 'Rukun iman ada berapa ?', '{\"a\":\"2\",\"b\":\"6\",\"c\":\"8\",\"d\":\"4\"}', '2021-10-21 09:54:44'),
+(6, 'Jumlah nabi yang wajib diketahui?', '{\"a\":\"23\",\"b\":\"24\",\"c\":\"25\",\"d\":\"26\"}', '2021-10-21 09:55:33');
 
 -- --------------------------------------------------------
 
@@ -330,6 +391,12 @@ INSERT INTO `visi` (`id`, `visi`, `misi`, `created_at`) VALUES
 --
 
 --
+-- Indexes for table `apply`
+--
+ALTER TABLE `apply`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `blog`
 --
 ALTER TABLE `blog`
@@ -345,6 +412,12 @@ ALTER TABLE `cabang`
 -- Indexes for table `gallery`
 --
 ALTER TABLE `gallery`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kuis`
+--
+ALTER TABLE `kuis`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -394,6 +467,12 @@ ALTER TABLE `visi`
 --
 
 --
+-- AUTO_INCREMENT for table `apply`
+--
+ALTER TABLE `apply`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
 -- AUTO_INCREMENT for table `blog`
 --
 ALTER TABLE `blog`
@@ -410,6 +489,12 @@ ALTER TABLE `cabang`
 --
 ALTER TABLE `gallery`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `kuis`
+--
+ALTER TABLE `kuis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `legalitas`

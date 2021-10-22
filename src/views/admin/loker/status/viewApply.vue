@@ -3,6 +3,13 @@
     <Header :title="title" :items="items"></Header>
     <b-card>
       <b-row class="justify-content-center">
+        <router-link
+          to="/admin/loker/status"
+          v-b-tooltip.hover
+          title="Kembali ke list"
+          style="font-size:20px; color: #636e76"
+          ><i class="fas fa-arrow-left mr-2"></i
+        ></router-link>
         <b-col md="8">
           <b-alert
             :show="dismissCountDown"
@@ -20,15 +27,20 @@
             ></b-progress>
           </b-alert>
           <b-card class="text-right">
-            <b-avatar
-              button
-              variant="success"
-              @click="onClick"
-              v-b-tooltip.hover
-              title="Ubah status pelamar"
-              class="align-baseline"
-              ><i class="fas fa-user-edit"></i
-            ></b-avatar>
+            <b-row>
+              <b-col md="2" class="text-left"></b-col>
+              <b-col md="10">
+                <b-avatar
+                  button
+                  variant="success"
+                  @click="onClick"
+                  v-b-tooltip.hover
+                  title="Ubah status pelamar"
+                  class="align-baseline"
+                  ><i class="fas fa-user-edit"></i></b-avatar
+              ></b-col>
+            </b-row>
+
             <b-modal ref="my-modal" hide-footer title="Ubah status pelamar">
               <div class="d-block text-center">
                 <b-card>
@@ -64,12 +76,20 @@
                 >Update Status</b-button
               >
             </b-modal>
+
             <b-form class="text-left">
               <b-form-group
-                label="Nama Pelamar"
-                label-for="nama"
+                label="ID Pelamar"
+                label-for="id"
                 class="w-100 mb-3"
               >
+                <b-form-input
+                  id="id"
+                  :value="data.id"
+                  class="ml-2 w-100"
+                  readonly
+                ></b-form-input> </b-form-group
+              ><b-form-group label="Nama" label-for="nama">
                 <b-form-input
                   id="nama"
                   :value="data.nama"
@@ -108,6 +128,72 @@
                 <b-form-input
                   id="wa"
                   :value="data.wa"
+                  class="ml-2"
+                  readonly
+                ></b-form-input> </b-form-group
+              ><b-form-group
+                label="Tempat lahir"
+                label-for="tempat"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  id="tempat"
+                  :value="data.tempat_lhr"
+                  class="ml-2"
+                  readonly
+                ></b-form-input> </b-form-group
+              ><b-form-group
+                label="Tanggal Lahir"
+                label-for="tgl"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  id="tgl"
+                  :value="data.tgl_lhr | moment(`MMMM Do YYYY`)"
+                  class="ml-2"
+                  readonly
+                ></b-form-input> </b-form-group
+              ><b-form-group
+                label="Bahasa yang dikuasai"
+                label-for="bahasa"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  id="bahasa"
+                  :value="data.bahasa"
+                  class="ml-2"
+                  readonly
+                ></b-form-input> </b-form-group
+              ><b-form-group
+                label="Menguasai Komputer"
+                label-for="kmptr"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  id="kmptr"
+                  :value="data.komputer"
+                  class="ml-2"
+                  readonly
+                ></b-form-input> </b-form-group
+              ><b-form-group
+                label="Profil Instagram"
+                label-for="ig"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  id="ig"
+                  :value="data.instagram"
+                  class="ml-2"
+                  readonly
+                ></b-form-input> </b-form-group
+              ><b-form-group
+                label="Profil Facebook"
+                label-for="fb"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  id="fb"
+                  :value="data.facebook"
                   class="ml-2"
                   readonly
                 ></b-form-input> </b-form-group
@@ -208,8 +294,75 @@
                   id="nama8"
                   v-html="data.alasan"
                   class="ml-2 form-control"
-                ></span> </b-form-group
-              ><b-form-group
+                ></span>
+              </b-form-group>
+              <b-form-group
+                label="Foto Pelamar"
+                label-for="nama91"
+                class="w-100 mb-3"
+              >
+                <b-img
+                  :src="pdfUrl + data.foto"
+                  class="ml-2"
+                  height="200"
+                  v-b-tooltip.hover
+                  title="Foto pelamar"
+                ></b-img>
+              </b-form-group>
+              <b-form-group
+                label="Foto KTP"
+                label-for="nama92"
+                class="w-100 mb-3"
+              >
+                <b-img
+                  :src="pdfUrl + data.ktp"
+                  class="ml-2"
+                  height="200"
+                  v-b-tooltip.hover
+                  title="Foto KTP"
+                ></b-img>
+              </b-form-group>
+              <b-form-group
+                label="Foto Ijazah"
+                label-for="nama93"
+                class="w-100 mb-3"
+              >
+                <b-img
+                  :src="pdfUrl + data.ijazah"
+                  class="ml-2"
+                  height="200"
+                  v-b-tooltip.hover
+                  title="Foto Ijazah"
+                ></b-img>
+              </b-form-group>
+              <b-form-group
+                label="Foto Sertifikat"
+                label-for="nama94"
+                class="w-100 mb-3"
+              >
+                <b-img
+                  :src="pdfUrl + data.sertifikat"
+                  class="ml-2"
+                  height="200"
+                  v-b-tooltip.hover
+                  title="Foto pelamar"
+                ></b-img>
+              </b-form-group>
+              <b-form-group
+                label="Foto SKCK"
+                label-for="nama95"
+                class="w-100 mb-3"
+              >
+                <b-img
+                  :src="data.skck ? pdfUrl + data.skck : `null`"
+                  class="ml-2"
+                  alt="Tidak tersedia"
+                  height="200"
+                  v-b-tooltip.hover
+                  title="Foto pelamar"
+                ></b-img>
+              </b-form-group>
+              <b-form-group
                 label="Portfolio Pelamar"
                 label-for="nama9"
                 class="w-100 mb-3"
@@ -228,17 +381,35 @@
                 >
               </b-form-group>
               <b-form-group
+                label="Pertanyaan Kuis"
+                label-for="nama99"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  v-for="(p, i) in data.pertanyaan
+                    ? JSON.parse(data.pertanyaan)
+                    : 'kosong'"
+                  :key="i"
+                  id="nama99"
+                  :value="i + 1 + '. ' + p"
+                  class="ml-2"
+                  readonly
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group
                 label="Jawaban Kuis"
                 label-for="nama99"
                 class="w-100 mb-3"
               >
                 <b-form-input
-                  id="nama99"
-                  v-for="(value, key) in data.kuis
-                    ? JSON.parse(data.kuis)
+                  v-for="(p, key, i) in data.jawaban
+                    ? JSON.parse(data.jawaban)
                     : 'kosong'"
-                  :key="value.index"
-                  :value="key + ' :  ' + value"
+                  :key="key"
+                  id="nama99"
+                  :value="
+                    p ? i + 1 + '. ' + p : i + 1 + '. ' + `(tidak di jawab)`
+                  "
                   class="ml-2"
                   readonly
                 ></b-form-input>

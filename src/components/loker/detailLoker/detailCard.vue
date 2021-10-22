@@ -133,7 +133,7 @@ export default {
   },
 
   mounted() {
-    this.$root.$emit("navbar");
+    window.scrollTo(0, 0);
   },
 
   methods: {

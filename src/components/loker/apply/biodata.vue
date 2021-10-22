@@ -2,7 +2,7 @@
   <div class="dataApply">
     <b-row class="justify-content-center">
       <b-col md="10">
-        <b-card>
+        <b-card class="bio">
           <el-form :model="model" :rules="rules" ref="form">
             <b-row>
               <!-- COLUMN 1               -->
@@ -17,7 +17,7 @@
 
                 <el-form-item label="Tempat lahir" prop="tempat_lhr">
                   <el-input
-                    v-model="model.tmp_lhr"
+                    v-model="model.tempat_lhr"
                     type="text"
                     placeholder="Masukan tempat lahirmu"
                   ></el-input>
@@ -116,6 +116,9 @@
                     <label class="btn uploadBtn" for="foto"
                       ><span>Upload file</span></label
                     >
+                    <p class="uploaded">
+                      {{ model.foto ? model.foto.name : "" }}
+                    </p>
                   </div>
                 </el-form-item>
 
@@ -136,6 +139,9 @@
                     <label class="btn uploadBtn" for="ijaz"
                       ><span>Upload file</span></label
                     >
+                    <p class="uploaded">
+                      {{ model.ijazah ? model.ijazah.name : "" }}
+                    </p>
                   </div>
                 </el-form-item>
 
@@ -156,6 +162,9 @@
                     <label class="btn uploadBtn" for="skck"
                       ><span>Upload file</span></label
                     >
+                    <p class="uploaded">
+                      {{ model.skck ? model.skck.name : "" }}
+                    </p>
                   </div>
                 </el-form-item>
               </b-col>
@@ -163,9 +172,9 @@
               <!-- COLUMN 2 -->
               <b-col md="6">
                 <el-form-item
-                  label="Kelamin"
                   prop="kelamin"
                   text-color="#07A148"
+                  label="Kelamin"
                 >
                   <el-radio
                     v-model="model.kelamin"
@@ -286,6 +295,9 @@
                     <label class="btn uploadBtn" for="ktp"
                       ><span>Upload file</span></label
                     >
+                    <p class="uploaded">
+                      {{ model.ktp ? model.ktp.name : "" }}
+                    </p>
                   </div>
                 </el-form-item>
 
@@ -306,6 +318,9 @@
                     <label class="btn uploadBtn" for="sert"
                       ><span>Upload file</span></label
                     >
+                    <p class="uploaded">
+                      {{ model.sertifikat ? model.sertifikat.name : "" }}
+                    </p>
                   </div>
                 </el-form-item>
 
@@ -326,6 +341,9 @@
                     <label class="btn uploadBtn" for="inputGroupFile01"
                       ><span>Upload file</span></label
                     >
+                    <p class="uploaded">
+                      {{ model.portfolio ? model.portfolio.name : "" }}
+                    </p>
                   </div>
                 </el-form-item>
               </b-col>
@@ -578,6 +596,7 @@ export default {
   },
 
   mounted() {
+    window.scrollTo(0, 0);
     this.model.loker_id = this.$route.params.id;
     console.log(this.model.loker_id);
     this.model.status = "Lamaran Masuk";
@@ -624,6 +643,7 @@ export default {
     onSelect() {
       // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
       console.log("port", event.target.files[0]);
+      console.log("port2", event.target.files[0].name);
       this.model.portfolio = event.target.files[0];
     },
     onSelectKtp() {
@@ -657,6 +677,13 @@ export default {
 
 <style lang="scss">
 @import "@/assets/main.scss";
+
+.bio .card-body {
+  background: #ffffff;
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+}
 .el-radio.is-bordered.is-checked {
   border-color: #07a148 !important;
 }
@@ -734,5 +761,11 @@ export default {
   span {
     color: $paz-secondary;
   }
+}
+
+p.uploaded {
+  position: relative;
+  text-align: center;
+  top: 15px;
 }
 </style>

@@ -10,12 +10,14 @@ import VueAppend from "vue-append";
 import VueCarousel from "vue-carousel";
 import BootstrapVue from "bootstrap-vue";
 import VueFormWizard from "vue-form-wizard";
+import vueAwesomeCountdown from "vue-awesome-countdown";
 
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import "element-ui/lib/theme-chalk/index.css";
 import "@/assets/scss/app.scss";
 import "@/assets/main.scss";
 
+Vue.use(vueAwesomeCountdown, "vac");
 Vue.config.productionTip = false;
 Vue.use(require("vue-script2"));
 Vue.use(require("vue-moment"));

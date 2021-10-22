@@ -74,16 +74,6 @@
             >
           </template>
 
-          <template v-slot:cell(kuis)="data">
-            <span
-              class="no-border d-block mb-2"
-              style="min-width: 100px"
-              v-for="jen in JSON.parse(data.item.kuis)"
-              :key="jen"
-            >
-              {{ jen }}
-            </span>
-          </template>
           <template v-slot:cell(action)="data" class="d-flex">
             <b-row no-gutters class="flex-row align-items-center">
               <router-link
