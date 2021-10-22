@@ -26,14 +26,14 @@
                 <el-form-item label="Agama" prop="agama">
                   <el-radio
                     v-model="model.agama"
-                    class="mb-0"
+                    class="mb-0 ml-0"
                     label="Islam"
                     border
                     >Islam</el-radio
                   >
                   <el-radio
                     v-model="model.agama"
-                    class="mb-0"
+                    class="mb-0 ml-0"
                     label="Non-Islam"
                     border
                     >Non-Islam</el-radio
@@ -181,7 +181,7 @@
                     label="laki-laki"
                     text-color="#07A148"
                     fill="#07A148"
-                    class="mb-0"
+                    class="mb-0 ml-0"
                     border
                     >Laki-laki</el-radio
                   >
@@ -189,7 +189,7 @@
                     v-model="model.kelamin"
                     label="perempuan"
                     text-color="#07A148"
-                    class="mb-0"
+                    class="mb-0 ml-0"
                     border
                     >Perempuan</el-radio
                   >
@@ -247,14 +247,14 @@
                 >
                   <el-radio
                     v-model="model.komputer"
-                    class="mb-0"
+                    class="mb-0 ml-0"
                     label="Ya"
                     border
                     >Ya</el-radio
                   >
                   <el-radio
                     v-model="model.komputer"
-                    class="mb-0"
+                    class="mb-0 ml-0"
                     label="Tidak"
                     border
                     >Tidak</el-radio

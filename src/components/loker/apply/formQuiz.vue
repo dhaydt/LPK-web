@@ -38,7 +38,7 @@
               v-model="jawaban.p1"
               v-for="o in JSON.parse(options[0])"
               :key="o"
-              class="options ml-2 text-left"
+              class="options ml-1 text-left"
               :label="o"
               border
               >{{ o }}
@@ -50,7 +50,7 @@
               v-model="jawaban.p2"
               v-for="o in JSON.parse(options[1])"
               :key="o"
-              class="options ml-2 text-left"
+              class="options ml-1 text-left"
               :label="o"
               border
               >{{ o }}
@@ -64,7 +64,7 @@
               :key="o"
               :label="o"
               border
-              class="options ml-2 text-left"
+              class="options ml-1 text-left"
               >{{ o }}
             </el-radio>
           </el-form-item>
