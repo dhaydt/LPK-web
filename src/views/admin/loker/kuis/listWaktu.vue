@@ -64,10 +64,15 @@
           :filter-included-fields="filterOn"
           @filtered="onFiltered"
         >
-          <template v-slot:cell(responses)="data">
-            <p v-for="(r, i) in JSON.parse(data.item.responses)" :key="i">
-              {{ r.text }}
-            </p>
+          <template v-slot:cell(options)="data">
+            <span
+              class="no-border d-block mb-2"
+              style="min-width: 100px"
+              v-for="jen in JSON.parse(data.item.options)"
+              :key="jen"
+            >
+              {{ jen }}
+            </span>
           </template>
           <template v-slot:cell(action)="data" class="d-flex">
             <!-- <a
@@ -127,8 +132,7 @@ export default {
       sortDesc: false,
       fields: [
         { key: "id", sortable: true, label: "ID" },
-        { key: "text", sortable: true, label: "Pertanyaan" },
-        { key: "responses", sortable: true, label: "Pilihan" },
+        { key: "time", sortable: true, label: "Waktu (S)" },
         { key: "status", sortable: true, label: "Status" },
         { key: "action" },
       ],
@@ -152,12 +156,12 @@ export default {
   mounted() {
     // Set the initial number of items
     this.totalRows = this.tableData.length;
-    this.$root.$on("getVisi", this.getVisi);
+    this.$root.$on("getTime", this.getVisi);
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.visiUrl = mainUrl + "/kuis";
+    this.visiUrl = mainUrl + "/kuisTime";
     this.getVisi();
   },
 
@@ -166,9 +170,8 @@ export default {
       const resp = await axios
         .get(this.visiUrl)
         .catch((error) => console.log(error));
-      const data = resp.data.data;
-      console.log(data);
       this.tableData = resp.data.data;
+      console.log(resp.data.data);
     },
 
     async deleteVisi(id) {

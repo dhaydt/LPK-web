@@ -38,21 +38,45 @@
           ref="form"
           v-show="accepted"
           class="kuis"
+          v-for="(tanya, i) in kuis"
+          :key="i"
         >
-          <div class="qu-is" v-for="(q, i) in kuis" :key="i">
-            <p>Pertanyaan {{ i + 1 }} dari {{ kuis.length }} pertanyaan</p>
-            <el-form-item :label="q.text" class="d-block">
-              <el-radio
-                v-model="userResponses[i]"
-                v-for="(o, index) in JSON.parse(q.responses)"
-                :key="index"
-                class="options ml-1 text-left kuisRadio"
-                :label="o"
-                border
-                >{{ o.text }}
-              </el-radio>
-            </el-form-item>
-          </div>
+          <h5>Pertanyaan {{ i + 1 }} dari {{ kuis.length }} pertanyaan</h5>
+          <el-form-item :label="tanya.pertanyaan" prop="p1" class="d-block">
+            <el-radio
+              v-model="jawaban.p1"
+              v-for="(value, key) in JSON.parse(tanya.options)"
+              :key="key"
+              class="options ml-1 text-left"
+              :label="value"
+              border
+              >{{ value }}
+            </el-radio>
+          </el-form-item>
+          <!-- <p>Pertanyaan 2 dari 3 pertanyaan</p>
+          <el-form-item :label="pertanyaan[1]" prop="p2">
+            <el-radio
+              v-model="jawaban.p2"
+              v-for="o in JSON.parse(options[1])"
+              :key="o"
+              class="options ml-1 text-left"
+              :label="o"
+              border
+              >{{ o }}
+            </el-radio>
+          </el-form-item>
+          <p>Pertanyaan 3 dari 3 pertanyaan</p>
+          <el-form-item :label="pertanyaan[2]" prop="p3">
+            <el-radio
+              v-model="jawaban.p3"
+              v-for="o in JSON.parse(options[2])"
+              :key="o"
+              :label="o"
+              border
+              class="options ml-1 text-left"
+              >{{ o }}
+            </el-radio>
+          </el-form-item> -->
         </el-form>
       </b-card>
     </b-col>
@@ -70,7 +94,7 @@
             >Kembali</b-button
           >
 
-          <b-button class="w-100 mt-4 lanjutBtn" @click="score"
+          <b-button class="w-100 mt-4 lanjutBtn" @click="reviewTab"
             >Review Jawaban</b-button
           >
         </b-col>
@@ -109,15 +133,17 @@ function hourConvert(hour) {
 export default {
   data() {
     return {
-      userResponses: [],
-      nilai: "",
       timeUrl: "",
       kuisUrl: "",
       pertanyaan: {},
-      jawaban: {},
+      options: {},
       kuis: {},
       model: {},
-      correct: {},
+      jawaban: {
+        p1: "",
+        p2: "",
+        p3: "",
+      },
       rules: {
         // p1: [
         //   {
@@ -155,8 +181,11 @@ export default {
   created() {
     const kuis = JSON.parse(localStorage.getItem("kuis"));
     const main = localStorage.getItem("apiUrl");
+    this.pertanyaan = kuis.map((kuis) => kuis.pertanyaan);
+    const opt = kuis.map((kuis) => kuis.options);
+    this.options = opt;
+    console.log("kuis", kuis);
     this.kuis = kuis;
-    this.userResponses = Array(kuis.length).fill({ text: "", correct: false });
     this.timeUrl = main + "/kuisTimeOn";
     this.ambilWaktu();
   },
@@ -166,25 +195,6 @@ export default {
   },
 
   methods: {
-    score() {
-      var score = this.userResponses;
-
-      const nilai = score.reduce((acc, it) => {
-        acc[it.correct] = acc[it.correct] + 1 || 1;
-        return acc;
-      }, {});
-      var hasil = ((nilai.true / this.kuis.length) * 100).toFixed(0);
-      // this.nilai =  + "%";
-      console.log(hasil);
-      if (isNaN(hasil)) {
-        this.nilai = "0";
-      } else {
-        this.nilai = hasil;
-      }
-
-      this.pertanyaan = this.kuis.map((kuis) => kuis.text);
-      this.reviewTab();
-    },
     async ambilWaktu() {
       const resp = await axios.get(this.timeUrl);
       console.log(resp.data.data[0]);
@@ -203,12 +213,7 @@ export default {
       window.scrollTo(0, 0);
     },
     validate() {
-      this.model = {
-        pertanyaan: this.pertanyaan,
-        jawaban: this.userResponses,
-        nilai: this.nilai,
-      };
-      console.log(this.model);
+      this.model = { pertanyaan: this.pertanyaan, jawaban: this.jawaban };
       return new Promise((resolve) => {
         this.$refs.form.validate((valid) => {
           this.$emit("on-validate", valid, this.model);
@@ -239,7 +244,7 @@ export default {
         if (secondsLeft === 0) {
           this.endTime = 0;
           this.status = true;
-          this.accepted = false;
+          // this.accepted = false;
         }
 
         if (secondsLeft < 0) {
@@ -267,20 +272,12 @@ export default {
 </script>
 
 <style lang="scss">
-.el-radio.options.ml-1.text-left.kuisRadio.is-focus.is-bordered {
-  border: 1px solid #48a248;
-
-  .el-radio__label {
-    color: #48a248;
-  }
-}
 .options span.el-radio__inner {
   display: none;
 }
 
 .el-radio.options.el-radio.is-bordered {
   padding: 0 !important;
-  transition: 0.3s;
 }
 
 .el-form .el-form-item label.el-form-item__label {

@@ -1,355 +1,345 @@
 <template>
   <div class="dataApply">
-    <b-row class="justify-content-center">
-      <b-col md="10">
-        <b-card class="bio">
-          <el-form :model="model" :rules="rules" ref="form">
-            <b-row>
-              <!-- COLUMN 1               -->
-              <b-col md="6">
-                <el-form-item label="Nama Lengkap" prop="nama">
-                  <el-input
-                    v-model="model.nama"
-                    type="text"
-                    placeholder="Masukan nama lengkapmu"
-                  ></el-input>
-                </el-form-item>
+    <b-row class="justify-content-center" no-gutters>
+      <b-col md="12" class="justify-content-center">
+        <el-form :model="model" :rules="rules" ref="form">
+          <b-row class="justify-content-center ml-0">
+            <!-- COLUMN 1               -->
+            <b-col md="6">
+              <el-form-item label="Nama Lengkap" prop="nama">
+                <el-input
+                  v-model="model.nama"
+                  type="text"
+                  placeholder="Masukan nama lengkapmu"
+                ></el-input>
+              </el-form-item>
 
-                <el-form-item label="Tempat lahir" prop="tempat_lhr">
-                  <el-input
-                    v-model="model.tempat_lhr"
-                    type="text"
-                    placeholder="Masukan tempat lahirmu"
-                  ></el-input>
-                </el-form-item>
+              <el-form-item label="Tempat lahir" prop="tempat_lhr">
+                <el-input
+                  v-model="model.tempat_lhr"
+                  type="text"
+                  placeholder="Masukan tempat lahirmu"
+                ></el-input>
+              </el-form-item>
 
-                <el-form-item label="Agama" prop="agama">
-                  <el-radio
-                    v-model="model.agama"
-                    class="mb-0 ml-0"
-                    label="Islam"
-                    border
-                    >Islam</el-radio
-                  >
-                  <el-radio
-                    v-model="model.agama"
-                    class="mb-0 ml-0"
-                    label="Non-Islam"
-                    border
-                    >Non-Islam</el-radio
-                  >
-                </el-form-item>
-
-                <el-form-item label="Nomor WhatsApp" prop="wa">
-                  <el-input
-                    v-model="model.wa"
-                    placeholder="Masukkan nomor whatsappmu"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Kota Domisili" prop="domisili">
-                  <el-input
-                    v-model="model.domisili"
-                    placeholder="Masukkan kota domisilimu"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Tingkat Pendidikan" prop="pendidikan">
-                  <el-select
-                    class="el-input"
-                    v-model="model.pendidikan"
-                    placeholder="Pilih tingkat pendidikanmu"
-                  >
-                    <el-option
-                      v-for="item in pendidikan"
-                      :key="item.value"
-                      :label="item.text"
-                      :value="item.value"
-                    >
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-
-                <el-form-item label="Pengalaman Kerja" prop="pengalaman">
-                  <el-select
-                    class="el-input"
-                    v-model="model.pengalaman"
-                    placeholder="Pengalaman bekerjamu"
-                  >
-                    <el-option
-                      v-for="item in pengalaman"
-                      :key="item.value"
-                      :label="item.text"
-                      :value="item.value"
-                    >
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-
-                <el-form-item label="Link Akun Facebook" prop="facebook">
-                  <el-input
-                    type="text"
-                    placeholder="Masukan link akun facebookmu"
-                    v-model="model.facebook"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Bahasa yang Dikuasai" prop="bahasa">
-                  <el-input
-                    type="textarea"
-                    placeholder="Masukan bahasa yang kamu kuasai"
-                    rows="3"
-                    v-model="model.bahasa"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Pas Foto" prop="foto" class="text-left">
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      @change="onSelectFoto()"
-                      accept="images/jpeg, images/png"
-                      class="custom-file-input"
-                      id="foto"
-                      aria-describedby="inputGroupFileAddon02"
-                    />
-                    <label class="btn uploadBtn" for="foto"
-                      ><span>Upload file</span></label
-                    >
-                    <p class="uploaded">
-                      {{ model.foto ? model.foto.name : "" }}
-                    </p>
-                  </div>
-                </el-form-item>
-
-                <el-form-item
-                  label="Foto Ijazah"
-                  prop="ijazah"
-                  class="text-left"
+              <el-form-item label="Agama" prop="agama">
+                <el-radio
+                  v-model="model.agama"
+                  class="mb-0 ml-0"
+                  label="Islam"
+                  border
+                  >Islam</el-radio
                 >
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      @change="onSelectIjazah()"
-                      accept="images/jpeg, images/png"
-                      class="custom-file-input"
-                      id="ijaz"
-                      aria-describedby="inputGroupFileAddon02"
-                    />
-                    <label class="btn uploadBtn" for="ijaz"
-                      ><span>Upload file</span></label
-                    >
-                    <p class="uploaded">
-                      {{ model.ijazah ? model.ijazah.name : "" }}
-                    </p>
-                  </div>
-                </el-form-item>
-
-                <el-form-item
-                  label="Foto SKCK (Optional)"
-                  prop="skck"
-                  class="text-left"
+                <el-radio
+                  v-model="model.agama"
+                  class="mb-0 ml-0"
+                  label="Non-Islam"
+                  border
+                  >Non-Islam</el-radio
                 >
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      @change="onSelectSkck()"
-                      accept="images/jpeg, images/jpg, images/png"
-                      class="custom-file-input"
-                      id="skck"
-                      aria-describedby="inputGroupFileAddon02"
-                    />
-                    <label class="btn uploadBtn" for="skck"
-                      ><span>Upload file</span></label
-                    >
-                    <p class="uploaded">
-                      {{ model.skck ? model.skck.name : "" }}
-                    </p>
-                  </div>
-                </el-form-item>
-              </b-col>
+              </el-form-item>
 
-              <!-- COLUMN 2 -->
-              <b-col md="6">
-                <el-form-item
-                  prop="kelamin"
+              <el-form-item label="Nomor WhatsApp" prop="wa">
+                <el-input
+                  v-model="model.wa"
+                  placeholder="Masukkan nomor whatsappmu"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Kota Domisili" prop="domisili">
+                <el-input
+                  v-model="model.domisili"
+                  placeholder="Masukkan kota domisilimu"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Tingkat Pendidikan" prop="pendidikan">
+                <el-select
+                  class="el-input"
+                  v-model="model.pendidikan"
+                  placeholder="Pilih tingkat pendidikanmu"
+                >
+                  <el-option
+                    v-for="item in pendidikan"
+                    :key="item.value"
+                    :label="item.text"
+                    :value="item.value"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="Pengalaman Kerja" prop="pengalaman">
+                <el-select
+                  class="el-input"
+                  v-model="model.pengalaman"
+                  placeholder="Pengalaman bekerjamu"
+                >
+                  <el-option
+                    v-for="item in pengalaman"
+                    :key="item.value"
+                    :label="item.text"
+                    :value="item.value"
+                  >
+                  </el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="Link Akun Facebook" prop="facebook">
+                <el-input
+                  type="text"
+                  placeholder="Masukan link akun facebookmu"
+                  v-model="model.facebook"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Bahasa yang Dikuasai" prop="bahasa">
+                <el-input
+                  type="textarea"
+                  placeholder="Masukan bahasa yang kamu kuasai"
+                  rows="3"
+                  v-model="model.bahasa"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Pas Foto" prop="foto" class="text-left">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    @change="onSelectFoto()"
+                    accept="images/jpeg, images/png"
+                    class="custom-file-input"
+                    id="foto"
+                    aria-describedby="inputGroupFileAddon02"
+                  />
+                  <label class="btn uploadBtn" for="foto"
+                    ><span>Upload file</span></label
+                  >
+                  <p class="uploaded">
+                    {{ model.foto ? model.foto.name : "" }}
+                  </p>
+                </div>
+              </el-form-item>
+
+              <el-form-item label="Foto Ijazah" prop="ijazah" class="text-left">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    @change="onSelectIjazah()"
+                    accept="images/jpeg, images/png"
+                    class="custom-file-input"
+                    id="ijaz"
+                    aria-describedby="inputGroupFileAddon02"
+                  />
+                  <label class="btn uploadBtn" for="ijaz"
+                    ><span>Upload file</span></label
+                  >
+                  <p class="uploaded">
+                    {{ model.ijazah ? model.ijazah.name : "" }}
+                  </p>
+                </div>
+              </el-form-item>
+
+              <el-form-item
+                label="Foto SKCK (Optional)"
+                prop="skck"
+                class="text-left"
+              >
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    @change="onSelectSkck()"
+                    accept="images/jpeg, images/jpg, images/png"
+                    class="custom-file-input"
+                    id="skck"
+                    aria-describedby="inputGroupFileAddon02"
+                  />
+                  <label class="btn uploadBtn" for="skck"
+                    ><span>Upload file</span></label
+                  >
+                  <p class="uploaded">
+                    {{ model.skck ? model.skck.name : "" }}
+                  </p>
+                </div>
+              </el-form-item>
+            </b-col>
+
+            <!-- COLUMN 2 -->
+            <b-col md="6">
+              <el-form-item prop="kelamin" text-color="#07A148" label="Kelamin">
+                <el-radio
+                  v-model="model.kelamin"
+                  label="laki-laki"
                   text-color="#07A148"
-                  label="Kelamin"
+                  fill="#07A148"
+                  class="mb-0 ml-0"
+                  border
+                  >Laki-laki</el-radio
                 >
-                  <el-radio
-                    v-model="model.kelamin"
-                    label="laki-laki"
-                    text-color="#07A148"
-                    fill="#07A148"
-                    class="mb-0 ml-0"
-                    border
-                    >Laki-laki</el-radio
-                  >
-                  <el-radio
-                    v-model="model.kelamin"
-                    label="perempuan"
-                    text-color="#07A148"
-                    class="mb-0 ml-0"
-                    border
-                    >Perempuan</el-radio
-                  >
-                </el-form-item>
-
-                <el-form-item label="Tanggal Lahir" prop="tgl_lhr">
-                  <el-input
-                    v-model="model.tgl_lhr"
-                    type="date"
-                    placeholder="Masukan nama lengkapmu"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Status Marital" prop="menikah">
-                  <el-select
-                    v-model="model.menikah"
-                    class="el-input"
-                    placeholder="Pilih status maritalmu"
-                  >
-                    <el-option
-                      v-for="item in menikah"
-                      :key="item.value"
-                      :label="item.text"
-                      :value="item.value"
-                    >
-                    </el-option>
-                  </el-select>
-                </el-form-item>
-
-                <el-form-item label="Email" prop="email">
-                  <el-input
-                    v-model="model.email"
-                    placeholder="Masukkan emailmu"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Provinsi" prop="provinsi">
-                  <el-input
-                    v-model="model.provinsi"
-                    placeholder="Masukkan provinsi domisilimu"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Jurusan/Bidang Studi" prop="jurusan">
-                  <el-input
-                    v-model="model.jurusan"
-                    placeholder="Masukkan jurusan/bidang studi pendidikanmu"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item
-                  label="Bisa mengoperasikan Komputer"
-                  prop="komputer"
-                  required
+                <el-radio
+                  v-model="model.kelamin"
+                  label="perempuan"
+                  text-color="#07A148"
+                  class="mb-0 ml-0"
+                  border
+                  >Perempuan</el-radio
                 >
-                  <el-radio
-                    v-model="model.komputer"
-                    class="mb-0 ml-0"
-                    label="Ya"
-                    border
-                    >Ya</el-radio
+              </el-form-item>
+
+              <el-form-item label="Tanggal Lahir" prop="tgl_lhr">
+                <el-input
+                  v-model="model.tgl_lhr"
+                  type="date"
+                  placeholder="Masukan nama lengkapmu"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Status Marital" prop="menikah">
+                <el-select
+                  v-model="model.menikah"
+                  class="el-input"
+                  placeholder="Pilih status maritalmu"
+                >
+                  <el-option
+                    v-for="item in menikah"
+                    :key="item.value"
+                    :label="item.text"
+                    :value="item.value"
                   >
-                  <el-radio
-                    v-model="model.komputer"
-                    class="mb-0 ml-0"
-                    label="Tidak"
-                    border
-                    >Tidak</el-radio
+                  </el-option>
+                </el-select>
+              </el-form-item>
+
+              <el-form-item label="Email" prop="email">
+                <el-input
+                  v-model="model.email"
+                  placeholder="Masukkan emailmu"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Provinsi" prop="provinsi">
+                <el-input
+                  v-model="model.provinsi"
+                  placeholder="Masukkan provinsi domisilimu"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Jurusan/Bidang Studi" prop="jurusan">
+                <el-input
+                  v-model="model.jurusan"
+                  placeholder="Masukkan jurusan/bidang studi pendidikanmu"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item
+                label="Bisa mengoperasikan Komputer"
+                prop="komputer"
+                required
+              >
+                <el-radio
+                  v-model="model.komputer"
+                  class="mb-0 ml-0"
+                  label="Ya"
+                  border
+                  >Ya</el-radio
+                >
+                <el-radio
+                  v-model="model.komputer"
+                  class="mb-0 ml-0"
+                  label="Tidak"
+                  border
+                  >Tidak</el-radio
+                >
+              </el-form-item>
+
+              <el-form-item label="Link Akun Instagram" prop="instagram">
+                <el-input
+                  type="text"
+                  placeholder="Masukan link akun instagrammu"
+                  v-model="model.instagram"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item
+                label="Alasan Kuat Kenapa Kami Harus Menerima Anda"
+                prop="alasan"
+              >
+                <el-input
+                  class="$color-success"
+                  type="textarea"
+                  placeholder="Masukan alasanmu dengan percaya diri dan jujur"
+                  v-model="model.alasan"
+                  rows="3"
+                ></el-input>
+              </el-form-item>
+
+              <el-form-item label="Foto KTP/SIM" prop="ktp" class="text-left">
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    @change="onSelectKtp()"
+                    accept="images/jpeg, images/png"
+                    class="custom-file-input"
+                    id="ktp"
+                    aria-describedby="inputGroupFileAddon02"
+                  />
+                  <label class="btn uploadBtn" for="ktp"
+                    ><span>Upload file</span></label
                   >
-                </el-form-item>
+                  <p class="uploaded">
+                    {{ model.ktp ? model.ktp.name : "" }}
+                  </p>
+                </div>
+              </el-form-item>
 
-                <el-form-item label="Link Akun Instagram" prop="instagram">
-                  <el-input
-                    type="text"
-                    placeholder="Masukan link akun instagrammu"
-                    v-model="model.instagram"
-                  ></el-input>
-                </el-form-item>
+              <el-form-item
+                label="Foto Sertifikat Pelatihan"
+                prop="sertifikat"
+                class="text-left"
+              >
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    @change="onSelectSert()"
+                    accept="images/jpeg, images/png"
+                    class="custom-file-input"
+                    id="sert"
+                    aria-describedby="inputGroupFileAddon03"
+                  />
+                  <label class="btn uploadBtn" for="sert"
+                    ><span>Upload file</span></label
+                  >
+                  <p class="uploaded">
+                    {{ model.sertifikat ? model.sertifikat.name : "" }}
+                  </p>
+                </div>
+              </el-form-item>
 
-                <el-form-item
-                  label="Alasan Kuat Kenapa Kami Harus Menerima Anda"
-                  prop="alasan"
-                >
-                  <el-input
-                    class="$color-success"
-                    type="textarea"
-                    placeholder="Masukan alasanmu dengan percaya diri dan jujur"
-                    v-model="model.alasan"
-                    rows="3"
-                  ></el-input>
-                </el-form-item>
-
-                <el-form-item label="Foto KTP/SIM" prop="ktp" class="text-left">
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      @change="onSelectKtp()"
-                      accept="images/jpeg, images/png"
-                      class="custom-file-input"
-                      id="ktp"
-                      aria-describedby="inputGroupFileAddon02"
-                    />
-                    <label class="btn uploadBtn" for="ktp"
-                      ><span>Upload file</span></label
-                    >
-                    <p class="uploaded">
-                      {{ model.ktp ? model.ktp.name : "" }}
-                    </p>
-                  </div>
-                </el-form-item>
-
-                <el-form-item
-                  label="Foto Sertifikat Pelatihan"
-                  prop="sertifikat"
-                  class="text-left"
-                >
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      @change="onSelectSert()"
-                      accept="images/jpeg, images/png"
-                      class="custom-file-input"
-                      id="sert"
-                      aria-describedby="inputGroupFileAddon03"
-                    />
-                    <label class="btn uploadBtn" for="sert"
-                      ><span>Upload file</span></label
-                    >
-                    <p class="uploaded">
-                      {{ model.sertifikat ? model.sertifikat.name : "" }}
-                    </p>
-                  </div>
-                </el-form-item>
-
-                <el-form-item
-                  label="Portfolio / Berkas Pendukung"
-                  prop="portfolio"
-                  class="text-left"
-                >
-                  <div class="custom-file">
-                    <input
-                      type="file"
-                      @change="onSelect()"
-                      accept="application/pdf"
-                      class="custom-file-input"
-                      id="inputGroupFile01"
-                      aria-describedby="inputGroupFileAddon01"
-                    />
-                    <label class="btn uploadBtn" for="inputGroupFile01"
-                      ><span>Upload file</span></label
-                    >
-                    <p class="uploaded">
-                      {{ model.portfolio ? model.portfolio.name : "" }}
-                    </p>
-                  </div>
-                </el-form-item>
-              </b-col>
-            </b-row>
-          </el-form>
-        </b-card>
+              <el-form-item
+                label="Portfolio / Berkas Pendukung"
+                prop="portfolio"
+                class="text-left"
+              >
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    @change="onSelect()"
+                    accept="application/pdf"
+                    class="custom-file-input"
+                    id="inputGroupFile01"
+                    aria-describedby="inputGroupFileAddon01"
+                  />
+                  <label class="btn uploadBtn" for="inputGroupFile01"
+                    ><span>Upload file</span></label
+                  >
+                  <p class="uploaded">
+                    {{ model.portfolio ? model.portfolio.name : "" }}
+                  </p>
+                </div>
+              </el-form-item>
+            </b-col>
+          </b-row>
+        </el-form>
       </b-col>
     </b-row>
   </div>
@@ -678,13 +668,7 @@ export default {
 <style lang="scss">
 @import "@/assets/main.scss";
 
-.bio .card-body {
-  background: #ffffff;
-  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.04),
-    0px 0px 1px rgba(0, 0, 0, 0.04);
-  border-radius: 8px;
-}
-.el-radio.is-bordered.is-checked {
+.el-form-item__content .el-radio.is-bordered.is-checked {
   border-color: #07a148 !important;
 }
 
@@ -705,7 +689,6 @@ export default {
   font-size: 14px;
   color: #606266;
   width: 100%;
-  line-height: 40px;
   padding: 0 12px 0 0;
 }
 
@@ -715,7 +698,7 @@ export default {
   border: 1px solid #dcdfe6;
   margin-right: 5px;
   box-sizing: border-box;
-  height: 48px;
+  height: 40px !important;
   width: 48%;
 }
 

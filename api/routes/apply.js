@@ -124,12 +124,15 @@ const get = (req, res) => {
 
   // ("SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID");
   var sql =
-    "SELECT apply.id, apply.nama, loker.judul, apply.wa, apply.facebook, apply.instagram, apply.tempat_lhr, apply.tgl_lhr, apply.bahasa, apply.komputer, apply.foto, apply.ktp, apply.sertifikat, apply.ijazah, apply.skck, apply.email, apply.domisili, apply.provinsi, apply.kelamin, apply.pendidikan, apply.jurusan, apply.agama, apply.pengalaman, apply.alasan, apply.portfolio, apply.status, apply.pertanyaan, apply.jawaban FROM apply " +
+    "SELECT apply.id, apply.nama, loker.judul, apply.wa, apply.facebook, apply.instagram, apply.nilai, apply.tempat_lhr, apply.tgl_lhr, apply.bahasa, apply.komputer, apply.foto, apply.ktp, apply.sertifikat, apply.ijazah, apply.skck, apply.email, apply.domisili, apply.provinsi, apply.kelamin, apply.pendidikan, apply.jurusan, apply.agama, apply.pengalaman, apply.alasan, apply.portfolio, apply.status, apply.pertanyaan, apply.jawaban FROM apply " +
     "JOIN loker ON loker.id = apply.loker_id ";
   db.query(sql, function(err, result) {
     // if (result.length <= 0) message = "Legalitas Kosong!";
-
-    res.send({ data: result, message: message });
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({ data: result, message: message });
+    }
   });
 };
 
@@ -159,11 +162,12 @@ const index = function(req, res) {
     var pengalaman = post.pengalaman;
     var pertanyaan = post.pertanyaan;
     var jawaban = post.jawaban;
+    var nilai = post.nilai;
     var alasan = post.alasan;
     var loker_id = req.params.id;
     var status = post.status;
     if (!req.files) return res.status(400).send("No files were uploaded.");
-
+    console.log(nilai);
     var filePorto = req.files.portfolio;
     var fileFoto = req.files.foto;
     var fileKtp = req.files.ktp;
@@ -177,7 +181,6 @@ const index = function(req, res) {
     var ijazah = "ijazah" + Date.now() + fileIjazah.name;
     var sertifikat = "serti" + Date.now() + fileSertifikat.name;
     var skck = fileSkck ? "skck" + Date.now() + fileSkck.name : "null";
-    // console.log(skck);
 
     filePorto.mv(`public/documents/apply/` + portfolio, (err) => {
       if (err)
@@ -207,7 +210,7 @@ const index = function(req, res) {
                       msg: "fail move skck",
                     });
                   var sql =
-                    "INSERT INTO `apply`(`nama`,`wa`,`email`,`domisili`,`provinsi`,`kelamin`,`pendidikan`,`jurusan`,`agama`,`pengalaman`,`pertanyaan`,`jawaban`,`alasan`,`tempat_lhr`,`tgl_lhr`,`menikah`,`komputer`,`bahasa`,`instagram`,`facebook`,`foto`,`ktp`,`ijazah`,`sertifikat`,`skck`,`portfolio`,`loker_id`,`status`) VALUES ('" +
+                    "INSERT INTO `apply`(`nama`,`wa`,`email`,`domisili`,`provinsi`,`kelamin`,`pendidikan`,`jurusan`,`agama`,`pengalaman`,`pertanyaan`,`jawaban`,`nilai`,`alasan`,`tempat_lhr`,`tgl_lhr`,`menikah`,`komputer`,`bahasa`,`instagram`,`facebook`,`foto`,`ktp`,`ijazah`,`sertifikat`,`skck`,`portfolio`,`loker_id`,`status`) VALUES ('" +
                     nama +
                     "','" +
                     wa +
@@ -231,6 +234,8 @@ const index = function(req, res) {
                     pertanyaan +
                     "','" +
                     jawaban +
+                    "','" +
+                    nilai +
                     "','" +
                     alasan +
                     "','" +
@@ -279,7 +284,7 @@ const index = function(req, res) {
                 });
               } else {
                 var sql =
-                  "INSERT INTO `apply`(`nama`,`wa`,`email`,`domisili`,`provinsi`,`kelamin`,`pendidikan`,`jurusan`,`agama`,`pengalaman`,`pertanyaan`,`jawaban`,`alasan`,`tempat_lhr`,`tgl_lhr`,`menikah`,`komputer`,`bahasa`,`instagram`,`facebook`,`foto`,`ktp`,`ijazah`,`sertifikat`,`portfolio`,`loker_id`,`status`) VALUES ('" +
+                  "INSERT INTO `apply`(`nama`,`wa`,`email`,`domisili`,`provinsi`,`kelamin`,`pendidikan`,`nilai`,`jurusan`,`agama`,`pengalaman`,`pertanyaan`,`jawaban`,`alasan`,`tempat_lhr`,`tgl_lhr`,`menikah`,`komputer`,`bahasa`,`instagram`,`facebook`,`foto`,`ktp`,`ijazah`,`sertifikat`,`portfolio`,`loker_id`,`status`) VALUES ('" +
                   nama +
                   "','" +
                   wa +
@@ -293,6 +298,8 @@ const index = function(req, res) {
                   kelamin +
                   "','" +
                   pendidikan +
+                  "','" +
+                  nilai +
                   "','" +
                   jurusan +
                   "','" +

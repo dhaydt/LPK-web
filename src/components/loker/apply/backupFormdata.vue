@@ -70,7 +70,6 @@
                   <b-card-text style="font-transform: capitalize;"
                     >Terima kasih telah berpartisipasi</b-card-text
                   >
-                  <pre>{{ finalModel }}</pre>
                 </b-card>
               </tab-content>
               <template slot="footer" slot-scope="props">
@@ -80,7 +79,7 @@
                       <wizard-button
                         class="d-none"
                         v-if="props.activeTabIndex > 0 && !props.isLastStep"
-                        @v-on:click="props.prevTab()"
+                        @click.native="props.prevTab()"
                         :style="props.fillButtonStyle"
                         >Previous</wizard-button
                       >
@@ -123,6 +122,7 @@
               Apakah anda sudah yakin ingin menyelesaikan dan mengirim hasil
               jawaban dari kuis?
             </p>
+
             <template #modal-footer>
               <b-row class="w-100">
                 <b-col md="6">
@@ -185,7 +185,6 @@ export default {
         status: "",
         pertanyaan: {},
         jawaban: {},
-        nilai: {},
       },
       activeTabIndex: 0,
       applyUrl: "",
@@ -198,10 +197,12 @@ export default {
     Biodata,
     FormQuiz,
   },
+
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
     this.applyUrl = mainUrl + "/apply/" + this.$route.params.id;
-    this.kuisUrl = mainUrl + "/kuisOn";
+
+    this.kuisUrl = mainUrl + "/kuis";
     this.getKuis();
   },
 
@@ -217,15 +218,16 @@ export default {
     nextTab() {
       this.$refs.wizard.nextTab();
     },
-
     async getKuis() {
       const resp = await axios.get(this.kuisUrl);
       console.log(resp.data.data);
       localStorage.setItem("kuis", JSON.stringify(resp.data.data));
     },
+
     completeConfirm() {
       this.modalComplete = true;
     },
+
     async onComplete() {
       console.log(this.finalModel);
       let model = new FormData();
@@ -257,22 +259,23 @@ export default {
       model.append("skck", this.finalModel.skck);
       model.append("pertanyaan", JSON.stringify(this.finalModel.pertanyaan));
       model.append("jawaban", JSON.stringify(this.finalModel.jawaban));
-      model.append("nilai", this.finalModel.nilai);
       console.log("model", model);
       await axios.post(this.applyUrl, model);
       // this.$router.push("/loker");
       alert("Lamaran anda sudah kami terima!!!");
       window.location.href = "/loker";
     },
+
     validate(ref) {
       return this.$refs[ref].validate();
     },
+
     onStepValidate(validated, model) {
       if (validated) {
         this.finalModel = { ...this.finalModel, ...model };
         this.kuis = true;
       } else {
-        alert("Lengkapi data yang dibutuhkan");
+        alert("Mohon lengkapi data");
         window.scrollTo(0, 0);
       }
       // this.$root.$emit("getModal");
@@ -319,16 +322,19 @@ export default {
   float: none;
   height: 47px;
 }
+
 .wizard-footer-right {
   width: 100%;
 }
 #step-Administrasi0.wizard-icon-circle {
   border: 5px solid rgba(7, 161, 72, 0.2) !important;
   border-radius: 50%;
+
   .wizard-icon-container {
     border-radius: 50%;
   }
 }
+
 .stepTitle {
   font-style: normal;
   font-weight: 500;
@@ -337,12 +343,15 @@ export default {
   text-align: center;
   color: #757682;
 }
+
 span.el-checkbox__input.is-checked .el-checkbox__inner {
   background-color: #07a148;
 }
+
 span.el-checkbox__input.is-checked + .el-checkbox__label {
   color: #07a148;
 }
+
 .stepTitle.active {
   font-style: normal;
   font-weight: 600;

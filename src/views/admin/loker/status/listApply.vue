@@ -136,6 +136,7 @@ export default {
         { key: "provinsi", sortable: true, label: "Provinsi" },
         { key: "pendidikan", sortable: true, label: "Pendidikan" },
         { key: "agama", sortable: true, label: "Agama" },
+        { key: "nilai", sortable: true, label: "Nilai Kuis" },
         { key: "portfolio", sortable: true, label: "Portfolio" },
         { key: "judul", sortable: true, label: "Loker" },
         { key: "status", sortable: true, label: "status" },

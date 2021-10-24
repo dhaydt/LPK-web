@@ -26,8 +26,9 @@
             >
               <b-form-input
                 id="visi"
-                v-model="form.pertanyaan"
+                v-model="form.text"
                 placeholder="Masukkan pertanyaan untuk kuis"
+                required
               ></b-form-input>
             </b-input-group>
 
@@ -37,9 +38,20 @@
             >
               <b-form-input
                 id="visi1"
-                v-model="form.options.a"
+                v-model="form.responses[0].text"
                 placeholder="Pilihan jawaban A"
+                required
               ></b-form-input>
+              <b-form-checkbox
+                id="checkbox-1"
+                class="mt-2 ml-2 check"
+                v-model="form.responses[0].correct"
+                name="checkbox-1"
+                :value="true"
+                :unchecked-value="false"
+              >
+                check jika benar
+              </b-form-checkbox>
             </b-input-group>
 
             <b-input-group
@@ -48,9 +60,21 @@
             >
               <b-form-input
                 id="visi9"
-                v-model="form.options.b"
+                v-model="form.responses[1].text"
                 placeholder="Pilihan jawaban B"
+                required
               ></b-form-input>
+
+              <b-form-checkbox
+                id="checkbox-2"
+                class="mt-2 ml-2 check"
+                v-model="form.responses[1].correct"
+                name="checkbox-1"
+                :value="true"
+                :unchecked-value="false"
+              >
+                check jika benar
+              </b-form-checkbox>
             </b-input-group>
 
             <b-input-group
@@ -59,9 +83,20 @@
             >
               <b-form-input
                 id="gaji"
-                v-model="form.options.c"
+                v-model="form.responses[2].text"
                 placeholder="Pilihan jawaban C"
+                required
               ></b-form-input>
+              <b-form-checkbox
+                id="checkbox-3"
+                class="mt-2 ml-2 check"
+                v-model="form.responses[2].correct"
+                name="checkbox-1"
+                :value="true"
+                :unchecked-value="false"
+              >
+                check jika benar
+              </b-form-checkbox>
             </b-input-group>
 
             <b-input-group
@@ -70,11 +105,31 @@
             >
               <b-form-input
                 id="visi5"
-                v-model="form.options.d"
+                v-model="form.responses[3].text"
                 placeholder="Pilihan jawaban D"
+                required
               ></b-form-input>
+              <b-form-checkbox
+                id="checkbox-4"
+                class="mt-2 ml-2 check"
+                v-model="form.responses[3].correct"
+                name="checkbox-1"
+                :value="true"
+                :unchecked-value="false"
+              >
+                check jika benar
+              </b-form-checkbox>
             </b-input-group>
 
+            <b-input-group prepend="Status" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-select
+                v-model="form.status"
+                :options="status"
+                selected="null"
+                required
+              ></b-form-select>
+            </b-input-group>
+            <!-- <pre>{{ form }} </pre> -->
             <b-button type="submit" variant="success" class="mt-4"
               ><div v-if="loading">
                 <b-spinner small variant="primary"></b-spinner> Menyimpan...
@@ -96,10 +151,23 @@ export default {
   data() {
     return {
       visiUrl: "",
+      status: [
+        { value: null, text: "Pilih status pertanyaan" },
+        { value: "on", text: "Aktif" },
+        { value: "off", text: "Non Aktif" },
+      ],
 
       form: {
-        pertanyaan: "",
-        options: {},
+        text: "",
+        responses: [{ text: "" }, { text: "" }, { text: "" }, { text: "" }],
+        options: {
+          a: "",
+          b: "",
+          c: "",
+          d: "",
+        },
+        jawaban: null,
+        status: null,
       },
 
       loading: "",
@@ -125,11 +193,18 @@ export default {
       } catch (err) {
         console.log(err);
       }
-      this.form.pertanyaan = "";
+      this.form.text = "";
       this.form.options = {};
+      this.form.jawaban = null;
+      this.form.status = null;
+      this.form.responses[0].text = "";
+      this.form.responses[1].text = "";
+      this.form.responses[2].text = "";
+      this.form.responses[3].text = "";
       this.messages = "Pertanyaan ditambahkan";
       this.variant = "success";
       this.loading = false;
+      window.scrollTo(0, 0);
       this.showAlert();
       this.$root.$emit("getVisi");
     },
@@ -155,5 +230,9 @@ export default {
 
 #date.date .input-group-prepend .input-group-text {
   height: 38px;
+}
+
+.note {
+  color: #a8a8a8;
 }
 </style>

@@ -3,11 +3,11 @@
     <Header :title="title" :items="items"></Header>
     <b-card>
       <b-tabs content-class="mt-3" fill>
-        <b-tab title="List Pertanyaan" active>
-          <ListKuis></ListKuis>
+        <b-tab title="List Data" active>
+          <ListData></ListData>
         </b-tab>
-        <b-tab title="Tambah Pertanyaan">
-          <AddKuis></AddKuis>
+        <b-tab title="Tambah Data">
+          <AddData></AddData>
         </b-tab>
       </b-tabs>
     </b-card>
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import AddKuis from "./kuis/addKuis";
-import ListKuis from "./kuis/listKuis";
+import AddData from "./kuis/addData";
+import ListData from "./kuis/listData";
 import Header from "../../../components/admin/partials/page-header.vue";
 export default {
   data() {
@@ -35,8 +35,8 @@ export default {
     };
   },
   components: {
-    AddKuis,
-    ListKuis,
+    AddData,
+    ListData,
     Header,
   },
 };

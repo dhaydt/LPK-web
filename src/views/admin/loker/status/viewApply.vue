@@ -386,12 +386,10 @@
                 class="w-100 mb-3"
               >
                 <b-form-input
-                  v-for="(p, i) in data.pertanyaan
-                    ? JSON.parse(data.pertanyaan)
-                    : 'kosong'"
+                  v-for="(p, i) in JSON.parse(data.pertanyaan)"
                   :key="i"
                   id="nama99"
-                  :value="i + 1 + '. ' + p"
+                  :value="p"
                   class="ml-2"
                   readonly
                 ></b-form-input>
@@ -402,14 +400,24 @@
                 class="w-100 mb-3"
               >
                 <b-form-input
-                  v-for="(p, key, i) in data.jawaban
+                  v-for="(p, i) in data.jawaban
                     ? JSON.parse(data.jawaban)
                     : 'kosong'"
-                  :key="key"
+                  :key="i"
                   id="nama99"
-                  :value="
-                    p ? i + 1 + '. ' + p : i + 1 + '. ' + `(tidak di jawab)`
-                  "
+                  :value="p.text"
+                  class="ml-2"
+                  readonly
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label="Nilai Test"
+                label-for="nama666"
+                class="w-100 mb-3"
+              >
+                <b-form-input
+                  id="nama6"
+                  :value="data.nilai"
                   class="ml-2"
                   readonly
                 ></b-form-input>
