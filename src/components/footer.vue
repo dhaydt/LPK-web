@@ -1,11 +1,11 @@
 <template>
   <footer>
-    <b-container class="p-4">
+    <b-container class="p-4 pt-5">
       <b-row cols-md="4">
         <b-col>
           <b-row>
-            <b-img src="../../assets/images/logo.png"></b-img>
-            <span class="mt-4">Klaten, Indonesia</span>
+            <b-img src="/assets/images/logo/pgu-col-sm.png" height="93"></b-img>
+            <span class="mt-2">Klaten, Indonesia</span>
           </b-row>
         </b-col>
         <b-col>
@@ -13,11 +13,11 @@
             <h3>About Us</h3>
           </b-row>
           <b-row class="flex-column text-left">
-            <router-link to="#">Visi Misi</router-link>
-            <router-link to="#">Legalitas</router-link>
-            <router-link to="#">Struktur LKP</router-link>
+            <router-link to="/aboutus">Visi Misi</router-link>
+            <router-link to="/aboutus">Legalitas</router-link>
+            <router-link to="/aboutus">Struktur LKP</router-link>
             <router-link to="#">Liputan Media</router-link>
-            <router-link to="#">Data Cabang</router-link>
+            <router-link to="/aboutus">Data Cabang</router-link>
           </b-row>
         </b-col>
         <b-col>
@@ -25,11 +25,11 @@
             <h3>Instruktur</h3>
           </b-row>
           <b-row class="flex-column text-left">
-            <router-link to="#">Instruktur PAZ</router-link>
-            <router-link to="#">Kurikulum Pendidikan</router-link>
+            <router-link to="/instruktur">Instruktur PAZ</router-link>
+            <router-link to="/instruktur">Kurikulum Pendidikan</router-link>
             <h3 class="mt-2">Pelatihan</h3>
-            <router-link to="#">Jadwal pelatihan</router-link>
-            <router-link to="#">Galeri Foto</router-link>
+            <router-link to="/pelatihan">Jadwal pelatihan</router-link>
+            <router-link to="/galeri">Galeri Foto</router-link>
           </b-row>
         </b-col>
         <b-col>
@@ -82,41 +82,30 @@ export default {};
 footer {
   z-index: 1;
   position: relative;
+  // height: 489px;
 }
 footer {
-  background-color: #04162c;
+  background: #fbfbfb;
 }
 
 span {
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #fff;
+  font-weight: normal;
+  font-size: 16px;
+  color: #121527;
 }
 
 h3 {
-  font-size: 1.3rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 20px;
   line-height: 28px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #fff;
+  color: #121527;
 }
 
 .row a {
-  // font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  text-transform: capitalize;
-  color: #fff;
-  margin-top: 15px;
+  font-weight: normal;
+  font-size: 16px;
+  color: #757682;
 }
 
 .row a:hover {
@@ -125,20 +114,19 @@ h3 {
 
 p i {
   font-size: 1.1rem;
-  color: #000;
-  background-color: #fff;
+  color: #757682;
+  background: #e9e9e9;
   padding: 4px 6px;
   border-radius: 50%;
-  border: 1px solid #fff;
+  border: 2px solid #e9e9e9;
 }
 
 p em {
   font-style: normal;
-  font-weight: 400;
-  line-height: 32px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #fff;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: #757682;
 }
 
 .sosmed {
@@ -146,19 +134,29 @@ p em {
   padding: 3px 10px;
   color: #fff;
   margin-right: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background: #e9e9e9;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
 }
 
 .sosmed:hover {
-  background-color: #fff;
+  background-color: rgb(155, 155, 155);
   i {
     color: #099644;
   }
 }
 
 .foot {
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-top: 1px solid #e9e9e9;
+}
+
+.foot .mt-4 span {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 0.01em;
+  color: #757682;
 }
 </style>

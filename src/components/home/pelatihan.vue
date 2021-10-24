@@ -47,51 +47,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card {
-  box-shadow: 0px 21.6792px 32.5188px rgba(0, 0, 0, 0.06),
-    0px 2.7099px 8.12969px rgba(0, 0, 0, 0.04),
-    0px 0px 1.35495px rgba(0, 0, 0, 0.04);
-  border-radius: 4px;
-}
-
-.card-title {
-  font-size: 1.1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 28px;
-  letter-spacing: 0.01em;
-  text-align: left;
-  color: #121527;
-}
-
-.card-text {
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
-  color: #757682;
-}
-
-.calender,
-.time {
-  font-size: 14px;
-  font-style: normal;
-  margin-top: 20px;
-  font-weight: 400;
-  line-height: 17px;
-  letter-spacing: 0.01em;
-  text-align: left;
-  color: #757682;
-}
-
-.calender i,
-.time i {
-  font-size: 1.2rem;
-  margin-right: 10px;
-}
-
 section {
   margin-top: 100px;
 }
@@ -101,7 +56,7 @@ section.galeri {
 }
 
 .jumbotron {
-  background-color: #04162c;
+  background: linear-gradient(0deg, #ecfef4, #ecfef4);
   height: 591px;
   margin-bottom: 0;
 }
@@ -124,7 +79,7 @@ section.galeri {
   line-height: 56px;
   letter-spacing: 0em;
   text-align: left;
-  color: #fff;
+  color: #121527;
 }
 
 .ket {
@@ -135,6 +90,6 @@ section.galeri {
   font-weight: 400;
   line-height: 32px;
   letter-spacing: 0px;
-  color: #fff;
+  color: #121527;
 }
 </style>

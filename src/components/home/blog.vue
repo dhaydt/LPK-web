@@ -11,10 +11,13 @@
             Dapatkan informasi tentang kegiatan yang telah kami selenggarakan
             disini
           </h2>
-          <b-button variant="outline-success seemore" href="#" class="mt-4 px-4"
+          <b-button
+            variant="outline-success seemore"
+            to="/liputan"
+            class="mt-4 px-4"
             ><span
-              ><img src="../../assets/images/blog.png" alt="info" height="25" />
-              Lihat semua liputan</span
+              ><img src="/assets/images/blogs.png" alt="info" height="25" />
+              Lihat semua</span
             ></b-button
           >
         </b-col>
@@ -40,6 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/main.scss";
 #shape {
   position: absolute;
   right: 0px;
@@ -98,6 +102,12 @@ h2 {
   color: #2e3e5c;
   text-align: center;
   letter-spacing: 0.5px;
+}
+
+.btn-outline-success.seemore:hover {
+  span {
+    color: #fff;
+  }
 }
 
 .seemore span {

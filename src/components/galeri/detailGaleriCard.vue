@@ -5,31 +5,16 @@
         <b-col lg="9">
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
-              <div class="head">
-                <span>Galeri pelatihan</span>
-              </div>
+              <b-card-title> {{ data.title }} </b-card-title>
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-title>PELATIHAN YANG KAMI SELENGGARAKAN</b-card-title>
               <b-card-text class="mt-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus sit amet luctus venenatis, lectus magna fringilla
-                urna
+                {{ data.content }}
               </b-card-text>
-              <b-button
-                variant="outline-success seemore"
-                to="/galeri_detail"
-                class="mt-4 px-4"
-                ><span
-                  ><img
-                    src="../../assets/images/pict.svg"
-                    alt="info"
-                    height="25"
-                  />
-                  Lihat semua foto</span
-                ></b-button
-              >
+              <div class="head">
+                <span>{{ data.subtitle }} </span>
+              </div>
             </b-card-body>
           </b-card>
         </b-col>
@@ -48,6 +33,7 @@
 import GaleriCard from "../pelatihan/galeriCard";
 export default {
   components: { GaleriCard },
+  props: ["data"],
   data() {
     return {
       images: [
@@ -95,7 +81,7 @@ export default {
   opacity: 0.1;
 }
 section {
-  margin-top: 100px;
+  // margin-top: 100px;
 }
 
 .card {
@@ -143,22 +129,5 @@ em {
     padding-bottom: 5px;
     border-bottom: 2px solid #07a148;
   }
-}
-
-.btn-outline-success.seemore:hover {
-  span {
-    color: #fff;
-  }
-}
-
-.seemore span {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 19px;
-  letter-spacing: 0.04em;
-  text-align: left;
-  color: #07a148;
-  text-transform: capitalize;
 }
 </style>

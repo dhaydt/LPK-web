@@ -1,20 +1,19 @@
 <template>
-  <div class="aboutJumbotron">
+  <div class="galeriJumbotron">
     <b-jumbotron>
       <!-- <div id="moon"></div> -->
       <div id="moontoon"></div>
       <b-row class="justify-content-center align-items-center h-100">
         <b-col md="8" sm="12">
           <div id="header">
-            <h1>Tentang kami</h1>
+            <h1>Galeri</h1>
           </div>
 
-          <div id="subheader">
+          <div id="subheader" class="mt-4">
             <p>
-              PAZ Generasi Unggul lembaga yang mengelola dan meneruskan
-              pengajaran temuan Hak Cipta Intelektual dari Ustadz Haris
-              Moedjahid Rahimahullah berupa Ilmu Pengobatan dan Konsep hidup Ala
-              PAZ Al Kasaw.
+              Kumpulan dari beberapa album foto dokumentasi kegiatan PAZ seperti
+              pelatihan dan juga kopdar (pertemuan rutin) antar alumni pelatihan
+              di beberapa daerah aktif PAZ
             </p>
           </div>
         </b-col>
@@ -63,7 +62,7 @@ export default {
 .jumbotron {
   // background-color: #07a148;
   border-radius: 0;
-  height: 589px;
+  height: 459px;
   min-height: 528px;
   background: linear-gradient(
     181.98deg,

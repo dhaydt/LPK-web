@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import TestimoniCard from './testimoniCard'
+import TestimoniCard from "./testimoniCard";
 export default {
   components: {
     TestimoniCard,
@@ -70,7 +70,6 @@ export default {
   }
 }
 
-
 .swiper-container {
   // overflow: visible;
 }
@@ -100,6 +99,12 @@ h2 {
   color: #2e3e5c;
   text-align: center;
   letter-spacing: 0.5px;
+}
+
+.btn-outline-success.seemore:hover {
+  span {
+    color: #fff;
+  }
 }
 
 .seemore span {

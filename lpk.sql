@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 22, 2021 at 11:03 PM
+-- Generation Time: Oct 24, 2021 at 09:07 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -55,10 +55,18 @@ CREATE TABLE `apply` (
   `portfolio` varchar(255) DEFAULT NULL,
   `pertanyaan` text DEFAULT NULL,
   `jawaban` text DEFAULT NULL,
+  `nilai` varchar(100) DEFAULT NULL,
   `loker_id` int(11) NOT NULL,
   `status` varchar(100) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `apply`
+--
+
+INSERT INTO `apply` (`id`, `nama`, `wa`, `email`, `domisili`, `provinsi`, `kelamin`, `pendidikan`, `jurusan`, `agama`, `pengalaman`, `alasan`, `tempat_lhr`, `tgl_lhr`, `menikah`, `komputer`, `bahasa`, `instagram`, `facebook`, `foto`, `ktp`, `ijazah`, `sertifikat`, `skck`, `portfolio`, `pertanyaan`, `jawaban`, `nilai`, `loker_id`, `status`, `created_at`) VALUES
+(31, 'Muhammad Hidayatullah', '081282734', 'intanmandirisejahtera@gmail.com', 'solok', 'Sumbar', 'laki-laki', 'S-1', 'TI', 'Islam', 'Sudah pernah bekerja', 'asasasas', 'Manado', '1992-09-10', 'Lajang', 'Ya', 'asasassa', 'asasas', 'asasas', 'foto1635087980667foto.jpg', 'ktp1635087980667Scan KTP.JPG', 'ijazah1635087980667ijazah.jpeg', 'serti1635087980667sert.jpeg', 'skck1635087980667skck.jpg', 'porto1635087980667Muhammad hidayatullah.pdf', '[\"Jumlah rukun islam\",\"Jumlah nabi ada berapa dalam islam ?\",\"Jumlah rukun iman ada berapa ?\",\"Jumlah rukun islam ada berapa ?\"]', '[{\"text\":\"5\",\"correct\":true},{\"text\":\"25\",\"correct\":true},{\"text\":\"6\",\"correct\":true},{\"text\":\"Ada 5\",\"correct\":true}]', '100', 50, 'Lamaran Masuk', '2021-10-24 15:08:00');
 
 -- --------------------------------------------------------
 
@@ -136,8 +144,11 @@ INSERT INTO `gallery` (`id`, `title`, `status`, `img`, `date`, `created_at`) VAL
 
 CREATE TABLE `kuis` (
   `id` int(11) NOT NULL,
-  `pertanyaan` varchar(255) NOT NULL,
-  `options` text NOT NULL,
+  `text` text DEFAULT NULL,
+  `responses` text DEFAULT NULL,
+  `jawaban` varchar(100) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `options` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -145,10 +156,12 @@ CREATE TABLE `kuis` (
 -- Dumping data for table `kuis`
 --
 
-INSERT INTO `kuis` (`id`, `pertanyaan`, `options`, `created_at`) VALUES
-(4, 'Jumlah rukun islam ada?', '{\"a\":\"3\",\"b\":\"7\",\"c\":\"5\",\"d\":\"2\"}', '2021-10-21 09:51:33'),
-(5, 'Rukun iman ada berapa ?', '{\"a\":\"2\",\"b\":\"6\",\"c\":\"8\",\"d\":\"4\"}', '2021-10-21 09:54:44'),
-(6, 'Jumlah nabi yang wajib diketahui?', '{\"a\":\"23\",\"b\":\"24\",\"c\":\"25\",\"d\":\"26\"}', '2021-10-21 09:55:33');
+INSERT INTO `kuis` (`id`, `text`, `responses`, `jawaban`, `status`, `options`, `created_at`) VALUES
+(18, 'Jumlah rukun islam ada berapa ?', '[{\"text\":\"Ada 2\"},{\"text\":\"ada 4\"},{\"text\":\"Ada 3\"},{\"text\":\"Ada 5\",\"correct\":true}]', NULL, 'on', '{\"a\":\"\",\"b\":\"\",\"c\":\"\",\"d\":\"\"}', '2021-10-24 09:23:09'),
+(19, 'Jumlah rukun iman ada berapa ?', '[{\"text\":\"1\"},{\"text\":\"2\"},{\"text\":\"4\"},{\"text\":\"6\",\"correct\":true}]', NULL, 'on', '{\"a\":\"\",\"b\":\"\",\"c\":\"\",\"d\":\"\"}', '2021-10-24 09:25:57'),
+(20, 'Jumlah nabi ada berapa dalam islam ?', '[{\"text\":\"23\"},{\"text\":\"22\"},{\"text\":\"25\",\"correct\":true},{\"text\":\"24\"}]', NULL, 'on', '{\"a\":\"\",\"b\":\"\",\"c\":\"\",\"d\":\"\"}', '2021-10-24 09:29:11'),
+(21, 'Jumlah rukun islam', '[{\"text\":\"5\",\"correct\":true},{\"text\":\"4\"},{\"text\":\"3\"},{\"text\":\"2\"}]', NULL, 'on', '{\"a\":\"\",\"b\":\"\",\"c\":\"\",\"d\":\"\"}', '2021-10-24 15:02:05'),
+(23, 'aku adalah', '[{\"text\":\"kamu\",\"correct\":false},{\"text\":\"saya\",\"correct\":true},{\"text\":\"dia\",\"correct\":false},{\"text\":\"mereka\"}]', NULL, 'off', '{}', '2021-10-24 15:03:42');
 
 -- --------------------------------------------------------
 
@@ -386,6 +399,26 @@ INSERT INTO `visi` (`id`, `visi`, `misi`, `created_at`) VALUES
 (4, NULL, 'Menjadi perusahaan yang profitable, high margin, dan memberikan intangiable values bagi stakeholder yang terlibat', '2021-10-16 19:48:16'),
 (8, 'Mencetak Paztrooper (Terapis PAZ Al-Kasaw) yang Profesional, Beradab, dan Berdaya Juang', 'Memberikan inspirasi cara sehat alamiah, islami, dan praktis ke seluas luas umat muslim di dunia', '2021-10-16 19:41:58');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `waktu`
+--
+
+CREATE TABLE `waktu` (
+  `id` int(11) NOT NULL,
+  `time` int(255) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `waktu`
+--
+
+INSERT INTO `waktu` (`id`, `time`, `status`) VALUES
+(5, 100, 'on'),
+(6, 50, 'on');
+
 --
 -- Indexes for dumped tables
 --
@@ -463,6 +496,12 @@ ALTER TABLE `visi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `waktu`
+--
+ALTER TABLE `waktu`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -470,7 +509,7 @@ ALTER TABLE `visi`
 -- AUTO_INCREMENT for table `apply`
 --
 ALTER TABLE `apply`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -494,7 +533,7 @@ ALTER TABLE `gallery`
 -- AUTO_INCREMENT for table `kuis`
 --
 ALTER TABLE `kuis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `legalitas`
@@ -531,6 +570,12 @@ ALTER TABLE `testimoni`
 --
 ALTER TABLE `visi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `waktu`
+--
+ALTER TABLE `waktu`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

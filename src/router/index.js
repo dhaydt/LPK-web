@@ -4,11 +4,14 @@ import VueRouter from "vue-router";
 // Home section
 import Home from "../views/index.vue";
 import HomeAbout from "../views/about/index.vue";
+import HomeLiputan from "../views/liputan/index.vue";
 import HomeInstruktur from "../views/instruktur/index.vue";
 import HomeEvent from "../views/event/index.vue";
 import HomeLoker from "../views/loker/index.vue";
 import DetailLoker from "../views/loker/detailLoker.vue";
 import Apply from "../views/loker/applyLoker.vue";
+import HomeGaleri from "../views/galeri/index.vue";
+import HomeGaleriDetail from "../views/galeri/galeriDetail/index.vue";
 
 // Admin panel
 import Register from "../views/auth/register.vue";
@@ -48,8 +51,20 @@ const routes = [
         component: HomeAbout,
       },
       {
+        path: "/liputan",
+        component: HomeLiputan,
+      },
+      {
         path: "/instruktur",
         component: HomeInstruktur,
+      },
+      {
+        path: "/galeri",
+        component: HomeGaleri,
+      },
+      {
+        path: "/galeri_detail",
+        component: HomeGaleriDetail,
       },
       {
         path: "/pelatihan",

@@ -1,22 +1,21 @@
 <template>
   <div class="navbarHome w-100" v-if="navbar">
     <b-navbar toggleable="lg" type="dark" class="navfront">
-      <b-navbar-brand to="/" class="logoPaz"
-        ><img src="/assets/images/logo/pgu-logo.png" alt="PAZ" height="60"
-      /></b-navbar-brand>
-
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/aboutus">Tentang Kami</b-nav-item>
+          <b-nav-item to="/aboutus">About Us</b-nav-item>
           <b-nav-item to="/instruktur">Instruktur</b-nav-item>
-          <b-nav-item to="/galeri">Galeri</b-nav-item>
           <b-nav-item to="/pelatihan">Pelatihan</b-nav-item>
           <b-nav-item to="/loker">Loker</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
       </b-collapse>
+
+      <b-navbar-brand to="/" class="logoPaz"
+        ><img src="../assets/images/logo.png" alt="PAZ" height="50"
+      /></b-navbar-brand>
 
       <b-navbar-nav class="ml-auto">
         <b-nav-item href="/login" class="login-btn px-2 mr-2">Login</b-nav-item>
@@ -94,19 +93,18 @@ export default {
 }
 
 nav.navbar.sticky {
-  padding: 8px 110px;
+  padding: 15px 110px;
   z-index: 9;
   width: 100%;
   background-color: $paz-main;
 }
 
 .logoPaz {
-  transition: 0.3s;
+  position: absolute;
+  left: 46%;
+  transition: 0.6s;
 }
 
-nav.navfront #nav-collapse .navbar-nav {
-  margin-left: 15%;
-}
 .nav-link.router-link-exact-active.router-link-active {
   color: #fff !important;
 }

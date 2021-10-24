@@ -10,17 +10,19 @@
       >
         <div class="MultiCarousel-inner">
           <div class="cont item" v-for="(slide, i) in testi" :key="i">
-            <b-card class="inner-border" no-body>
-              <b-row>
-                <b-col sm="3"
-                  ><b-avatar variant="info" :src="imgUrl + slide.img"></b-avatar
-                ></b-col>
-                <b-col sm="9" class="text-left">
-                  <h5>{{ slide.name }}</h5>
-                  <span>{{ slide.address }}</span>
-                </b-col>
-              </b-row>
-              <b-card-text class="p-2">{{ slide.content }}</b-card-text>
+            <b-card
+              class=""
+              no-body
+              :img-src="imgUrl + slide.img"
+              img-alt="Image"
+              img-height="240"
+              img-top
+            >
+              <b-col sm="9" class="text-left px-0">
+                <h5 class="pt-3 pb-2">{{ slide.name }}</h5>
+                <span>{{ slide.address }}</span>
+              </b-col>
+              <b-card-text class="pt-4">{{ slide.content }}</b-card-text>
             </b-card>
           </div>
         </div>
@@ -186,7 +188,7 @@ export default {
 }
 .MultiCarousel .MultiCarousel-inner .item > div {
   text-align: center;
-  padding: 10px;
+  padding: 24px;
   margin: 10px;
   color: #666;
 }
@@ -221,6 +223,9 @@ button.btn-success.rightLst:hover {
 
 .card {
   background: #ffffff;
+  min-height: 612px;
+  // width: 396px;
+  // height: 712px;
   /* Neutral / 05 */
 
   border: 1px solid #e8eaed;
@@ -232,8 +237,7 @@ button.btn-success.rightLst:hover {
 h5 {
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 130%;
+  font-size: 20px;
   letter-spacing: 0.01em;
   margin-bottom: 0;
   /* Black/3 */
@@ -243,7 +247,7 @@ h5 {
 span {
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 130%;
   letter-spacing: 0.01em;
   /* Black/2 */
@@ -255,6 +259,7 @@ span {
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
+  overflow-y: hidden;
   line-height: 130%;
   letter-spacing: 0.01em;
   text-align: left;

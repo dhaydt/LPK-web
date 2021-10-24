@@ -6,16 +6,14 @@
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
-                <span>Galeri pelatihan</span>
+                <span>{{ data.subtitle }} </span>
               </div>
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-title>PELATIHAN YANG KAMI SELENGGARAKAN</b-card-title>
+              <b-card-title> {{ data.title }} </b-card-title>
               <b-card-text class="mt-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus sit amet luctus venenatis, lectus magna fringilla
-                urna
+                {{ data.content }}
               </b-card-text>
               <b-button
                 variant="outline-success seemore"
@@ -23,9 +21,10 @@
                 class="mt-4 px-4"
                 ><span
                   ><img
-                    src="../../assets/images/pict.svg"
+                    src="/assets/images/picts.png"
                     alt="info"
                     height="25"
+                    class="mr-2"
                   />
                   Lihat semua foto</span
                 ></b-button
@@ -48,6 +47,7 @@
 import GaleriCard from "../pelatihan/galeriCard";
 export default {
   components: { GaleriCard },
+  props: ["data"],
   data() {
     return {
       images: [
@@ -155,7 +155,7 @@ em {
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 19px;
+  line-height: 2;
   letter-spacing: 0.04em;
   text-align: left;
   color: #07a148;

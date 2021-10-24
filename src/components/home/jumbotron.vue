@@ -6,7 +6,7 @@
       </div>
       <div id="moontoon"></div>
       <template #header>
-        <h1>LKP PAZ AL KASAW</h1>
+        <h1 class="head">LKP PAZ generasi unggul</h1>
       </template>
 
       <template #lead>
@@ -139,6 +139,7 @@ h1 {
   font-style: normal;
   line-height: 73px;
   color: #fff;
+  text-transform: uppercase;
   margin-top: 107px;
 }
 

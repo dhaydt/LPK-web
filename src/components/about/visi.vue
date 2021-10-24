@@ -79,7 +79,7 @@ export default {
 @import "@/assets/main.scss";
 
 .visi {
-  background-color: $paz-dark;
+  background: #ecfef4;
   height: 803px;
   margin-top: -32px;
 }
@@ -97,12 +97,13 @@ h5 {
 }
 
 h1 {
-  color: #fff;
   font-style: normal;
-  font-weight: bold;
-  text-align: left;
-  font-size: 40px;
+  font-weight: 600;
+  font-size: 36px;
   line-height: 140%;
+  color: #121527;
+  text-transform: capitalize;
+  text-align: left;
 }
 
 .numVisi {
@@ -142,12 +143,11 @@ span.b-avatar-text {
 }
 
 .misi span {
+  font-size: 20px;
+  letter-spacing: 0.01em;
+  color: #121527;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
   text-align: left;
-  line-height: 160%;
-  letter-spacing: 0.01em;
-  color: #ffffff;
 }
 </style>

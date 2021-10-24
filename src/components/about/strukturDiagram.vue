@@ -1,7 +1,7 @@
 <template>
   <div class="structureDiagram">
     <b-card>
-      <b-card-img-lazy src="/assets/images/strukturPaz.png"></b-card-img-lazy>
+      <b-card-img-lazy src="/assets/images/struktur.png"></b-card-img-lazy>
     </b-card>
   </div>
 </template>
