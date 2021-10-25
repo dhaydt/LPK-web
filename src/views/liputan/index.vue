@@ -1,16 +1,21 @@
 <template>
   <div class="liputanDetail">
     <Breadcumb :items="items"></Breadcumb>
-    <b-card title="Liputan Media"></b-card>
+    <Main></Main>
   </div>
 </template>
 
 <script>
+import Main from "../../components/liputan/main";
 import Breadcumb from "../../components/breadcumb";
 export default {
-  components: { Breadcumb },
+  components: {
+    Main,
+    Breadcumb,
+  },
   data() {
     return {
+      liputanUrl: "",
       items: [
         {
           text: "Home",

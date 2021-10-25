@@ -3,7 +3,113 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
-// del legal
+// IMAGE FRONTEND
+
+router.get("/groupFront", (req, res) => {
+  db.query(
+    "SELECT * FROM gallery_group ORDER BY id desc LIMIT 3",
+    (err, rows) => {
+      var data = rows.map((row) => row.lokasi);
+      var sql = `SELECT * FROM gallery WHERE lokasi IN (?, ?, ?)`;
+      db.query(sql, [data[0], data[1], data[2]], (error, resp) => {
+        if (error) {
+          return res.status(400).send({
+            msg: error,
+          });
+        } else {
+          //render ke view posts index
+          return res.status(200).send({
+            dataImg: resp, // <-- data posts
+            dataGroup: rows, // <-- data posts
+          });
+        }
+      });
+    }
+  );
+});
+
+router.get("/detail/:id", (req, res) => {
+  db.query(
+    "SELECT * FROM gallery_group WHERE id = ?",
+    [req.params.id],
+    (err, rows) => {
+      var data = rows[0].lokasi;
+      console.log(data);
+      var sql = `SELECT * FROM gallery WHERE lokasi = ?`;
+      db.query(sql, [data], (error, resp) => {
+        if (error) {
+          return res.status(400).send({
+            msg: error,
+          });
+        } else {
+          //render ke view posts index
+          return res.status(200).send({
+            dataImg: resp, // <-- data posts
+            dataGroup: rows, // <-- data posts
+          });
+        }
+      });
+    }
+  );
+});
+
+//----------------------------------------GALERI-GROUP
+
+router.delete("/group/:id", (req, res) => {
+  db.query(`DELETE FROM gallery_group WHERE id = ${req.params.id}`, function(
+    err,
+    result
+  ) {
+    if (err) {
+      return res.status(401).send({
+        msg: "Fail to delete",
+      });
+    } else {
+      return res.status(200).send({
+        msg: "Data deleted",
+        data: result,
+      });
+    }
+  });
+});
+
+router.post("/group", (req, res) => {
+  console.log("post", req.body);
+  db.query(
+    `INSERT INTO gallery_group (lokasi, date_range, konten) VALUES (${db.escape(
+      req.body.lokasi
+    )}, ${db.escape(req.body.date_range)}, ${db.escape(req.body.konten)})`,
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Visi / Misi tersimpan",
+        data: result,
+      });
+    }
+  );
+});
+
+router.get("/group", (req, res) => {
+  db.query("SELECT * FROM gallery_group ORDER BY id desc", (err, rows) => {
+    if (err) {
+      return res.status(400).send({
+        msg: "Database error",
+      });
+    } else {
+      //render ke view posts index
+      return res.status(200).send({
+        data: rows, // <-- data posts
+      });
+    }
+  });
+});
+
+//----------------------------------------GALERI
+// Del image
 const DIR_LEGAL = "public/images/galeri";
 router.delete("/image/:img", (req, res) => {
   if (!req.params.img) {
@@ -29,7 +135,7 @@ router.delete("/image/:img", (req, res) => {
   }
 });
 
-// get legal
+// get image
 const getKopdar = (req, res) => {
   var message = "";
   var sql = "SELECT * FROM gallery WHERE status = 'kopdar'";
@@ -41,6 +147,7 @@ const getKopdar = (req, res) => {
 };
 
 router.get("/imageKopdar", getKopdar);
+
 // get legal
 const get = (req, res) => {
   var message = "";
@@ -62,6 +169,8 @@ const index = function(req, res) {
     var title = post.title;
     var status = post.status;
     var date = post.date;
+    var lokasi = post.lokasi;
+    var date_range = post.date_range;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
@@ -76,7 +185,7 @@ const index = function(req, res) {
       file.mv(`public/images/galeri/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `gallery`(`title`,`status`,`img`,`date`) VALUES ('" +
+          "INSERT INTO `gallery`(`title`,`status`,`img`,`date`,`lokasi`,`date_range`) VALUES ('" +
           title +
           "','" +
           status +
@@ -84,6 +193,11 @@ const index = function(req, res) {
           img +
           "','" +
           date +
+          "','" +
+          lokasi +
+          "','" +
+          date_range +
+          "','" +
           "')";
 
         db.query(sql, (err, result) => {

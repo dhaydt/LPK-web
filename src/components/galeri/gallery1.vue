@@ -6,18 +6,20 @@
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
-                <span>{{ data.subtitle }} </span>
+                <span>{{ data ? data.date_range : Date.now() }} </span>
               </div>
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-title> {{ data.title }} </b-card-title>
+              <b-card-title>
+                {{ data ? data.lokasi : "Galeri PAZ Klaten, Indonesia" }}
+              </b-card-title>
               <b-card-text class="mt-4">
-                {{ data.content }}
+                {{ data ? data.konten : "Galeri data belum tersedia" }}
               </b-card-text>
               <b-button
                 variant="outline-success seemore"
-                to="/galeri_detail"
+                :to="'/galeri_detail/' + data.id"
                 class="mt-4 px-4"
                 ><span
                   ><img
@@ -38,25 +40,23 @@
       <div id="moons"></div>
     </div>
     <b-row class="justify-content-center w-100">
-      <GaleriCard></GaleriCard>
+      <Card :img="img"></Card>
     </b-row>
   </section>
 </template>
 
 <script>
-import GaleriCard from "../pelatihan/galeriCard";
+import Card from "./card";
 export default {
-  components: { GaleriCard },
-  props: ["data"],
+  components: {
+    Card,
+  },
+  props: ["data", "img"],
   data() {
-    return {
-      images: [
-        require("../../assets/images/potrait3.png"),
-        require("../../assets/images/potrait4.png"),
-        require("../../assets/images/potrait5.png"),
-        require("../../assets/images/potrait6.png"),
-      ],
-    };
+    return {};
+  },
+  mounted() {
+    console.log(this.img);
   },
 };
 </script>
@@ -95,7 +95,7 @@ export default {
   opacity: 0.1;
 }
 section {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 .card {

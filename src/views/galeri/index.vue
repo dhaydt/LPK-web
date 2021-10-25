@@ -1,41 +1,63 @@
 <template>
   <div class="galeriHome">
     <GaleriJumbotron></GaleriJumbotron>
-    <Gallery1 :data="data1"></Gallery1>
-    <Gallery1 :data="data2"></Gallery1>
-    <Gallery1 :data="data3"></Gallery1>
+    <Gallery1 :data="data1" :img="img1"></Gallery1>
+    <Gallery1 :data="data2" :img="img2"></Gallery1>
+    <Gallery1 :data="data3" :img="img3"></Gallery1>
   </div>
 </template>
 
 <script>
 import Gallery1 from "../../components/galeri/gallery1";
 import GaleriJumbotron from "../../components/galeri/galeriJumbotron";
+import axios from "axios";
 export default {
   data() {
     return {
-      data1: {
-        subtitle: "17 - 18 OKTOBER 2021",
-        title: "Pelatihan PAZ Basic Yogyakarta",
-        content:
-          "Pelatihan yang dilakukan dari tanggal X sampai tanggal Y pada bulan Oktober 2021 secara offline di kota Yogyakarta. Peserta pada pelatihan ini mencapai 100 orang.",
-      },
-      data2: {
-        subtitle: "20 - 21 OKTOBER 2021",
-        title: "Pelatihan PAZ Basic Surabaya",
-        content:
-          "Pelatihan yang dilakukan dari tanggal X sampai tanggal Y pada bulan Oktober 2021 secara offline di kota Surabaya. Peserta pada pelatihan ini mencapai 128 orang.",
-      },
-      data3: {
-        subtitle: "30 OKTOBER 2021",
-        title: "Kopdar PAZTI Kalimantan Barat",
-        content:
-          "Pertemuan antar alumni Pelatihan PAZ daerah Kalimantan Barat yang dilakukan dari tanggal X bulan Oktober 2021 secara offline di kota X. Peserta pada pertemuan ini mencapai 64 orang.",
-      },
+      dataUrl: "",
+      data1: {},
+      data2: {},
+      data3: {},
+      img1: {},
+      img2: {},
+      img3: {},
     };
   },
   components: {
     Gallery1,
     GaleriJumbotron,
+  },
+
+  created() {
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.dataUrl = mainUrl + "/groupFront";
+    this.getData();
+  },
+
+  methods: {
+    async getData() {
+      const resp = await axios.get(this.dataUrl);
+      const data = resp.data;
+      const group = data.dataGroup;
+      this.data1 = group[0];
+      this.data2 = group[1];
+      this.data3 = group[2];
+
+      const img = data.dataImg;
+
+      const grouping = (array) => {
+        return array.reduce((result, currentValue) => {
+          (result[currentValue.lokasi] =
+            result[currentValue.lokasi] || []).push(currentValue);
+          return result;
+        }, {});
+      };
+      const lokasi1 = grouping(img, "lokasi");
+      this.img1 = lokasi1[this.data1.lokasi];
+      this.img2 = lokasi1[this.data2.lokasi];
+      this.img3 = lokasi1[this.data3.lokasi];
+      // console.log(this.img3);
+    },
   },
 };
 </script>

@@ -63,12 +63,6 @@
           :filter-included-fields="filterOn"
           @filtered="onFiltered"
         >
-          <template v-slot:cell(date)="data">
-            <p>{{ data.item.date | moment("MMMM Do YYYY") }}</p>
-          </template>
-          <template v-slot:cell(img)="data">
-            <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
-          </template>
           <template v-slot:cell(action)="data" class="d-flex">
             <!-- <a
               href="javascript:void(0);"
@@ -84,7 +78,7 @@
               class="text-danger"
               v-b-tooltip.hover
               title="Delete"
-              @click="deleteVisi(data.item.img)"
+              @click="deleteVisi(data.item.id)"
             >
               <b-spinner v-if="loading" small variant="primary"></b-spinner>
               <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
@@ -127,12 +121,8 @@ export default {
       sortDesc: false,
       fields: [
         { key: "id", sortable: true, label: "ID" },
-        { key: "title", sortable: true, label: "Judul" },
         { key: "lokasi", sortable: true, label: "Lokasi" },
         { key: "date_range", sortable: true, label: "Jarak Waktu" },
-        { key: "date", sortable: true, label: "Tanggal" },
-        { key: "posisi", sortable: true, label: "Posisi" },
-        { key: "img", label: "Foto" },
         { key: "action" },
       ],
       visiUrl: "",
@@ -156,12 +146,12 @@ export default {
   mounted() {
     // Set the initial number of items
     this.totalRows = this.tableData.length;
-    this.$root.$on("getImg", this.getLegal);
+    this.$root.$on("getGrub", this.getLegal);
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.visiUrl = mainUrl + "/image";
+    this.visiUrl = mainUrl + "/group";
     this.imgUrl = mainUrl + "/images/galeri/";
     this.getLegal();
   },

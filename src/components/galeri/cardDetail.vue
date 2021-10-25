@@ -1,33 +1,16 @@
 <template>
   <div class="lokerCard">
     <b-container fluid>
-      <b-row cols="4" class="px-5 pt-0 mb-4" id="itemList">
+      <b-row cols="3" class="px-5 pt-0 mb-4" id="itemList">
         <b-col v-for="lok in paginatedItems" :key="lok.id" class="mt-5">
-          <b-card :sub-title="lok.kriteria" class="inner-border h-100" no-body>
-            <b-card-title class="px-4 pt-4">{{ lok.judul }}</b-card-title>
-            <div class="card-subtitle px-4 mt-0" style="min-height: 80px">
-              {{ lok.kriteria }}
-            </div>
-            <b-row
-              class="flex-column justify-content-between px-4 h-100 pb-4"
-              no-gutters
-            >
-              <div class="location d-flex mt-3">
-                <i class="fas fa-map-marker-alt mr-2"></i
-                ><b-card-text>{{ lok.alamat }}</b-card-text>
-              </div>
-
-              <div class="location d-flex mt-3">
-                <i class="fas fa-briefcase mr-2"></i
-                ><b-card-text>{{ lok.pengalaman }}</b-card-text>
-              </div>
-
-              <div class="detail text-left">
-                <router-link :to="'/loker/' + lok.id" class="card-link"
-                  >Lihat detail ></router-link
-                >
-              </div>
-            </b-row>
+          <b-card
+            :sub-title="lok.title"
+            :img-src="imgUrl + lok.img"
+            img-top
+            class=""
+            no-body
+          >
+            <b-card-title class="p-4">{{ lok.title }}</b-card-title>
           </b-card>
         </b-col>
       </b-row>
@@ -60,8 +43,13 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
+  props: {
+    images: {
+      type: [Array, Object],
+      required: true,
+    },
+  },
   data() {
     return {
       lokers: [],
@@ -70,6 +58,7 @@ export default {
       totalRows: "",
       paginatedItems: [],
       lokerUrl: "",
+      imgUrl: "",
     };
   },
 
@@ -82,7 +71,13 @@ export default {
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
     this.lokerUrl = mainUrl + "/loker";
+    this.imgUrl = mainUrl + "/images/galeri/";
+  },
+  mounted() {
     this.getLoker();
+    console.log("img", this.images);
+
+    console.log("loker", this.lokers);
   },
 
   methods: {
@@ -96,12 +91,10 @@ export default {
     onPageChanged(page) {
       this.paginate(this.perPage, page - 1);
     },
-    async getLoker() {
-      const resp = await axios.get(this.lokerUrl);
-      this.lokers = resp.data.data;
+    getLoker() {
+      this.lokers = this.images;
       this.paginatedItems = this.lokers;
       this.totalRows = this.lokers.length;
-      // console.log(resp.data.data);
       this.paginate(this.perPage, 0);
     },
   },
@@ -110,7 +103,6 @@ export default {
 
 <style lang="scss" scoped>
 .lokerCard {
-  margin-top: 60px;
 }
 
 .card {
@@ -121,15 +113,19 @@ export default {
     0px 0px 1px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
   min-height: 254px;
+  .card-img-top {
+    height: 240px;
+    width: 356px;
+  }
 }
 
 .card-title {
-  text-align: left;
   font-style: normal;
-  font-weight: bold;
+  font-weight: 600;
+  text-align: left;
   font-size: 20px;
-  line-height: 28px;
-  color: #1a382a;
+  letter-spacing: 0.01em;
+  color: #121527;
 }
 
 .card-subtitle {

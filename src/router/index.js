@@ -63,7 +63,8 @@ const routes = [
         component: HomeGaleri,
       },
       {
-        path: "/galeri_detail",
+        path: "/galeri_detail/:id",
+        name: "Galeri_detail",
         component: HomeGaleriDetail,
       },
       {

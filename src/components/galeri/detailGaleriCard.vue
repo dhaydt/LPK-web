@@ -5,15 +5,15 @@
         <b-col lg="9">
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
-              <b-card-title> {{ data.title }} </b-card-title>
+              <b-card-title> {{ title.lokasi }} </b-card-title>
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-text class="mt-4">
-                {{ data.content }}
+              <b-card-text class="mt-2">
+                {{ title.konten }}
               </b-card-text>
               <div class="head">
-                <span>{{ data.subtitle }} </span>
+                <span>{{ title.date_range }} </span>
               </div>
             </b-card-body>
           </b-card>
@@ -24,25 +24,51 @@
       <div id="moons"></div>
     </div>
     <b-row class="justify-content-center w-100">
-      <GaleriCard></GaleriCard>
+      <CardDetail :images="images" v-if="images.length !== 0"></CardDetail>
     </b-row>
   </section>
 </template>
 
 <script>
-import GaleriCard from "../pelatihan/galeriCard";
+import axios from "axios";
+import CardDetail from "./cardDetail";
 export default {
-  components: { GaleriCard },
+  components: {
+    CardDetail,
+  },
   props: ["data"],
   data() {
     return {
-      images: [
-        require("../../assets/images/potrait3.png"),
-        require("../../assets/images/potrait4.png"),
-        require("../../assets/images/potrait5.png"),
-        require("../../assets/images/potrait6.png"),
-      ],
+      getUrl: "",
+      images: [],
+      title: {},
     };
+  },
+
+  watch: {
+    images: function(val) {
+      this.images = val;
+      console.log("val", val);
+    },
+  },
+
+  created() {
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.getUrl = mainUrl + ("/detail/" + this.$route.params.id);
+  },
+
+  mounted() {
+    this.getData();
+  },
+
+  methods: {
+    async getData() {
+      const resp = await axios.get(this.getUrl);
+      const data = resp.data;
+      this.images = data.dataImg;
+      console.log("detail", this.images);
+      this.title = data.dataGroup[0];
+    },
   },
 };
 </script>
