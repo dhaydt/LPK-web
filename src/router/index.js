@@ -5,6 +5,7 @@ import VueRouter from "vue-router";
 import Home from "../views/index.vue";
 import HomeAbout from "../views/about/index.vue";
 import HomeLiputan from "../views/liputan/index.vue";
+import HomeLiputanDetail from "../views/liputan/detail/index.vue";
 import HomeInstruktur from "../views/instruktur/index.vue";
 import HomeEvent from "../views/event/index.vue";
 import HomeLoker from "../views/loker/index.vue";
@@ -53,6 +54,10 @@ const routes = [
       {
         path: "/liputan",
         component: HomeLiputan,
+      },
+      {
+        path: "/liputan/:id",
+        component: HomeLiputanDetail,
       },
       {
         path: "/instruktur",

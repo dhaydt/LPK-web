@@ -28,6 +28,27 @@
               ></b-form-input>
             </b-input-group>
 
+            <b-input-group prepend="Tag" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <div
+                class="tag"
+                v-for="(t, index) in formFields.tag"
+                :key="index"
+              >
+                <b-form-input
+                  id="tag"
+                  v-model="t.text"
+                  required
+                  placeholder="Masukan Tag"
+                />
+              </div>
+              <b-button @click="pushTag" variant="outline-success" class="ml-2"
+                ><i class="fas fa-plus"></i
+              ></b-button>
+              <b-button @click="resetTag" variant="outline-danger" class="ml-2"
+                ><i class="fas fa-redo"></i
+              ></b-button>
+            </b-input-group>
+            <!-- {{ formFields.tag }} -->
             <b-input-group
               prepend="Sub Judul"
               class="mb-2 mt-4 mr-sm-2 mb-sm-0"
@@ -43,14 +64,12 @@
               id="date"
               class="date mb-2 mt-4 mr-sm-2 mb-sm-0"
             >
-              <b-form-datepicker
-                id="example-datepicker"
+              <date-picker
                 v-model="formFields.date"
-                class="mb-2"
-                :max="max"
-                required
-              ></b-form-datepicker>
+                :config="options"
+              ></date-picker>
             </b-input-group>
+            <!-- {{ formFields.date }} -->
 
             <b-input-group class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <template #prepend>
@@ -95,23 +114,46 @@
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import axios from "axios";
+
+// DateTime picker
+import "bootstrap/dist/css/bootstrap.css";
+import datePicker from "vue-bootstrap-datetimepicker";
+import "pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css";
+import $ from "jquery";
+
+$.extend(true, $.fn.datetimepicker.defaults, {
+  icons: {
+    time: "far fa-clock",
+    date: "far fa-calendar",
+    up: "fas fa-arrow-up",
+    down: "fas fa-arrow-down",
+    previous: "fas fa-chevron-left",
+    next: "fas fa-chevron-right",
+    today: "fas fa-calendar-check",
+    clear: "far fa-trash-alt",
+    close: "far fa-times-circle",
+  },
+});
 export default {
   data() {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    // 15th two months prior
-    // const minDate = new Date(today)
-    // minDate.setMonth(minDate.getMonth() - 2)
-    // minDate.setDate(15)
-    // 15th in two months
     const maxDate = new Date(today);
     maxDate.setMonth(maxDate.getMonth());
     return {
+      options: {
+        format: "DD-MM-YYYY HH:mm:ss",
+        useCurrent: false,
+        showClear: true,
+        showClose: true,
+      },
+
       formFields: {
         title: null,
         subtitle: null,
-        date: null,
+        date: "tanggal",
         content: null,
+        tag: [{ text: "" }],
         user_id: null,
         img: null,
       },
@@ -130,6 +172,7 @@ export default {
 
   components: {
     ckeditor: CKEditor.component,
+    datePicker,
   },
 
   created() {
@@ -153,6 +196,12 @@ export default {
   },
 
   methods: {
+    pushTag() {
+      this.formFields.tag.push({ text: "" });
+    },
+    resetTag() {
+      this.formFields.tag = [{ text: "" }];
+    },
     async onSubmit(e) {
       e.preventDefault();
       this.loading = true;
@@ -163,6 +212,7 @@ export default {
       formData.append("date", this.formFields.date);
       formData.append("content", this.formFields.content);
       formData.append("user_id", this.formFields.user_id);
+      formData.append("tag", JSON.stringify(this.formFields.tag));
       formData.append("img", this.formFields.img);
       await axios
         .post(this.legalUrl, formData)
@@ -181,7 +231,7 @@ export default {
       this.formFields.subtitle = "";
       this.formFields.date = this.dateNow;
       this.formFields.content = "";
-      this.formFields.img = "";
+      this.formFields.tag = [{ text: "" }];
       this.loading = false;
     },
     onSelect() {

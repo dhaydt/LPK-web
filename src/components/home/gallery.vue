@@ -45,18 +45,11 @@
 </template>
 
 <script>
-import GaleriCard from "../pelatihan/galeriCard";
+import GaleriCard from "./galeriCard";
 export default {
   components: { GaleriCard },
   data() {
-    return {
-      images: [
-        require("../../assets/images/potrait3.png"),
-        require("../../assets/images/potrait4.png"),
-        require("../../assets/images/potrait5.png"),
-        require("../../assets/images/potrait6.png"),
-      ],
-    };
+    return {};
   },
 };
 </script>

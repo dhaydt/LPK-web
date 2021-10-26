@@ -28,6 +28,10 @@ export default {
     AboutUs,
     Jumbotron,
   },
+
+  created() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 

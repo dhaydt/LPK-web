@@ -18,15 +18,22 @@ export default {
   data() {
     return {
       imgUrl: "",
+      images: {},
     };
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
     this.imgUrl = mainUrl + "/images/galeri/";
+    console.log(this.img);
+    // this.pushImg();
   },
 
-  methods: {},
+  methods: {
+    async pushImg() {
+      this.images = await this.img;
+    },
+  },
 };
 </script>
 

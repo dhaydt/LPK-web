@@ -1,16 +1,20 @@
 <template>
   <div class="lokerCard">
     <b-container fluid>
-      <b-row cols="3" class="px-5 pt-0 mb-4" id="itemList">
-        <b-col v-for="lok in paginatedItems" :key="lok.id" class="mt-5">
-          <b-card
-            :sub-title="lok.title"
-            :img-src="imgUrl + lok.img"
-            img-top
-            class=""
-            no-body
-          >
-            <b-card-title class="p-4">{{ lok.title }}</b-card-title>
+      <b-row cols-sm="1" cols-md="3" class="px-5 pt-0 mb-4" id="itemList">
+        <b-col
+          v-for="(image, imageIndex) in paginatedItems"
+          :key="imageIndex"
+          class="mt-5"
+        >
+          <b-card :sub-title="image.title" no-body>
+            <b-img
+              class="card-img-top w-100"
+              :src="imgUrl + image.img"
+              :alt="image.title"
+              v-img:group
+            ></b-img>
+            <b-card-title class="p-4">{{ image.title }}</b-card-title>
           </b-card>
         </b-col>
       </b-row>
@@ -52,15 +56,23 @@ export default {
   },
   data() {
     return {
+      items: [
+        require("../../assets/images/avatar1.png"),
+        require("../../assets/images/avatar2.png"),
+        require("../../assets/images/avatar1.png"),
+      ],
+      index: null,
       lokers: [],
       currentPage: 1,
-      perPage: 12,
+      perPage: 9,
       totalRows: "",
       paginatedItems: [],
       lokerUrl: "",
       imgUrl: "",
     };
   },
+
+  components: {},
 
   computed: {
     rows() {

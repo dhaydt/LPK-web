@@ -3,6 +3,21 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+// GET LIPUTAN ID
+const getRand = (req, res) => {
+  var message = "";
+  var sql = "SELECT * FROM liputan WHERE id <> ? ORDER by RAND() LIMIT 3";
+  db.query(sql, [req.params.id], function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({ data: result, message: message });
+    }
+  });
+};
+
+router.get("/liputanRand/:id", getRand);
+
 // GET SECOND LAST
 
 const getSecond = (req, res) => {
@@ -69,6 +84,21 @@ const get = (req, res) => {
 
 router.get("/liputan", get);
 
+// GET LIPUTAN ID
+const getId = (req, res) => {
+  var message = "";
+  var sql = "SELECT * FROM liputan WHERE id = ?";
+  db.query(sql, [req.params.id], function(err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send({ data: result, message: message });
+    }
+  });
+};
+
+router.get("/liputan/:id", getId);
+
 // STORE LIPUTAN
 const index = function(req, res) {
   if (req.method == "POST") {
@@ -79,6 +109,7 @@ const index = function(req, res) {
     var date = post.date;
     var content = post.content;
     var user_id = post.user_id;
+    var tag = post.tag;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
@@ -93,7 +124,7 @@ const index = function(req, res) {
       file.mv(`public/images/liputan/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `liputan`(`title`,`subtitle`,`date`,`content`,`user_id`,`img`) VALUES ('" +
+          "INSERT INTO `liputan`(`title`,`subtitle`,`date`,`content`,`tag`,`user_id`,`img`) VALUES ('" +
           title +
           "','" +
           subtitle +
@@ -101,6 +132,8 @@ const index = function(req, res) {
           date +
           "','" +
           content +
+          "','" +
+          tag +
           "','" +
           user_id +
           "','" +

@@ -29,6 +29,7 @@ export default {
   },
 
   created() {
+    window.scrollTo(0, 0);
     const mainUrl = localStorage.getItem("apiUrl");
     this.dataUrl = mainUrl + "/groupFront";
     this.getData();
@@ -53,9 +54,9 @@ export default {
         }, {});
       };
       const lokasi1 = grouping(img, "lokasi");
-      this.img1 = lokasi1[this.data1.lokasi];
-      this.img2 = lokasi1[this.data2.lokasi];
-      this.img3 = lokasi1[this.data3.lokasi];
+      this.img1 = lokasi1[this.data1.lokasi].slice(0, 4);
+      this.img2 = lokasi1[this.data2.lokasi].slice(0, 4);
+      this.img3 = lokasi1[this.data3.lokasi].slice(0, 4);
       // console.log(this.img3);
     },
   },

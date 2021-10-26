@@ -12,7 +12,7 @@
           <b-card-title>
             {{ liput.title }}
           </b-card-title>
-          <router-link to="#"
+          <router-link :to="`/liputan/` + liput.id"
             ><span>Selengkapnya </span><i class="fas fa-arrow-right"></i
           ></router-link>
         </div>
@@ -40,7 +40,7 @@
                 <b-card-text class="mb-0">{{
                   n.date | moment("DD/MM/YYYY")
                 }}</b-card-text>
-                <router-link to="#"
+                <router-link :to="`/liputan/` + liput.id"
                   ><span>Selengkapnya </span><i class="fas fa-arrow-right"></i
                 ></router-link>
               </b-card-body>

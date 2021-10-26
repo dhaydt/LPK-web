@@ -53,6 +53,7 @@ export default {
   },
 
   created() {
+    window.scrollTo(0, 0);
     const mainUrl = localStorage.getItem("apiUrl");
     this.getUrl = mainUrl + ("/detail/" + this.$route.params.id);
   },

@@ -133,6 +133,7 @@ export default {
       fields: [
         { key: "id", sortable: true, label: "ID" },
         { key: "title", sortable: true, label: "Judul" },
+        { key: "tag", sortable: true, label: "tag" },
         { key: "subtitle", sortable: true, label: "Sub judul" },
         { key: "date", sortable: true, label: "Tanggal" },
         { key: "content", sortable: true, label: "Konten" },
