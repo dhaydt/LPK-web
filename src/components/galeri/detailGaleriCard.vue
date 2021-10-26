@@ -32,6 +32,7 @@
 <script>
 import axios from "axios";
 import CardDetail from "./cardDetail";
+import $ from "jquery";
 export default {
   components: {
     CardDetail,
@@ -60,9 +61,19 @@ export default {
 
   mounted() {
     this.getData();
+    // this.hideNav();
   },
 
   methods: {
+    hideNav() {
+      //   window.addEventListener("scroll", function() {
+      //   var navi = this.document.querySelector(".navfront");
+      //   if (navi !== null) {
+      //     navi.classList.toggle("sticky", window.scrollY > 0);
+      //   }
+      // });
+      $(".navbar").css({ "margin-top": "-40px" });
+    },
     async getData() {
       const resp = await axios.get(this.getUrl);
       const data = resp.data;

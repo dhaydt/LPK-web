@@ -1,76 +1,86 @@
 <template>
   <footer>
-    <b-container class="p-4 pt-5">
-      <b-row cols-md="4">
-        <b-col>
-          <b-row>
-            <b-img src="/assets/images/logo/pgu-col-sm.png" height="93"></b-img>
-            <span class="mt-2">Klaten, Indonesia</span>
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row>
-            <h3>About Us</h3>
-          </b-row>
-          <b-row class="flex-column text-left">
-            <router-link to="/aboutus">Visi Misi</router-link>
-            <router-link to="/aboutus">Legalitas</router-link>
-            <router-link to="/aboutus">Struktur LKP</router-link>
-            <router-link to="#">Liputan Media</router-link>
-            <router-link to="/aboutus">Data Cabang</router-link>
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row>
-            <h3>Instruktur</h3>
-          </b-row>
-          <b-row class="flex-column text-left">
-            <router-link to="/instruktur">Instruktur PAZ</router-link>
-            <router-link to="/instruktur">Kurikulum Pendidikan</router-link>
-            <h3 class="mt-2">Pelatihan</h3>
-            <router-link to="/pelatihan">Jadwal pelatihan</router-link>
-            <router-link to="/galeri">Galeri Foto</router-link>
-          </b-row>
-        </b-col>
-        <b-col>
-          <b-row>
-            <h3>Kontak</h3>
-          </b-row>
-          <b-row class="flex-column text-left">
-            <p>
-              <i class="fas fa-map-marker-alt mr-3"></i>
-              <em>Klaten, Indonesia</em>
-            </p>
-            <p>
-              <i class="fas fa-envelope mr-3"></i><em>Pazztrooper@gmail.com</em>
-            </p>
-            <p>
-              <i class="fas fa-mobile-alt mr-3 px-2"></i><em>020-10 00 15</em>
-            </p>
-          </b-row>
-          <b-row>
-            <div class="sosmed">
-              <router-link to="#"><i class="fab fa-instagram"></i></router-link>
-            </div>
-            <div class="sosmed">
-              <router-link to="#"
-                ><i class="fab fa-facebook-f px-1"></i
-              ></router-link>
-            </div>
-            <div class="sosmed">
-              <router-link to="#"
-                ><i class="fab fa-linkedin-in"></i
-              ></router-link>
-            </div>
-          </b-row>
-        </b-col>
-      </b-row>
-      <b-row class="foot mt-4 justify-content-center">
-        <b-col md="8" class="mt-4">
-          <span>LKP PAZ AL Kasaw © Hak Cipta Dilindungi</span>
-        </b-col>
-      </b-row>
-    </b-container>
+    <b-row cols-md="5" class="foots">
+      <b-col md="3">
+        <b-row no-gutters>
+          <b-img src="/assets/images/logo/pgu-col-sm.png" height="93"></b-img>
+          <span class="mt-2">Profesional, Beradab, Berdaya Juang</span>
+        </b-row>
+      </b-col>
+      <b-col md="2">
+        <b-row>
+          <h3>About Us</h3>
+        </b-row>
+        <b-row class="flex-column text-left">
+          <router-link to="/aboutus">Visi Misi</router-link>
+          <router-link to="/aboutus">Legalitas</router-link>
+          <router-link to="/aboutus">Struktur LKP</router-link>
+          <router-link to="#">Liputan Media</router-link>
+          <router-link to="/aboutus">Data Cabang</router-link>
+        </b-row>
+      </b-col>
+      <b-col md="2">
+        <b-row>
+          <h3>Instruktur</h3>
+        </b-row>
+        <b-row class="flex-column text-left">
+          <router-link to="/instruktur">Instruktur PAZ</router-link>
+          <router-link to="/instruktur">Kurikulum Pendidikan</router-link>
+          <h3 class="mt-2">Gallery</h3>
+          <router-link to="/galeri">Pelatihan</router-link>
+          <router-link to="/galeri">Kopdar</router-link>
+        </b-row>
+      </b-col>
+
+      <b-col md="2">
+        <b-row>
+          <h3>Pelatihan</h3>
+        </b-row>
+        <b-row class="flex-column text-left">
+          <router-link to="/pelatihan">Pelatihan Offline</router-link>
+          <router-link to="/pelatihan">Pelatihan Online</router-link>
+          <router-link to="/pelatihan">Timeline Pelatihan</router-link>
+        </b-row>
+      </b-col>
+      <b-col md="3">
+        <b-row>
+          <h3>Kontak</h3>
+        </b-row>
+        <b-row class="flex-column text-left">
+          <p>
+            <i class="fas fa-map-marker-alt mr-3"></i>
+            <em>https://g.page/ayubcamp</em>
+          </p>
+          <p>
+            <i class="fas fa-envelope mr-3"></i><em>mail@generasiunggul.com</em>
+          </p>
+          <p>
+            <i class="fas fa-mobile-alt mr-3 px-2"></i><em>020-10 00 15</em>
+          </p>
+        </b-row>
+        <b-row>
+          <div class="sosmed">
+            <router-link to="#"><i class="fab fa-instagram"></i></router-link>
+          </div>
+          <div class="sosmed">
+            <router-link to="#"
+              ><i class="fab fa-facebook-f px-1"></i
+            ></router-link>
+          </div>
+          <div class="sosmed">
+            <router-link to="#"><i class="fab fa-linkedin-in"></i></router-link>
+          </div>
+        </b-row>
+      </b-col>
+    </b-row>
+    <b-row class="foot mt-4 justify-content-center">
+      <b-col md="8" class="mt-4">
+        <span>LKP PAZ AL Kasaw © Hak Cipta Dilindungi</span>
+      </b-col>
+    </b-row>
+    <div class="floating">
+      <b-button><i class="fab fa-whatsapp"></i> Hubungi Kami</b-button>
+    </div>
   </footer>
 </template>
 
@@ -79,9 +89,39 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+.row.foots {
+  padding: 72px 76px 32px 76px;
+}
+.floating {
+  position: absolute;
+  right: 56px;
+  bottom: 56px;
+  .btn {
+    background: #07a148;
+    box-shadow: 0px 16px 24px rgba(7, 161, 72, 0.16),
+      0px 2px 6px rgba(7, 161, 72, 0.12), 0px 0px 1px rgba(7, 161, 72, 0.12);
+    border-radius: 50px;
+    border: #07a148;
+    padding-right: 34px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #ffffff;
+
+    .fab {
+      margin: 10px 10px 10px 24px;
+    }
+  }
+  .btn:hover {
+    background: #fd7d24;
+  }
+}
 footer {
   z-index: 1;
   position: relative;
+  padding-bottom: 32px;
   // height: 489px;
 }
 footer {

@@ -103,6 +103,12 @@ export default {
     font-size: 16px;
     line-height: 160%;
     color: #2e3e5c;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .card-text {
     font-style: normal;
@@ -121,6 +127,10 @@ export default {
 }
 
 .card.main {
+  height: 100%;
+  .card-img {
+    height: 100%;
+  }
   .overlay-bg {
     background-color: rgba(26, 30, 39, 0.7);
     position: absolute;
@@ -149,6 +159,12 @@ export default {
       line-height: 160%;
       letter-spacing: 0.5px;
       color: #ffffff;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     a span {

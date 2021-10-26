@@ -5,14 +5,16 @@
     <Gallery></Gallery>
     <Pelatihan></Pelatihan>
     <Blog></Blog>
-    <Loker></Loker>
+    <Alumni></Alumni>
     <Testimoni></Testimoni>
+    <BeforeFoot></BeforeFoot>
   </div>
 </template>
 
 <script>
+import Alumni from "../../components/home/alumni";
+import BeforeFoot from "../../components/home/beforeFoot";
 import Testimoni from "../../components/home/testimoni";
-import Loker from "../../components/home/loker";
 import Blog from "../../components/home/blog";
 import Pelatihan from "../../components/home/pelatihan";
 import Gallery from "../../components/home/gallery";
@@ -20,8 +22,9 @@ import AboutUs from "../../components/home/aboutUs";
 import Jumbotron from "../../components/home/jumbotron";
 export default {
   components: {
+    Alumni,
+    BeforeFoot,
     Testimoni,
-    Loker,
     Blog,
     Pelatihan,
     Gallery,
