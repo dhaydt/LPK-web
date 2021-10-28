@@ -1,51 +1,51 @@
 <template>
   <section class="struktur">
-    <b-container>
-      <div id="moon"></div>
-      <b-row class="justify-content-center">
-        <b-col lg="9">
-          <b-card sub-title="Card subtitle" no-body>
-            <template #header>
-              <div class="head">
-                <span>Struktur kepengurusan</span>
+    <div id="moon"></div>
+    <b-row class="justify-content-center flex-row" no-gutters>
+      <b-col lg="9">
+        <b-card sub-title="Card subtitle" no-body>
+          <template #header>
+            <div class="head">
+              <span>Struktur kepengurusan</span>
+            </div>
+          </template>
+          <b-card-body>
+            <b-card-title>TIM LKP PAZ AL KASAW</b-card-title>
+          </b-card-body>
+
+          <div class="card-body border-top text-center">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="d-inline-flex">
+                  <h5 class="mr-2 student">6</h5>
+                </div>
+                <p class="text-muted text-truncate mb-0">Tahun</p>
               </div>
-            </template>
-            <b-card-body>
-              <b-card-title>TIM LKP PAZ AL KASAW</b-card-title>
-            </b-card-body>
 
-            <div class="card-body border-top text-center">
-              <div class="row">
-                <div class="col-sm-4">
-                  <div class="d-inline-flex">
-                    <h5 class="mr-2 student">6</h5>
-                  </div>
-                  <p class="text-muted text-truncate mb-0">Tahun</p>
+              <div class="col-sm-4">
+                <div class="d-inline-flex">
+                  <h5 class="mr-2 student">100 +</h5>
                 </div>
+                <p class="text-muted text-truncate mb-0">Anggota</p>
+              </div>
 
-                <div class="col-sm-4">
-                  <div class="d-inline-flex">
-                    <h5 class="mr-2 student">100 +</h5>
-                  </div>
-                  <p class="text-muted text-truncate mb-0">Anggota</p>
+              <div class="col-sm-4">
+                <div class="d-inline-flex">
+                  <h5 class="mr-2 student">2</h5>
                 </div>
-
-                <div class="col-sm-4">
-                  <div class="d-inline-flex">
-                    <h5 class="mr-2 student">2</h5>
-                  </div>
-                  <p class="text-muted text-truncate mb-0">Cabang</p>
-                </div>
+                <p class="text-muted text-truncate mb-0">Cabang</p>
               </div>
             </div>
-          </b-card>
-        </b-col>
+          </div>
+        </b-card>
+      </b-col>
+      <b-col md="12">
         <StrukturDiagram></StrukturDiagram>
-      </b-row>
-      <div id="shape">
-        <div id="moons"></div>
-      </div>
-    </b-container>
+      </b-col>
+    </b-row>
+    <div id="shape">
+      <div id="moons"></div>
+    </div>
   </section>
 </template>
 

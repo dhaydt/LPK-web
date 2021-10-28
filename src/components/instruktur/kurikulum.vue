@@ -24,12 +24,14 @@
           <b-card no-body class="anatomi overflow-hidden">
             <b-row no-gutters>
               <b-col md="3">
-                <b-img-lazy
-                  src="/assets/svg/anatomy 1.png"
-                  alt="Image"
-                  height="144"
-                  class="rounded-0"
-                ></b-img-lazy>
+                <a @click="modal" class="amodal">
+                  <b-img-lazy
+                    src="/assets/svg/anatomy 1.png"
+                    alt="Image"
+                    height="144"
+                    class="rounded-0"
+                  ></b-img-lazy>
+                </a>
               </b-col>
               <b-col md="9">
                 <b-card-body title="PAZ Basic">
@@ -45,6 +47,63 @@
       </b-row>
       <KurikulumCard></KurikulumCard>
     </b-container>
+    <b-modal ref="my-modal" hide-footer hide-header id="modalBasic" size="md">
+      <div class="body">
+        <b-row>
+          <b-col md="2"
+            ><b-img
+              src="/assets/svg/anatomy 1.png"
+              alt="Image"
+              height="84"
+            ></b-img
+          ></b-col>
+          <b-col md="10">
+            <div class="card-side pt-0 pl-2">
+              <b-card-title>PAZ Basic</b-card-title>
+              <div class="card-subtitle mt-1">
+                Wajib diikuti oleh siapapun yang ingin belajar terapi PAZ secara
+                mendalam dengan bahasan utama Syaraf Kejepit dan Asma
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+        <b-row>
+          <div class="desc mt-3 px-4">
+            <b-card-title>Kisi - kisi kurikulum</b-card-title>
+            <div class="card-subtitle mt-2">
+              Maecenas lorem eros, luctus placerat blandit et, mattis sed enim.
+              Ut lacus urna, efficitur et fringilla id, pretium ac ex. Lorem
+              ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci
+              nisl. Aliquam et nisl libero.Maecenas lorem eros, luctus placerat
+              blandit et, mattis sed enim. Ut lacus urna, efficitur et fringilla
+              id, pretium ac ex. Lorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Nullam eu orci nisl. Aliquam et nisl
+              libero.Maecenas lorem eros, luctus placerat blandit et, mattis sed
+              enim. Ut lacus urna, efficitur et fringilla id, pretium ac ex.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
+              orci nisl. Aliquam et nisl libero.Maecenas lorem eros, luctus
+              placerat blandit et, mattis sed enim. Ut lacus urna, efficitur et
+              fringilla id, pretium ac ex. Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit. Nullam eu orci nisl. Aliquam et nisl
+              libero.Maecenas lorem eros, luctus placerat blandit et, mattis sed
+              enim. Ut lacus urna, efficitur et fringilla id, pretium ac ex.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
+              orci nisl. Aliquam et nisl libero.
+            </div>
+          </div>
+        </b-row>
+        <b-row class="mt-3 w-100 justify-content-center" no-gutters>
+          <b-col md="12 px-2">
+            <b-button
+              @click="$bvModal.hide('modalBasic')"
+              class="modalButton"
+              variant="outline-success w-100"
+              >Tutup</b-button
+            >
+          </b-col>
+        </b-row>
+      </div>
+    </b-modal>
   </section>
 </template>
 
@@ -57,10 +116,109 @@ export default {
   data() {
     return {};
   },
+
+  methods: {
+    modal() {
+      this.$refs["my-modal"].show();
+    },
+  },
 };
 </script>
+<style lang="scss">
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #f5f5f5;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #e9e9e9;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #d1cece;
+}
+#modalBasic {
+  display: flex !important;
+  align-items: center;
+
+  .modal-content {
+    width: 600px;
+  }
+
+  .card-side {
+    .card-title {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      text-align: left;
+      line-height: 1;
+      color: #121527;
+    }
+
+    .card-subtitle {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      text-align: left;
+      color: #757682;
+    }
+  }
+
+  .desc {
+    height: 112px;
+    overflow-y: scroll;
+
+    .card-title {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      text-align: left;
+      color: #121527;
+    }
+
+    .card-subtitle {
+      font-family: Inter;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      color: #757682;
+      text-align: left;
+    }
+  }
+
+  .modalButton {
+    background: #ffffff;
+    border: 1px solid #07a148;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: 0.5s;
+    letter-spacing: 0.04em;
+    color: #07a148;
+  }
+
+  .modalButton:hover {
+    background: #fd7d24;
+    color: #fff;
+    border: 1px solid #fd7d24;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
+.amodal {
+  cursor: pointer;
+}
 section {
   margin-top: 100px;
 }

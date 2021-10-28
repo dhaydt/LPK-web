@@ -68,9 +68,9 @@
               <tab-content title="Penyelesaian" icon="fas fa-check">
                 <b-card title="Data Anda Akan Kami Simpan di Database Kami">
                   <b-card-text style="font-transform: capitalize;"
-                    >Terima kasih telah berpartisipasi</b-card-text
+                    >Data anda akan segera kami simpan setelah anda mengirim
+                    nya.</b-card-text
                   >
-                  <pre>{{ finalModel }}</pre>
                 </b-card>
               </tab-content>
               <template slot="footer" slot-scope="props">
@@ -142,6 +142,28 @@
             </template>
           </b-modal>
         </b-row>
+        <b-modal v-model="modalAkhir" id="modal1">
+          <template #modal-title>
+            <span class="titleCard">Terima Kasih</span>
+          </template>
+          <p class="pcard">
+            Lamaran pekerjaan anda berupa data diri dan jawaban pre-test telah
+            sukses terkirim. Rekap jawaban anda telah kami kirim ke email anda.
+          </p>
+          <template #modal-footer>
+            <b-row class="w-100">
+              <b-col md="12">
+                <b-button
+                  block
+                  href="/loker"
+                  class="modalNext"
+                  variant="success"
+                  >Tutup</b-button
+                >
+              </b-col>
+            </b-row>
+          </template>
+        </b-modal>
       </b-container>
     </section>
   </div>
@@ -155,6 +177,7 @@ export default {
   data() {
     return {
       modalComplete: false,
+      modalAkhir: false,
       next: false,
       finalModel: {
         nama: "",
@@ -260,9 +283,10 @@ export default {
       model.append("nilai", this.finalModel.nilai);
       console.log("model", model);
       await axios.post(this.applyUrl, model);
+      this.modalAkhir = true;
       // this.$router.push("/loker");
-      alert("Lamaran anda sudah kami terima!!!");
-      window.location.href = "/loker";
+      // alert("Lamaran anda sudah kami terima!!!");
+      // window.location.href = "/loker";
     },
     validate(ref) {
       return this.$refs[ref].validate();

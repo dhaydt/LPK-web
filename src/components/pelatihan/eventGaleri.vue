@@ -38,18 +38,18 @@
     <div id="shape">
       <div id="moons"></div>
     </div>
-    <b-row class="justify-content-center w-100">
-      <GaleriCard></GaleriCard>
-    </b-row>
+    <b-row class="justify-content-center w-100"> </b-row>
   </section>
 </template>
 
 <script>
-import GaleriCard from "./galeriCard";
 export default {
-  components: { GaleriCard },
   data() {
     return {};
+  },
+
+  mounted() {
+    window.scrollTo(0, 0);
   },
 };
 </script>

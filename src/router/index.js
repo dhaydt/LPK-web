@@ -25,6 +25,7 @@ import Liputan from "../views/admin/about/liputan.vue";
 import Cabang from "../views/admin/about/cabang.vue";
 import Instruktur from "../views/admin/instruktur";
 import Pelatihan from "../views/admin/pelatihan";
+import PelatihanTime from "../views/admin/pelatihan/timeline/index.vue";
 import Images from "../views/admin/images";
 import Alumni from "../views/admin/images/alumni.vue";
 import Loker from "../views/admin/loker";
@@ -144,6 +145,10 @@ const routes = [
       {
         path: "/admin/pelatihan",
         component: Pelatihan,
+      },
+      {
+        path: "/admin/pelatihan/timeline",
+        component: PelatihanTime,
       },
       {
         path: "/admin/images",

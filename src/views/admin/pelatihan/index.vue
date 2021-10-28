@@ -3,7 +3,7 @@
     <Header :title="title" :items="items"></Header>
     <b-card>
       <b-tabs content-class="mt-3" fill>
-        <b-tab title="Galeri" active>
+        <b-tab title="List Pelatihan" active>
           <ListPelatihan></ListPelatihan>
         </b-tab>
         <b-tab title="Tambah data">

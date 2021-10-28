@@ -4,12 +4,14 @@
       <b-container class="h-100">
         <b-row class="justify-content-center align-items-center h-100">
           <b-col class="text-left"
-            ><a :href="'/loker/' + $route.params.id">
-              <i class="fas fa-arrow-left mr-2"> </i>{{ $route.params.name }}
-            </a></b-col
-          >
-          <b-col>
-            <b-img src="/assets/images/logo.png" height="60"></b-img>
+            ><a href="/">
+              <b-img src="/assets/images/logo/pgu-logo.png" height="60"></b-img>
+            </a>
+          </b-col>
+          <b-col class="text-left">
+            <a :href="'/loker/' + $route.params.id">
+              {{ $route.params.name }}
+            </a>
           </b-col>
         </b-row>
       </b-container>

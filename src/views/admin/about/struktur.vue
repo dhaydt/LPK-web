@@ -2,12 +2,23 @@
   <div class="dash">
     <Header :title="title" :items="items"></Header>
     <b-card>
-      Struktur
+      <b-tabs content-class="mt-3" fill>
+        <b-tab title="List Struktur" active>
+          <ListStruktur></ListStruktur>
+        </b-tab>
+        <b-tab title="Tambah Data">
+          <b-container>
+            <AddStruktur></AddStruktur>
+          </b-container>
+        </b-tab>
+      </b-tabs>
     </b-card>
   </div>
 </template>
 
 <script>
+import AddStruktur from "./struktur/addStruktur";
+import ListStruktur from "./struktur/listStruktur";
 import Header from "../../../components/admin/partials/page-header.vue";
 export default {
   data() {
@@ -16,16 +27,18 @@ export default {
       items: [
         {
           text: "About",
-          href: "/admin/about"
+          href: "/admin/about",
         },
         {
           text: "Struktur LPK",
-          active: true
-        }
+          active: true,
+        },
       ],
     };
   },
   components: {
+    AddStruktur,
+    ListStruktur,
     Header,
   },
 };

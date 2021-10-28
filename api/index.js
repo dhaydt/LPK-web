@@ -27,6 +27,9 @@ const testi = require("./routes/testimoni");
 const loker = require("./routes/loker");
 const apply = require("./routes/apply");
 const kuis = require("./routes/kuis");
+const struktur = require("./routes/struktur");
+const timeline = require("./routes/timeline");
+const instruktur = require("./routes/instruktur");
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
@@ -50,6 +53,9 @@ app.use(testi);
 app.use(loker);
 app.use(apply);
 app.use(kuis);
+app.use(struktur);
+app.use(timeline);
+app.use(instruktur);
 
 // Export express app
 module.exports = app;

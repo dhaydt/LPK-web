@@ -52,7 +52,18 @@ export const menuItems = [
     id: 41,
     label: "Pelatihan",
     icon: "ri-at-fill",
-    link: "/admin/pelatihan",
+    subItems: [
+      {
+        id: 411,
+        label: "Pelatihan",
+        link: "/admin/pelatihan",
+      },
+      {
+        id: 422,
+        label: "Timeline",
+        link: "/admin/pelatihan/timeline",
+      },
+    ],
   },
   {
     id: 5,
