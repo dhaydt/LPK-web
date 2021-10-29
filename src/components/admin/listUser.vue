@@ -1,5 +1,5 @@
 <template>
-  <div class="listTesti">
+  <div class="listVisi">
     <b-card>
       <div class="row my-4">
         <div class="col-sm-12 col-md-6 d-flex justify-content-start">
@@ -56,7 +56,6 @@
           :fields="fields"
           responsive="sm"
           :per-page="perPage"
-          striped
           :current-page="currentPage"
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
@@ -64,10 +63,7 @@
           :filter-included-fields="filterOn"
           @filtered="onFiltered"
         >
-          <template v-slot:cell(img)="data">
-            <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
-          </template>
-          <template v-slot:cell(action)="data" class="d-flex">
+          <template v-slot:cell(action)="data">
             <div class="actions" style="min-width: 100px">
               <a
                 v-b-tooltip.hover
@@ -76,14 +72,14 @@
                 class="mr-2"
                 @click="edit(data.item)"
               >
-                <i class="fas fa-edit"></i>
+                <i class="fas fa-user-edit"></i>
               </a>
               <a
                 href="javascript:void(0);"
                 class="text-danger"
                 v-b-tooltip.hover
                 title="Delete"
-                @click="deleteVisi(data.item.img)"
+                @click="deleteVisi(data.item.id)"
               >
                 <b-spinner v-if="loading" small variant="primary"></b-spinner>
                 <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
@@ -107,12 +103,21 @@
         </div>
       </div>
 
-      <b-modal ref="users" id="users" hide-footer title="Edit Data">
+      <b-modal
+        ref="users"
+        id="users"
+        hide-footer
+        :title="`Edit ` + editData.nama_depan"
+      >
         <div class="d-block text-left">
-          <b-form-group id="input-group-1" label="Nama" label-for="input-1">
+          <b-form-group
+            id="input-group-1"
+            label="Nama depan"
+            label-for="input-1"
+          >
             <b-form-input
               id="input-1"
-              v-model="editData.name"
+              v-model="editData.nama_depan"
               type="text"
               required
             ></b-form-input>
@@ -120,37 +125,69 @@
 
           <b-form-group
             id="input-group-11"
-            label="Jabatan"
+            label="Nama belakang"
             label-for="input-11"
           >
             <b-form-input
               id="input-11"
-              v-model="editData.title"
+              v-model="editData.nama_bel"
               type="text"
               required
-            ></b-form-input> </b-form-group
-          ><b-form-group
-            id="inaput-group-11"
-            label="Alamat"
-            label-for="iinput-11"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-2" label="Email" label-for="input-2">
+            <b-form-input
+              id="input-2"
+              v-model="editData.email"
+              type="email"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-25"
+            label="Password"
+            label-for="input-25"
           >
             <b-form-input
-              id="iinput-11"
-              v-model="editData.address"
-              type="text"
+              id="input-25"
+              v-model="editData.new_password"
+              type="email"
+              placeholder="Tidak diganti"
               required
-            ></b-form-input> </b-form-group
-          ><b-form-group
-            id="input-group-111"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-22"
             label="Telepon"
-            label-for="input-1111"
+            label-for="input-22"
           >
             <b-form-input
-              id="input-1111"
+              id="input-22"
               v-model="editData.telp"
               type="text"
               required
             ></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-23" label="Alamat" label-for="input-23">
+            <b-form-input
+              id="input-23"
+              v-model="editData.alamat"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-3" label="Role" label-for="input-3">
+            <b-form-select
+              id="input-3"
+              v-model="editData.role"
+              :options="role"
+              required
+            ></b-form-select>
           </b-form-group>
         </div>
         <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
@@ -174,6 +211,12 @@ export default {
     return {
       editData: {},
       tableData: [],
+      role: [
+        { text: "Pilih Role User", value: "null" },
+        { text: "Admin", value: "admin" },
+        { text: "HRD", value: "hrd" },
+        { text: "Staff", value: "staff" },
+      ],
       totalRows: 1,
       currentPage: 1,
       perPage: 10,
@@ -184,15 +227,15 @@ export default {
       sortDesc: false,
       fields: [
         { key: "id", sortable: true, label: "ID" },
-        { key: "name", sortable: true, label: "Nama" },
-        { key: "title", sortable: true, label: "Posisi" },
-        { key: "img", label: "Foto" },
+        { key: "nama_depan", sortable: true, label: "Nama" },
+        { key: "email", sortable: true, label: "Email" },
         { key: "telp", sortable: true, label: "Telepon" },
-        { key: "address", sortable: true, label: "Alamat" },
+        { key: "alamat", sortable: true, label: "Alamat" },
+        // { key: "password", sortable: true, label: "Password" },
+        { key: "role", sortable: true, label: "Role" },
         { key: "action" },
       ],
       visiUrl: "",
-      imgUrl: "",
       loading: "",
       dismissSecs: 5,
       dismissCountDown: 0,
@@ -212,14 +255,13 @@ export default {
   mounted() {
     // Set the initial number of items
     this.totalRows = this.tableData.length;
-    this.$root.$on("getImg", this.getLegal);
+    this.$root.$on("getVisi", this.getVisi);
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.visiUrl = mainUrl + "/instruktur";
-    this.imgUrl = mainUrl + "/images/instruktur/";
-    this.getLegal();
+    this.visiUrl = mainUrl + "/users";
+    this.getVisi();
   },
 
   methods: {
@@ -228,9 +270,10 @@ export default {
         .put(this.visiUrl + "/" + this.editData.id, this.editData)
         .then((response) => {
           this.messages = "Data berhasil diubah";
-          this.getLegal();
+          this.getVisi();
           this.showAlert();
           console.log("data", response);
+          this.getVisi();
           this.$refs["users"].hide();
           // this.loading = false;
         })
@@ -246,26 +289,25 @@ export default {
       this.editData = val;
       this.$refs["users"].show();
     },
-    async getLegal() {
+    async getVisi() {
       const resp = await axios
         .get(this.visiUrl)
         .catch((error) => console.log(error));
       this.tableData = resp.data.data;
-      // console.log(resp.data.data);
+      console.log(resp.data.data);
     },
 
-    async deleteVisi(img) {
+    async deleteVisi(id) {
       this.loading = true;
-      console.log(img);
+      console.log(id);
       try {
-        await axios.delete(this.visiUrl + `/${img}`);
+        await axios.delete(this.visiUrl + `/${id}`);
         this.messages = "Data terhapus";
-        this.getLegal();
+        this.getVisi();
         this.showAlert();
         this.loading = false;
       } catch (err) {
         console.log(err);
-        this.loading = false;
       }
     },
 

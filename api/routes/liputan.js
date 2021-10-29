@@ -3,6 +3,36 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const update = (req, res) => {
+  console.log(req);
+
+  var sql = `UPDATE liputan SET title = ?, subtitle = ?, date = ?, content = ?  WHERE id = ?;`;
+  db.query(
+    sql,
+    [
+      req.body.title,
+      req.body.subtitle,
+      req.body.date,
+      req.body.content,
+      // req.body.tag,
+      req.params.id,
+    ],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/liputan/:id", update);
+
 // GET LIPUTAN ID
 const getRand = (req, res) => {
   var message = "";

@@ -57,6 +57,7 @@
           responsive="sm"
           :per-page="perPage"
           :current-page="currentPage"
+          striped
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :filter="filter"
@@ -67,25 +68,27 @@
             <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
           </template>
           <template v-slot:cell(action)="data" class="d-flex">
-            <!-- <a
-              href="javascript:void(0);"
-              class="mr-3 text-primary"
-              v-b-tooltip.hover
-              data-toggle="tooltip"
-              title="Edit"
-            >
-              <i class="mdi mdi-pencil font-size-18"></i>
-            </a> -->
-            <a
-              href="javascript:void(0);"
-              class="text-danger"
-              v-b-tooltip.hover
-              title="Delete"
-              @click="deleteVisi(data.item.img)"
-            >
-              <b-spinner v-if="loading" small variant="primary"></b-spinner>
-              <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
-            </a>
+            <div class="actions" style="min-width: 100px">
+              <a
+                v-b-tooltip.hover
+                title="Edit User"
+                href="javascript:void(0);"
+                class="mr-2"
+                @click="edit(data.item)"
+              >
+                <i class="fas fa-edit"></i>
+              </a>
+              <a
+                href="javascript:void(0);"
+                class="text-danger"
+                v-b-tooltip.hover
+                title="Delete"
+                @click="deleteVisi(data.item.img)"
+              >
+                <b-spinner v-if="loading" small variant="primary"></b-spinner>
+                <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
+              </a>
+            </div>
           </template>
         </b-table>
       </div>
@@ -103,6 +106,49 @@
           </div>
         </div>
       </div>
+
+      <b-modal ref="users" id="users" hide-footer title="Edit Data">
+        <div class="d-block text-left">
+          <b-form-group id="input-group-1" label="Nama" label-for="input-1">
+            <b-form-input
+              id="input-1"
+              v-model="editData.name"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group id="input-group-11" label="Alamat" label-for="input-11">
+            <b-form-input
+              id="input-11"
+              v-model="editData.address"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="inputs-group-11"
+            label="Telepon"
+            label-for="input-112"
+          >
+            <b-form-input
+              id="input-112"
+              v-model="editData.telp"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
+        </div>
+        <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
+        <b-button
+          class="mt-4"
+          variant="outline-success"
+          block
+          @click="SaveUsers"
+          >Simpan</b-button
+        >
+      </b-modal>
     </b-card>
   </div>
 </template>
@@ -113,6 +159,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      editData: {},
       tableData: [],
       totalRows: 1,
       currentPage: 1,
@@ -126,7 +173,7 @@ export default {
         { key: "id", sortable: true, label: "ID" },
         { key: "name", sortable: true, label: "Nama" },
         { key: "address", sortable: true, label: "Alamat" },
-        { key: "telp", sortable: true, label: "Telp" },
+        { key: "telp", sortable: true, label: "Telepon" },
         { key: "img", label: "Foto" },
         { key: "action" },
       ],
@@ -162,6 +209,29 @@ export default {
   },
 
   methods: {
+    async SaveUsers() {
+      await axios
+        .put(this.visiUrl + "/" + this.editData.id, this.editData)
+        .then((response) => {
+          this.messages = "Data berhasil diubah";
+          this.getLegal();
+          this.showAlert();
+          console.log("data", response);
+          this.$refs["users"].hide();
+          // this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      // .finally(() => this.loading = false)
+    },
+
+    edit(val) {
+      console.log(val);
+      this.editData = val;
+      this.$refs["users"].show();
+    },
     async getLegal() {
       const resp = await axios
         .get(this.visiUrl)

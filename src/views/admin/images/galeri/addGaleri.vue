@@ -118,20 +118,6 @@
                   ></b-form-select>
                 </b-input-group>
 
-                <b-input-group
-                  prepend="Tanggal"
-                  id="date"
-                  class="date mb-2 mt-4 mr-sm-2 mb-sm-0"
-                >
-                  <b-form-datepicker
-                    id="example-datepicker"
-                    v-model="formFields.date"
-                    class="mb-2"
-                    :max="max"
-                    required
-                  ></b-form-datepicker>
-                </b-input-group>
-
                 <b-input-group prepend="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
                   <b-form-file
                     type="file"
@@ -186,7 +172,6 @@ export default {
         lokasi: "",
         status: "galeri",
         date_range: "",
-        date: null,
         img: null,
       },
       max: maxDate,
@@ -254,7 +239,6 @@ export default {
 
       formData.append("title", this.formFields.title);
       formData.append("status", this.formFields.status);
-      formData.append("date", this.formFields.date);
       formData.append("lokasi", this.formFields.lokasi);
       formData.append("date_range", this.formFields.date_range);
       formData.append("img", this.formFields.img);

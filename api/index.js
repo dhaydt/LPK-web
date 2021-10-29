@@ -30,6 +30,7 @@ const kuis = require("./routes/kuis");
 const struktur = require("./routes/struktur");
 const timeline = require("./routes/timeline");
 const instruktur = require("./routes/instruktur");
+const kurikulum = require("./routes/kurikulum");
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
@@ -56,6 +57,7 @@ app.use(kuis);
 app.use(struktur);
 app.use(timeline);
 app.use(instruktur);
+app.use(kurikulum);
 
 // Export express app
 module.exports = app;

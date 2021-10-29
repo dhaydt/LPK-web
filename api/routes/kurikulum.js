@@ -3,38 +3,16 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
-const update = (req, res) => {
-  console.log(req);
-  var sql = `UPDATE cabang SET name = ?, address = ?, telp = ? WHERE id = ?;`;
-  db.query(
-    sql,
-    [req.body.name, req.body.address, req.body.telp, req.params.id],
-    (err, result) => {
-      if (err) {
-        return res.status(400).send({
-          msg: err,
-        });
-      }
-      return res.status(201).send({
-        msg: "Legalitas tersimpan",
-        data: result,
-      });
-    }
-  );
-};
-
-router.put("/cabang/:id", update);
-
 // del legal
-const DIR_LEGAL = "public/images/cabang";
-router.delete("/cabang/:img", (req, res) => {
+const DIR_LEGAL = "public/images/kurikulum";
+router.delete("/kurikulum/:img", (req, res) => {
   if (!req.params.img) {
     console.log("No file received");
     var message = "Data img tidak diterima.";
   } else {
     console.log("file received");
     console.log(req.params.img);
-    var sql = "DELETE FROM `cabang` WHERE `img`='" + req.params.img + "'";
+    var sql = "DELETE FROM `kurikulum` WHERE `img`='" + req.params.img + "'";
     db.query(sql, function(err, result) {
       if (err) {
         return res.status(400).send(err);
@@ -51,10 +29,39 @@ router.delete("/cabang/:img", (req, res) => {
   }
 });
 
+const update = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE kurikulum SET name = ?, subtitle = ?, penyakit = ?, konten = ?, tipe = ? WHERE id = ?;`;
+  db.query(
+    sql,
+    [
+      req.body.name,
+      req.body.subtitle,
+      req.body.penyakit,
+      req.body.konten,
+      req.body.tipe,
+      req.params.id,
+    ],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/kurikulum/:id", update);
+
 // get legal
 const get = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM `cabang`";
+  var sql = "SELECT * FROM kurikulum ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Cabang Kosong!";
 
@@ -62,7 +69,7 @@ const get = (req, res) => {
   });
 };
 
-router.get("/cabang", get);
+router.get("/kurikulum", get);
 
 // STORE IMG
 const index = function(req, res) {
@@ -70,8 +77,10 @@ const index = function(req, res) {
     var post = req.body;
     console.log(req.files);
     var name = post.name;
-    var address = post.address;
-    var telp = post.telp;
+    var subtitle = post.subtitle;
+    var penyakit = post.penyakit;
+    var konten = post.konten;
+    var tipe = post.tipe;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
@@ -83,15 +92,19 @@ const index = function(req, res) {
       file.mimetype == "image/png" ||
       file.mimetype == "image/gif"
     ) {
-      file.mv(`public/images/cabang/` + img, (err) => {
+      file.mv(`public/images/kurikulum/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `cabang`(`name`,`address`,`telp`,`img`) VALUES ('" +
+          "INSERT INTO `kurikulum`(`name`,`subtitle`,`penyakit`,`konten`,`tipe`,`img`) VALUES ('" +
           name +
           "','" +
-          address +
+          subtitle +
           "','" +
-          telp +
+          penyakit +
+          "','" +
+          konten +
+          "','" +
+          tipe +
           "','" +
           img +
           "')";
@@ -118,6 +131,6 @@ const index = function(req, res) {
   }
 };
 
-router.post("/cabang", index);
+router.post("/kurikulum", index);
 
 module.exports = router;

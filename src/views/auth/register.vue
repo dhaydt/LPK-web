@@ -165,7 +165,7 @@ export default {
           console.log(res);
           // localStorage.setItem("auth", JSON.stringify(res.data));
           this.loading = "";
-          this.$router.push("/admin");
+          this.$router.push("/login");
         }
       } catch ({ response }) {
         this.loading = "";

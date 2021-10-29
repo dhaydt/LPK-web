@@ -3,6 +3,37 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const update = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE pelatihan SET title = ?, jenis = ?, subtitle = ?,waktu = ?,akses = ?,expire = ?, tempat = ? WHERE id = ?;`;
+  db.query(
+    sql,
+    [
+      req.body.title,
+      req.body.jenis,
+      req.body.subtitle,
+      req.body.waktu,
+      req.body.akses,
+      req.body.expire,
+      req.body.tempat,
+      req.params.id,
+    ],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/pelatihan/:id", update);
+
 // del legal
 const DIR_LEGAL = "public/images/pelatihan";
 router.delete("/pelatihan/:img", (req, res) => {

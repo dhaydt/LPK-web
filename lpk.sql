@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 26, 2021 at 10:20 PM
+-- Generation Time: Oct 30, 2021 at 12:06 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -66,7 +66,8 @@ CREATE TABLE `apply` (
 --
 
 INSERT INTO `apply` (`id`, `nama`, `wa`, `email`, `domisili`, `provinsi`, `kelamin`, `pendidikan`, `jurusan`, `agama`, `pengalaman`, `alasan`, `tempat_lhr`, `tgl_lhr`, `menikah`, `komputer`, `bahasa`, `instagram`, `facebook`, `foto`, `ktp`, `ijazah`, `sertifikat`, `skck`, `portfolio`, `pertanyaan`, `jawaban`, `nilai`, `loker_id`, `status`, `created_at`) VALUES
-(31, 'Muhammad Hidayatullah', '081282734', 'intanmandirisejahtera@gmail.com', 'solok', 'Sumbar', 'laki-laki', 'S-1', 'TI', 'Islam', 'Sudah pernah bekerja', 'asasasas', 'Manado', '1992-09-10', 'Lajang', 'Ya', 'asasassa', 'asasas', 'asasas', 'foto1635087980667foto.jpg', 'ktp1635087980667Scan KTP.JPG', 'ijazah1635087980667ijazah.jpeg', 'serti1635087980667sert.jpeg', 'skck1635087980667skck.jpg', 'porto1635087980667Muhammad hidayatullah.pdf', '[\"Jumlah rukun islam\",\"Jumlah nabi ada berapa dalam islam ?\",\"Jumlah rukun iman ada berapa ?\",\"Jumlah rukun islam ada berapa ?\"]', '[{\"text\":\"5\",\"correct\":true},{\"text\":\"25\",\"correct\":true},{\"text\":\"6\",\"correct\":true},{\"text\":\"Ada 5\",\"correct\":true}]', '100', 50, 'Lamaran Masuk', '2021-10-24 15:08:00');
+(31, 'Muhammad Hidayatullah', '081282734', 'intanmandirisejahtera@gmail.com', 'solok', 'Sumbar', 'laki-laki', 'S-1', 'TI', 'Islam', 'Sudah pernah bekerja', 'asasasas', 'Manado', '1992-09-10', 'Lajang', 'Ya', 'asasassa', 'asasas', 'asasas', 'foto1635087980667foto.jpg', 'ktp1635087980667Scan KTP.JPG', 'ijazah1635087980667ijazah.jpeg', 'serti1635087980667sert.jpeg', 'skck1635087980667skck.jpg', 'porto1635087980667Muhammad hidayatullah.pdf', '[\"Jumlah rukun islam\",\"Jumlah nabi ada berapa dalam islam ?\",\"Jumlah rukun iman ada berapa ?\",\"Jumlah rukun islam ada berapa ?\"]', '[{\"text\":\"5\",\"correct\":true},{\"text\":\"25\",\"correct\":true},{\"text\":\"6\",\"correct\":true},{\"text\":\"Ada 5\",\"correct\":true}]', '100', 50, 'Lamaran Masuk', '2021-10-24 15:08:00'),
+(32, 'andi', '092321233', '1992dayat@gmail.com', 'Kota Solok', 'asada', 'laki-laki', 'S-1', 'asdasdasda', 'Islam', 'Sudah pernah bekerja', 'asdasdadasdsd', 'Manado', '1992-09-10', 'Lajang', 'Ya', 'dasdasdasdasd', 'sadasdadadsas', 'sadasdasdas', 'foto1635285678043foto.jpg', 'ktp1635285678043Scan KTP.JPG', 'ijazah1635285678043ijazah.jpeg', 'serti1635285678043sert.jpeg', 'skck1635285678043skck.jpg', 'porto1635285678043Muhammad hidayatullah.pdf', '[\"Jumlah rukun islam\",\"Jumlah nabi ada berapa dalam islam ?\",\"Jumlah rukun iman ada berapa ?\",\"Jumlah rukun islam ada berapa ?\"]', '[{\"text\":\"4\"},{\"text\":\"22\"},{\"text\":\"2\"},{\"text\":\"ada 4\"}]', '0', 50, 'Lamaran Masuk', '2021-10-26 22:01:18');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,7 @@ CREATE TABLE `cabang` (
 --
 
 INSERT INTO `cabang` (`id`, `name`, `address`, `telp`, `img`, `created_at`) VALUES
-(2, 'Ayub Camp', 'Jl. Tomang Raya Kav 21 – 23, Jakarta Barat.', '08227282738', '1634408235799business-address-slovenia-europe-800x445.jpg', '2021-10-16 18:17:15'),
+(2, 'Ayub Camps', 'Jl. Tomang Raya Kav 21 – 23, Jakarta Barats', '08227282738121', '1634408235799business-address-slovenia-europe-800x445.jpg', '2021-10-29 19:59:14'),
 (3, 'Moses', 'Jl. Daan Mogot KM. 18, Cengkareng, Jakarta 11840 – Indonesia', '0755232526', '1634408308644Company-profile-3.jpg', '2021-10-16 18:18:28'),
 (4, 'Ibrahim Camp', 'Jalan Tomang Raya No 21-23 Jakarta', '0755239823', '1634408903336Company-profile-3.jpg', '2021-10-16 18:28:23');
 
@@ -119,9 +120,7 @@ CREATE TABLE `gallery` (
   `status` varchar(10) NOT NULL DEFAULT 'galeri',
   `lokasi` varchar(100) DEFAULT NULL,
   `date_range` varchar(100) DEFAULT NULL,
-  `posisi` varchar(100) DEFAULT NULL,
   `img` varchar(255) NOT NULL,
-  `date` date DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -129,34 +128,29 @@ CREATE TABLE `gallery` (
 -- Dumping data for table `gallery`
 --
 
-INSERT INTO `gallery` (`id`, `title`, `status`, `lokasi`, `date_range`, `posisi`, `img`, `date`, `created_at`) VALUES
-(6, 'bandung', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634459436319land1.png', '2021-10-17', '2021-10-25 15:15:36'),
-(8, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-17', '2021-10-25 15:15:41'),
-(9, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-17', '2021-10-25 15:15:46'),
-(10, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634474589681akbp-tulus-wartawan.jpg', '2021-10-17', '2021-10-25 15:15:53'),
-(11, '1', 'galeri', 'Pelatihan PAZ Basic Surabaya', '20 - 21 Oktober 2021', NULL, '1634477177338qEq59t-3_400x400.jpg', '2021-10-17', '2021-10-25 15:16:32'),
-(12, '2', 'galeri', 'Pelatihan PAZ Basic Surabaya', '20 - 21 Oktober 2021', NULL, '1634477189699pelatihan-Apps-orlokjakbar-2020-3.jpg', '2021-10-17', '2021-10-25 15:16:36'),
-(13, '3', 'galeri', 'Pelatihan PAZ Basic Surabaya', '20 - 21 Oktober 2021', NULL, '1634477213431images.jpeg', '2021-10-17', '2021-10-25 15:16:42'),
-(14, '4', 'galeri', 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', NULL, '1634477238811Bimtek-Pelatihan-Perpajakan-Omnibus-Law-Pada-Instansi-Pemerintah.jpeg', '2021-10-17', '2021-10-25 15:17:05'),
-(15, 'test', 'galeri', 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', 'undefined', '163516858059797746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-25', '2021-10-25 15:17:08'),
-(16, 'tt', 'galeri', 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', 'landscape', '1635169453725Company-profile-3.jpg', '2021-10-15', '2021-10-25 15:17:12'),
-(17, 'tt', 'galeri', 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', 'landscape', '1635169453826Company-profile-3.jpg', '2021-10-15', '2021-10-25 15:17:16'),
-(18, 'Sesuatu', 'galeri', 'Pelatihan PAZ Basic Yogyakarta', '20 - 21 Oktober 2021', 'landscape', '1635193247546newssss.jpg', '2021-10-26', '2021-10-25 20:20:47'),
-(19, 'bandung', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634459436319land1.png', '2021-10-17', '2021-10-25 15:15:36'),
-(20, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-17', '2021-10-25 15:15:41'),
-(21, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-17', '2021-10-25 15:15:46'),
-(22, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634474589681akbp-tulus-wartawan.jpg', '2021-10-17', '2021-10-25 15:15:53'),
-(23, 'Sesuatu', 'galeri', 'Pelatihan PAZ Basic Yogyakarta', '20 - 21 Oktober 2021', 'landscape', '1635193247546newssss.jpg', '2021-10-26', '2021-10-25 20:20:47'),
-(24, 'bandung', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634459436319land1.png', '2021-10-17', '2021-10-25 15:15:36'),
-(25, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-17', '2021-10-25 15:15:41'),
-(26, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-17', '2021-10-25 15:15:46'),
-(27, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634474589681akbp-tulus-wartawan.jpg', '2021-10-17', '2021-10-25 15:15:53'),
-(28, 'Sesuatu', 'galeri', 'Pelatihan PAZ Basic Yogyakarta', '20 - 21 Oktober 2021', 'landscape', '1635193247546newssss.jpg', '2021-10-26', '2021-10-25 20:20:47'),
-(29, 'bandung', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634459436319land1.png', '2021-10-17', '2021-10-25 15:15:36'),
-(30, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-17', '2021-10-25 15:15:41'),
-(31, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-17', '2021-10-25 15:15:46'),
-(32, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', NULL, '1634474589681akbp-tulus-wartawan.jpg', '2021-10-17', '2021-10-25 15:15:53'),
-(33, 'Sesuatu', 'galeri', 'Pelatihan PAZ Basic Yogyakarta', '20 - 21 Oktober 2021', 'landscape', '1635193247546newssss.jpg', '2021-10-26', '2021-10-25 20:20:47');
+INSERT INTO `gallery` (`id`, `title`, `status`, `lokasi`, `date_range`, `img`, `created_at`) VALUES
+(6, 'bandung jaya', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634459436319land1.png', '2021-10-29 21:37:40'),
+(8, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-25 15:15:41'),
+(9, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-25 15:15:46'),
+(10, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634474589681akbp-tulus-wartawan.jpg', '2021-10-25 15:15:53'),
+(11, '1', 'galeri', 'Pelatihan PAZ Basic Surabaya', '20 - 21 Oktober 2021', '1634477177338qEq59t-3_400x400.jpg', '2021-10-25 15:16:32'),
+(12, '2', 'galeri', 'Pelatihan PAZ Basic Surabaya', '20 - 21 Oktober 2021', '1634477189699pelatihan-Apps-orlokjakbar-2020-3.jpg', '2021-10-25 15:16:36'),
+(13, 'PAZ Surabaya', 'galeri', 'Pelatihan PAZ Basic Surabaya', '20 - 21 Oktober 2021', '1634477213431images.jpeg', '2021-10-29 21:24:38'),
+(14, '4', 'galeri', 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', '1634477238811Bimtek-Pelatihan-Perpajakan-Omnibus-Law-Pada-Instansi-Pemerintah.jpeg', '2021-10-25 15:17:05'),
+(15, 'test', 'galeri', 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', '163516858059797746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-25 15:17:08'),
+(17, 'tt', 'galeri', 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', '1635169453826Company-profile-3.jpg', '2021-10-25 15:17:16'),
+(19, 'bandung', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634459436319land1.png', '2021-10-25 15:15:36'),
+(20, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-25 15:15:41'),
+(21, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-25 15:15:46'),
+(22, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634474589681akbp-tulus-wartawan.jpg', '2021-10-25 15:15:53'),
+(24, 'bandung', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634459436319land1.png', '2021-10-25 15:15:36'),
+(25, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-25 15:15:41'),
+(26, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-25 15:15:46'),
+(27, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634474589681akbp-tulus-wartawan.jpg', '2021-10-25 15:15:53'),
+(29, 'bandung', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634459436319land1.png', '2021-10-25 15:15:36'),
+(30, 'ngopi', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447455468697746-gading-marten-ngopi-bareng-presiden-jokowi.jpg', '2021-10-25 15:15:41'),
+(31, 'ngopi2', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '163447457637868637446407-img-20201004-wa0023.jpg', '2021-10-25 15:15:46'),
+(32, 'ngopi3', 'kopdar', 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', '1634474589681akbp-tulus-wartawan.jpg', '2021-10-25 15:15:53');
 
 -- --------------------------------------------------------
 
@@ -180,6 +174,38 @@ INSERT INTO `gallery_group` (`id`, `lokasi`, `date_range`, `konten`, `created_at
 (6, 'Kopdar PAZTI Kalimantan Barat', '30 Oktober 2021', 'Pertemuan antar alumni Pelatihan PAZ daerah Kalimantan Barat yang dilakukan dari tanggal X bulan Oktober 2021 secara offline di kota X. Peserta pada pertemuan ini mencapai 64 orang.', '2021-10-25 14:28:01'),
 (7, 'Pelatihan PAZ Basic Surabaya', '20 - 21 Oktober 2021', 'Pelatihan yang dilakukan dari tanggal X sampai tanggal Y pada bulan Oktober 2021 secara offline di kota Surabaya. Peserta pada pelatihan ini mencapai 128 orang.', '2021-10-25 14:28:35'),
 (8, 'Pelatihan PAZ Basic Yogyakarta', '17 - 18 Oktober 2021', 'Pelatihan yang dilakukan dari tanggal X sampai tanggal Y pada bulan Oktober 2021 secara offline di kota Yogyakarta. Peserta pada pelatihan ini mencapai 100 orang.', '2021-10-25 14:30:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `instruktur`
+--
+
+CREATE TABLE `instruktur` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `address` varchar(150) DEFAULT NULL,
+  `telp` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `instruktur`
+--
+
+INSERT INTO `instruktur` (`id`, `name`, `img`, `title`, `address`, `telp`, `created_at`) VALUES
+(2, 'Ahmad Kaimudin', '1635442123874Container.png', 'Trainer', 'Pontianak', '0812872384', '2021-10-28 17:28:44'),
+(3, 'Ahmad Siam', '1635442153467Container (1).png', 'Trainer', 'Solo', '0812837493', '2021-10-28 17:29:13'),
+(4, 'Ahmad Albar', '1635442181099Container (2).png', 'trainer', 'Surabaya', '0755325031', '2021-10-28 17:29:41'),
+(5, 'Aldi Taher', '1635442215540Container (3).png', 'trainer online', 'Dirumah', '082383746384', '2021-10-28 17:30:15'),
+(6, 'Sumiya', '1635442243638Container (4).png', 'Trainer offline', 'Bandung', '0923827383', '2021-10-28 17:30:43'),
+(7, 'Ahmad Kaimudin', '1635442123874Container.png', 'Trainer', 'Pontianak', '0812872384', '2021-10-28 17:28:44'),
+(8, 'Ahmad Siam', '1635442153467Container (1).png', 'Trainer', 'Solo', '0812837493', '2021-10-28 17:29:13'),
+(9, 'Ahmad Albar', '1635442181099Container (2).png', 'trainer', 'Surabaya', '0755325031', '2021-10-28 17:29:41'),
+(10, 'Aldi Taher', '1635442215540Container (3).png', 'trainer online', 'Dari mana saja', '082383746384', '2021-10-28 17:30:15'),
+(11, 'Sumiyah', '1635442243638Container (4).png', 'Trainer offline', 'Bandung', '0923827383', '2021-10-28 17:30:43');
 
 -- --------------------------------------------------------
 
@@ -211,6 +237,31 @@ INSERT INTO `kuis` (`id`, `text`, `responses`, `jawaban`, `status`, `options`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kurikulum`
+--
+
+CREATE TABLE `kurikulum` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `subtitle` varchar(255) DEFAULT NULL,
+  `penyakit` varchar(255) DEFAULT NULL,
+  `konten` text DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `tipe` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kurikulum`
+--
+
+INSERT INTO `kurikulum` (`id`, `name`, `subtitle`, `penyakit`, `konten`, `img`, `tipe`) VALUES
+(1, 'Jantung', 'Materi tentang jantung dan penyakit jantung', 'Koroner, jantung bengkak, bypass, aritmea, klep bocor, lemah jantung', '<p><strong>Kisi - Kisi Kurikulum</strong></p><p>Maecenas lorem eros, luctus placerat blandit et, mattis sed enim. Ut lacus urna, efficitur et fringilla id, pretium ac ex.</p><ul><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li><li>Nullam eu orci nisl. Aliquam et nisl libero.</li></ul>', '1635530561721heart 1.png', 'upgrading'),
+(2, 'Babypaz', 'Materi bayi baru lahir', 'Cerebral palsy, down syndrom, jantung bocor, pneumonia, asma, kejang, epilepsi, polio', '<p><strong>Kisi - Kisi Kurikulum</strong></p><p>Maecenas lorem eros, luctus placerat blandit et, mattis sed enim. Ut lacus urna, efficitur et fringilla id, pretium ac ex.&nbsp;</p><ul><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li><li>Nullam eu orci nisl. Aliquam et nisl libero.</li></ul>', '1635530769369newborn 1.png', 'upgrading'),
+(3, 'Kanker / Benjolan', 'Materi kanker', 'Tumor dan kanker payudara', '<p><strong>Kisi - Kisi Kurikulum</strong></p><p>Maecenas lorem eros, luctus placerat blandit et, mattis sed enim. Ut lacus urna, efficitur et fringilla id, pretium ac ex.&nbsp;</p><ul><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li><li>Nullam eu orci nisl. Aliquam et nisl libero.</li></ul>', '1635531868998breast-cancer (1) 1.png', 'upgrading');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `legalitas`
 --
 
@@ -230,7 +281,7 @@ INSERT INTO `legalitas` (`id`, `name`, `instansi`, `img`, `created_at`) VALUES
 (11, 'Izin Menyelenggarakan Kursus', 'Disdik / Kemendikbud', '1634405969570izinfull1.png', '2021-10-16 17:39:29'),
 (12, 'Izin Penyelenggaraan Pelatihan', 'Disnaker / Kemnaker', '1634405998208izin2.png', '2021-10-16 17:39:58'),
 (13, 'Sertifikat NPSN ', 'Kemendikbud', '1634406020587izin3.png', '2021-10-16 17:40:20'),
-(14, 'Surat Izin Usaha Perdagangan', 'Badan Perizinan Usaha Terpadu', '1634406101458contoh-siup-kecil.jpg', '2021-10-16 17:41:41');
+(14, 'Surat Izin Usaha Pendidikan', 'Badan Perizinan Usaha Terpadu', '1634406101458contoh-siup-kecil.jpg', '2021-10-29 19:11:39');
 
 -- --------------------------------------------------------
 
@@ -259,7 +310,7 @@ INSERT INTO `liputan` (`id`, `title`, `tag`, `subtitle`, `date`, `content`, `img
 (7, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet', NULL, 'pencarian', '2021-10-15 00:00:00', '<p>adadadadada dad ddddaaa</p>', '1634392469162police.png', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-16 13:54:29'),
 (8, 'Google Hanya Izinkan Pinjol yang Terdaftar di OJK sejak 28 Juli 2021', NULL, 'null', '2021-10-15 00:00:00', '<p>Mulai 28 Juli 2021, Google memperbarui kebijakan bagi para pengembang aplikasi pinjaman online di India dan Indonesia. Khusus di Indonesia, Google hanya akan mengizinkan aplikasi pinjaman pribadi yang diberi lisensi oleh, atau terdaftar di OJK. \"Sesuai dengan kebijakan kami, harus ada nomor yang terdaftar di OJK atau minimal nomor registrasi pendaftaran ke OJK,\" jelas perwakilan Google Indonesia ketika dihubungi KompasTekno melalui pesan singkat, Jumat (15/10/2021).</p>', '1634405166567newssss.jpg', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-16 17:26:07'),
 (9, 'Dianggap Langgar Privasi, Google Blokir Iklan Aplikasi Penyadap', NULL, 'null', '2021-10-16 00:00:00', '<p><strong>RAKSASA </strong>Google memperketat privasi untuk para penggunanya dengan menutup beberapa iklan yang dianggap memata-matai. Iklan tersebut dianggap mempromosikan aplikasi yang mendorong pengguna memata-matai ponsel pasangan.</p><p>Aplikasi spyware ini memang biasa digunakan orangtua yang ingin memantau panggilan, pesan, aplikasi, foto dan lokasi anak mereka. Namun, aplikasi tersebut sering dirancang untuk dipasang secara diam-diam tanpa persetujuan pemilik perangkat.</p><p>“Kami tidak mengizinkan iklan yang mempromosikan spyware untuk pengawasan pengguna,\" kata juru bicara Google, dikutip dari TechCrunch, Sabtu (16/19/2021).</p>', '1634405373201google.jpg', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-16 17:29:33'),
-(11, 'sadasddsdas', '[{\"text\":\"sadasdasd\"},{\"text\":\"sadasdasd\"}]', 'sdasdasd', '2021-10-26 00:00:00', '<p>sadasdasdasd</p>', '1635257507582google.jpeg', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-26 14:11:47'),
+(11, 'Hujan Longsor melanda sitinjau lauik', '[{\"text\":\"sadasdasd\"},{\"text\":\"sadasdasd\"}]', 'Terjadi longsor akibat hujan lebat', '2021-10-20 00:00:00', '<p>beberapa korban berhasil diselamatkan</p>', '1635257507582google.jpeg', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-29 19:52:27'),
 (12, 'ELSAM Tanggapi Laporan Google soal RI Banyak Minta Hapus Konten  Baca artikel CNN Indonesia \"ELSAM Tanggapi Laporan Google soal RI Banyak Minta Hapus Konten\"', '[{\"text\":\"teknologi\"},{\"text\":\"google\"},{\"text\":\"terbaru\"}]', 'Google mencatat Indonesia menjadi negara yang paling banyak menghapus dan mengajukan permintaan penghapusan konten atau informasi. (Foto: istockphoto/volkan.basar)  Baca artikel CNN Indonesia \"ELSAM Tanggapi Laporan Google soal RI Banyak Minta Hapus Konten\"', '2021-10-26 00:00:00', '<p>Jakarta, CNN Indonesia -- Peneliti Lembaga Studi &amp; Advokasi Masyarakat (ELSAM), Alia Yofira menanggapi laporan transparansi Google terkait Indonesia menjadi negara yang banyak menghapus dan mengajukan permintaan penghapusan konten atau informasi terbanyak pada periode Januari-Juni 2021.<br>Menurut Alia, permintaan penghapusan konten di Indonesia memiliki sejumlah masalah jika merujuk pada pasal 40 ayat 2b yang secara khusus mengatur pemutusan akses ke sebuah konten.<br><br>Penghapusan konten di Indonesia dilakukan berdasarkan UU ITE, khususnya pasal 40 ayat 2b yang mengatur bahwa pemerintah berwenang untuk melakukan pemutusan akses ke konten yang memiliki muatan yang melanggar hukum, kata Alia kepada CNNindonesia.com melalui pesan teks, Selasa (26/10).<br><br>Baca artikel CNN Indonesia ELSAM Tanggapi Laporan Google soal RI Banyak Minta Hapus Konten selengkapnya di sini: <a href=\"https://www.cnnindonesia.com/teknologi/20211026190406-185-712725/elsam-tanggapi-laporan-google-soal-ri-banyak-minta-hapus-konten\">https://www.cnnindonesia.com/teknologi/20211026190406-185-712725/elsam-tanggapi-laporan-google-soal-ri-banyak-minta-hapus-konten</a>.<br><br>Download Apps CNN Indonesia sekarang https://app.cnnindonesia.com/</p>', '1635257849060google.jpeg', '016241c8-b725-43d5-8a50-94f5c86ea494', '2021-10-26 14:19:53');
 
 -- --------------------------------------------------------
@@ -358,7 +409,7 @@ CREATE TABLE `pelatihan` (
 --
 
 INSERT INTO `pelatihan` (`id`, `title`, `jenis`, `subtitle`, `img`, `tempat`, `waktu`, `akses`, `expire`, `created_at`) VALUES
-(3, 'Pelatihan Offline PAZ Al Kasaw Basic Mei 2021', 'offline', 'Khusus muslimah', '1634485585883potrait5.png', 'Bandung', '', 'Waktu Akses Lifetime', 'Kapanpun', '2021-10-17 15:46:25'),
+(3, 'Pelatihan Offline PAZ Al Kasaw Basic Mei 2021', 'online', 'Khusus muslimin muslimah', '1634485585883potrait5.png', 'Bandung', '2021-10-29', 'Waktu Akses Lifetime', 'Kapanpun', '2021-10-29 20:25:16'),
 (4, 'Pelatihan Offline PAZ Al Kasaw Basic Oktober 2021', 'offline', 'Khusus muslimah', '1634485653120potrait4.png', 'Bogor, Jl. Merdeka, No.3', '', 'Waktu Akses Lifetime', 'Seumur hidup', '2021-10-17 15:47:33'),
 (5, 'Pelatihan Offline PAZ Al Kasaw Basic November 2021', 'online', 'Khusus muslim', '1634485707572potrait1.png', 'Bandung', '', 'Waktu Akses Lifetime', 'Kapanpun', '2021-10-17 15:48:27'),
 (6, 'Pelatihan Offline PAZ Al Kasaw Basic Mei 2021', 'offline', 'Khusus muslim', '1634485757213potrait6.png', 'Bogor, Jl. Merdeka, No.3', '2021-10-12', 'Waktu Akses Lifetime', 'Seumur hidup', '2021-10-17 15:49:17'),
@@ -367,6 +418,35 @@ INSERT INTO `pelatihan` (`id`, `title`, `jenis`, `subtitle`, `img`, `tempat`, `w
 (10, 'Pelatihan Online PAZ Al Kasaw Basic Januari 2022', 'online', 'Khusus muslimah', '1634486139606potrait5.png', 'Google meet', '2022-10-01', 'Waktu Akses Lifetime', 'Kapanpun', '2021-10-17 15:55:39'),
 (11, 'Pelatihan Offline PAZ Al Kasaw Basic Mei 2021', 'offline', 'Khusus muslim', '1634486328873potrait1.png', 'Bogor, Jl. Merdeka, No.3', '', 'Waktu Akses Lifetime', 'Kapanpun', '2021-10-17 15:58:48'),
 (12, 'Pelatihan Online PAZ Al Kasaw Basic Januari 2022', 'online', 'Muslim & Muslimah', '1634493019312potrait1.png', 'Bogor, Jl. Merdeka, No.3', '2022-10-07', 'Sesuai waktu', 'Sekali', '2021-10-17 17:50:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `struktur`
+--
+
+CREATE TABLE `struktur` (
+  `id` int(11) NOT NULL,
+  `title` varchar(50) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `telp` varchar(20) DEFAULT NULL,
+  `nip` varchar(50) DEFAULT NULL,
+  `prefix` varchar(50) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `struktur`
+--
+
+INSERT INTO `struktur` (`id`, `title`, `name`, `img`, `telp`, `nip`, `prefix`, `created_at`) VALUES
+(2, 'Direktur', 'Tri Hariyanto', '1635352099073Rectangle 21831.png', '081121728344', 'MB13412001', 'direktur', '2021-10-27 23:41:56'),
+(3, 'Ka.Div Pelatihan', 'M. Baihaqi M.', '1635352208422Rectangle 21831 (1).png', '0821212121', 'MB13412020', 'pelatih', '2021-10-27 23:41:56'),
+(4, 'Ka. Div Operasional', 'Haryanto Bilal M.', '1635352276149Rectangle 21831 (2).png', '0812727281', 'MB13412023', 'operasional', '2021-10-27 23:41:56'),
+(5, 'Ka. Div Finance', 'Yusuf Ardianto', '1635352397196Rectangle 21831 (3).png', '0823827383', 'MB13412024', 'finance', '2021-10-27 23:41:56'),
+(6, 'Ka. Div Human Capital', 'Anjrah Ari Susanto', '1635352466999Rectangle 21831 (4).png', '0823738475', 'MB13412025', 'human', '2021-10-27 23:41:56'),
+(7, 'Ka. Div Marketing', 'Andimara Nur', '1635352518321Rectangle 21831 (5).png', '0823726384', 'MB13412029', 'marketing', '2021-10-27 23:41:56');
 
 -- --------------------------------------------------------
 
@@ -397,6 +477,61 @@ INSERT INTO `testimoni` (`id`, `name`, `img`, `address`, `content`, `created_at`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `timeline`
+--
+
+CREATE TABLE `timeline` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) DEFAULT NULL,
+  `lokasi` varchar(100) DEFAULT NULL,
+  `bulan` varchar(20) DEFAULT NULL,
+  `date_range` varchar(50) DEFAULT NULL,
+  `img` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `timeline`
+--
+
+INSERT INTO `timeline` (`id`, `title`, `lokasi`, `bulan`, `date_range`, `img`, `created_at`) VALUES
+(12, 'PAZ Basic Batam', 'Batams', 'november 2021', '6 - 7 November 2021', '1635432068191Document.png', '2021-10-28 14:41:08'),
+(13, 'PAZ Basic Surabaya', 'surabaya', 'november 2021', '9 - 15 November 2021', '1635432068191Document.png', '2021-10-28 14:41:08'),
+(14, 'PAZ Basic Online', 'Batam', 'november 2021', '16 - 20 November 2021', '1635432068191Document.png', '2021-10-28 14:41:08'),
+(15, 'PAZ Basic Solo', 'solok', 'november 2021', '21 - 25 November 2021', '1635432068191Document.png', '2021-10-28 14:41:08'),
+(16, 'PAZ Basic PADANG', 'padang', 'desember 2021', '4 - 5 Desember 2021', '1635432242347Document.png', '2021-10-28 14:44:02'),
+(17, 'PAZ Basic Medan', 'medan', 'desember 2021', '7 - 9 Desember 2021', '1635432242347Document.png', '2021-10-28 14:44:02'),
+(18, 'PAZ Basic Bogor', 'Bogorss', 'januari 2022', '8 - 9 Januari 2022', '1635432313480Document.png', '2021-10-28 14:45:13'),
+(19, 'PAZ Basic Bandung', 'bandung', 'januari 2022', '11 - 12 Januari 2022', '1635432313480Document.png', '2021-10-28 14:45:13'),
+(20, 'PAZ Basic MALANG', 'Malang', 'februari 2022', '12 - 13 februari', '1635432380071Document.png', '2021-10-28 14:46:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `timeline_group`
+--
+
+CREATE TABLE `timeline_group` (
+  `id` int(11) NOT NULL,
+  `bulan` varchar(20) DEFAULT NULL,
+  `status` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `timeline_group`
+--
+
+INSERT INTO `timeline_group` (`id`, `bulan`, `status`, `created_at`) VALUES
+(1, 'oktober 2021', 'on', '2021-10-27 20:46:20'),
+(2, 'november 2021', 'on', '2021-10-27 20:57:33'),
+(3, 'desember 2021', 'on', '2021-10-27 20:58:44'),
+(9, 'januari 2022', 'on', '2021-10-28 06:11:55'),
+(10, 'februari 2022', 'on', '2021-10-28 06:12:10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -418,10 +553,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama_depan`, `nama_bel`, `email`, `telp`, `alamat`, `password`, `role`, `last_login`, `registered_at`) VALUES
-('016241c8-b725-43d5-8a50-94f5c86ea494', 'adm', NULL, 'adm@adm.com', NULL, NULL, '$2a$10$lkTZt4C1w4vFxC759p/01ujxjz3ElNzZbYLMol1DN/dFOjFmQ4VFy', NULL, '2021-10-18 00:55:20', '2021-10-17 17:55:20'),
-('0218982e-5809-475c-8a60-86daf2e381dd', 'admin', NULL, 'admin@admin.com', NULL, NULL, '$2a$10$VsyHkLR9y51KGMn.bs9bwegKjNvDYRSGolC45mlMzTHwrq.rr61Da', NULL, '2021-10-14 17:28:12', '2021-10-14 10:28:12'),
-('245c17a8-a7c8-454c-8225-8cf7359485ea', 'aaa', 'sssss', 'dyt@dyt.coms', '1112222', 'asdsadas', '$2a$10$.BdBZ0qDKhNmJTmkLmFW5uuzAnuZleN/2yn3ktzZXqSNyuP3T9ZYC', NULL, NULL, '2021-10-14 13:09:51'),
-('9083d588-0b0c-4dfd-9b8a-f87480b9c44b', 'assas', 'ddfd', 'dyts@dyt.com', '32423423423', 'Kuini', '$2a$10$aV9ap/DUAk/UORhFgEKC4u2hXQBh.cLvvoGlk/YCT.jXy.8xp4ab2', NULL, '2021-10-14 20:03:51', '2021-10-14 13:03:51');
+('0218982e-5809-475c-8a60-86daf2e381dd', 'admin', NULL, 'admin@admin.com', NULL, NULL, '$2a$10$VsyHkLR9y51KGMn.bs9bwegKjNvDYRSGolC45mlMzTHwrq.rr61Da', 'admin', '2021-10-29 23:21:41', '2021-10-29 16:21:41'),
+('17fb97aa-0008-4cc0-8f0a-bad1cb315432', 'new', 'new', 'new@new.com', '08123827364', 'Jl. Kuini II, No. 2', '$2a$10$/2VzjowwlWUmwmx084qr6eO0lLo/Jo7HUpWvK6D5XaQgRL07ME6fS', NULL, '2021-10-29 22:36:53', '2021-10-29 15:36:53'),
+('2ed837a5-68ff-40d7-be2b-317711bc782c', 'hrd', 'paz', 'hrd@hrd.com', '08238273485', 'Bandung', '$2a$10$LA/YeVt7m7ZdzlEErl4b..yE6WpaxI1BxAyja3K740InC2KpdZesK', 'hrd', '2021-10-29 22:35:04', '2021-10-29 15:35:04'),
+('3eb53177-c9af-49bb-828d-c4a8a134db10', 'Staff', 'staff', 'staff@staff.com', '0755325031', 'Jl. Kuini II, No. 2', '$2a$10$RCk0eH7Ha9IGDD6lzdXvJux8TA5Nd1y42HSn1LFlUMx23y7zlgCVK', 'staff', '2021-10-29 21:15:51', '2021-10-29 14:15:51');
 
 -- --------------------------------------------------------
 
@@ -441,7 +576,7 @@ CREATE TABLE `visi` (
 --
 
 INSERT INTO `visi` (`id`, `visi`, `misi`, `created_at`) VALUES
-(1, NULL, 'Riset dan pengembangan Keilmuan PAZ Al Kasaw dalam konteks pondasi yang sudah diletakkan oleh Ustadz Haris Moedjahid Rahimahullah', '2021-10-16 19:48:02'),
+(1, NULL, 'Riset & pengembangan Keilmuan PAZ Al Kasaw dalam konteks pondasi yang sudah diletakkan oleh Ustadz Haris Moedjahid Rahimahullah', '2021-10-29 19:04:56'),
 (2, NULL, 'Pendidikan dan pelatihan ilmu paz al kasaw berketerlanjutan dengan karakter paztrooper yang unggul', '2021-10-16 19:48:06'),
 (3, NULL, 'Pengelolaan manajerial alumni berbasis IT untuk kemudahan masyarakat mendapat layanan terapi PAZ Al Kasaw', '2021-10-16 19:48:12'),
 (4, NULL, 'Menjadi perusahaan yang profitable, high margin, dan memberikan intangiable values bagi stakeholder yang terlibat', '2021-10-16 19:48:16'),
@@ -502,9 +637,21 @@ ALTER TABLE `gallery_group`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `instruktur`
+--
+ALTER TABLE `instruktur`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kuis`
 --
 ALTER TABLE `kuis`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `kurikulum`
+--
+ALTER TABLE `kurikulum`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -532,9 +679,27 @@ ALTER TABLE `pelatihan`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `struktur`
+--
+ALTER TABLE `struktur`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `testimoni`
 --
 ALTER TABLE `testimoni`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `timeline`
+--
+ALTER TABLE `timeline`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `timeline_group`
+--
+ALTER TABLE `timeline_group`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -563,7 +728,7 @@ ALTER TABLE `waktu`
 -- AUTO_INCREMENT for table `apply`
 --
 ALTER TABLE `apply`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `blog`
@@ -590,10 +755,22 @@ ALTER TABLE `gallery_group`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `instruktur`
+--
+ALTER TABLE `instruktur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `kuis`
 --
 ALTER TABLE `kuis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `kurikulum`
+--
+ALTER TABLE `kurikulum`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `legalitas`
@@ -620,10 +797,28 @@ ALTER TABLE `pelatihan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `struktur`
+--
+ALTER TABLE `struktur`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `testimoni`
 --
 ALTER TABLE `testimoni`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `timeline`
+--
+ALTER TABLE `timeline`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `timeline_group`
+--
+ALTER TABLE `timeline_group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `visi`

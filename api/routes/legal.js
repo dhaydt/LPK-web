@@ -3,6 +3,28 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const update = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE legalitas SET name = ?, instansi = ? WHERE id = ?;`;
+  db.query(
+    sql,
+    [req.body.name, req.body.instansi, req.params.id],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/legal/:id", update);
+
 // del legal
 const DIR_LEGAL = "public/images/legal";
 router.delete("/legal/:img", (req, res) => {

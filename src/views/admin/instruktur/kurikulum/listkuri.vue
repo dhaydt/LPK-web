@@ -55,15 +55,19 @@
           :items="tableData"
           :fields="fields"
           responsive="sm"
+          class="text-left"
           :per-page="perPage"
-          striped
           :current-page="currentPage"
+          striped
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
           :filter="filter"
           :filter-included-fields="filterOn"
           @filtered="onFiltered"
         >
+          <template v-slot:cell(konten)="data">
+            <div class="konten text-left" v-html="data.item.konten"></div>
+          </template>
           <template v-slot:cell(img)="data">
             <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
           </template>
@@ -89,6 +93,15 @@
                 <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
               </a>
             </div>
+            <!-- <a
+              href="javascript:void(0);"
+              class="mr-3 text-primary"
+              v-b-tooltip.hover
+              data-toggle="tooltip"
+              title="Edit"
+            >
+              <i class="mdi mdi-pencil font-size-18"></i>
+            </a> -->
           </template>
         </b-table>
       </div>
@@ -107,7 +120,12 @@
         </div>
       </div>
 
-      <b-modal ref="users" id="users" hide-footer title="Edit Data">
+      <b-modal
+        ref="users"
+        id="users"
+        hide-footer
+        :title="`Edit ` + editData.name"
+      >
         <div class="d-block text-left">
           <b-form-group id="input-group-1" label="Nama" label-for="input-1">
             <b-form-input
@@ -120,37 +138,40 @@
 
           <b-form-group
             id="input-group-11"
-            label="Jabatan"
+            label="Sub judul"
             label-for="input-11"
           >
             <b-form-input
               id="input-11"
-              v-model="editData.title"
-              type="text"
-              required
-            ></b-form-input> </b-form-group
-          ><b-form-group
-            id="inaput-group-11"
-            label="Alamat"
-            label-for="iinput-11"
-          >
-            <b-form-input
-              id="iinput-11"
-              v-model="editData.address"
-              type="text"
-              required
-            ></b-form-input> </b-form-group
-          ><b-form-group
-            id="input-group-111"
-            label="Telepon"
-            label-for="input-1111"
-          >
-            <b-form-input
-              id="input-1111"
-              v-model="editData.telp"
+              v-model="editData.subtitle"
               type="text"
               required
             ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-2"
+            label="Deskripsi"
+            label-for="input-2"
+          >
+            <ckeditor
+              v-model="editData.konten"
+              :editor="editor"
+              required
+            ></ckeditor>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-25"
+            label="Tipe Materi"
+            label-for="input-25"
+          >
+            <b-form-select
+              id="subjudull"
+              v-model="editData.tipe"
+              :options="tipe"
+              required
+            ></b-form-select>
           </b-form-group>
         </div>
         <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
@@ -168,11 +189,19 @@
 
 <script>
 import axios from "axios";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default {
   data() {
     return {
       editData: {},
+      tipe: [
+        { text: "Tipe Materi", value: null },
+        { text: "Basic", value: "basic" },
+        { text: "Upgrading", value: "upgrading" },
+        { text: "Pengayaan", value: "pengayaan" },
+      ],
       tableData: [],
       totalRows: 1,
       currentPage: 1,
@@ -185,10 +214,11 @@ export default {
       fields: [
         { key: "id", sortable: true, label: "ID" },
         { key: "name", sortable: true, label: "Nama" },
-        { key: "title", sortable: true, label: "Posisi" },
+        { key: "subtitle", sortable: true, label: "Sub Judul" },
+        { key: "penyakit", sortable: true, label: "Penyakit" },
+        { key: "konten", sortable: true, label: "Keterangan" },
+        { key: "tipe", sortable: true, label: "Tipe Materi" },
         { key: "img", label: "Foto" },
-        { key: "telp", sortable: true, label: "Telepon" },
-        { key: "address", sortable: true, label: "Alamat" },
         { key: "action" },
       ],
       visiUrl: "",
@@ -197,7 +227,12 @@ export default {
       dismissSecs: 5,
       dismissCountDown: 0,
       messages: "",
+      editor: ClassicEditor,
     };
+  },
+
+  components: {
+    ckeditor: CKEditor.component,
   },
 
   computed: {
@@ -217,8 +252,8 @@ export default {
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.visiUrl = mainUrl + "/instruktur";
-    this.imgUrl = mainUrl + "/images/instruktur/";
+    this.visiUrl = mainUrl + "/kurikulum";
+    this.imgUrl = mainUrl + "/images/kurikulum/";
     this.getLegal();
   },
 

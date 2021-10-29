@@ -1,9 +1,9 @@
 <template>
-  <div class="addGaleri">
+  <div class="addTesti">
     <b-row class="justify-content-center">
-      <b-col md="8" sm="12">
+      <b-col md="10" sm="12">
         <b-card>
-          <b-card-title class="text-left">Tambah Kopdar Alumni</b-card-title>
+          <b-card-title class="text-left">Tambah Kurikulum</b-card-title>
           <b-alert
             :show="dismissCountDown"
             dismissible
@@ -20,17 +20,61 @@
             ></b-progress>
           </b-alert>
           <b-form @submit="onSubmit">
-            <b-input-group prepend="Judul" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-input-group prepend="Nama" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-input
                 id="name"
-                v-model="formFields.title"
+                v-model="formFields.name"
                 required
               ></b-form-input>
+            </b-input-group>
+
+            <b-input-group
+              prepend="Sub Judul"
+              class="mb-2 mt-4 mr-sm-2 mb-sm-0"
+            >
+              <b-form-input
+                id="subjudul"
+                v-model="formFields.subtitle"
+                placeholder="Ex: Wajib diikuti oleh siapapun yang ingin belajar terapi PAZ "
+                required
+              ></b-form-input>
+            </b-input-group>
+
+            <b-input-group prepend="Penyakit" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-input
+                id="subjudul"
+                v-model="formFields.penyakit"
+                placeholder="Ex: Koroner, jantung bengkak, aritmea, lemah jantung"
+                required
+              ></b-form-input>
+            </b-input-group>
+
+            <b-input-group prepend="Tipe" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-select
+                id="subjudulll"
+                v-model="formFields.tipe"
+                :options="tipe"
+                required
+              ></b-form-select>
+            </b-input-group>
+
+            <b-input-group class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <template #prepend>
+                <b-input-group-text style="height: 38.63px"
+                  >Deskripsi</b-input-group-text
+                >
+              </template>
+              <ckeditor
+                v-model="formFields.konten"
+                :editor="editor"
+                required
+              ></ckeditor>
             </b-input-group>
 
             <b-input-group prepend="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-file
                 type="file"
+                ref="foto"
                 v-on:change="onSelect()"
                 accept="image/jpeg, image/png, image/gif"
                 name="image"
@@ -55,25 +99,27 @@
 </template>
 
 <script>
+import CKEditor from "@ckeditor/ckeditor5-vue";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 import axios from "axios";
 export default {
   data() {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    // 15th two months prior
-    // const minDate = new Date(today)
-    // minDate.setMonth(minDate.getMonth() - 2)
-    // minDate.setDate(15)
-    // 15th in two months
-    const maxDate = new Date(today);
-    maxDate.setMonth(maxDate.getMonth());
     return {
+      tipe: [
+        { text: "Tipe Materi", value: null },
+        { text: "Basic", value: "basic" },
+        { text: "Upgrading", value: "upgrading" },
+        { text: "Pengayaan", value: "pengayaan" },
+      ],
       formFields: {
-        title: null,
-        status: "kopdar",
+        name: "",
+        subtitle: "",
+        penyakit: "",
+        konten: null,
+        tipe: null,
         img: null,
       },
-      max: maxDate,
       file: null,
       legalUrl: "",
       loading: "",
@@ -82,24 +128,16 @@ export default {
       dismissSecs: 5,
       dismissCountDown: 0,
       messages: "",
+      editor: ClassicEditor,
     };
+  },
+  components: {
+    ckeditor: CKEditor.component,
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.legalUrl = mainUrl + "/image";
-
-    var d = new Date();
-    var datestring =
-      d.getFullYear() +
-      "-" +
-      ("0" + (d.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("0" + d.getDate()).slice(-2);
-    // console.log(datestring);
-    // 16-05-2015 09:50
-    this.formFields.date = datestring;
-    this.dateNow = datestring;
+    this.legalUrl = mainUrl + "/kurikulum";
   },
 
   methods: {
@@ -108,15 +146,18 @@ export default {
       this.loading = true;
       let formData = new FormData();
 
-      formData.append("title", this.formFields.title);
-      formData.append("status", this.formFields.status);
+      formData.append("name", this.formFields.name);
+      formData.append("subtitle", this.formFields.subtitle);
+      formData.append("penyakit", this.formFields.penyakit);
+      formData.append("konten", this.formFields.konten);
+      formData.append("tipe", this.formFields.tipe);
       formData.append("img", this.formFields.img);
       await axios
         .post(this.legalUrl, formData)
         .then((res) => {
           console.log(res);
           this.loading = false;
-          this.messages = "Galeri tersimpan";
+          this.messages = "Kurikulum tersimpan";
           this.variant = "success";
           this.showAlert();
           this.$root.$emit("getImg");
@@ -124,13 +165,16 @@ export default {
         .catch((err) => {
           console.log(err);
         });
-      this.formFields.title = "";
-      // this.formFields.date = this.dateNow;
-      this.formFields.img = "";
+      this.formFields.name = "";
+      this.formFields.subtitle = "";
+      this.formFields.penyakit = "";
+      this.formFields.konten = "";
+      this.$refs.foto.reset();
       this.loading = false;
     },
     onSelect() {
       // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+      // console.log();
       this.formFields.img = event.target.files[0];
     },
 

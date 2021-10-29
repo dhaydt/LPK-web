@@ -3,6 +3,35 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const update = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE struktur SET name = ?, title = ?, telp = ?, nip = ?, prefix = ?  WHERE id = ?;`;
+  db.query(
+    sql,
+    [
+      req.body.name,
+      req.body.title,
+      req.body.telp,
+      req.body.nip,
+      req.body.prefix,
+      req.params.id,
+    ],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/struktur/:id", update);
+
 // get legal
 const getDir = (req, res) => {
   var message = "";

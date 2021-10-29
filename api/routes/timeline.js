@@ -3,6 +3,35 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const update = (req, res) => {
+  console.log(req);
+  // title`,`lokasi`,`bulan`,`date_range`,
+  var sql = `UPDATE timeline SET title = ?, lokasi = ?, bulan = ?, date_range = ? WHERE id = ?;`;
+  db.query(
+    sql,
+    [
+      req.body.title,
+      req.body.lokasi,
+      req.body.bulan,
+      req.body.date_range,
+      req.params.id,
+    ],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/timeline/:id", update);
+
 // GROUP
 
 router.get("/groupFront", (req, res) => {

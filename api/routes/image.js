@@ -3,6 +3,46 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const updatedar = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE gallery SET title = ? WHERE id = ?;`;
+  db.query(sql, [req.body.title, req.params.id], (err, result) => {
+    if (err) {
+      return res.status(400).send({
+        msg: err,
+      });
+    }
+    return res.status(201).send({
+      msg: "Legalitas tersimpan",
+      data: result,
+    });
+  });
+};
+
+router.put("/imageKopdar/:id", updatedar);
+
+const update = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE gallery SET title = ?, date_range = ?, lokasi = ? WHERE id = ?;`;
+  db.query(
+    sql,
+    [req.body.title, req.body.date_range, req.body.lokasi, req.params.id],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/image/:id", update);
+
 // IMAGE FRONTEND
 
 router.get("/groupFront", (req, res) => {
@@ -168,7 +208,6 @@ const index = function(req, res) {
     console.log(req.files);
     var title = post.title;
     var status = post.status;
-    var date = post.date;
     var lokasi = post.lokasi;
     var date_range = post.date_range;
 
@@ -185,14 +224,12 @@ const index = function(req, res) {
       file.mv(`public/images/galeri/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `gallery`(`title`,`status`,`img`,`date`,`lokasi`,`date_range`) VALUES ('" +
+          "INSERT INTO `gallery`(`title`,`status`,`img`,`lokasi`,`date_range`) VALUES ('" +
           title +
           "','" +
           status +
           "','" +
           img +
-          "','" +
-          date +
           "','" +
           lokasi +
           "','" +

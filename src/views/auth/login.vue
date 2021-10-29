@@ -56,12 +56,10 @@
         </b-container>
       </b-col>
     </b-row>
-    <!-- <Footer></Footer> -->
   </div>
 </template>
 
 <script>
-// import Footer from "../../components/footer";
 import axios from "axios";
 export default {
   data() {
@@ -78,11 +76,23 @@ export default {
       loginUrl: "",
     };
   },
-  // components: { Footer },
 
   created() {
-    if (localStorage.getItem("auth") !== null) {
-      this.$router.push("/admin");
+    let user = JSON.parse(localStorage.getItem("auth"));
+    if (user !== null) {
+      // this.$router.push("/admin");
+      if (user.user.role == "staff") {
+        this.$router.push("/admin/about/liputan");
+      } else if (user.user.role == "hrd") {
+        this.$router.push("/admin/loker");
+      } else if (user.user.role == "admin") {
+        this.$router.push("/admin");
+      } else {
+        this.$router.push("/unauthorized");
+      }
+    } else {
+      this.$router.push("/login").catch(() => {});
+      // this.$router.push("/login");
     }
 
     const api = localStorage.apiUrl;
@@ -103,7 +113,17 @@ export default {
           console.log(res);
           localStorage.setItem("auth", JSON.stringify(res.data));
           this.loading = "";
-          this.$router.push("/admin");
+          const user = res.data.user.role;
+          if (user == "staff") {
+            this.$router.push("/admin/about/liputan");
+          } else if (user == "hrd") {
+            this.$router.push("/admin/loker");
+          } else if (user == "admin") {
+            this.$router.push("/admin");
+          } else {
+            this.$router.push("/unauthorized");
+          }
+          console.log(user);
         }
       } catch ({ response }) {
         this.loading = "";
@@ -121,7 +141,7 @@ export default {
 @import "@/assets/main.scss";
 
 #loginRow {
-  height: 90vh;
+  height: 100vh;
 }
 .left {
   background: linear-gradient(

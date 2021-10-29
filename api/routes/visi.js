@@ -2,6 +2,28 @@ const { Router } = require("express");
 const db = require("../config/db.js");
 const router = Router();
 
+const update = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE visi SET visi = ?, misi = ? WHERE id = ?;`;
+  db.query(
+    sql,
+    [req.body.visi, req.body.misi, req.params.id],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/visi/:id", update);
+
 router.post("/visi", (req, res) => {
   db.query(
     `INSERT INTO visi (visi, misi) VALUES (${db.escape(
