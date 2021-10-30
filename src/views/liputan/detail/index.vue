@@ -10,6 +10,12 @@ import axios from "axios";
 import Breadcumb from "../../../components/breadcumb";
 import LiputanDetail from "../../../components/liputan/liputanDetail";
 export default {
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "PGU",
+    // all titles will be injected into this template
+    titleTemplate: "%s | Liputan Detail",
+  },
   components: {
     Breadcumb,
     LiputanDetail,

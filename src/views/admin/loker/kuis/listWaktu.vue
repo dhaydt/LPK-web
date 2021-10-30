@@ -75,25 +75,27 @@
             </span>
           </template>
           <template v-slot:cell(action)="data" class="d-flex">
-            <!-- <a
-              href="javascript:void(0);"
-              class="mr-3 text-primary"
-              v-b-tooltip.hover
-              data-toggle="tooltip"
-              title="Edit"
-            >
-              <i class="mdi mdi-pencil font-size-18"></i>
-            </a> -->
-            <a
-              href="javascript:void(0);"
-              class="text-danger"
-              v-b-tooltip.hover
-              title="Delete"
-              @click="deleteVisi(data.item.id)"
-            >
-              <b-spinner v-if="loading" small variant="primary"></b-spinner>
-              <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
-            </a>
+            <div class="actions" style="min-width: 100px">
+              <a
+                v-b-tooltip.hover
+                title="Edit Status pertanyaan"
+                href="javascript:void(0);"
+                class="mr-2"
+                @click="edit(data.item)"
+              >
+                <i class="fas fa-edit"></i>
+              </a>
+              <a
+                href="javascript:void(0);"
+                class="text-danger"
+                v-b-tooltip.hover
+                title="Delete"
+                @click="deleteVisi(data.item.id)"
+              >
+                <b-spinner v-if="loading" small variant="primary"></b-spinner>
+                <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
+              </a>
+            </div>
           </template>
         </b-table>
       </div>
@@ -111,6 +113,30 @@
           </div>
         </div>
       </div>
+
+      <b-modal ref="users" id="users" hide-footer title="Edit Data">
+        <div class="d-block text-left">
+          <b-form-group
+            id="input-group-1"
+            label="Status Waktu"
+            label-for="input-1"
+          >
+            <b-form-select
+              v-model="editData.status"
+              :options="options"
+              required
+            ></b-form-select>
+          </b-form-group>
+        </div>
+        <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
+        <b-button
+          class="mt-4"
+          variant="outline-success"
+          block
+          @click="SaveUsers"
+          >Simpan</b-button
+        >
+      </b-modal>
     </b-card>
   </div>
 </template>
@@ -121,7 +147,13 @@ import axios from "axios";
 export default {
   data() {
     return {
+      editData: {},
       tableData: [],
+      options: [
+        { value: null, text: "Pilih status waktu" },
+        { value: "on", text: "Aktif" },
+        { value: "off", text: "Tidak aktif" },
+      ],
       totalRows: 1,
       currentPage: 1,
       perPage: 10,
@@ -166,6 +198,27 @@ export default {
   },
 
   methods: {
+    async SaveUsers() {
+      await axios
+        .put(this.visiUrl + "/" + this.editData.id, this.editData)
+        .then((response) => {
+          this.messages = "Data berhasil diubah";
+          this.getVisi();
+          this.showAlert();
+          console.log("data", response);
+          this.$refs["users"].hide();
+          // this.loading = false;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    edit(val) {
+      console.log(val);
+      this.editData = val;
+      this.$refs["users"].show();
+    },
     async getVisi() {
       const resp = await axios
         .get(this.visiUrl)

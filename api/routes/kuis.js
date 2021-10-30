@@ -2,6 +2,42 @@ const { Router } = require("express");
 const db = require("../config/db.js");
 const router = Router();
 
+const updateTime = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE waktu SET status = ? WHERE id = ?;`;
+  db.query(sql, [req.body.status, req.params.id], (err, result) => {
+    if (err) {
+      return res.status(400).send({
+        msg: err,
+      });
+    }
+    return res.status(201).send({
+      msg: "Legalitas tersimpan",
+      data: result,
+    });
+  });
+};
+
+router.put("/kuisTime/:id", updateTime);
+
+const update = (req, res) => {
+  console.log(req);
+  var sql = `UPDATE kuis SET status = ? WHERE id = ?;`;
+  db.query(sql, [req.body.status, req.params.id], (err, result) => {
+    if (err) {
+      return res.status(400).send({
+        msg: err,
+      });
+    }
+    return res.status(201).send({
+      msg: "Legalitas tersimpan",
+      data: result,
+    });
+  });
+};
+
+router.put("/kuis/:id", update);
+
 router.post("/kuis", (req, res) => {
   db.query(
     `INSERT INTO kuis (text, responses, jawaban, status, options) VALUES (${db.escape(

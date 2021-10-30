@@ -3,6 +3,44 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+// get legal
+const getPengaya = (req, res) => {
+  var message = "";
+  var sql = "SELECT * FROM kurikulum WHERE tipe = 'pengayaan' ORDER BY id DESC";
+  db.query(sql, function(err, result) {
+    if (result.length <= 0) message = "Cabang Kosong!";
+
+    res.send({ data: result, message: message });
+  });
+};
+
+router.get("/kurikulumPengaya", getPengaya);
+// get legal
+const getUpgrade = (req, res) => {
+  var message = "";
+  var sql = "SELECT * FROM kurikulum WHERE tipe = 'upgrading' ORDER BY id DESC";
+  db.query(sql, function(err, result) {
+    if (result.length <= 0) message = "Cabang Kosong!";
+
+    res.send({ data: result, message: message });
+  });
+};
+
+router.get("/kurikulumUpgrade", getUpgrade);
+
+// get legal
+const getBasic = (req, res) => {
+  var message = "";
+  var sql = "SELECT * FROM kurikulum WHERE tipe = 'basic' ORDER BY id DESC";
+  db.query(sql, function(err, result) {
+    if (result.length <= 0) message = "Cabang Kosong!";
+
+    res.send({ data: result, message: message });
+  });
+};
+
+router.get("/kurikulumBasic", getBasic);
+
 // del legal
 const DIR_LEGAL = "public/images/kurikulum";
 router.delete("/kurikulum/:img", (req, res) => {

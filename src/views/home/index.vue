@@ -21,6 +21,12 @@ import Gallery from "../../components/home/gallery";
 import AboutUs from "../../components/home/aboutUs";
 import Jumbotron from "../../components/home/jumbotron";
 export default {
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "PGU",
+    // all titles will be injected into this template
+    titleTemplate: "%s | HOME",
+  },
   components: {
     Alumni,
     BeforeFoot,

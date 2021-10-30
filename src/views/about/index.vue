@@ -17,6 +17,12 @@ import Struktur from "../../components/about/struktur";
 import Visi from "../../components/about/visi";
 import AbJumbotron from "../../components/about/abJumbotron";
 export default {
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "PGU",
+    // all titles will be injected into this template
+    titleTemplate: "%s | ABOUT US",
+  },
   components: {
     Liputan,
     Legalitas,

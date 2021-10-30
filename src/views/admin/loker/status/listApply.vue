@@ -75,7 +75,7 @@
           </template>
 
           <template v-slot:cell(action)="data" class="d-flex">
-            <b-row no-gutters class="flex-row align-items-center">
+            <div class="actions" style="min-width: 100px">
               <router-link
                 :to="{ name: 'ViewApply', params: data.item }"
                 v-b-tooltip.hover
@@ -93,7 +93,7 @@
                 <b-spinner v-if="loading" small variant="primary"></b-spinner>
                 <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
               </a>
-            </b-row>
+            </div>
           </template>
         </b-table>
       </div>

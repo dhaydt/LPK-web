@@ -24,12 +24,15 @@
               <b-input-group-text
                 ><div
                   class="icon-box d-flex align-items-center justify-content-center"
+                  @click="onSearch"
                 >
                   <i class="fas fa-search"></i></div
               ></b-input-group-text>
             </template>
             <b-form-input
               class="search"
+              v-model="search"
+              @change="onSearch"
               placeholder="Cari Lowongan Pekerjaan"
             ></b-form-input>
           </b-input-group>
@@ -42,10 +45,20 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      search: "",
+    };
   },
+
   mounted() {
     window.scrollTo(0, 0);
+  },
+
+  methods: {
+    onSearch() {
+      // console.log(this.search);
+      this.$root.$emit("find", this.search);
+    },
   },
 };
 </script>
@@ -88,6 +101,7 @@ export default {
 .icon-box {
   width: 48px;
   height: 48px;
+  cursor: pointer;
   background-color: $paz-secondary;
   border-radius: 4px;
   i {

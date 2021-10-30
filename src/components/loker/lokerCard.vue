@@ -1,8 +1,17 @@
 <template>
   <div class="lokerCard">
     <b-container fluid>
-      <b-row cols="4" class="px-5 pt-0 mb-4" id="itemList">
-        <b-col v-for="lok in paginatedItems" :key="lok.id" class="mt-5">
+      <b-row
+        cols-md="4"
+        cols-sm="1"
+        class="px-5 pt-0 mb-4"
+        id="itemList"
+        v-if="search"
+      >
+        <div v-if="!filteredList.length" class="w-100 mx-auto not-found">
+          Tidak ada data ditemukan
+        </div>
+        <div v-for="lok in filteredList" :key="lok.id" class="mt-5 col">
           <b-card :sub-title="lok.kriteria" class="inner-border h-100" no-body>
             <b-card-title class="px-4 pt-4">{{ lok.judul }}</b-card-title>
             <div class="card-subtitle px-4 mt-0" style="min-height: 80px">
@@ -29,9 +38,45 @@
               </div>
             </b-row>
           </b-card>
-        </b-col>
+        </div>
       </b-row>
-      <b-row class="justify-content-center">
+      <b-row
+        cols-md="4"
+        cols-sm="1"
+        class="px-5 pt-0 mb-4"
+        id="itemList"
+        v-if="!search"
+      >
+        <div v-for="lok in paginatedItems" :key="lok.id" class="mt-5 col">
+          <b-card :sub-title="lok.kriteria" class="inner-border h-100" no-body>
+            <b-card-title class="px-4 pt-4">{{ lok.judul }}</b-card-title>
+            <div class="card-subtitle px-4 mt-0" style="min-height: 80px">
+              {{ lok.kriteria }}
+            </div>
+            <b-row
+              class="flex-column justify-content-between px-4 h-100 pb-4"
+              no-gutters
+            >
+              <div class="location d-flex mt-3">
+                <i class="fas fa-map-marker-alt mr-2"></i
+                ><b-card-text>{{ lok.alamat }}</b-card-text>
+              </div>
+
+              <div class="location d-flex mt-3">
+                <i class="fas fa-briefcase mr-2"></i
+                ><b-card-text>{{ lok.pengalaman }}</b-card-text>
+              </div>
+
+              <div class="detail text-left">
+                <router-link :to="'/loker/' + lok.id" class="card-link"
+                  >Lihat detail ></router-link
+                >
+              </div>
+            </b-row>
+          </b-card>
+        </div>
+      </b-row>
+      <b-row class="justify-content-center" v-if="!search">
         <b-col md="8" class="d-flex justify-content-center mt-4">
           <b-pagination
             @change="onPageChanged"
@@ -70,6 +115,7 @@ export default {
       totalRows: "",
       paginatedItems: [],
       lokerUrl: "",
+      search: "",
     };
   },
 
@@ -77,6 +123,16 @@ export default {
     rows() {
       return this.lokers.length;
     },
+
+    filteredList() {
+      return this.lokers.filter((post) => {
+        return post.judul.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
+  },
+
+  mounted() {
+    this.$root.$on("find", this.find);
   },
 
   created() {
@@ -86,7 +142,11 @@ export default {
   },
 
   methods: {
+    find(val) {
+      this.search = val;
+    },
     paginate(page_size, page_number) {
+      console.log("called");
       let itemsToParse = this.lokers;
       this.paginatedItems = itemsToParse.slice(
         page_number * page_size,
@@ -109,6 +169,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.not-found {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: capitalize;
+  color: #999e9b;
+}
+
 .lokerCard {
   margin-top: 60px;
 }

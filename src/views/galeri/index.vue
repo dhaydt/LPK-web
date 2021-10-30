@@ -12,6 +12,12 @@ import Gallery1 from "../../components/galeri/gallery1";
 import GaleriJumbotron from "../../components/galeri/galeriJumbotron";
 import axios from "axios";
 export default {
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "PGU",
+    // all titles will be injected into this template
+    titleTemplate: "%s | GALERI",
+  },
   data() {
     return {
       dataUrl: "",

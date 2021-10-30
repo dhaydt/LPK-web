@@ -167,6 +167,7 @@ export default {
         });
       this.formFields.name = "";
       this.formFields.subtitle = "";
+      this.formFields.tipe = null;
       this.formFields.penyakit = "";
       this.formFields.konten = "";
       this.$refs.foto.reset();

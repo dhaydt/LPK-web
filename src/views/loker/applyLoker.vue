@@ -9,6 +9,12 @@
 import FormData from "../../components/loker/apply/formData";
 import NavbarApply from "../../components/loker/apply/navbarApply";
 export default {
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "PGU",
+    // all titles will be injected into this template
+    titleTemplate: "%s | Loker Apply",
+  },
   components: {
     FormData,
     NavbarApply,

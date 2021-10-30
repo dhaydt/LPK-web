@@ -24,10 +24,23 @@
           <slide v-for="card in legal" :key="card.id" h>
             <b-card no-body img-top style="width: 20rem;" class="mb-2">
               <div class="imgBox">
-                <b-card-img
-                  :src="imgUrl + card.img"
-                  @click="showSingle(card.img)"
-                ></b-card-img>
+                <b-card-img :src="imgUrl + card.img"></b-card-img>
+                <div class="overlay"></div>
+                <div class="button">
+                  <b-row>
+                    <b-col>
+                      <a
+                        class="aover"
+                        @click="downloadWithVueResource(card.img)"
+                      >
+                        <i class="fas fa-download"></i>
+                      </a>
+                      <a class="aover" @click="showSingle(card.img)">
+                        <i class="fas fa-eye"></i>
+                      </a>
+                    </b-col>
+                  </b-row>
+                </div>
               </div>
               <b-card-title>{{ card.name }}</b-card-title>
               <b-card-text>
@@ -61,6 +74,25 @@ export default {
   },
 
   methods: {
+    forceFileDownload(response) {
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "legalPAZ.png"); //or any other extension
+      document.body.appendChild(link);
+      link.click();
+    },
+    downloadWithVueResource(val) {
+      axios({
+        method: "get",
+        url: this.imgUrl + val,
+        responseType: "arraybuffer",
+      })
+        .then((response) => {
+          this.forceFileDownload(response);
+        })
+        .catch(() => console.log("error occured"));
+    },
     async getLegal() {
       const resp = await axios.get(this.legalUrl);
       console.log(resp.data.data);
@@ -98,6 +130,63 @@ export default {
 
 <style lang="scss">
 @import "@/assets/main.scss";
+
+.imgBox {
+  position: relative;
+  cursor: pointer;
+}
+
+.imgBox .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.imgBox:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.imgBox .button {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 50%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.aover {
+  color: #fff;
+}
+
+a .fas {
+  transition: 0.3s;
+}
+
+a .fas:hover {
+  color: $paz-secondary;
+}
+
+.imgBox .button a {
+  padding: 12px 18px;
+  text-align: center;
+  font-size: 28px;
+  color: white;
+  // border: solid 2px white;
+  z-index: 1;
+}
+
+.imgBox:hover .button {
+  opacity: 1;
+}
+
+// default
 .VueCarousel-inner {
   max-height: 350px;
 }

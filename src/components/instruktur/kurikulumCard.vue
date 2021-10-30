@@ -28,12 +28,18 @@
                 :key="i"
               >
                 <b-card class="inner-border text-center sliderCard" no-body>
-                  <b-img :src="slide.img" height="104"></b-img>
-                  <b-col sm="12" class="mt-4">
-                    <h5>{{ slide.title }}</h5>
-                    <span>{{ slide.text }}</span>
-                  </b-col>
-                  <b-card-text class="p-2">{{ slide.content }}</b-card-text>
+                  <a @click="modal(slide)" class="amodal">
+                    <b-img
+                      :src="imgUrl + slide.img"
+                      height="74"
+                      class="mx-auto"
+                      width="74"
+                    ></b-img>
+                    <b-col sm="12" class="mt-4">
+                      <h5>{{ slide.name }}</h5>
+                      <span>{{ slide.penyakit }}</span>
+                    </b-col>
+                  </a>
                 </b-card>
               </div>
             </div>
@@ -46,6 +52,40 @@
           </div>
         </b-row>
       </b-container>
+
+      <b-modal ref="my-modal" hide-footer hide-header id="modalBasic" size="md">
+        <div class="body">
+          <b-row>
+            <b-col md="2"
+              ><b-img :src="imgUrl + data.img" alt="Image" height="84"></b-img
+            ></b-col>
+            <b-col md="10">
+              <div class="card-side pt-0 pl-2">
+                <b-card-title>{{ data.name }} </b-card-title>
+                <div class="card-subtitle mt-1">
+                  {{ data.subtitle }}
+                </div>
+              </div>
+            </b-col>
+          </b-row>
+          <b-row>
+            <div class="desc mt-3 px-4">
+              <!-- <b-card-title>Kisi - kisi kurikulum</b-card-title> -->
+              <div class="card-subtitle mt-2" v-html="data.konten"></div>
+            </div>
+          </b-row>
+          <b-row class="mt-3 w-100 justify-content-center" no-gutters>
+            <b-col md="12 px-2">
+              <b-button
+                @click="$bvModal.hide('modalBasic')"
+                class="modalButton"
+                variant="outline-success w-100"
+                >Tutup</b-button
+              >
+            </b-col>
+          </b-row>
+        </div>
+      </b-modal>
     </b-card>
   </div>
 </template>
@@ -53,58 +93,22 @@
 <script>
 import $ from "jquery";
 export default {
+  props: ["upgrade"],
   data() {
     return {
-      upgrade: [
-        {
-          title: "Jantung",
-          img: "/assets/svg/heart.svg",
-          text:
-            "Koroner, jantung bengkak, bypass, aritmea, klep bocor, lemah jantung",
-        },
-        {
-          title: "Babypaz",
-          img: "/assets/svg/baby.svg",
-          text:
-            "Cerebral palsy, down syndrom, jantung bocor, pneumonia, asma, kejang, epilepsi, polio",
-        },
-        {
-          title: "Kanker / Benjolan",
-          img: "/assets/svg/breast.svg",
-          text: "Tumor dan kanker payudara",
-        },
-        {
-          title: "Skoliosis",
-          img: "/assets/svg/bone.png",
-          text: "Bentuk tulang belakang yang tidak simetris",
-        },
-        {
-          title: "Autoimun",
-          img: "/assets/svg/immun.svg",
-          text: "Lupus, psoriasis, arthritis",
-        },
-        {
-          title: "Diabetes",
-          img: "/assets/svg/finger.svg",
-          text: "Mata kabur, sering tidur, sering buang air kecil",
-        },
-        {
-          title: "PAZ Maryam",
-          img: "/assets/svg/pregnant.svg",
-          text: "Melahirkan secara alami dan cepat",
-        },
-        {
-          title: "PAZ Stroke",
-          img: "/assets/svg/cerebral.svg",
-          text: "Penanganan stroke",
-        },
-        {
-          title: "Paz Survival",
-          img: "/assets/svg/fire.svg",
-          text: "Bertahan hidup",
-        },
-      ],
+      imgUrl: "",
+      data: {},
     };
+  },
+  created() {
+    this.imgUrl = localStorage.getItem("apiUrl") + "/images/kurikulum/";
+  },
+
+  methods: {
+    modal(val) {
+      this.data = val;
+      this.$refs["my-modal"].show();
+    },
   },
 
   mounted() {
@@ -226,6 +230,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.amodal {
+  cursor: pointer;
+}
 .MultiCarousel {
   float: left;
   overflow: hidden;

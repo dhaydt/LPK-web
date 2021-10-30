@@ -2,6 +2,42 @@ const { Router } = require("express");
 const db = require("../config/db.js");
 const router = Router();
 
+const update = (req, res) => {
+  console.log(req);
+
+  var sql = `UPDATE loker SET judul = ?, bidang = ?, kriteria = ?,deskripsi = ?, kualifikasi = ?, jenis = ?, gaji = ?,note = ?,deadline = ?,alamat = ?, pengalaman = ? WHERE id = ?;`;
+  db.query(
+    sql,
+    [
+      req.body.judul,
+      req.body.bidang,
+      req.body.kriteria,
+      req.body.deskripsi,
+      req.body.kualifikasi,
+      req.body.jenis,
+      req.body.gaji,
+      req.body.note,
+      req.body.deadline,
+      req.body.alamat,
+      req.body.pengalaman,
+      req.params.id,
+    ],
+    (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Legalitas tersimpan",
+        data: result,
+      });
+    }
+  );
+};
+
+router.put("/loker/:id", update);
+
 router.post("/loker", (req, res) => {
   db.query(
     `INSERT INTO loker (judul, bidang, kriteria, deskripsi, kualifikasi, jenis, gaji, note, deadline, alamat, pengalaman) VALUES (${db.escape(

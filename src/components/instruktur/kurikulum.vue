@@ -26,7 +26,7 @@
               <b-col md="3">
                 <a @click="modal" class="amodal">
                   <b-img-lazy
-                    src="/assets/svg/anatomy 1.png"
+                    :src="imgUrl + data.img"
                     alt="Image"
                     height="144"
                     class="rounded-0"
@@ -34,10 +34,9 @@
                 </a>
               </b-col>
               <b-col md="9">
-                <b-card-body title="PAZ Basic">
+                <b-card-body :title="data.name">
                   <b-card-text>
-                    Wajib diikuti oleh siapapun yang ingin belajar terapi PAZ
-                    secara mendalam dengan bahasan utama Syaraf Kejepit dan Asma
+                    {{ data.subtitle }}
                   </b-card-text>
                 </b-card-body>
               </b-col>
@@ -45,51 +44,27 @@
           </b-card>
         </b-col>
       </b-row>
-      <KurikulumCard></KurikulumCard>
+      <KurikulumCard :upgrade="upgrade" v-if="isData"></KurikulumCard>
     </b-container>
     <b-modal ref="my-modal" hide-footer hide-header id="modalBasic" size="md">
       <div class="body">
         <b-row>
           <b-col md="2"
-            ><b-img
-              src="/assets/svg/anatomy 1.png"
-              alt="Image"
-              height="84"
-            ></b-img
+            ><b-img :src="imgUrl + data.img" alt="Image" height="84"></b-img
           ></b-col>
           <b-col md="10">
             <div class="card-side pt-0 pl-2">
-              <b-card-title>PAZ Basic</b-card-title>
+              <b-card-title>{{ data.name }} </b-card-title>
               <div class="card-subtitle mt-1">
-                Wajib diikuti oleh siapapun yang ingin belajar terapi PAZ secara
-                mendalam dengan bahasan utama Syaraf Kejepit dan Asma
+                {{ data.subtitle }}
               </div>
             </div>
           </b-col>
         </b-row>
         <b-row>
           <div class="desc mt-3 px-4">
-            <b-card-title>Kisi - kisi kurikulum</b-card-title>
-            <div class="card-subtitle mt-2">
-              Maecenas lorem eros, luctus placerat blandit et, mattis sed enim.
-              Ut lacus urna, efficitur et fringilla id, pretium ac ex. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu orci
-              nisl. Aliquam et nisl libero.Maecenas lorem eros, luctus placerat
-              blandit et, mattis sed enim. Ut lacus urna, efficitur et fringilla
-              id, pretium ac ex. Lorem ipsum dolor sit amet, consectetur
-              adipiscing elit. Nullam eu orci nisl. Aliquam et nisl
-              libero.Maecenas lorem eros, luctus placerat blandit et, mattis sed
-              enim. Ut lacus urna, efficitur et fringilla id, pretium ac ex.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
-              orci nisl. Aliquam et nisl libero.Maecenas lorem eros, luctus
-              placerat blandit et, mattis sed enim. Ut lacus urna, efficitur et
-              fringilla id, pretium ac ex. Lorem ipsum dolor sit amet,
-              consectetur adipiscing elit. Nullam eu orci nisl. Aliquam et nisl
-              libero.Maecenas lorem eros, luctus placerat blandit et, mattis sed
-              enim. Ut lacus urna, efficitur et fringilla id, pretium ac ex.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eu
-              orci nisl. Aliquam et nisl libero.
-            </div>
+            <!-- <b-card-title>Kisi - kisi kurikulum</b-card-title> -->
+            <div class="card-subtitle mt-2" v-html="data.konten"></div>
           </div>
         </b-row>
         <b-row class="mt-3 w-100 justify-content-center" no-gutters>
@@ -108,16 +83,44 @@
 </template>
 
 <script>
+import axios from "axios";
 import KurikulumCard from "./kurikulumCard";
 export default {
   components: {
     KurikulumCard,
   },
   data() {
-    return {};
+    return {
+      getUrl: "",
+      isData: false,
+      imgUrl: "",
+      upgradeUrl: "",
+      upgrade: [],
+      data: {},
+    };
+  },
+
+  created() {
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.getUrl = mainUrl + "/kurikulumBasic";
+    this.imgUrl = mainUrl + "/images/kurikulum/";
+    this.upgradeUrl = mainUrl + "/kurikulumUpgrade";
+    this.getKuri();
+    this.getUpgrade();
   },
 
   methods: {
+    async getUpgrade() {
+      const resp = await axios.get(this.upgradeUrl);
+      const data = resp.data.data;
+      this.upgrade = data;
+      this.isData = true;
+    },
+    async getKuri() {
+      const resp = await axios.get(this.getUrl);
+      const data = resp.data.data[0];
+      this.data = data;
+    },
     modal() {
       this.$refs["my-modal"].show();
     },

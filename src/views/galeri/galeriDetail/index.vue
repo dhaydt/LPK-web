@@ -9,6 +9,12 @@
 import DetailGaleriCard from "../../../components/galeri/detailGaleriCard";
 import Breadcumb from "../../../components/breadcumb";
 export default {
+  metaInfo: {
+    // if no subcomponents specify a metaInfo.title, this title will be used
+    title: "PGU",
+    // all titles will be injected into this template
+    titleTemplate: "%s | Galeri Detail",
+  },
   data() {
     return {
       data: {
