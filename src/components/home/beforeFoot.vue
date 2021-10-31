@@ -1,15 +1,15 @@
 <template>
   <div class="beforeFoot">
     <section>
-      <b-row cols-md="2">
-        <b-col md="5">
+      <b-row>
+        <b-col md="5" sm="12">
           <b-img
             src="/assets/images/callus.png"
             height="624"
             class="img-foot"
           ></b-img>
         </b-col>
-        <b-col>
+        <b-col md="7" sm="12">
           <b-container class="h-100">
             <b-row class="align-items-center h-100 justify-content-center">
               <b-col class="right-col text-left">
@@ -20,8 +20,11 @@
                   pelatihan PAZ, anda dapat cek jadwal pelatihan PAZ yang akan
                   datang.
                 </p>
-
-                <button class="btn">Cek Jadwal Pelatihan</button>
+                <router-link to="/pelatihan">
+                  <button class="btn">
+                    Cek Jadwal Pelatihan
+                  </button>
+                </router-link>
               </b-col>
             </b-row>
           </b-container>
@@ -65,7 +68,7 @@ export default {};
   transition: 0.3s;
 }
 
-.right-col .btn:hover {
+.right-col a .btn:hover {
   background-color: #fd7d24;
   color: #fff;
 }

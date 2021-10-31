@@ -1,5 +1,6 @@
 <template>
-  <section class="blog">
+  <section class="alumni" id="alumni">
+    <div id="moon"></div>
     <b-container>
       <b-row class="justify-content-center">
         <b-col md="7">
@@ -12,9 +13,9 @@
           </h2>
         </b-col>
       </b-row>
-      <b-row cols="4" class="mt-5">
-        <b-col v-for="(lok, i) in lokers" :key="i">
-          <b-card class="inner-border">
+      <b-row cols-md="4" cols-sm="2" class="row-al">
+        <b-col sm="5" class="col-al" v-for="(lok, i) in lokers" :key="i">
+          <b-card class="inner-border h-100">
             <b-avatar :src="lok.img" class="card-img-top" size="96"></b-avatar>
             <b-card-title>{{ lok.name }} </b-card-title>
             <b-card-text>{{ lok.address }} </b-card-text>
@@ -22,6 +23,9 @@
         </b-col>
       </b-row>
     </b-container>
+    <div id="shape">
+      <div id="moons"></div>
+    </div>
   </section>
 </template>
 
@@ -57,8 +61,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#moon {
+  font-size: 20em;
+  display: inline-block;
+  width: 0.4em;
+  box-sizing: content-box;
+  height: 0.4em;
+  background-color: #fd7d24;
+  border: 0.3em solid #fd7d24;
+  position: absolute;
+  left: -64px;
+  opacity: 0.1;
+  top: 160px;
+}
+
+#shape {
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 300px;
+  z-index: 0;
+  overflow: hidden;
+}
+
+#moons {
+  font-size: 30em;
+  display: inline-block;
+  width: 2em;
+  box-sizing: content-box;
+  height: 0.2em;
+  border: 0.1em solid #fd7d24;
+  background-color: #fd7d24;
+  opacity: 0.1;
+}
 section {
   margin-top: 110px;
+  position: relative;
 }
 .head {
   span {
@@ -80,6 +118,7 @@ h2 {
   line-height: 140%;
   /* or 48px */
   color: #2e3e5c;
+  text-transform: capitalize;
   text-align: center;
   letter-spacing: 0.5px;
 }
@@ -98,6 +137,7 @@ h2 {
 .card {
   background: #ffffff;
   /* Neutral / 05 */
+  z-index: 1;
 
   border: 1px solid #e8eaed;
   box-sizing: border-box;

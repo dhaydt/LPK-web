@@ -47,11 +47,38 @@
               ></b-form-textarea>
             </b-input-group>
 
-            <b-input-group prepend="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-input-group prepend="Tipe" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-select
+                v-model="formFields.tipe"
+                :options="tipe"
+                required
+              ></b-form-select>
+            </b-input-group>
+
+            <b-input-group
+              prepend="Foto"
+              v-if="formFields.tipe == `image`"
+              class="mb-2 mt-4 mr-sm-2 mb-sm-0"
+            >
               <b-form-file
                 type="file"
                 v-on:change="onSelect()"
                 accept="image/jpeg, image/png, image/gif"
+                name="image"
+                :required="true"
+                id="image"
+              />
+            </b-input-group>
+
+            <b-input-group
+              prepend="Video"
+              v-if="formFields.tipe == `video`"
+              class="mb-2 mt-4 mr-sm-2 mb-sm-0"
+            >
+              <b-form-file
+                type="file"
+                v-on:change="onSelected()"
+                accept="video/mp4, video/x-matroska, video/3gpp"
                 name="image"
                 :required="true"
                 id="image"
@@ -80,10 +107,17 @@ export default {
     return {
       formFields: {
         name: "",
+        tipe: "null",
+        video: null,
         address: "",
         content: "",
         img: null,
       },
+      tipe: [
+        { text: "Pilih tipe profil", value: "null" },
+        { text: "Image", value: "image" },
+        { text: "Video", value: "video" },
+      ],
       file: null,
       legalUrl: "",
       loading: "",
@@ -110,6 +144,8 @@ export default {
       formData.append("address", this.formFields.address);
       formData.append("content", this.formFields.content);
       formData.append("img", this.formFields.img);
+      formData.append("video", this.formFields.video);
+      formData.append("tipe", this.formFields.tipe);
       await axios
         .post(this.legalUrl, formData)
         .then((res) => {
@@ -131,6 +167,11 @@ export default {
     onSelect() {
       // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
       this.formFields.img = event.target.files[0];
+    },
+
+    onSelected() {
+      // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+      this.formFields.video = event.target.files[0];
     },
 
     countDownChanged(dismissCountDown) {

@@ -3,7 +3,7 @@
     <b-jumbotron>
       <b-container>
         <b-row>
-          <b-col>
+          <b-col md="6">
             <div class="reg">
               <h5>Daftar pelatihan</h5>
             </div>
@@ -11,7 +11,7 @@
               <h1>Pelatihan yang kami selenggarakan</h1>
             </div>
           </b-col>
-          <b-col>
+          <b-col md="6">
             <div class="ket">
               <span>
                 Kami membina para anggota agar masing masing anggota memiliki
@@ -23,9 +23,9 @@
         </b-row>
       </b-container>
     </b-jumbotron>
-    <section class="galeri w-100" style="overflow: hidden">
+    <section id="pelatihan" class="galeri w-100" style="overflow: hidden">
       <b-row class="justify-content-end">
-        <b-col md="10">
+        <b-col md="12">
           <PelatihanCard></PelatihanCard>
         </b-col>
       </b-row>

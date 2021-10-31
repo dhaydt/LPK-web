@@ -1,0 +1,518 @@
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  // HOME SECTION
+  .navbar-brand.logoPaz img {
+    height: 40px;
+    margin-left: 20px;
+  }
+
+  #nav-collapse ul.navbar-nav {
+    margin-left: 0;
+  }
+  .home .display-3 {
+    margin-top: 60px;
+  }
+  .home .head {
+    font-size: 30px;
+    margin-top: 0px;
+  }
+
+  .home .lead p {
+    font-size: 16px;
+  }
+
+  .home {
+    section#home {
+      margin-top: -460px;
+
+      .row {
+        .col-sm-12 {
+          height: 300px;
+          width: 300px;
+          margin: 10px 0 0 0;
+
+          .imgPort.last {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  section#aboutUs {
+    margin-top: 50px;
+  }
+
+  section#gallery {
+    margin-top: 50px;
+  }
+
+  section#pelatihan {
+    margin-top: -240px;
+
+    .MultiCarousel .MultiCarousel-inner .item {
+      max-width: 362px;
+    }
+  }
+
+  section#blog {
+    margin-top: 60px;
+
+    .liputanCard.cardNews {
+      max-width: 90%;
+
+      .overlay-bg {
+        padding-bottom: 5px;
+        .card-text.date {
+          padding: 7px 16px;
+          font-size: 14px;
+        }
+
+        .card-title {
+          line-height: 1.2;
+          font-size: 20px;
+        }
+
+        a span {
+          font-size: 14px;
+        }
+      }
+
+      .card-group .card.m-2.childNews {
+        margin: 20px 0 !important;
+
+        .col-md-5 img {
+          height: 200px;
+        }
+
+        .col-md-7 {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          .card-body p.card-text {
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  section#alumni {
+    margin-top: 1000px;
+
+    .row-al {
+      .col-al {
+        margin-top: 20px;
+        .card.inner-border {
+          max-width: 60%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  footer {
+    .row.foots {
+      padding: 20px 50px !important;
+
+      .foot-img {
+        padding-left: 0;
+      }
+
+      .foot-menu,
+      .foot-menu-last {
+        .row h3 {
+          margin-top: 20px;
+          margin-bottom: 0;
+        }
+      }
+
+      .foot-menu-last {
+        .row {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .row.foot > div span {
+      font-size: 16px !important;
+    }
+
+    .floating[data-v-6c4d8baa] {
+      right: 5px;
+      bottom: 64px;
+
+      .btn[data-v-6c4d8baa] {
+        font-size: 16px;
+        padding: 6px 20px 6px 2px;
+      }
+    }
+  }
+
+  nav.navfront #nav-collapse .navbar-nav {
+    margin-left: 0 !important;
+  }
+  // END HOME SECTION
+
+  // ABOUT SECTION
+  div.aboutUs {
+    #aboutJumbotron {
+      .row {
+        margin-top: -70px;
+        #header {
+          h1 {
+            font-size: 30px;
+          }
+        }
+        #subheader {
+          p {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+
+    section.visi {
+      height: 982px;
+
+      .container {
+        background-color: #ecfef4;
+        padding-bottom: 50px;
+      }
+      h5 {
+        margin-top: 40px;
+        font-size: 18px;
+      }
+
+      .subtitle h1 {
+        font-size: 28px;
+      }
+
+      .misiCol {
+        .misiRow {
+          .d-flex.align-items-center {
+            max-width: 15%;
+          }
+          .numVisi {
+            width: 42px;
+            height: 42px;
+
+            span {
+              font-size: 20px;
+            }
+          }
+
+          .misi {
+            max-width: 85%;
+            span {
+              font-size: 18px;
+            }
+          }
+        }
+      }
+    }
+
+    section#legalitas {
+      .card {
+        .card-body {
+          .card-title {
+            font-size: 28px;
+          }
+        }
+      }
+
+      .VueCarousel-slide {
+        .cardCarou {
+          // max-width: 250px;
+          overflow-x: hidden;
+        }
+      }
+
+      .VueCarousel-navigation
+        .VueCarousel-navigation-button.VueCarousel-navigation-prev {
+        left: 42px;
+      }
+    }
+
+    .VueCarousel-navigation-next[data-v-453ad8cd] {
+      right: 42px;
+    }
+
+    section#struktur {
+      h4.card-title {
+        font-size: 28px;
+      }
+
+      .card-body {
+        .row {
+          h5.student {
+            font-size: 40px;
+            margin-top: 10px;
+            margin-left: 0;
+          }
+        }
+      }
+
+      .strukturDiagram {
+        background-color: black;
+      }
+    }
+
+    section.liputan {
+      margin-top: 60px;
+
+      .liputanCard.cardNews {
+        max-width: 90%;
+        margin: 20px auto;
+
+        .overlay-bg {
+          padding-bottom: 5px;
+          .card-text.date {
+            padding: 7px 16px;
+            font-size: 14px;
+          }
+
+          .card-title {
+            line-height: 1.2;
+            font-size: 20px;
+          }
+
+          a span {
+            font-size: 14px;
+          }
+        }
+
+        .card-group .card.m-2.childNews {
+          margin: 20px 0 !important;
+
+          .col-md-5 img {
+            height: 200px;
+          }
+
+          .col-md-7 {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            .card-body p.card-text {
+              padding-bottom: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // END ABOUT SECTION
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) and (max-width: 767.98px) {
+  nav.navbar.sticky {
+    padding: 20px 70px 10px 70px;
+  }
+
+  .navbar-brand.logoPaz img {
+    height: 60px;
+    // margin-left: 0px;
+  }
+
+  nav.navfront #nav-collapse .navbar-nav {
+    margin-left: 0;
+  }
+  .home .display-3 {
+    margin-top: 60px;
+  }
+  .home .head {
+    font-size: 30px;
+    margin-top: 0px;
+  }
+
+  .home .lead p {
+    font-size: 16px;
+  }
+
+  .home {
+    section#home {
+      margin-top: -460px;
+
+      .row {
+        .col-sm-12 {
+          margin: 10px 0 0 0;
+
+          .row {
+            img {
+              margin: auto;
+            }
+          }
+
+          .imgPort.last {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  section#aboutUs {
+    margin-top: 50px;
+
+    .container {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      .row {
+        width: 100vw;
+      }
+    }
+  }
+
+  section#gallery {
+    margin-top: 50px;
+
+    div.galeri {
+      .row {
+        width: 100vw;
+        margin-left: -50px;
+        justify-content: center;
+        .galeriPelatihan {
+          max-width: 250px;
+          margin-left: 20px;
+        }
+      }
+      .card-body {
+      }
+    }
+  }
+
+  section#pelatihan {
+    margin-top: -240px;
+
+    #MultiCarousel1 {
+      .MultiCarousel-inner .item {
+        max-width: 362px;
+      }
+
+      button.btn.leftLst {
+        left: 78%;
+      }
+    }
+  }
+
+  section#blog {
+    margin-top: 60px;
+
+    .liputanCard.cardNews {
+      max-width: 90%;
+
+      .overlay-bg {
+        padding-bottom: 5px;
+        .card-text.date {
+          padding: 7px 16px;
+          font-size: 14px;
+        }
+
+        .card-title {
+          line-height: 1.2;
+          font-size: 20px;
+        }
+
+        a span {
+          font-size: 14px;
+        }
+      }
+
+      .card-group .card.m-2.childNews {
+        margin: 20px 0 !important;
+
+        .col-md-5 img {
+          height: 200px;
+        }
+
+        .col-md-7 {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          .card-body p.card-text {
+            padding-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  section#alumni {
+    margin-top: 1000px;
+
+    .row-al {
+      width: 100vw;
+      .col-al {
+        margin-top: 20px;
+        .card.inner-border {
+          // max-width: 60%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  footer {
+    .row.foots {
+      padding: 20px 80px !important;
+
+      .foot-img {
+        padding-left: 0;
+        margin: 0 30px 20px 0;
+      }
+
+      .foot-menu,
+      .foot-menu-last {
+        .row h3 {
+          margin-top: 20px;
+          margin-bottom: 0;
+        }
+      }
+
+      .foot-menu-last {
+        .row {
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .row.foot > div span {
+      font-size: 16px !important;
+    }
+
+    .floating[data-v-6c4d8baa] {
+      right: 5px;
+      bottom: 64px;
+
+      .btn[data-v-6c4d8baa] {
+        font-size: 16px;
+        padding: 6px 20px 6px 2px;
+      }
+    }
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .home .display-3 {
+    margin-top: 70px;
+  }
+  .home .head {
+    font-size: 50px;
+    margin-top: 0px;
+  }
+
+  .home .lead p {
+    font-size: 20px;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) and (max-width: 1199.98px) {
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}

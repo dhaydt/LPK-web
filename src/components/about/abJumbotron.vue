@@ -1,5 +1,5 @@
 <template>
-  <div class="aboutJumbotron">
+  <div class="aboutJumbotron" id="aboutJumbotron">
     <b-jumbotron>
       <!-- <div id="moon"></div> -->
       <div id="moontoon"></div>

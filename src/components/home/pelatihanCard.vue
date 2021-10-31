@@ -237,13 +237,13 @@ button.btn-success.rightLst {
 button.btn-success.rightLst {
   position: absolute;
   top: 0;
-  right: 10vw;
+  right: 1vw;
 }
 
 button.btn-success.leftLst {
   position: absolute;
   top: 0;
-  left: 65vw;
+  left: 80vw;
 }
 
 button.btn-success.leftLst:hover,

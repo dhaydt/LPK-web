@@ -2,7 +2,7 @@
   <section class="visi">
     <b-container>
       <b-row>
-        <b-col>
+        <b-col md="6" sm="8">
           <div class="title">
             <h5>Visi kami</h5>
           </div>
@@ -12,14 +12,14 @@
             </h1>
           </div>
         </b-col>
-        <b-col>
+        <b-col md="6" sm="12" class="misiCol">
           <div class="title">
             <h5>Misi kami</h5>
           </div>
           <b-row
             v-for="(mis, index) in mission.slice(0, 5)"
             :key="index"
-            class="mt-3"
+            class="mt-3 misiRow"
           >
             <b-col sm="2" class="d-flex align-items-center">
               <div class="numVisi">

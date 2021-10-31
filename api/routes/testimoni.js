@@ -27,14 +27,14 @@ router.put("/testi/:id", update);
 
 // del legal
 const DIR_LEGAL = "public/images/testi";
-router.delete("/testi/:img", (req, res) => {
+router.delete("/testi/:id/:img", (req, res) => {
   if (!req.params.img) {
     console.log("No file received");
     var message = "Data img tidak diterima.";
   } else {
     console.log("file received");
     console.log(req.params.img);
-    var sql = "DELETE FROM `testimoni` WHERE `img`='" + req.params.img + "'";
+    var sql = "DELETE FROM `testimoni` WHERE `id`='" + req.params.id + "'";
     db.query(sql, function(err, result) {
       if (err) {
         return res.status(400).send(err);
@@ -54,7 +54,7 @@ router.delete("/testi/:img", (req, res) => {
 // get legal
 const get = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM `testimoni`";
+  var sql = "SELECT * FROM `testimoni` ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Legalitas Kosong!";
 
@@ -72,21 +72,17 @@ const index = function(req, res) {
     var name = post.name;
     var address = post.address;
     var content = post.content;
+    var tipe = post.tipe;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
-    var file = req.files.img;
-    var img = Date.now() + file.name;
-
-    if (
-      file.mimetype == "image/jpeg" ||
-      file.mimetype == "image/png" ||
-      file.mimetype == "image/gif"
-    ) {
+    if (req.body.tipe == "image") {
+      var file = req.files.img;
+      var img = Date.now() + file.name;
       file.mv(`public/images/testi/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `testimoni`(`name`,`img`,`address`, `content`) VALUES ('" +
+          "INSERT INTO `testimoni`(`name`,`img`,`address`, `content`, `tipe`) VALUES ('" +
           name +
           "','" +
           img +
@@ -94,6 +90,8 @@ const index = function(req, res) {
           address +
           "','" +
           content +
+          "','" +
+          tipe +
           "')";
 
         db.query(sql, (err, result) => {
@@ -108,10 +106,36 @@ const index = function(req, res) {
           });
         });
       });
-    } else {
-      const message =
-        "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-      res.send({ message: message });
+    } else if (req.body.tipe === "video") {
+      var video = req.files.video;
+      var vid = Date.now() + video.name;
+      video.mv(`public/images/testi/` + vid, (err) => {
+        if (err) return res.status(500).send(err);
+        var sql =
+          "INSERT INTO `testimoni`(`name`,`video`,`address`, `content`, `tipe`) VALUES ('" +
+          name +
+          "','" +
+          vid +
+          "','" +
+          address +
+          "','" +
+          content +
+          "','" +
+          tipe +
+          "')";
+
+        db.query(sql, (err, result) => {
+          if (err) {
+            return res.status(400).send({
+              msg: err,
+            });
+          }
+          return res.status(201).send({
+            msg: "Legalitas tersimpan",
+            data: result,
+          });
+        });
+      });
     }
   } else {
     res.send("Legalitas tersimpan");

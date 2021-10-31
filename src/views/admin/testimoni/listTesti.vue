@@ -56,6 +56,7 @@
           :fields="fields"
           responsive="sm"
           :per-page="perPage"
+          striped
           :current-page="currentPage"
           :sort-by.sync="sortBy"
           :sort-desc.sync="sortDesc"
@@ -67,7 +68,21 @@
             <p>{{ data.item.date | moment("MMMM Do YYYY") }}</p>
           </template> -->
           <template v-slot:cell(img)="data">
-            <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
+            <b-img-lazy
+              :src="imgUrl + data.item.img"
+              height="100"
+              v-if="data.item.img"
+            ></b-img-lazy>
+          </template>
+
+          <template v-slot:cell(video)="data">
+            <div class="video" style="width: 200px;">
+              <LazyVideo
+                :src="imgUrl + data.item.video"
+                v-if="data.item.video"
+                style="height: 100px;"
+              />
+            </div>
           </template>
           <template v-slot:cell(action)="data" class="d-flex">
             <div class="actions" style="min-width: 100px">
@@ -85,7 +100,7 @@
                 class="text-danger"
                 v-b-tooltip.hover
                 title="Delete"
-                @click="deleteVisi(data.item.img)"
+                @click="deleteVisi(data.item)"
               >
                 <b-spinner v-if="loading" small variant="primary"></b-spinner>
                 <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
@@ -154,6 +169,7 @@ export default {
         { key: "id", sortable: true, label: "ID" },
         { key: "name", sortable: true, label: "Nama" },
         { key: "img", label: "Foto" },
+        { key: "video", label: "Video" },
         { key: "address", sortable: true, label: "Alamat" },
         { key: "content", sortable: true, label: "Testimoni" },
         { key: "action" },
@@ -219,18 +235,33 @@ export default {
       // console.log(resp.data.data);
     },
 
-    async deleteVisi(img) {
+    async deleteVisi(val) {
       this.loading = true;
-      console.log(img);
-      try {
-        await axios.delete(this.visiUrl + `/${img}`);
-        this.messages = "Data terhapus";
-        this.getLegal();
-        this.showAlert();
-        this.loading = false;
-      } catch (err) {
-        console.log(err);
-        this.loading = false;
+      console.log(val);
+      if (val.img) {
+        console.log("file gambar");
+        try {
+          await axios.delete(this.visiUrl + `/${val.id}` + `/${val.img}`);
+          this.messages = "Data terhapus";
+          this.getLegal();
+          this.showAlert();
+          this.loading = false;
+        } catch (err) {
+          console.log(err);
+          this.loading = false;
+        }
+      } else {
+        console.log("file video");
+        try {
+          await axios.delete(this.visiUrl + `/${val.id}` + `/${val.video}`);
+          this.messages = "Data terhapus";
+          this.getLegal();
+          this.showAlert();
+          this.loading = false;
+        } catch (err) {
+          console.log(err);
+          this.loading = false;
+        }
       }
     },
 

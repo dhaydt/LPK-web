@@ -1,13 +1,14 @@
 <template>
   <div class="galeri justify-content-center w-100 row">
-    <b-col md="10">
-      <div class="card-body border-top text-center">
+    <b-col md="11" class="px-4">
+      <div class="card-body text-center">
         <b-row>
           <b-col
             md="3"
+            sm="7"
             v-for="img in images.slice(0, 4)"
             :key="img.id"
-            class="galeriPelatihan"
+            class="galeriPelatihan mt-4"
             ><b-img-lazy :src="imgUrl + img.img" alt="gallery"></b-img-lazy
           ></b-col>
         </b-row>

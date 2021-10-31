@@ -10,19 +10,27 @@
       >
         <div class="MultiCarousel-inner">
           <div class="cont item" v-for="(slide, i) in testi" :key="i">
-            <b-card
-              class=""
-              no-body
-              :img-src="imgUrl + slide.img"
-              img-alt="Image"
-              img-height="240"
-              img-top
-            >
-              <b-col sm="9" class="text-left px-0">
-                <h5 class="pt-3 pb-2">{{ slide.name }}</h5>
-                <span>{{ slide.address }}</span>
-              </b-col>
-              <b-card-text class="pt-4">{{ slide.content }}</b-card-text>
+            <b-card class="px-2 pt-0" no-body>
+              <b-card-img-lazy
+                v-if="slide.img"
+                :src="imgUrl + slide.img"
+                height="240"
+                class="img-top"
+              ></b-card-img-lazy>
+              <LazyVideo
+                v-if="slide.video"
+                :src="imgUrl + slide.video"
+                style="height: 240px;"
+                class="card-img"
+              />
+
+              <div class="card-body">
+                <b-col sm="9" class="text-left px-0">
+                  <h5 class="pb-2">{{ slide.name }}</h5>
+                  <span>{{ slide.address }}</span>
+                </b-col>
+                <b-card-text class="pt-4">{{ slide.content }}</b-card-text>
+              </div>
             </b-card>
           </div>
         </div>
@@ -49,6 +57,7 @@ export default {
 
   created() {
     this.testi = JSON.parse(localStorage.getItem("testi"));
+    console.log(this.testi);
     const mainUrl = localStorage.getItem("apiUrl");
     this.imgUrl = mainUrl + "/images/testi/";
   },
@@ -223,10 +232,7 @@ button.btn-success.rightLst:hover {
 
 .card {
   background: #ffffff;
-  min-height: 612px;
-  // width: 396px;
-  // height: 712px;
-  /* Neutral / 05 */
+  min-height: 512px;
 
   border: 1px solid #e8eaed;
   box-sizing: border-box;

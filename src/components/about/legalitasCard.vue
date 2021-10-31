@@ -14,6 +14,7 @@
           :scrollPerPage="false"
           :paginationEnabled="false"
           :perPageCustom="[
+            [200, 1],
             [480, 2],
             [768, 3],
           ]"
@@ -22,9 +23,14 @@
             <div class="">v</div>
           </template>
           <slide v-for="card in legal" :key="card.id" h>
-            <b-card no-body img-top style="width: 20rem;" class="mb-2">
+            <b-card
+              no-body
+              img-top
+              style="width: 20rem; min-height: 330px;"
+              class="mb-2 cardCarou"
+            >
               <div class="imgBox">
-                <b-card-img :src="imgUrl + card.img"></b-card-img>
+                <b-card-img :src="imgUrl + card.img" class="w-100"></b-card-img>
                 <div class="overlay"></div>
                 <div class="button">
                   <b-row>

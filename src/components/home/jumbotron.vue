@@ -1,6 +1,6 @@
 <template>
   <div class="landing">
-    <b-jumbotron class="w-100" style="overflow: hidden">
+    <b-jumbotron class="w-100 home" style="overflow: hidden">
       <div id="shape">
         <div id="moon"></div>
       </div>
@@ -11,7 +11,7 @@
 
       <template #lead>
         <b-row class="justify-content-center">
-          <b-col sm="12" md="8">
+          <b-col sm="12" md="9">
             <p>
               PAZ Generasi Unggul merupakan lembaga yang mengelola dan
               meneruskan pengajaran temuan Hak Cipta Intelektual dari Ustadz
@@ -22,24 +22,24 @@
         </b-row>
       </template>
 
-      <b-button variant="outline-light" href="#" class="mt-4"
+      <b-button variant="outline-light" href="#" class="mt-2"
         ><span
           ><img src="../../assets/images/info.svg" alt="info" height="25" />
           Pelajari lebih lanjut</span
         ></b-button
       >
     </b-jumbotron>
-    <section>
+    <section id="home">
       <b-row no-gutters class="justify-content-center">
-        <b-col md="3" class="mr-2">
+        <b-col md="3" sm="12" class="mr-2">
           <b-img-lazy
             src="/assets/images/potrait1.png"
             fluid-grow
             alt="Responsive image"
-            class="h-100 imgPort"
+            class="h-100 w-100 imgPort"
           />
         </b-col>
-        <b-col md="4">
+        <b-col md="4" sm="12">
           <b-row style="height:50%; width: 100%;" class="mb-2" no-gutters>
             <b-img-lazy
               src="/assets/images/land1.png"
@@ -57,12 +57,12 @@
             />
           </b-row>
         </b-col>
-        <b-col md="3" class="ml-2"
+        <b-col md="3" sm="12"
           ><b-img-lazy
             src="/assets/images/potrait2.png"
             fluid
             alt="Responsive image"
-            class="h-100 imgPort"
+            class="w-100 h-100 imgPort last"
         /></b-col>
       </b-row>
     </section>
@@ -81,6 +81,10 @@ export default {
 .imgPort {
   max-width: 340px;
   max-height: 500px;
+}
+
+.imgPort.last {
+  margin-left: 10px;
 }
 
 .imgLand {
@@ -137,7 +141,7 @@ h1 {
   font-weight: 700;
   font-size: 60px;
   font-style: normal;
-  line-height: 73px;
+  line-height: 43px;
   color: #fff;
   text-transform: uppercase;
   margin-top: 107px;

@@ -1,7 +1,7 @@
 <template>
   <div class="liputanCard cardNews row" style="max-height: 434px !important;">
     <b-col md="6" sm="12" class="px-0">
-      <b-card class="card-overlay main mb-0" no-body>
+      <b-card class="card-overlay main mb-0 w-100" no-body>
         <b-card-img-lazy
           :src="imgUrl + (liput.img ? liput.img : 'default')"
         ></b-card-img-lazy>

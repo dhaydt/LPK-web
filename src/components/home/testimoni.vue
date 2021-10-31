@@ -1,5 +1,6 @@
 <template>
   <section class="blog">
+    <div id="moontoon"></div>
     <b-container>
       <b-row class="justify-content-center">
         <b-col md="7">
@@ -9,7 +10,10 @@
           <h2 class="mt-4">
             Apa yang para mereka katakan tentang program pelatihan PAZ
           </h2>
-          <b-button variant="outline-success seemore" href="#" class="mt-4 px-4"
+          <b-button
+            variant="outline-success seemore"
+            href="javascript:void(0)"
+            class="mt-4 px-4"
             ><span
               ><img
                 src="../../assets/images/testi.svg"
@@ -27,6 +31,9 @@
         </b-col>
       </b-row>
     </b-container>
+    <div id="shape">
+      <div id="moons"></div>
+    </div>
   </section>
 </template>
 
@@ -40,6 +47,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.col-md-12 {
+  z-index: 1;
+}
+#shape {
+  position: absolute;
+  right: 0px;
+  top: 200px;
+  z-index: 0;
+  overflow: hidden;
+  width: 130px;
+}
+
+#moons {
+  font-size: 20em;
+  display: inline-block;
+  width: 0.3em;
+  box-sizing: content-box;
+  height: 0.3em;
+  border: 0.2em solid #07a148;
+  opacity: 0.1;
+  border-radius: 50%;
+}
+
+#moontoon {
+  font-size: 35em;
+  display: inline-block;
+  width: 0.4em;
+  box-sizing: content-box;
+  height: 0.4em;
+  border: 0.2em solid #07a148;
+  position: absolute;
+  top: 150px;
+  left: -90px;
+  opacity: 0.08;
+  border-radius: 50%;
+}
+
 .example {
   height: auto;
 
@@ -76,6 +120,7 @@ export default {
 
 section {
   margin-top: 110px;
+  position: relative;
 }
 .head {
   span {
@@ -95,8 +140,8 @@ h2 {
   font-style: normal;
   font-weight: 600;
   line-height: 140%;
-  /* or 48px */
   color: #2e3e5c;
+  text-transform: capitalize;
   text-align: center;
   letter-spacing: 0.5px;
 }

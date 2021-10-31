@@ -1,13 +1,13 @@
 <template>
-  <section class="blog">
+  <section class="blog" id="blog">
     <b-container>
       <div id="moontoon"></div>
       <b-row class="justify-content-center">
         <b-col md="7">
           <div class="head">
-            <span>Liputan Media</span>
+            <span>berita terkini</span>
           </div>
-          <h2 class="mt-4">
+          <h2 class="mt-5">
             Dapatkan informasi tentang kegiatan yang telah kami selenggarakan
             disini
           </h2>
@@ -22,7 +22,10 @@
           >
         </b-col>
       </b-row>
-      <b-row class="mt-4" style="max-height: 434px !important;">
+      <b-row
+        class="mt-4 w-100 justify-content-center"
+        style="max-height: 434px !important;"
+      >
         <LiputanCard></LiputanCard>
       </b-row>
     </b-container>

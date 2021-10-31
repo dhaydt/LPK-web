@@ -1,5 +1,5 @@
 <template>
-  <section class="Legalitas">
+  <section class="Legalitas" id="legalitas">
     <b-container>
       <div id="moon"></div>
       <b-row class="justify-content-center">

@@ -85,7 +85,7 @@ export default {
 @import "@/assets/main.scss";
 .navbar.navbar-dark {
   padding: 10px 80px;
-  padding-top: 60px;
+  padding-top: 30px;
   width: 100%;
   background-color: transparent;
   position: fixed;
@@ -94,7 +94,7 @@ export default {
 }
 
 nav.navbar.sticky {
-  padding: 8px 110px;
+  padding: 8px 100px;
   z-index: 9;
   width: 100%;
   background-color: $paz-main;

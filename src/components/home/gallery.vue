@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-4 gallery">
+  <section class="mb-4 gallery" id="gallery">
     <b-container>
       <b-row class="justify-content-center">
         <b-col lg="9">
@@ -11,13 +11,15 @@
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-title>PELATIHAN YANG KAMI SELENGGARAKAN</b-card-title>
-              <b-card-text class="mt-4">
+              <b-card-title class="mt-3"
+                >pelatihan yang kami selenggarakan</b-card-title
+              >
+              <b-card-text class="mt-5">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
                 aliquam, purus sit amet luctus venenatis, lectus magna fringilla
                 urna
               </b-card-text>
-              <b-button
+              <!-- <b-button
                 variant="outline-success seemore"
                 to="/galeri_detail"
                 class="mt-4 px-4"
@@ -29,7 +31,7 @@
                   />
                   Lihat semua foto</span
                 ></b-button
-              >
+              > -->
             </b-card-body>
           </b-card>
         </b-col>
@@ -105,6 +107,7 @@ section {
   font-style: normal;
   font-weight: 600;
   line-height: 45px;
+  text-transform: capitalize;
   letter-spacing: 0.5px;
   text-align: center;
   color: #2e3e5c;

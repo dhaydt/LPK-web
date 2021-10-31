@@ -1,9 +1,9 @@
 <template>
-  <section class="aboutUs">
+  <section class="aboutUs" id="aboutUs">
     <b-container>
       <div id="moon"></div>
       <b-row class="justify-content-center">
-        <b-col lg="9">
+        <b-col lg="10" md="10" sm="12">
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
@@ -11,8 +11,8 @@
               </div>
             </template>
             <b-card-body>
-              <b-card-title>LKP PAZ AL KASAW</b-card-title>
-              <b-card-text class="mt-4">
+              <b-card-title class="mt-2">LKP PAZ generasi unggul</b-card-title>
+              <b-card-text class="mt-5">
                 <em>"</em> Lorem ipsum dolor sit amet consectetur adipisicing
                 elit. Rerum officiis ipsam natus aspernatur eaque dolor adipisci
                 neque aliquid voluptates quaerat, voluptatum, quibusdam
@@ -21,27 +21,27 @@
               </b-card-text>
             </b-card-body>
 
-            <div class="card-body border-top text-center">
+            <div class="card-body text-center mt-4">
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4 mt-4">
                   <div class="d-inline-flex">
-                    <h5 class="mr-2 student">80 +</h5>
+                    <h5 class="mr-2 student">150x</h5>
                   </div>
-                  <p class="text-muted text-truncate mb-0">Terapis bergabung</p>
+                  <p class="text-muted text-truncate mb-0">event pelatihan</p>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-4 mt-4">
                   <div class="d-inline-flex">
-                    <h5 class="mr-2 student">900 +</h5>
+                    <h5 class="mr-2 student">11k</h5>
                   </div>
-                  <p class="text-muted text-truncate mb-0">Pasien terobati</p>
+                  <p class="text-muted text-truncate mb-0">alumni pelatihan</p>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-4 mt-4">
                   <div class="d-inline-flex">
-                    <h5 class="mr-2 student">50 +</h5>
+                    <h5 class="mr-2 student">50+</h5>
                   </div>
-                  <p class="text-muted text-truncate mb-0">Pelatihan sukses</p>
+                  <p class="text-muted text-truncate mb-0">griya sehat PAZ</p>
                 </div>
               </div>
             </div>
@@ -108,6 +108,7 @@ section {
 .card-title {
   font-size: 32px;
   font-style: normal;
+  text-transform: uppercase;
   font-weight: 600;
   line-height: 45px;
   letter-spacing: 0.5px;

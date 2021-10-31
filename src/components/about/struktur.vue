@@ -1,5 +1,5 @@
 <template>
-  <section class="struktur">
+  <section class="struktur" id="struktur">
     <div id="moon"></div>
     <b-row class="justify-content-center flex-row" no-gutters>
       <b-col lg="9">

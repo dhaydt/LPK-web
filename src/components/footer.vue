@@ -1,13 +1,13 @@
 <template>
   <footer>
-    <b-row cols-md="5" class="foots">
-      <b-col md="3">
+    <b-row cols-md="5" cols-sm="2" class="foots">
+      <b-col md="3" class="foot-img">
         <b-row no-gutters>
           <b-img src="/assets/images/logo/pgu-col-sm.png" height="93"></b-img>
           <span class="mt-2">Profesional, Beradab, Berdaya Juang</span>
         </b-row>
       </b-col>
-      <b-col md="2">
+      <b-col md="2" class="foot-menu">
         <b-row>
           <h3>About Us</h3>
         </b-row>
@@ -15,24 +15,24 @@
           <router-link to="/aboutus">Visi Misi</router-link>
           <router-link to="/aboutus">Legalitas</router-link>
           <router-link to="/aboutus">Struktur LKP</router-link>
-          <router-link to="#">Liputan Media</router-link>
+          <router-link to="/liputan">Liputan Media</router-link>
           <router-link to="/aboutus">Data Cabang</router-link>
         </b-row>
       </b-col>
-      <b-col md="2">
+      <b-col md="2" class="foot-menu">
         <b-row>
           <h3>Instruktur</h3>
         </b-row>
         <b-row class="flex-column text-left">
           <router-link to="/instruktur">Instruktur PAZ</router-link>
           <router-link to="/instruktur">Kurikulum Pendidikan</router-link>
-          <h3 class="mt-2">Gallery</h3>
+          <h3 class="mt-4">Gallery</h3>
           <router-link to="/galeri">Pelatihan</router-link>
           <router-link to="/galeri">Kopdar</router-link>
         </b-row>
       </b-col>
 
-      <b-col md="2">
+      <b-col md="2" class="foot-menu">
         <b-row>
           <h3>Pelatihan</h3>
         </b-row>
@@ -42,7 +42,7 @@
           <router-link to="/pelatihan">Timeline Pelatihan</router-link>
         </b-row>
       </b-col>
-      <b-col md="3">
+      <b-col md="3" class="foot-menu-last">
         <b-row>
           <h3>Kontak</h3>
         </b-row>
@@ -68,7 +68,7 @@
             ></router-link>
           </div>
           <div class="sosmed">
-            <router-link to="#"><i class="fab fa-linkedin-in"></i></router-link>
+            <router-link to="#"><i class="fab fa-youtube"></i></router-link>
           </div>
         </b-row>
       </b-col>
@@ -145,11 +145,16 @@ h3 {
 .row a {
   font-weight: normal;
   font-size: 16px;
+  margin-top: 15px;
   color: #757682;
 }
 
 .row a:hover {
   color: #099644;
+}
+
+p {
+  margin-top: 5px;
 }
 
 p i {
@@ -170,13 +175,17 @@ p em {
 }
 
 .sosmed {
-  font-size: 1.3rem;
-  padding: 3px 10px;
+  margin: 5px;
+  font-size: 1.4rem;
+  padding: 4px 10px;
   color: #fff;
   margin-right: 10px;
   background: #e9e9e9;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
+  i {
+    font-size: 24px;
+  }
 }
 
 .sosmed:hover {
