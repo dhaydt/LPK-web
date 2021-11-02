@@ -1,7 +1,7 @@
 <template>
   <div class="detailCard">
     <b-container fluid>
-      <b-row cols="2">
+      <b-row cols="1" cols-md="2">
         <b-col md="7" sm="12">
           <b-card no-body class="text-left main">
             <b-card-title>{{ newLoker.judul }}</b-card-title>

@@ -19,7 +19,7 @@
             <b-card-img :src="imgUrl + news.img" v-if="news.img"></b-card-img>
             <div class="card-body mt-4">
               <b-row cols-md="2" cols-sm="1">
-                <b-col md="11" sm="12">
+                <b-col md="11" sm="12" class="mb-3">
                   <div class="body-title">{{ news.subtitle }}</div>
                   <b-card-text
                     v-html="news.content"
@@ -33,7 +33,7 @@
                     class="text-left"
                   ></b-card-text>
                 </b-col>
-                <b-col md="1">
+                <b-col md="1" class="sosmedLiputan" id="sosmedLiputan">
                   <b-avatar size="48" class="mb-4">
                     <i class="fab fa-facebook-f"></i>
                   </b-avatar>

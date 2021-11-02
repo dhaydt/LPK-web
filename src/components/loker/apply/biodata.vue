@@ -380,179 +380,179 @@ export default {
       ],
 
       rules: {
-        nama: [
-          {
-            required: true,
-            message: "Nama lengkap dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        tempat_lhr: [
-          {
-            required: true,
-            message: "Tempat lahir dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        tgl_lhr: [
-          {
-            required: true,
-            message: "Tanggal Lahir dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        menikah: [
-          {
-            required: true,
-            message: "Status menikah dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        komputer: [
-          {
-            required: true,
-            message: "Informasi ini diutuhkan dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        bahasa: [
-          {
-            required: true,
-            message: "Informasi dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        instagram: [
-          {
-            required: true,
-            message: "Informasi ini dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        facebook: [
-          {
-            required: true,
-            message: "Informasi ini dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        wa: [
-          {
-            required: true,
-            message: "Wa dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        email: [
-          {
-            required: true,
-            message: "Email dibutukkan",
-            trigger: "blur",
-          },
-          {
-            type: "email",
-            message: "Invalid email",
-            trigger: "change",
-          },
-        ],
-        domisili: [
-          {
-            required: true,
-            message: "Domisili dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        provinsi: [
-          {
-            required: true,
-            message: "Provinsi dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        kelamin: [
-          {
-            required: true,
-            message: "Kelamin dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        pendidikan: [
-          {
-            required: true,
-            message: "Pendidikan dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        jurusan: [
-          {
-            required: true,
-            message: "Jurusan dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        agama: [
-          {
-            required: true,
-            message: "Agama dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        pengalaman: [
-          {
-            required: true,
-            message: "pengalaman dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        alasan: [
-          {
-            required: true,
-            message: "Alasan anda dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        portfolio: [
-          {
-            required: true,
-            message: "File portfolio dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        foto: [
-          {
-            required: true,
-            message: "Foto dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        ktp: [
-          {
-            required: true,
-            message: "Foto ktp dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        ijazah: [
-          {
-            required: true,
-            message: "Foto ijazah dibutukkan",
-            trigger: "blur",
-          },
-        ],
-        skck: [
-          {
-            required: false,
-            message: "Foto ini optional",
-            trigger: "blur",
-          },
-        ],
-        sertifikat: [
-          {
-            required: true,
-            message: "Foto ini dibutukkan",
-            trigger: "blur",
-          },
-        ],
+        // nama: [
+        //   {
+        //     required: true,
+        //     message: "Nama lengkap dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // tempat_lhr: [
+        //   {
+        //     required: true,
+        //     message: "Tempat lahir dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // tgl_lhr: [
+        //   {
+        //     required: true,
+        //     message: "Tanggal Lahir dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // menikah: [
+        //   {
+        //     required: true,
+        //     message: "Status menikah dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // komputer: [
+        //   {
+        //     required: true,
+        //     message: "Informasi ini diutuhkan dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // bahasa: [
+        //   {
+        //     required: true,
+        //     message: "Informasi dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // instagram: [
+        //   {
+        //     required: true,
+        //     message: "Informasi ini dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // facebook: [
+        //   {
+        //     required: true,
+        //     message: "Informasi ini dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // wa: [
+        //   {
+        //     required: true,
+        //     message: "Wa dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // email: [
+        //   {
+        //     required: true,
+        //     message: "Email dibutukkan",
+        //     trigger: "blur",
+        //   },
+        //   {
+        //     type: "email",
+        //     message: "Invalid email",
+        //     trigger: "change",
+        //   },
+        // ],
+        // domisili: [
+        //   {
+        //     required: true,
+        //     message: "Domisili dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // provinsi: [
+        //   {
+        //     required: true,
+        //     message: "Provinsi dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // kelamin: [
+        //   {
+        //     required: true,
+        //     message: "Kelamin dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // pendidikan: [
+        //   {
+        //     required: true,
+        //     message: "Pendidikan dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // jurusan: [
+        //   {
+        //     required: true,
+        //     message: "Jurusan dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // agama: [
+        //   {
+        //     required: true,
+        //     message: "Agama dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // pengalaman: [
+        //   {
+        //     required: true,
+        //     message: "pengalaman dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // alasan: [
+        //   {
+        //     required: true,
+        //     message: "Alasan anda dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // portfolio: [
+        //   {
+        //     required: true,
+        //     message: "File portfolio dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // foto: [
+        //   {
+        //     required: true,
+        //     message: "Foto dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // ktp: [
+        //   {
+        //     required: true,
+        //     message: "Foto ktp dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // ijazah: [
+        //   {
+        //     required: true,
+        //     message: "Foto ijazah dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // skck: [
+        //   {
+        //     required: false,
+        //     message: "Foto ini optional",
+        //     trigger: "blur",
+        //   },
+        // ],
+        // sertifikat: [
+        //   {
+        //     required: true,
+        //     message: "Foto ini dibutukkan",
+        //     trigger: "blur",
+        //   },
+        // ],
       },
       model: {
         nama: "",

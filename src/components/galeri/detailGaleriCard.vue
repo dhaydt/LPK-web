@@ -3,7 +3,7 @@
     <b-container>
       <b-row class="justify-content-center">
         <b-col md="9" sm="9">
-          <b-card no-body v-if="images[0].lokasi" class="kopdar">
+          <b-card no-body v-if="images[0]" class="kopdar">
             <template #header>
               <b-card-title>
                 {{ images[0].lokasi }}
@@ -12,27 +12,29 @@
             <div id="moon"></div>
             <b-card-body class="pt-0">
               <b-card-text>
-                {{ "Pertemuan antar alumni PAZ tiap daerah" }}
+                Pertemuan antar alumni PAZ tiap daerah
               </b-card-text>
-              <div class="head mt-3" v-if="images[0].date_range">
+              <div class="head mt-3" v-if="images[0]">
                 <span>{{ images[0].date_range }} </span>
               </div>
             </b-card-body>
           </b-card>
 
-          <b-card no-body v-if="title.lokasi" class="galeriess">
+          <b-card no-body class="galeriess" v-if="!title">
             <template #header>
               <b-card-title>
-                {{ title.lokasi }}
+                {{ title.lokasi ? title.lokasi : "loading..." }}
               </b-card-title>
             </template>
             <div id="moon"></div>
             <b-card-body class="pt-0">
-              <b-card-text v-if="title.konten">
-                {{ title.konten }}
+              <b-card-text>
+                {{ title.konten ? title.konten : "loading..." }}
               </b-card-text>
-              <div class="head mt-3" v-if="title.date_range">
-                <span>{{ title.date_range }} </span>
+              <div class="head mt-3">
+                <span
+                  >{{ title.date_range ? title.date_range : "loading..." }}
+                </span>
               </div>
             </b-card-body>
           </b-card>
@@ -42,7 +44,7 @@
     <div id="shape">
       <div id="moons"></div>
     </div>
-    <b-row class="justify-content-center w-100">
+    <b-row class="justify-content-center w-100" no-gutters>
       <CardDetail :images="images" v-if="images.length !== 0"></CardDetail>
     </b-row>
   </section>
@@ -69,7 +71,7 @@ export default {
   watch: {
     images: function(val) {
       this.images = val;
-      console.log("val", val);
+      // console.log("val", val);
     },
   },
 
@@ -82,14 +84,11 @@ export default {
 
   mounted() {
     const id = this.$route.params.id;
-    console.log(id.length);
-    if (this.$route.params.id.length < 5) {
+    if (id.length < 5) {
       this.getData();
     } else {
       this.getKopdar();
     }
-    // const title = this.title.lokasi ? this.title.lokasi : this.images[0].lokasi;
-    // console.log("title", title);
   },
 
   methods: {
@@ -98,6 +97,8 @@ export default {
       const data = resp.data;
       this.images = data;
       // console.log(data);
+      // console.log("kopdar", data[0].lokasi);
+      this.$root.$emit("titles", data[0].lokasi);
     },
     hideNav() {
       //   window.addEventListener("scroll", function() {
@@ -112,8 +113,9 @@ export default {
       const resp = await axios.get(this.getUrl);
       const data = resp.data;
       this.images = data.dataImg;
-      console.log("detail", this.images);
+      // console.log("detail", this.images);
       this.title = data.dataGroup[0];
+      this.$root.$emit("titles", this.title.lokasi);
     },
   },
 };

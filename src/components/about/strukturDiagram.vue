@@ -23,7 +23,7 @@
       </b-modal>
       <div class="tree">
         <ul>
-          <li>
+          <li class="direktur">
             <a @click="modal(direktur)" class="d-flex header"
               ><img :src="imgUrl + direktur.img" alt="child" /><span
                 class="my-auto"
@@ -32,7 +32,7 @@
               >
             </a>
 
-            <ul>
+            <ul class="lev-1">
               <li>
                 <a @click="modal(pelatihan)"
                   ><img :src="imgUrl + pelatihan.img" alt="child" /><span
@@ -65,7 +65,7 @@
                   </li>
                 </ul>
               </li>
-              <li>
+              <li class="levli">
                 <a @click="modal(operasional)"
                   ><img :src="imgUrl + operasional.img" alt="child" /><span
                     class="my-auto"
@@ -74,7 +74,7 @@
                   ></a
                 >
               </li>
-              <li>
+              <li class="levli">
                 <a @click="modal(finance)"
                   ><img :src="imgUrl + finance.img" alt="child" /><span
                     class="my-auto"
@@ -83,7 +83,7 @@
                   ></a
                 >
               </li>
-              <li>
+              <li class="levli">
                 <a @click="modal(human)"
                   ><img :src="imgUrl + human.img" alt="child" /><span
                     class="my-auto"
@@ -92,7 +92,7 @@
                   ></a
                 >
               </li>
-              <li>
+              <li class="levli">
                 <a @click="modal(marketing)"
                   ><img :src="imgUrl + marketing.img" alt="child" /><span
                     class="my-auto"

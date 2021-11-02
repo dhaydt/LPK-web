@@ -1,8 +1,8 @@
 <template>
-  <div class="galeri justify-content-center w-100 row">
-    <b-col md="11">
+  <div class="galeriCard justify-content-center w-100 row">
+    <b-col md="11" sm="8">
       <div class="card-body border-top text-center">
-        <b-row>
+        <b-row no-gutters>
           <b-col md="3" v-for="i in img" :key="i.id" class="galeriPelatihan"
             ><b-img-lazy :src="imgUrl + i.img" alt="gallery"></b-img-lazy
           ></b-col>
@@ -25,7 +25,7 @@ export default {
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
     this.imgUrl = mainUrl + "/images/galeri/";
-    console.log(this.img);
+    // console.log(this.img);
     // this.pushImg();
   },
 

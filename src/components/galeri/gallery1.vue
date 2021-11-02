@@ -1,7 +1,7 @@
 <template>
   <section class="mb-4 gallery">
     <b-container>
-      <b-row class="justify-content-center">
+      <b-row class="justify-content-center" no-gutters>
         <b-col md="11" sm="10">
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
@@ -39,7 +39,7 @@
     <div id="shape">
       <div id="moons"></div>
     </div>
-    <b-row class="justify-content-center w-100">
+    <b-row class="justify-content-center w-100" no-gutters>
       <Card :img="img"></Card>
     </b-row>
   </section>
@@ -56,7 +56,7 @@ export default {
     return {};
   },
   mounted() {
-    console.log(this.img);
+    // console.log(this.img);
   },
 };
 </script>

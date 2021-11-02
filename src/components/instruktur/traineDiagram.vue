@@ -1,6 +1,6 @@
 <template>
   <div class="traineDiagram">
-    <b-row cols-md="5" no-gutters>
+    <b-row cols-md="5" cols-sm="2" cols="1" no-gutters>
       <b-col v-for="(ins, i) in instruktur.slice(0, 10)" :key="i">
         <b-card no-body>
           <b-card-img-lazy :src="imgUrl + ins.img"> </b-card-img-lazy>

@@ -87,9 +87,9 @@ export default {
   },
   mounted() {
     this.getLoker();
-    console.log("img", this.images);
+    // console.log("img", this.images);
 
-    console.log("loker", this.lokers);
+    // console.log("loker", this.lokers);
   },
 
   methods: {

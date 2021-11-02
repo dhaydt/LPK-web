@@ -2,10 +2,10 @@
   <div class="galeri justify-content-center w-100 row">
     <b-col md="11">
       <div class="card-body border-top text-center">
-        <b-row cols-md="3">
+        <b-row cols-md="3" cols="1">
           <b-col v-for="(im, i) in paginatedItems" :key="i">
             <b-card no-body>
-              <b-row cols-md="2" no-gutters id="row-img">
+              <b-row cols-md="2" cols="2" no-gutters id="row-img">
                 <b-col
                   class="col-img"
                   v-for="img in im.slice(0, 4)"

@@ -46,7 +46,16 @@ export default {
 
   mounted() {
     window.scrollTo(0, 0);
-    this.items[2].text = "detail";
+    this.$root.$on("titles", (val) => {
+      // console.log("val", val);
+      this.items[2].text = val;
+    });
+  },
+
+  methods: {
+    titleUpdate(val) {
+      console.log("home", val);
+    },
   },
 };
 </script>

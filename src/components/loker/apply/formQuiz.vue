@@ -42,15 +42,19 @@
           <div class="qu-is" v-for="(q, i) in kuis" :key="i">
             <p>Pertanyaan {{ i + 1 }} dari {{ kuis.length }} pertanyaan</p>
             <el-form-item :label="q.text" class="d-block">
-              <el-radio
-                v-model="userResponses[i]"
-                v-for="(o, index) in JSON.parse(q.responses)"
-                :key="index"
-                class="options ml-1 text-left kuisRadio"
-                :label="o"
-                border
-                >{{ o.text }}
-              </el-radio>
+              <b-row cols-md="2" cols="1">
+                <b-col>
+                  <el-radio
+                    v-model="userResponses[i]"
+                    v-for="(o, index) in JSON.parse(q.responses)"
+                    :key="index"
+                    class="options ml-1 text-left kuisRadio"
+                    :label="o"
+                    border
+                    >{{ o.text }}
+                  </el-radio>
+                </b-col>
+              </b-row>
             </el-form-item>
           </div>
         </el-form>

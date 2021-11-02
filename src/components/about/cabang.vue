@@ -36,26 +36,20 @@
                     {{ cab.name }}
                   </b-card-title>
                   <b-row class="px-3"
-                    ><b-col md="1" class="d-flex align-items-center"
-                      ><i
-                        class="fas fa-map-marker-alt text-white"
-                        style="font-size: 18px;"
-                      ></i
+                    ><b-col md="1" sm="1" class="d-flex align-items-center"
+                      ><i class="fas fa-map-marker-alt text-white"></i
                     ></b-col>
-                    <b-col md="11">
+                    <b-col md="11" sm="7">
                       <b-card-text class="mb-0">
                         {{ cab.address }}
                       </b-card-text>
                     </b-col></b-row
                   >
                   <b-row class="mt-2 px-3 pb-3">
-                    <b-col md="1" class="d-flex align-items-center"
-                      ><i
-                        class="fas fa-phone-alt text-white"
-                        style="font-size: 18px;"
-                      ></i
+                    <b-col md="1" sm="1" class="d-flex align-items-center"
+                      ><i class="fas fa-phone-alt text-white"></i
                     ></b-col>
-                    <b-col md="11" class="d-flex align-items-center"
+                    <b-col md="11" sm="7" class="d-flex align-items-center"
                       ><span>{{ cab.telp }}</span></b-col
                     >
                   </b-row>

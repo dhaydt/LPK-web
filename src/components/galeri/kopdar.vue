@@ -41,7 +41,7 @@
     <div id="shape">
       <div id="moons"></div>
     </div>
-    <b-row class="justify-content-center w-100">
+    <b-row class="justify-content-center w-100" no-gutters>
       <KopdarCard :data="data"></KopdarCard>
     </b-row>
   </section>
@@ -58,7 +58,7 @@ export default {
     return {};
   },
   mounted() {
-    console.log(this.img);
+    // console.log(this.img);
   },
 };
 </script>

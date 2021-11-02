@@ -8,7 +8,7 @@
             Tambahan materi supplement bagi paztrooper
           </h4>
         </div>
-        <b-row cols-md="2">
+        <b-row cols-md="2" cols-sm="2" cols="1">
           <b-col v-for="(pe, i) in pengayaan" :key="i">
             <b-card>
               <a @click="modal(pe)" class="amodal">

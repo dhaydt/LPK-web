@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-4 gallery">
+  <section class="mb-4 tlPelatihan">
     <b-container>
       <b-row class="justify-content-center">
         <b-col lg="9">
@@ -10,7 +10,7 @@
               </div>
             </template>
             <div id="moon"></div>
-            <b-card-body>
+            <b-card-body class="bodyHead">
               <b-card-title>Daftar Pelatihan PAZ yang akan datang</b-card-title>
               <b-card-text class="mt-4">
                 Rencanakan jadwal pelatihan mu kedepan dari jadwal pelatihan

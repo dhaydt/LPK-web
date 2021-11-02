@@ -5,7 +5,7 @@
       <div id="moontoon"></div>
       <b-row class="justify-content-center search-row">
         <b-col md="8">
-          <b-input-group class="mt-3 search-box">
+          <b-input-group class="mt-2 pt-3 search-box">
             <template #append>
               <b-input-group-text
                 ><div

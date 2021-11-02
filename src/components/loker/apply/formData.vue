@@ -30,7 +30,8 @@
                         <b-col md="12" sm="12">
                           <el-checkbox
                             v-model="next"
-                            class="mb-0"
+                            id="agreement"
+                            class="mb-0 agreement"
                             style="line-height: 3;"
                             label="Saya sudah mengisi form lamaran pekerjaan dengan jujur dan sebenar-benarnya."
                           ></el-checkbox>
@@ -66,7 +67,7 @@
                 ></FormQuiz>
               </tab-content>
               <tab-content title="Penyelesaian" icon="fas fa-check">
-                <b-card title="Data Anda Akan Kami Simpan di Database Kami">
+                <b-card>
                   <b-card-text style="font-transform: capitalize;"
                     >Data anda akan segera kami simpan setelah anda mengirim
                     nya.</b-card-text

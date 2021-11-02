@@ -2,7 +2,7 @@
   <div class="lokerCard">
     <b-container fluid>
       <h1>Liputan Media</h1>
-      <b-row cols="3" class="px-5 pt-0 mb-4" id="itemList">
+      <b-row cols="1" cols-md="3" class="px-5 pt-0 mb-4" id="itemList">
         <b-col v-for="lok in paginatedItems" :key="lok.id" class="mt-5">
           <b-card :img-src="imgUrl + lok.img" img-top no-body>
             <b-card-title class="px-4 pt-4"
