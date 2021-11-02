@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-2 gallery">
+  <section class="mb-2 gallery detailGaleri">
     <b-container>
       <b-row class="justify-content-center">
         <b-col md="9" sm="9">

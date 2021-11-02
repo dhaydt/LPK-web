@@ -4,7 +4,7 @@
       <b-row>
         <b-col>
           <b-card no-body>
-            <b-card-title> {{ news.title }} </b-card-title>
+            <b-card-title class="mainTitle"> {{ news.title }} </b-card-title>
             <div class="card-subtitle date">
               {{ news.date | moment("DD MMMM YYYY HH:MM") }} WIB
             </div>
@@ -34,16 +34,16 @@
                   ></b-card-text>
                 </b-col>
                 <b-col md="1" class="sosmedLiputan" id="sosmedLiputan">
-                  <b-avatar size="48" class="mb-4">
+                  <b-avatar size="48" class="mb-4 ml-2">
                     <i class="fab fa-facebook-f"></i>
                   </b-avatar>
-                  <b-avatar size="48" class="mb-4"
+                  <b-avatar size="48" class="mb-4 ml-2"
                     ><i class="fab fa-twitter"></i
                   ></b-avatar>
-                  <b-avatar size="48" class="mb-4"
+                  <b-avatar size="48" class="mb-4 ml-2"
                     ><i class="fab fa-instagram"></i
                   ></b-avatar>
-                  <b-avatar size="48" class="mb-4"
+                  <b-avatar size="48" class="mb-4 ml-2"
                     ><i class="fab fa-whatsapp"></i
                   ></b-avatar>
                 </b-col>

@@ -23,7 +23,7 @@
 
   .home {
     section#home {
-      margin-top: -460px;
+      margin-top: -400px;
 
       .row {
         .col-sm-12 {
@@ -48,10 +48,16 @@
   }
 
   section#pelatihan {
-    margin-top: -240px;
+    margin-top: -130px;
 
     .MultiCarousel .MultiCarousel-inner .item {
       max-width: 362px;
+    }
+
+    .MultiCarousel {
+      button.btn-success.leftLst[data-v-4c1cbbb4] {
+        left: 75vw;
+      }
     }
   }
 
@@ -110,12 +116,44 @@
     }
   }
 
+  div.beforeFoot {
+    .row {
+      .col-sm-12.col-md-5 {
+        .img-foot[data-v-437ca146] {
+          height: 324px;
+          margin-top: -180px;
+        }
+      }
+      .col-sm-12.col-md-7 {
+        .right-col {
+          text-align: center !important;
+          h1 {
+            font-size: 28px;
+            margin-top: 15px;
+          }
+          p {
+            font-size: 18px;
+            margin-bottom: 20px;
+          }
+
+          a button {
+            padding: 8px 30px;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
+
   footer {
     .row.foots {
       padding: 20px 50px !important;
 
       .foot-img {
         padding-left: 0;
+        span {
+          text-align: left;
+        }
       }
 
       .foot-menu,
@@ -152,7 +190,7 @@
     margin-left: 0 !important;
   }
   // END HOME SECTION
-
+  // -----------------------------------------------------------------------------------------HOME PAGE---------------------------
   // ABOUT SECTION
 
   #strukturModal {
@@ -208,6 +246,13 @@
         .misiRow {
           .d-flex.align-items-center {
             max-width: 15%;
+            .numVisi {
+              height: 30px;
+              span {
+                font-size: 18px;
+                line-height: 1.9;
+              }
+            }
           }
           .numVisi {
             width: 42px;
@@ -340,7 +385,7 @@
     }
 
     section.cabang {
-      margin-top: 230%;
+      margin-top: 260%;
 
       .card .overlay-bg {
         padding-bottom: 5px;
@@ -369,6 +414,57 @@
   }
 
   // END ABOUT SECTION
+
+  // ---------------------------------------------------------------LIPUTAN DETAIL--------------------------------------------
+
+  div.liputanDetail {
+    .detailNews {
+      .container .row .col .card {
+        .card-title.mainTitle {
+          font-size: 28px;
+        }
+
+        .card-body {
+          .body-title {
+            font-size: 20px;
+          }
+
+          .iklan {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+
+    div.lainnya {
+      .container {
+        .card {
+          h4.card-title {
+            font-size: 24px;
+          }
+
+          .card {
+            .pl-3.text-left.d-flex.flex-column {
+              padding: 10px 0;
+              padding-left: 0 !important;
+
+              h4.card-title.inner-card {
+                font-size: 16px;
+              }
+
+              p.card-text.date {
+                font-size: 12px;
+              }
+
+              a.more {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
   // INSTRUKTUR SECTION
   div.instruktur {
@@ -481,6 +577,86 @@
         margin-top: 20px;
         img {
           width: 80%;
+        }
+      }
+    }
+
+    section.gallery {
+      .card[data-v-4d0a9338] {
+        .card-header {
+          .head span {
+            font-size: 14px;
+          }
+        }
+
+        .card-body {
+          h4.card-title {
+            font-size: 28px;
+          }
+          p.card-text {
+            font-size: 20px;
+            line-height: 1.9;
+          }
+        }
+      }
+    }
+
+    section.gallery.kopdar {
+      .card-header {
+        .head {
+          span {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .card-body {
+        h4.card-title {
+          font-size: 28px;
+        }
+        p.card-text {
+          font-size: 20px;
+          line-height: 1.9;
+        }
+      }
+
+      .row.kopdarPar {
+        .galeri.kopdar-card {
+          .card-body {
+            .card {
+              .row-detail.card-body {
+                h4.card-title[data-v-135afa3e] {
+                  font-size: 18px;
+                }
+                p.card-text {
+                  font-size: 16px;
+                  line-height: 1.9;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  section.detailGaleri {
+    .card.kopdar {
+      .card-header {
+        h4.card-title {
+          font-size: 28px;
+          line-height: 1.5;
+        }
+      }
+      .card-body {
+        p.card-text {
+          font-size: 20px;
+          line-height: 1.5;
+        }
+        .head {
+          span {
+            font-size: 14px;
+          }
         }
       }
     }

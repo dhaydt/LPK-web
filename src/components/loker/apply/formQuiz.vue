@@ -41,7 +41,7 @@
         >
           <div class="qu-is" v-for="(q, i) in kuis" :key="i">
             <p>Pertanyaan {{ i + 1 }} dari {{ kuis.length }} pertanyaan</p>
-            <el-form-item :label="q.text" class="d-block">
+            <el-form-item :label="q.text" class="d-block question">
               <b-row cols-md="2" cols="1">
                 <b-col>
                   <el-radio
@@ -290,6 +290,7 @@ export default {
 .el-form .el-form-item label.el-form-item__label {
   width: 100%;
   text-align: left;
+  text-transform: capitalize;
 }
 
 .modal-header h5 {

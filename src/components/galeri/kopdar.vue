@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-4 gallery">
+  <section class="mb-4 gallery kopdar">
     <b-container>
       <b-row class="justify-content-center">
         <b-col md="11" sm="10">
@@ -41,7 +41,7 @@
     <div id="shape">
       <div id="moons"></div>
     </div>
-    <b-row class="justify-content-center w-100" no-gutters>
+    <b-row class="justify-content-center w-100 kopdarPar" no-gutters>
       <KopdarCard :data="data"></KopdarCard>
     </b-row>
   </section>

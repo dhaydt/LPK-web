@@ -15,7 +15,7 @@ import InstrukturJumbotron from "../../components/instruktur/instrukturJumbotron
 export default {
   metaInfo: {
     // if no subcomponents specify a metaInfo.title, this title will be used
-    title: "PGU",
+    title: "LKP PAZ Generasi Unggul",
     // all titles will be injected into this template
     titleTemplate: "%s | INSTRUKTUR",
   },

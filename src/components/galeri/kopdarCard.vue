@@ -1,5 +1,5 @@
 <template>
-  <div class="galeri justify-content-center w-100 row">
+  <div class="galeri kopdar-card justify-content-center w-100 row">
     <b-col md="11">
       <div class="card-body border-top text-center">
         <b-row cols-md="3" cols="1">
