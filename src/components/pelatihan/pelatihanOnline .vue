@@ -19,7 +19,6 @@
               img-alt="Image"
               img-height="250"
               img-top
-              style="width: 20rem;"
               class="mb-2"
             >
               <b-card-text>
@@ -264,6 +263,8 @@ button.btn-success.rightLst:hover {
     0px 2.7099px 8.12969px rgba(0, 0, 0, 0.04),
     0px 0px 1.35495px rgba(0, 0, 0, 0.04);
   border-radius: 4px;
+  width: 396px;
+  max-width: 20rem;
 }
 
 .card-title-event {

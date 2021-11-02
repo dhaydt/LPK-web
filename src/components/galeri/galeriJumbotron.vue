@@ -4,7 +4,7 @@
       <!-- <div id="moon"></div> -->
       <div id="moontoon"></div>
       <b-row class="justify-content-center align-items-center h-100">
-        <b-col md="8" sm="12">
+        <b-col md="10" sm="12">
           <div id="header">
             <h1>Galeri</h1>
           </div>

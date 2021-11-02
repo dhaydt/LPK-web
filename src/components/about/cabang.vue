@@ -178,7 +178,7 @@ section {
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
-  line-height: 140%;
+  text-transform: capitalize;
   text-align: center;
   letter-spacing: 0.5px;
   color: #2e3e5c;

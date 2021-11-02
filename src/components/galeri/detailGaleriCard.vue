@@ -1,18 +1,37 @@
 <template>
-  <section class="mb-4 gallery">
+  <section class="mb-2 gallery">
     <b-container>
       <b-row class="justify-content-center">
-        <b-col lg="9">
-          <b-card sub-title="Card subtitle" no-body>
+        <b-col md="9" sm="9">
+          <b-card no-body v-if="images[0].lokasi" class="kopdar">
             <template #header>
-              <b-card-title> {{ title.lokasi }} </b-card-title>
+              <b-card-title>
+                {{ images[0].lokasi }}
+              </b-card-title>
             </template>
             <div id="moon"></div>
-            <b-card-body>
-              <b-card-text class="mt-2">
+            <b-card-body class="pt-0">
+              <b-card-text>
+                {{ "Pertemuan antar alumni PAZ tiap daerah" }}
+              </b-card-text>
+              <div class="head mt-3" v-if="images[0].date_range">
+                <span>{{ images[0].date_range }} </span>
+              </div>
+            </b-card-body>
+          </b-card>
+
+          <b-card no-body v-if="title.lokasi" class="galeriess">
+            <template #header>
+              <b-card-title>
+                {{ title.lokasi }}
+              </b-card-title>
+            </template>
+            <div id="moon"></div>
+            <b-card-body class="pt-0">
+              <b-card-text v-if="title.konten">
                 {{ title.konten }}
               </b-card-text>
-              <div class="head">
+              <div class="head mt-3" v-if="title.date_range">
                 <span>{{ title.date_range }} </span>
               </div>
             </b-card-body>
@@ -41,6 +60,7 @@ export default {
   data() {
     return {
       getUrl: "",
+      kopdarUrl: "",
       images: [],
       title: {},
     };
@@ -57,14 +77,28 @@ export default {
     window.scrollTo(0, 0);
     const mainUrl = localStorage.getItem("apiUrl");
     this.getUrl = mainUrl + ("/detail/" + this.$route.params.id);
+    this.kopdarUrl = mainUrl + ("/detailKopdar/" + this.$route.params.id);
   },
 
   mounted() {
-    this.getData();
-    // this.hideNav();
+    const id = this.$route.params.id;
+    console.log(id.length);
+    if (this.$route.params.id.length < 5) {
+      this.getData();
+    } else {
+      this.getKopdar();
+    }
+    // const title = this.title.lokasi ? this.title.lokasi : this.images[0].lokasi;
+    // console.log("title", title);
   },
 
   methods: {
+    async getKopdar() {
+      const resp = await axios.get(this.kopdarUrl);
+      const data = resp.data;
+      this.images = data;
+      // console.log(data);
+    },
     hideNav() {
       //   window.addEventListener("scroll", function() {
       //   var navi = this.document.querySelector(".navfront");
@@ -134,6 +168,7 @@ section {
 .card-title {
   font-size: 32px;
   font-style: normal;
+  text-transform: capitalize;
   font-weight: 600;
   line-height: 45px;
   letter-spacing: 0.5px;
@@ -142,6 +177,7 @@ section {
 }
 
 .card-text {
+  text-transform: capitalize;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;

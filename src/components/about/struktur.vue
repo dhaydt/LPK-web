@@ -13,7 +13,7 @@
             <b-card-title>TIM LKP PAZ AL KASAW</b-card-title>
           </b-card-body>
 
-          <div class="card-body border-top text-center">
+          <div class="card-body text-center">
             <div class="row">
               <div class="col-sm-4">
                 <div class="d-inline-flex">
@@ -64,6 +64,7 @@ export default {
 <style lang="scss" scoped>
 section {
   margin-top: 100px;
+  margin-bottom: 80px;
 }
 
 #moon {

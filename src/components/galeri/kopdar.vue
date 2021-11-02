@@ -6,18 +6,20 @@
           <b-card sub-title="Card subtitle" no-body>
             <template #header>
               <div class="head">
-                <span>{{ data ? data.date_range : Date.now() }} </span>
+                <span>KOPDAR </span>
               </div>
             </template>
             <div id="moon"></div>
             <b-card-body>
               <b-card-title>
-                {{ data ? data.lokasi : "Galeri PAZ Klaten, Indonesia" }}
+                <!-- {{ data ? data.lokasi : "Galeri PAZ Klaten, Indonesia" }} -->
+                galeri kopdar paztrooper seluruh indonesia
               </b-card-title>
               <b-card-text class="mt-4">
-                {{ data ? data.konten : "Galeri data belum tersedia" }}
+                <!-- {{ data ? data.konten : "Galeri data belum tersedia" }} -->
+                pertemuan antar alumni pelatihan PAZ daerah di seluruh indonesia
               </b-card-text>
-              <b-button
+              <!-- <b-button
                 variant="outline-success seemore"
                 :to="'/galeri_detail/' + data.id"
                 class="mt-4 px-4"
@@ -30,7 +32,7 @@
                   />
                   Lihat semua foto</span
                 ></b-button
-              >
+              > -->
             </b-card-body>
           </b-card>
         </b-col>
@@ -40,18 +42,18 @@
       <div id="moons"></div>
     </div>
     <b-row class="justify-content-center w-100">
-      <Card :img="img"></Card>
+      <KopdarCard :data="data"></KopdarCard>
     </b-row>
   </section>
 </template>
 
 <script>
-import Card from "./card";
+import KopdarCard from "./kopdarCard";
 export default {
   components: {
-    Card,
+    KopdarCard,
   },
-  props: ["data", "img"],
+  props: ["data"],
   data() {
     return {};
   },
@@ -111,6 +113,7 @@ section {
   font-size: 32px;
   font-style: normal;
   font-weight: 600;
+  text-transform: capitalize;
   line-height: 45px;
   letter-spacing: 0.5px;
   text-align: center;
@@ -118,6 +121,7 @@ section {
 }
 
 .card-text {
+  text-transform: capitalize;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;

@@ -42,7 +42,7 @@
                   ></a
                 >
 
-                <ul>
+                <ul class="parPeserta">
                   <li class="text-center">
                     <a class="text-center disable"
                       ><span
@@ -51,7 +51,7 @@
                         >Trainer
                       </span></a
                     >
-                    <ul>
+                    <ul class="peserta">
                       <li class="text-center disable">
                         <a
                           ><span
@@ -169,6 +169,26 @@ export default {
 };
 </script>
 <style lang="scss">
+.tree ul.parPeserta {
+  position: relative;
+
+  .peserta {
+    position: absolute;
+    width: 200px;
+    top: -41px;
+    left: 134px;
+  }
+
+  .peserta::before {
+    content: "";
+    position: absolute;
+    top: 64px;
+    left: -49px;
+    border-left: 77px solid #bdbdbd;
+    width: 0;
+    height: 3px;
+  }
+}
 #strukturModal {
   display: flex !important;
   align-items: center;

@@ -5,7 +5,9 @@
       <b-row cols="3" class="px-5 pt-0 mb-4" id="itemList">
         <b-col v-for="lok in paginatedItems" :key="lok.id" class="mt-5">
           <b-card :img-src="imgUrl + lok.img" img-top no-body>
-            <b-card-title class="px-4 pt-4">{{ lok.title }}</b-card-title>
+            <b-card-title class="px-4 pt-4"
+              ><h5>{{ lok.title }}</h5></b-card-title
+            >
             <b-row
               class="flex-column justify-content-between px-4 h-100 pb-4"
               no-gutters
@@ -133,14 +135,20 @@ export default {
 }
 
 .card-title {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  text-align: left;
-
-  letter-spacing: 0.5px;
-
-  color: #2e3e5c;
+  max-height: 60px;
+  h5 {
+    font-weight: 600;
+    font-size: 16px;
+    text-align: left;
+    // line-height: 2;
+    letter-spacing: 0.5px;
+    color: #2e3e5c;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .card-subtitle {

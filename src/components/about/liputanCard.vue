@@ -130,6 +130,7 @@ export default {
   height: 100%;
   .card-img {
     height: 100%;
+    max-height: 570px;
   }
   .overlay-bg {
     background-color: rgba(26, 30, 39, 0.7);

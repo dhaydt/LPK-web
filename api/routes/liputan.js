@@ -6,14 +6,15 @@ const fs = require("fs");
 const update = (req, res) => {
   console.log(req);
 
-  var sql = `UPDATE liputan SET title = ?, subtitle = ?, date = ?, content = ?  WHERE id = ?;`;
+  var sql = `UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ?  WHERE id = ?;`;
   db.query(
     sql,
     [
       req.body.title,
       req.body.subtitle,
-      req.body.date,
+      req.body.quote,
       req.body.content,
+      req.body.content2,
       // req.body.tag,
       req.params.id,
     ],
@@ -137,7 +138,9 @@ const index = function(req, res) {
     var title = post.title;
     var subtitle = post.subtitle;
     var date = post.date;
+    var quote = post.quote;
     var content = post.content;
+    var content2 = post.content2;
     var user_id = post.user_id;
     var tag = post.tag;
 
@@ -154,14 +157,18 @@ const index = function(req, res) {
       file.mv(`public/images/liputan/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `liputan`(`title`,`subtitle`,`date`,`content`,`tag`,`user_id`,`img`) VALUES ('" +
+          "INSERT INTO `liputan`(`title`,`subtitle`,`date`,`quote`,`content`,`content2`,`tag`,`user_id`,`img`) VALUES ('" +
           title +
           "','" +
           subtitle +
           "','" +
           date +
           "','" +
+          quote +
+          "','" +
           content +
+          "','" +
+          content2 +
           "','" +
           tag +
           "','" +

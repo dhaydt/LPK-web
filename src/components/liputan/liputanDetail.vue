@@ -25,6 +25,13 @@
                     v-html="news.content"
                     class="text-left"
                   ></b-card-text>
+                  <div class="iklan w-100 inner-border my-4">
+                    {{ news.quote }}
+                  </div>
+                  <b-card-text
+                    v-html="news.content2"
+                    class="text-left"
+                  ></b-card-text>
                 </b-col>
                 <b-col md="1">
                   <b-avatar size="48" class="mb-4">
@@ -78,6 +85,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.body-title {
+  text-transform: capitalize;
+}
 .card {
   box-shadow: none;
   .card-title {
@@ -139,5 +149,24 @@ export default {
     font-size: 24px;
     cursor: pointer;
   }
+}
+
+.iklan {
+  font-family: Inter;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 160%;
+  /* or 32px */
+  border-radius: 4px;
+
+  text-align: center;
+
+  /* Black/2 */
+
+  color: #757682;
+}
+.inner-border {
+  border-left: 5px solid #07a148;
 }
 </style>

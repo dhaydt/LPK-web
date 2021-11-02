@@ -6,15 +6,21 @@
           <div class="head">
             <span>liputan media</span>
           </div>
-          <h2 class="mt-4">
+          <h2 class="mt-4 pt-2">
             Dapatkan informasi tentang kegiatan yang telah kami selenggarakan
             disini
           </h2>
-          <b-button variant="outline-success seemore" href="#" class="mt-4 px-4"
-            ><span
-              ><img src="../../assets/images/blog.png" alt="info" height="25" />
-              Lihat semua</span
-            ></b-button
+          <router-link to="/liputan">
+            <b-button variant="outline-success seemore" class="mt-4 pt-2 px-4"
+              ><span
+                ><img
+                  src="../../assets/images/blog.png"
+                  alt="info"
+                  height="25"
+                />
+                Lihat semua</span
+              ></b-button
+            ></router-link
           >
         </b-col>
       </b-row>
@@ -81,8 +87,7 @@ export default {
 h2 {
   font-style: normal;
   font-weight: 600;
-  line-height: 140%;
-  /* or 48px */
+  text-transform: capitalize;
   color: #2e3e5c;
   text-align: center;
   letter-spacing: 0.5px;

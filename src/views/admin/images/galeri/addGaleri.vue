@@ -176,8 +176,8 @@ export default {
       },
       max: maxDate,
       file: null,
-      lokasi: {},
-      range: {},
+      lokasi: [],
+      range: [],
       posisi: [
         { text: "Landscape", value: "landscape" },
         { text: "Portrait", value: "portrait" },

@@ -2,7 +2,9 @@
   <div class="lainnya">
     <b-container>
       <b-card no-body>
-        <b-card-title class="text-left">Lihat liputan lainnya</b-card-title>
+        <b-card-title class="text-left mb-4"
+          >Lihat liputan lainnya</b-card-title
+        >
         <b-row cols-md="3" cols-sm="1">
           <b-col v-for="n in random" :key="n.id">
             <b-card no-body>
@@ -12,7 +14,7 @@
                 </b-col>
                 <b-col
                   md="7"
-                  class="pl-2 text-left d-flex flex-column justify-content-between"
+                  class="pl-3 text-left d-flex flex-column justify-content-between"
                 >
                   <b-card-title class="inner-card">{{ n.title }}</b-card-title>
 

@@ -69,7 +69,11 @@
                 :config="options"
               ></date-picker>
             </b-input-group>
-            <!-- {{ formFields.date }} -->
+            <!-- {{ formFields.date | moment("DD-MM-YYYY HH:mm") }} -->
+
+            <b-input-group prepend="Quote" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-input v-model="formFields.quote"></b-form-input>
+            </b-input-group>
 
             <b-input-group class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <template #prepend>
@@ -84,9 +88,23 @@
               ></ckeditor>
             </b-input-group>
 
+            <b-input-group class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <template #prepend>
+                <b-input-group-text style="height: 38.63px"
+                  >Konten 2</b-input-group-text
+                >
+              </template>
+              <ckeditor
+                v-model="formFields.content2"
+                :editor="editor"
+                required
+              ></ckeditor>
+            </b-input-group>
+
             <b-input-group prepend="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-file
                 type="file"
+                ref="img"
                 required
                 v-on:change="onSelect()"
                 accept="image/jpeg, image/png, image/gif"
@@ -142,8 +160,7 @@ export default {
     maxDate.setMonth(maxDate.getMonth());
     return {
       options: {
-        format: "DD-MM-YYYY HH:mm:ss",
-        useCurrent: false,
+        useCurrent: true,
         showClear: true,
         showClose: true,
       },
@@ -151,8 +168,10 @@ export default {
       formFields: {
         title: null,
         subtitle: null,
-        date: "tanggal",
-        content: null,
+        date: null,
+        quote: "",
+        content: "",
+        content2: "",
         tag: [{ text: "" }],
         user_id: null,
         img: null,
@@ -210,7 +229,9 @@ export default {
       formData.append("title", this.formFields.title);
       formData.append("subtitle", this.formFields.subtitle);
       formData.append("date", this.formFields.date);
+      formData.append("quote", this.formFields.quote);
       formData.append("content", this.formFields.content);
+      formData.append("content2", this.formFields.content2);
       formData.append("user_id", this.formFields.user_id);
       formData.append("tag", JSON.stringify(this.formFields.tag));
       formData.append("img", this.formFields.img);
@@ -230,8 +251,11 @@ export default {
       this.formFields.title = "";
       this.formFields.subtitle = "";
       this.formFields.date = this.dateNow;
+      this.formFields.quote = this.quote;
       this.formFields.content = "";
+      this.formFields.content2 = "";
       this.formFields.tag = [{ text: "" }];
+      this.$refs.img.reset();
       this.loading = false;
     },
     onSelect() {

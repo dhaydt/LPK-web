@@ -46,6 +46,7 @@ export default {
 
   mounted() {
     window.scrollTo(0, 0);
+    this.items[2].text = "detail";
   },
 };
 </script>

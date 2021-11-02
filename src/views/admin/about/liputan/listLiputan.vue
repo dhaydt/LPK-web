@@ -79,6 +79,9 @@
           <template v-slot:cell(content)="data">
             <p v-html="data.item.content"></p>
           </template>
+          <template v-slot:cell(content2)="data">
+            <p v-html="data.item.content2"></p>
+          </template>
 
           <template v-slot:cell(img)="data">
             <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
@@ -150,12 +153,11 @@
               required
             ></b-form-input>
           </b-form-group>
-
-          <b-form-group label="Tanggal">
+          <b-form-group id="input-group-11" label="Quote" label-for="input-11">
             <b-form-input
-              id="input-116"
-              v-model="editData.date"
-              type="date"
+              id="input-11"
+              v-model="editData.quote"
+              type="text"
               required
             ></b-form-input>
           </b-form-group>
@@ -163,6 +165,18 @@
           <b-form-group id="input-group-2" label="Konten" label-for="input-2">
             <ckeditor
               v-model="editData.content"
+              :editor="editor"
+              required
+            ></ckeditor>
+          </b-form-group>
+
+          <b-form-group
+            id="input-group-22"
+            label="Konten 2"
+            label-for="input-22"
+          >
+            <ckeditor
+              v-model="editData.content2"
               :editor="editor"
               required
             ></ckeditor>
@@ -208,6 +222,8 @@ export default {
         { key: "subtitle", sortable: true, label: "Sub judul" },
         { key: "date", sortable: true, label: "Tanggal" },
         { key: "content", sortable: true, label: "Konten" },
+        { key: "quote", sortable: true, label: "Quote" },
+        { key: "content2", sortable: true, label: "Konten 2" },
         { key: "img", label: "Foto" },
         { key: "action" },
       ],

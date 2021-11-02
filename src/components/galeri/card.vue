@@ -41,5 +41,9 @@ export default {
 .galeriPelatihan img {
   height: 308px;
   width: 250px;
+  object-fit: cover;
+  object-position: 20% 10%; /* try 20px 10px */
+  transition: 0.6s;
+  border-radius: 4px;
 }
 </style>

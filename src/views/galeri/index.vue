@@ -3,11 +3,12 @@
     <GaleriJumbotron></GaleriJumbotron>
     <Gallery1 :data="data1" :img="img1"></Gallery1>
     <Gallery1 :data="data2" :img="img2"></Gallery1>
-    <Gallery1 :data="data3" :img="img3"></Gallery1>
+    <Kopdar></Kopdar>
   </div>
 </template>
 
 <script>
+import Kopdar from "../../components/galeri/kopdar";
 import Gallery1 from "../../components/galeri/gallery1";
 import GaleriJumbotron from "../../components/galeri/galeriJumbotron";
 import axios from "axios";
@@ -21,15 +22,17 @@ export default {
   data() {
     return {
       dataUrl: "",
+      // kopdarUrl: "",
       data1: {},
       data2: {},
-      data3: {},
+      // data3: {},
       img1: {},
       img2: {},
-      img3: {},
+      // img3: {},
     };
   },
   components: {
+    Kopdar,
     Gallery1,
     GaleriJumbotron,
   },
@@ -38,6 +41,7 @@ export default {
     window.scrollTo(0, 0);
     const mainUrl = localStorage.getItem("apiUrl");
     this.dataUrl = mainUrl + "/groupFront";
+
     this.getData();
   },
 
@@ -48,7 +52,7 @@ export default {
       const group = data.dataGroup;
       this.data1 = group[0];
       this.data2 = group[1];
-      this.data3 = group[2];
+      // this.data3 = group[2];
 
       const img = data.dataImg;
 
@@ -62,7 +66,7 @@ export default {
       const lokasi1 = grouping(img, "lokasi");
       this.img1 = lokasi1[this.data1.lokasi].slice(0, 4);
       this.img2 = lokasi1[this.data2.lokasi].slice(0, 4);
-      this.img3 = lokasi1[this.data3.lokasi].slice(0, 4);
+      // this.img3 = lokasi1[this.data3.lokasi].slice(0, 4);
       // console.log(this.img3);
     },
   },

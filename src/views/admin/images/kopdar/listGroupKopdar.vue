@@ -54,7 +54,6 @@
         <b-table
           :items="tableData"
           :fields="fields"
-          striped
           responsive="sm"
           :per-page="perPage"
           :current-page="currentPage"
@@ -64,31 +63,26 @@
           :filter-included-fields="filterOn"
           @filtered="onFiltered"
         >
-          <template v-slot:cell(img)="data">
-            <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
-          </template>
           <template v-slot:cell(action)="data" class="d-flex">
-            <div class="actions" style="min-width: 100px">
-              <a
-                v-b-tooltip.hover
-                title="Edit User"
-                href="javascript:void(0);"
-                class="mr-2"
-                @click="edit(data.item)"
-              >
-                <i class="fas fa-edit"></i>
-              </a>
-              <a
-                href="javascript:void(0);"
-                class="text-danger"
-                v-b-tooltip.hover
-                title="Delete"
-                @click="deleteVisi(data.item.img)"
-              >
-                <b-spinner v-if="loading" small variant="primary"></b-spinner>
-                <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
-              </a>
-            </div>
+            <!-- <a
+              href="javascript:void(0);"
+              class="mr-3 text-primary"
+              v-b-tooltip.hover
+              data-toggle="tooltip"
+              title="Edit"
+            >
+              <i class="mdi mdi-pencil font-size-18"></i>
+            </a> -->
+            <a
+              href="javascript:void(0);"
+              class="text-danger"
+              v-b-tooltip.hover
+              title="Delete"
+              @click="deleteVisi(data.item.id)"
+            >
+              <b-spinner v-if="loading" small variant="primary"></b-spinner>
+              <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
+            </a>
           </template>
         </b-table>
       </div>
@@ -106,45 +100,6 @@
           </div>
         </div>
       </div>
-
-      <b-modal ref="users" id="users" hide-footer title="Edit Data">
-        <div class="d-block text-left">
-          <b-form-group id="input-group-1" label="Judul" label-for="input-1">
-            <b-form-input
-              id="input-1"
-              v-model="editData.title"
-              type="text"
-              required
-            ></b-form-input>
-          </b-form-group>
-
-          <b-form-group id="input-group-11" label="Lokasi" label-for="input-11">
-            <b-form-select
-              id="input-11"
-              v-model="editData.lokasi"
-              :options="lokasi"
-              required
-            ></b-form-select>
-          </b-form-group>
-
-          <b-form-group label="Jarak Waktu">
-            <b-form-select
-              id="jarak"
-              v-model="editData.date_range"
-              :options="range"
-              required
-            ></b-form-select>
-          </b-form-group>
-        </div>
-        <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
-        <b-button
-          class="mt-4"
-          variant="outline-success"
-          block
-          @click="SaveUsers"
-          >Simpan</b-button
-        >
-      </b-modal>
     </b-card>
   </div>
 </template>
@@ -155,10 +110,6 @@ import axios from "axios";
 export default {
   data() {
     return {
-      editData: {},
-      groupUrl: "",
-      lokasi: [],
-      range: [],
       tableData: [],
       totalRows: 1,
       currentPage: 1,
@@ -170,10 +121,8 @@ export default {
       sortDesc: false,
       fields: [
         { key: "id", sortable: true, label: "ID" },
-        { key: "title", sortable: true, label: "Judul" },
         { key: "lokasi", sortable: true, label: "Lokasi" },
         { key: "date_range", sortable: true, label: "Jarak Waktu" },
-        { key: "img", label: "Foto" },
         { key: "action" },
       ],
       visiUrl: "",
@@ -197,50 +146,17 @@ export default {
   mounted() {
     // Set the initial number of items
     this.totalRows = this.tableData.length;
-    this.$root.$on("getImg", this.getLegal);
+    this.$root.$on("getGrub", this.getLegal);
   },
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.visiUrl = mainUrl + "/imageKopdar";
+    this.visiUrl = mainUrl + "/groupKopdar";
     this.imgUrl = mainUrl + "/images/galeri/";
-    this.groupUrl = mainUrl + "/groupKopdar";
-    this.getGroup();
     this.getLegal();
   },
 
   methods: {
-    async SaveUsers() {
-      await axios
-        .put(this.visiUrl + "/" + this.editData.id, this.editData)
-        .then((response) => {
-          this.messages = "Data berhasil diubah";
-          this.getLegal();
-          this.showAlert();
-          console.log("data", response);
-          this.$refs["users"].hide();
-          // this.loading = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-      // .finally(() => this.loading = false)
-    },
-
-    edit(val) {
-      console.log(val);
-      this.editData = val;
-      this.$refs["users"].show();
-    },
-    async getGroup() {
-      const resp = await axios.get(this.groupUrl);
-      // console.log("grup", resp);
-      const data = resp.data.data;
-      this.lokasi = data.map((data) => data.lokasi);
-      this.range = data.map((data) => data.date_range);
-      console.log(this.range);
-    },
     async getLegal() {
       const resp = await axios
         .get(this.visiUrl)
