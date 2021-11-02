@@ -11,7 +11,13 @@
         <div v-if="!filteredList.length" class="w-100 mx-auto not-found">
           Tidak ada data ditemukan
         </div>
-        <div v-for="lok in filteredList" :key="lok.id" class="mt-5 col">
+        <b-col
+          sm="1"
+          v-for="lok in filteredList"
+          :key="lok.id"
+          class="mt-5 lokerCardMenu"
+          id="lokerCardMenu"
+        >
           <b-card :sub-title="lok.kriteria" class="inner-border h-100" no-body>
             <b-card-title class="px-4 pt-4">{{ lok.judul }}</b-card-title>
             <div class="card-subtitle px-4 mt-0" style="min-height: 80px">
@@ -38,7 +44,7 @@
               </div>
             </b-row>
           </b-card>
-        </div>
+        </b-col>
       </b-row>
       <b-row
         cols-md="4"

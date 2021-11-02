@@ -55,7 +55,7 @@
     }
 
     .MultiCarousel {
-      button.btn-success.leftLst[data-v-4c1cbbb4] {
+      button.btn-success.leftLst {
         left: 75vw;
       }
     }
@@ -119,7 +119,7 @@
   div.beforeFoot {
     .row {
       .col-sm-12.col-md-5 {
-        .img-foot[data-v-437ca146] {
+        .img-foot {
           height: 324px;
           margin-top: -180px;
         }
@@ -582,7 +582,7 @@
     }
 
     section.gallery {
-      .card[data-v-4d0a9338] {
+      .card {
         .card-header {
           .head span {
             font-size: 14px;
@@ -691,27 +691,27 @@
       #MultiCarousel1 {
         .btn.leftLst {
           right: 26vw;
-          top: 71px;
+          top: 121px;
         }
 
         .btn.rightLst {
           right: 10vw;
-          top: 71px;
+          top: 121px;
         }
       }
     }
 
-    .eventOnline[data-v-c4af7542] {
+    .eventOnline {
       .pelatihanOnline {
         #MultiCarousel2 {
           .btn.leftLst {
             right: 26vw;
-            top: 71px;
+            top: 121px;
           }
 
           .btn.rightLst {
             right: 10vw;
-            top: 71px;
+            top: 121px;
           }
         }
       }
@@ -735,6 +735,9 @@
   // LOKER SECTION
 
   div.loker {
+    #lokerCardMenu.col.lokerCardMenu {
+      min-width: 247px;
+    }
     .lokerJumbotron {
       #header h1 {
         font-size: 30px;
