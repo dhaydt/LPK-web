@@ -47,28 +47,20 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  props: {
-    images: {
-      type: [Array, Object],
-      required: true,
-    },
-  },
   data() {
     return {
-      items: [
-        require("../../assets/images/avatar1.png"),
-        require("../../assets/images/avatar2.png"),
-        require("../../assets/images/avatar1.png"),
-      ],
       index: null,
-      lokers: [],
+      images: [],
       currentPage: 1,
       perPage: 9,
       totalRows: "",
       paginatedItems: [],
+      titles: {},
       lokerUrl: "",
       imgUrl: "",
+      mainUrl: "",
     };
   },
 
@@ -81,20 +73,53 @@ export default {
   },
 
   created() {
-    const mainUrl = localStorage.getItem("apiUrl");
-    this.lokerUrl = mainUrl + "/loker";
-    this.imgUrl = mainUrl + "/images/galeri/";
+    this.mainUrl = localStorage.getItem("apiUrl");
+    this.getUrl = this.mainUrl + ("/image/" + this.$route.params.id);
+    this.kopdarUrl = this.mainUrl + ("/kopdar/" + this.$route.params.id);
   },
   mounted() {
-    this.getLoker();
-    // console.log("img", this.images);
-
-    // console.log("loker", this.lokers);
+    var tipe = this.$route.params.tipe;
+    if (tipe === "galeri") {
+      console.log("galeri");
+      this.imgUrl = this.mainUrl + "/images/newGaleri/";
+      this.getData();
+    } else {
+      console.log("kopdar");
+      this.imgUrl = this.mainUrl + "/images/kopdar/";
+      this.getKopdar();
+    }
   },
 
   methods: {
+    async getData() {
+      const resp = await axios.get(this.getUrl);
+      const data = resp.data.data;
+      this.images = data;
+      console.log(data);
+      this.titles = {
+        title: data[0].title,
+        desc: data[0].imgDesc,
+        date: data[0].date,
+      };
+      this.$emit("titles", this.titles);
+      this.getPaginate();
+      this.$root.$emit("titles", data[0].title);
+    },
+    async getKopdar() {
+      const resp = await axios.get(this.kopdarUrl);
+      const data = resp.data.data;
+      this.images = data;
+      this.titles = {
+        title: data[0].title,
+        desc: data[0].imgDesc,
+        date: data[0].date,
+      };
+      this.$emit("titles", this.titles);
+      this.getPaginate();
+      this.$root.$emit("titles", data[0].title);
+    },
     paginate(page_size, page_number) {
-      let itemsToParse = this.lokers;
+      let itemsToParse = this.images;
       this.paginatedItems = itemsToParse.slice(
         page_number * page_size,
         (page_number + 1) * page_size
@@ -103,10 +128,9 @@ export default {
     onPageChanged(page) {
       this.paginate(this.perPage, page - 1);
     },
-    getLoker() {
-      this.lokers = this.images;
-      this.paginatedItems = this.lokers;
-      this.totalRows = this.lokers.length;
+    getPaginate() {
+      this.paginatedItems = this.images;
+      this.totalRows = this.images.length;
       this.paginate(this.perPage, 0);
     },
   },
@@ -114,9 +138,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.lokerCard {
-}
-
 .card {
   background: #ffffff;
   border: 1px solid #e8eaed;

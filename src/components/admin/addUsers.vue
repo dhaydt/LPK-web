@@ -3,7 +3,6 @@
     <b-row class="justify-content-center">
       <b-col md="8" sm="12">
         <b-card>
-          <b-card-title class="text-left">Tambah Visi / Misi</b-card-title>
           <b-alert
             :show="dismissCountDown"
             dismissible
@@ -19,21 +18,93 @@
               height="4px"
             ></b-progress>
           </b-alert>
-          <b-form @submit="onSubmit">
-            <b-input-group prepend="Visi" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
-              <b-form-input id="visi" v-model="form.visi"></b-form-input>
-            </b-input-group>
+          <b-form @submit="onSubmit" class="text-left mt-4">
+            <b-form-group label="Nama Depan" class="mb-4">
+              <b-form-input
+                id="fname"
+                v-model="form.nama_depan"
+                type="text"
+                placeholder="Nama depan"
+                required
+              ></b-form-input>
+            </b-form-group>
 
-            <b-input-group prepend="Misi" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
-              <b-form-input id="misi" v-model="form.misi"></b-form-input>
-            </b-input-group>
+            <b-form-group class="mb-4" label="Nama Belakang">
+              <b-form-input
+                id="lname"
+                v-model="form.nama_bel"
+                type="text"
+                placeholder="Nama belakang"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group class="mb-4" label="E-Mail">
+              <b-form-input
+                id="email"
+                v-model="form.email"
+                type="email"
+                placeholder="Email"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group class="mb-4" label="Role">
+              <b-form-select
+                id="role"
+                :options="role"
+                v-model="form.role"
+                required
+              ></b-form-select>
+            </b-form-group>
+
+            <b-form-group class="mb-4" label="Telepon">
+              <b-form-input
+                id="telp"
+                v-model="form.telp"
+                type="number"
+                placeholder="Telepon / HP"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group class="mb-4" label="Alamat">
+              <b-form-input
+                id="alamat"
+                v-model="form.alamat"
+                type="text"
+                placeholder="Alamat"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group label="Password">
+              <b-form-input
+                id="password"
+                v-model="form.password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group label="Konfirmasi Password">
+              <b-form-input
+                id="c_password"
+                v-model="form.c_password"
+                name="c_password"
+                type="password"
+                placeholder="Konfirmasi Password"
+                required
+              ></b-form-input>
+            </b-form-group>
 
             <b-button type="submit" variant="success" class="mt-4"
               ><div v-if="loading">
                 <b-spinner small variant="primary"></b-spinner> Menyimpan...
               </div>
               <span v-if="!loading"
-                ><i class="fa fa-save"></i> Simpan</span
+                ><i class="fa fa-save"></i> Tambah User</span
               ></b-button
             >
           </b-form>
@@ -48,11 +119,24 @@ import axios from "axios";
 export default {
   data() {
     return {
+      alert: false,
       visiUrl: "",
       form: {
-        visi: "",
-        misi: "",
+        nama_depan: "",
+        nama_bel: "",
+        email: "",
+        telp: "",
+        alamat: "",
+        role: null,
+        password: "",
+        c_password: "",
       },
+      role: [
+        { text: "Pilih Role User", value: null },
+        { text: "Admin", value: "admin" },
+        { text: "HRD", value: "hrd" },
+        { text: "Staff", value: "staff" },
+      ],
       loading: "",
       variant: "",
       dismissSecs: 5,
@@ -63,34 +147,46 @@ export default {
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.visiUrl = mainUrl + "/visi";
+    this.visiUrl = mainUrl + "/sign-up";
   },
 
   methods: {
-    async onSubmit(e) {
+    onSubmit(e) {
       e.preventDefault();
-      this.loading = true;
-      if (this.form.misi == "" && this.form.visi == "") {
-        console.log("null");
-        this.loading = false;
-        this.messages = "Isi salah satu antara visi / misi";
+      this.loading = "true";
+      if (this.form.password !== this.form.c_password) {
         this.variant = "danger";
+        this.alert = true;
+        this.messages = "Password tidak sama!!!";
+        this.form.password = "";
+        this.form.c_password = "";
         this.showAlert();
-      } else {
-        console.log("not null", this.form);
-        try {
-          const resp = await axios.post(this.visiUrl, this.form);
-          console.log(resp);
-        } catch (err) {
-          console.log(err);
-        }
-        this.form.visi = "";
-        this.form.misi = "";
-        this.messages = "Data tersimpan";
-        this.variant = "success";
         this.loading = false;
-        this.showAlert();
-        this.$root.$emit("getVisi");
+      } else {
+        this.register();
+      }
+    },
+    async register() {
+      // event.preventDefault();
+
+      try {
+        let res = await axios.post(this.visiUrl, this.form);
+        console.log(res.token);
+        if (res.token !== null) {
+          this.variant = "success";
+          this.messages = "Berhasil Menambah User";
+          this.showAlert();
+          console.log(res);
+          // localStorage.setItem("auth", JSON.stringify(res.data));
+          this.loading = "";
+          this.$root.$emit("getVisi");
+        }
+      } catch ({ response }) {
+        this.loading = "";
+        this.variant = "danger";
+        this.messages = response.data.msg;
+        (this.form.password = ""), (this.alert = true);
+        console.log(response.data.msg);
       }
     },
 

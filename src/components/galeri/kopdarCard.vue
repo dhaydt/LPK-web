@@ -16,14 +16,14 @@
               </b-row>
               <b-row class="row-detail flex-column card-body">
                 <b-card-title class="text-left px-2"
-                  >{{ im[0].lokasi }}
+                  >{{ im[0].title }}
                 </b-card-title>
                 <b-card-text class="text-left px-2 mt-2"
-                  >{{ im[0].date_range }}
+                  >{{ im[0].date }}
                 </b-card-text>
                 <div class="detail text-left px-2">
-                  <router-link
-                    :to="'/galeri_detail/' + im[0].lokasi"
+                  ><router-link
+                    :to="'/galeri_detail/kopdar/' + im[0].title"
                     class="card-link"
                     >Lihat detail -></router-link
                   >
@@ -85,8 +85,8 @@ export default {
 
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
-    this.kopdarUrl = mainUrl + "/groupKopdarFront";
-    this.imgUrl = mainUrl + "/images/galeri/";
+    this.kopdarUrl = mainUrl + "/kopdar";
+    this.imgUrl = mainUrl + "/images/kopdar/";
     this.getData();
   },
 
@@ -95,14 +95,15 @@ export default {
   methods: {
     async getData() {
       const resp = await axios.get(this.kopdarUrl);
-      const data = resp.data;
+      const data = resp.data.data;
       this.data = data;
       const img = this.data;
 
       const grouping = (array) => {
         return array.reduce((result, currentValue) => {
-          (result[currentValue.lokasi] =
-            result[currentValue.lokasi] || []).push(currentValue);
+          (result[currentValue.title] = result[currentValue.title] || []).push(
+            currentValue
+          );
           return result;
         }, {});
       };

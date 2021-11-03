@@ -1,7 +1,7 @@
 <template>
   <div class="galeriDetail">
     <Breadcumb :items="items"></Breadcumb>
-    <DetailGaleriCard :data="data"></DetailGaleriCard>
+    <DetailGaleriCard></DetailGaleriCard>
   </div>
 </template>
 
@@ -17,12 +17,6 @@ export default {
   },
   data() {
     return {
-      data: {
-        title: "Pelatihan PAZ Basic Yogyakarta",
-        content:
-          "Pelatihan yang dilakukan dari tanggal X sampai tanggal Y pada bulan Oktober 2021 secara offline di kota Yogyakarta. Peserta pada pelatihan ini mencapai 100 orang pada sesi ini.",
-        subtitle: "17 - 18 Oktober 2021",
-      },
       items: [
         {
           text: "Home",
@@ -50,12 +44,6 @@ export default {
       // console.log("val", val);
       this.items[2].text = val;
     });
-  },
-
-  methods: {
-    titleUpdate(val) {
-      console.log("home", val);
-    },
   },
 };
 </script>

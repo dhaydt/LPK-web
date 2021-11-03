@@ -1,15 +1,14 @@
 <template>
   <div class="galeriHome">
     <GaleriJumbotron></GaleriJumbotron>
-    <Gallery1 :data="data1" :img="img1"></Gallery1>
-    <Gallery1 :data="data2" :img="img2"></Gallery1>
+    <Galeri></Galeri>
     <Kopdar></Kopdar>
   </div>
 </template>
 
 <script>
+import Galeri from "../../components/galeri/galeri";
 import Kopdar from "../../components/galeri/kopdar";
-import Gallery1 from "../../components/galeri/gallery1";
 import GaleriJumbotron from "../../components/galeri/galeriJumbotron";
 import axios from "axios";
 export default {
@@ -32,8 +31,8 @@ export default {
     };
   },
   components: {
+    Galeri,
     Kopdar,
-    Gallery1,
     GaleriJumbotron,
   },
 

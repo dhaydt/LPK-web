@@ -107,33 +107,29 @@
         </div>
       </div>
 
-      <b-modal ref="users" id="users" hide-footer title="Edit Data">
+      <b-modal
+        ref="users"
+        id="users"
+        hide-footer
+        :title="`Edit ` + editData.title + `, ID : ` + editData.id"
+      >
         <div class="d-block text-left">
           <b-form-group id="input-group-1" label="Judul" label-for="input-1">
             <b-form-input
               id="input-1"
-              v-model="editData.title"
+              v-model="editData.imgTitle"
               type="text"
               required
             ></b-form-input>
           </b-form-group>
 
-          <b-form-group id="input-group-11" label="Lokasi" label-for="input-11">
-            <b-form-select
-              id="input-11"
-              v-model="editData.lokasi"
-              :options="lokasi"
+          <b-form-group label="Deskripsi" label-for="input-2">
+            <b-form-input
+              id="input-2"
+              v-model="editData.imgDesc"
+              type="text"
               required
-            ></b-form-select>
-          </b-form-group>
-
-          <b-form-group label="Jarak Waktu">
-            <b-form-select
-              id="jarak"
-              v-model="editData.date_range"
-              :options="range"
-              required
-            ></b-form-select>
+            ></b-form-input>
           </b-form-group>
         </div>
         <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
@@ -156,9 +152,6 @@ export default {
   data() {
     return {
       editData: {},
-      groupUrl: "",
-      lokasi: [],
-      range: [],
       tableData: [],
       totalRows: 1,
       currentPage: 1,
@@ -170,9 +163,10 @@ export default {
       sortDesc: false,
       fields: [
         { key: "id", sortable: true, label: "ID" },
-        { key: "title", sortable: true, label: "Judul" },
-        { key: "lokasi", sortable: true, label: "Lokasi" },
-        { key: "date_range", sortable: true, label: "Jarak Waktu" },
+        { key: "imgTitle", sortable: true, label: "Judul" },
+        { key: "imgDesc", sortable: true, label: "Deskripsi" },
+        { key: "title", sortable: true, label: "Grup" },
+        { key: "date", sortable: true, label: "Tanggal" },
         { key: "img", label: "Foto" },
         { key: "action" },
       ],
@@ -203,9 +197,7 @@ export default {
   created() {
     const mainUrl = localStorage.getItem("apiUrl");
     this.visiUrl = mainUrl + "/image";
-    this.imgUrl = mainUrl + "/images/galeri/";
-    this.groupUrl = mainUrl + "/group";
-    this.getGroup();
+    this.imgUrl = mainUrl + "/images/newGaleri/";
     this.getLegal();
   },
 
@@ -233,14 +225,7 @@ export default {
       this.editData = val;
       this.$refs["users"].show();
     },
-    async getGroup() {
-      const resp = await axios.get(this.groupUrl);
-      // console.log("grup", resp);
-      const data = resp.data.data;
-      this.lokasi = data.map((data) => data.lokasi);
-      this.range = data.map((data) => data.date_range);
-      // console.log(this.lokasi);
-    },
+
     async getLegal() {
       const resp = await axios
         .get(this.visiUrl)

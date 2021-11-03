@@ -105,6 +105,14 @@
                   ></b-form-input>
                 </b-input-group>
 
+                <b-input-group prepend="URL" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+                  <b-form-input
+                    id="url"
+                    v-model="formFields.url"
+                    required
+                  ></b-form-input>
+                </b-input-group>
+
                 <b-input-group
                   prepend="Jarak Waktu"
                   class="mb-2 mt-4 mr-sm-2 mb-sm-0"
@@ -168,6 +176,7 @@ export default {
         title: null,
         lokasi: "",
         bulan: null,
+        url: "",
         date_range: "",
         img: null,
       },
@@ -239,6 +248,7 @@ export default {
       formData.append("bulan", this.formFields.bulan);
       formData.append("lokasi", this.formFields.lokasi);
       formData.append("date_range", this.formFields.date_range);
+      formData.append("url", this.formFields.url);
       formData.append("img", this.formFields.img);
       await axios
         .post(this.legalUrl, formData)
@@ -256,6 +266,7 @@ export default {
       this.formFields.title = "";
       this.formFields.bulan = null;
       this.formFields.lokasi = "";
+      this.formFields.url = "";
       this.formFields.date_range = "";
       // this.formFields.date = this.dateNow;
       // this.formFields.img = "";

@@ -90,19 +90,14 @@
               ></b-form-input>
             </b-input-group>
 
-            <!-- <b-input-group
-              prepend="Tanggal"
-              id="date"
-              class="date mb-2 mt-4 mr-sm-2 mb-sm-0"
-            >
-              <b-form-datepicker
-                id="example-datepicker"
-                v-model="formFields.date"
-                class="mb-2"
-                :max="max"
+            <b-input-group prepend="URL" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-input
+                id="url"
+                v-model="formFields.url"
+                placeholder="Masa berlaku pelatihan"
                 required
-              ></b-form-datepicker>
-            </b-input-group> -->
+              ></b-form-input>
+            </b-input-group>
 
             <b-input-group prepend="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-file
@@ -149,6 +144,7 @@ export default {
         waktu: "",
         akses: "",
         expire: "",
+        url: "",
         img: null,
       },
       file: null,
@@ -180,6 +176,7 @@ export default {
       formData.append("waktu", this.formFields.waktu);
       formData.append("akses", this.formFields.akses);
       formData.append("expire", this.formFields.expire);
+      formData.append("url", this.formFields.url);
       formData.append("img", this.formFields.img);
       await axios
         .post(this.legalUrl, formData)
@@ -201,6 +198,7 @@ export default {
       this.formFields.waktu = "";
       this.formFields.akses = "";
       this.formFields.expire = "";
+      this.formFields.url = "";
       this.formFields.img = "";
       this.loading = false;
     },

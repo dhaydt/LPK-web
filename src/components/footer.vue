@@ -12,11 +12,11 @@
           <h3>About Us</h3>
         </b-row>
         <b-row class="flex-column text-left">
-          <router-link to="/aboutus">Visi Misi</router-link>
-          <router-link to="/aboutus">Legalitas</router-link>
-          <router-link to="/aboutus">Struktur LKP</router-link>
+          <router-link to="/tentang">Visi Misi</router-link>
+          <router-link to="/tentang">Legalitas</router-link>
+          <router-link to="/tentang">Struktur LKP</router-link>
           <router-link to="/liputan">Liputan Media</router-link>
-          <router-link to="/aboutus">Data Cabang</router-link>
+          <router-link to="/tentang">Data Cabang</router-link>
         </b-row>
       </b-col>
       <b-col md="2" class="foot-menu">

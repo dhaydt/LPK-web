@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const update = (req, res) => {
   console.log(req);
-  var sql = `UPDATE pelatihan SET title = ?, jenis = ?, subtitle = ?,waktu = ?,akses = ?,expire = ?, tempat = ? WHERE id = ?;`;
+  var sql = `UPDATE pelatihan SET title = ?, jenis = ?, subtitle = ?,waktu = ?,akses = ?,expire = ?, tempat = ?, url = ? WHERE id = ?;`;
   db.query(
     sql,
     [
@@ -16,6 +16,7 @@ const update = (req, res) => {
       req.body.akses,
       req.body.expire,
       req.body.tempat,
+      req.body.url,
       req.params.id,
     ],
     (err, result) => {
@@ -109,6 +110,7 @@ const index = function(req, res) {
     var tempat = post.tempat;
     var waktu = post.waktu;
     var akses = post.akses;
+    var url = post.url;
     var expire = post.expire;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
@@ -124,7 +126,7 @@ const index = function(req, res) {
       file.mv(`public/images/pelatihan/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `pelatihan`(`title`,`jenis`,`subtitle`,`img`,`tempat`, `waktu`,`akses`,`expire`) VALUES ('" +
+          "INSERT INTO `pelatihan`(`title`,`jenis`,`subtitle`,`img`,`tempat`, `waktu`,`akses`,`expire`,`url`) VALUES ('" +
           title +
           "','" +
           jenis +
@@ -140,6 +142,8 @@ const index = function(req, res) {
           akses +
           "','" +
           expire +
+          "','" +
+          url +
           "')";
 
         db.query(sql, (err, result) => {

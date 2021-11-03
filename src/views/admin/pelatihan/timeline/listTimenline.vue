@@ -126,6 +126,15 @@
               required
             ></b-form-input>
           </b-form-group>
+
+          <b-form-group id="ainput-group-11" label="URL" label-for="input-112">
+            <b-form-input
+              id="input-112"
+              v-model="editData.url"
+              type="text"
+              required
+            ></b-form-input>
+          </b-form-group>
           <b-form-group
             id="input-group-111"
             label="Bulan"
@@ -183,6 +192,7 @@ export default {
       fields: [
         { key: "id", sortable: true, label: "ID" },
         { key: "title", sortable: true, label: "Judul" },
+        { key: "url", sortable: true, label: "URL" },
         { key: "lokasi", sortable: true, label: "Lokasi" },
         { key: "bulan", sortable: true, label: "Bulan" },
         { key: "img", label: "Foto" },

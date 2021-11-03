@@ -3,38 +3,21 @@
     <b-container>
       <b-row class="justify-content-center">
         <b-col md="9" sm="9">
-          <b-card no-body v-if="images[0]" class="kopdar">
+          <b-card no-body class="galeriess">
             <template #header>
               <b-card-title>
-                {{ images[0].lokasi }}
+                {{ title.title }}
               </b-card-title>
             </template>
             <div id="moon"></div>
             <b-card-body class="pt-0">
               <b-card-text>
-                Pertemuan antar alumni PAZ tiap daerah
-              </b-card-text>
-              <div class="head mt-3" v-if="images[0]">
-                <span>{{ images[0].date_range }} </span>
-              </div>
-            </b-card-body>
-          </b-card>
-
-          <b-card no-body class="galeriess" v-if="!title">
-            <template #header>
-              <b-card-title>
-                {{ title.lokasi ? title.lokasi : "loading..." }}
-              </b-card-title>
-            </template>
-            <div id="moon"></div>
-            <b-card-body class="pt-0">
-              <b-card-text>
-                {{ title.konten ? title.konten : "loading..." }}
+                {{
+                  title.desc ? title.desc : "Kegiatan yang kami selenggarakan"
+                }}
               </b-card-text>
               <div class="head mt-3">
-                <span
-                  >{{ title.date_range ? title.date_range : "loading..." }}
-                </span>
+                <span>{{ title.date }} </span>
               </div>
             </b-card-body>
           </b-card>
@@ -45,24 +28,23 @@
       <div id="moons"></div>
     </div>
     <b-row class="justify-content-center w-100" no-gutters>
-      <CardDetail :images="images" v-if="images.length !== 0"></CardDetail>
+      <CardDetail @titles="getTitles"></CardDetail>
     </b-row>
   </section>
 </template>
 
 <script>
-import axios from "axios";
 import CardDetail from "./cardDetail";
 import $ from "jquery";
 export default {
   components: {
     CardDetail,
   },
-  props: ["data"],
   data() {
     return {
       getUrl: "",
       kopdarUrl: "",
+      imgUrl: "",
       images: [],
       title: {},
     };
@@ -77,45 +59,16 @@ export default {
 
   created() {
     window.scrollTo(0, 0);
-    const mainUrl = localStorage.getItem("apiUrl");
-    this.getUrl = mainUrl + ("/detail/" + this.$route.params.id);
-    this.kopdarUrl = mainUrl + ("/detailKopdar/" + this.$route.params.id);
   },
 
-  mounted() {
-    const id = this.$route.params.id;
-    if (id.length < 5) {
-      this.getData();
-    } else {
-      this.getKopdar();
-    }
-  },
+  mounted() {},
 
   methods: {
-    async getKopdar() {
-      const resp = await axios.get(this.kopdarUrl);
-      const data = resp.data;
-      this.images = data;
-      // console.log(data);
-      // console.log("kopdar", data[0].lokasi);
-      this.$root.$emit("titles", data[0].lokasi);
+    getTitles(val) {
+      this.title = val;
     },
     hideNav() {
-      //   window.addEventListener("scroll", function() {
-      //   var navi = this.document.querySelector(".navfront");
-      //   if (navi !== null) {
-      //     navi.classList.toggle("sticky", window.scrollY > 0);
-      //   }
-      // });
       $(".navbar").css({ "margin-top": "-40px" });
-    },
-    async getData() {
-      const resp = await axios.get(this.getUrl);
-      const data = resp.data;
-      this.images = data.dataImg;
-      // console.log("detail", this.images);
-      this.title = data.dataGroup[0];
-      this.$root.$emit("titles", this.title.lokasi);
     },
   },
 };

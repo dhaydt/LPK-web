@@ -171,6 +171,12 @@
               type="text"
               required
             ></b-form-input> </b-form-group
+          ><b-form-group label="URL">
+            <b-form-input
+              v-model="editData.url"
+              type="text"
+              required
+            ></b-form-input> </b-form-group
           ><b-form-group
             id="input-group-113"
             label="Berlaku"
@@ -220,6 +226,7 @@ export default {
       fields: [
         { key: "id", sortable: true, label: "ID" },
         { key: "title", sortable: true, label: "Judul" },
+        { key: "url", sortable: true, label: "URL" },
         { key: "jenis", sortable: true, label: "Jenis Pelatihan" },
         { key: "subtitle", sortable: true, label: "Sub Judul" },
         { key: "img", label: "Foto" },

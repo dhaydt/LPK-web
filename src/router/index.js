@@ -15,7 +15,6 @@ import HomeGaleri from "../views/galeri/index.vue";
 import HomeGaleriDetail from "../views/galeri/galeriDetail/index.vue";
 
 // Admin panel
-import Register from "../views/auth/register.vue";
 import Login from "../views/auth/login.vue";
 import Unauthorized from "../views/auth/unauth.vue";
 import Dashboard from "../views/admin/index.vue";
@@ -51,7 +50,7 @@ const routes = [
         component: () => import("../views/home/index.vue"),
       },
       {
-        path: "/aboutus",
+        path: "/tentang",
         component: HomeAbout,
       },
       {
@@ -71,7 +70,7 @@ const routes = [
         component: HomeGaleri,
       },
       {
-        path: "/galeri_detail/:id",
+        path: "/galeri_detail/:tipe/:id",
         name: "Galeri_detail",
         component: HomeGaleriDetail,
       },
@@ -98,12 +97,6 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
-  },
-
-  {
-    path: "/register",
-    name: "Register",
-    component: Register,
   },
 
   {

@@ -17,7 +17,7 @@ const update = (req, res) => {
       req.body.jenis,
       req.body.gaji,
       req.body.note,
-      req.body.deadline,
+      new Date(req.body.deadline),
       req.body.alamat,
       req.body.pengalaman,
       req.params.id,

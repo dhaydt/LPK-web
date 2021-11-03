@@ -47,10 +47,10 @@
                   ><i class="fas fa-lock mr-2"></i>Login</span
                 ></b-button
               >
-              <div class="text-center reg">
+              <!-- <div class="text-center reg">
                 Belum punya akun?
                 <router-link to="/register">Daftar baru</router-link>
-              </div>
+              </div> -->
             </b-form>
           </b-card>
         </b-container>

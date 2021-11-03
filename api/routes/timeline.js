@@ -6,7 +6,7 @@ const fs = require("fs");
 const update = (req, res) => {
   console.log(req);
   // title`,`lokasi`,`bulan`,`date_range`,
-  var sql = `UPDATE timeline SET title = ?, lokasi = ?, bulan = ?, date_range = ? WHERE id = ?;`;
+  var sql = `UPDATE timeline SET title = ?, lokasi = ?, bulan = ?, date_range = ?, url = ? WHERE id = ?;`;
   db.query(
     sql,
     [
@@ -14,6 +14,7 @@ const update = (req, res) => {
       req.body.lokasi,
       req.body.bulan,
       req.body.date_range,
+      req.body.url,
       req.params.id,
     ],
     (err, result) => {
@@ -221,6 +222,7 @@ const index = function(req, res) {
     var title = post.title;
     var lokasi = post.lokasi;
     var bulan = post.bulan;
+    var url = post.url;
     var date_range = post.date_range;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
@@ -236,7 +238,7 @@ const index = function(req, res) {
       file.mv(`public/images/timeline/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `timeline`(`title`,`lokasi`,`bulan`,`date_range`,`img`) VALUES ('" +
+          "INSERT INTO `timeline`(`title`,`lokasi`,`bulan`,`date_range`, `url`,`img`) VALUES ('" +
           title +
           "','" +
           lokasi +
@@ -244,6 +246,8 @@ const index = function(req, res) {
           bulan +
           "','" +
           date_range +
+          "','" +
+          url +
           "','" +
           img +
           "')";

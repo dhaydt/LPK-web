@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/aboutus">Tentang Kami</b-nav-item>
+          <b-nav-item to="/tentang">Tentang Kami</b-nav-item>
           <b-nav-item to="/instruktur">Instruktur</b-nav-item>
           <b-nav-item to="/galeri">Galeri</b-nav-item>
           <b-nav-item to="/pelatihan">Pelatihan</b-nav-item>
