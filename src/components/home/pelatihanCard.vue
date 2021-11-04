@@ -28,6 +28,7 @@
                 circular: true,
                 duration: 1100,
               }"
+              class="d-flex"
             >
               <div
                 class="cont item mr-5"
