@@ -5,10 +5,16 @@ const fs = require("fs");
 
 const update = (req, res) => {
   console.log(req);
-  var sql = `UPDATE testimoni SET name = ?, address =?, content = ? WHERE id = ?;`;
+  var sql = `UPDATE testimoni SET name = ?, address = ?, content = ?, video = ? WHERE id = ?;`;
   db.query(
     sql,
-    [req.body.name, req.body.address, req.body.content, req.params.id],
+    [
+      req.body.name,
+      req.body.address,
+      req.body.content,
+      req.body.video,
+      req.params.id,
+    ],
     (err, result) => {
       if (err) {
         return res.status(400).send({
@@ -72,9 +78,8 @@ const index = function(req, res) {
     var name = post.name;
     var address = post.address;
     var content = post.content;
+    var video = post.video;
     var tipe = post.tipe;
-
-    if (!req.files) return res.status(400).send("No files were uploaded.");
 
     if (req.body.tipe == "image") {
       var file = req.files.img;
@@ -107,33 +112,28 @@ const index = function(req, res) {
         });
       });
     } else if (req.body.tipe === "video") {
-      var video = req.files.video;
-      var vid = Date.now() + video.name;
-      video.mv(`public/images/testi/` + vid, (err) => {
-        if (err) return res.status(500).send(err);
-        var sql =
-          "INSERT INTO `testimoni`(`name`,`video`,`address`, `content`, `tipe`) VALUES ('" +
-          name +
-          "','" +
-          vid +
-          "','" +
-          address +
-          "','" +
-          content +
-          "','" +
-          tipe +
-          "')";
+      var sql =
+        "INSERT INTO `testimoni`(`name`,`video`,`address`, `content`, `tipe`) VALUES ('" +
+        name +
+        "','" +
+        video +
+        "','" +
+        address +
+        "','" +
+        content +
+        "','" +
+        tipe +
+        "')";
 
-        db.query(sql, (err, result) => {
-          if (err) {
-            return res.status(400).send({
-              msg: err,
-            });
-          }
-          return res.status(201).send({
-            msg: "Legalitas tersimpan",
-            data: result,
+      db.query(sql, (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
           });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       });
     }

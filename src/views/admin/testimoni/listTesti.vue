@@ -77,10 +77,13 @@
 
           <template v-slot:cell(video)="data">
             <div class="video" style="width: 200px;">
-              <LazyVideo
-                :src="imgUrl + data.item.video"
+              <LazyYoutube
+                ref="vimeoLazyVideo"
+                :src="data.item.video"
                 v-if="data.item.video"
-                style="height: 100px;"
+                max-width="376px"
+                aspect-ratio="16:11"
+                thumbnail-quality="standard"
               />
             </div>
           </template>
@@ -130,7 +133,12 @@
             <b-form-input v-model="editData.name" required></b-form-input>
           </b-form-group>
           <b-form-group label="Alamat">
-            <b-form-input v-model="editData.address" required></b-form-input>
+            <b-form-input
+              v-model="editData.address"
+              required
+            ></b-form-input> </b-form-group
+          ><b-form-group label="URL Youtube">
+            <b-form-input v-model="editData.video" required></b-form-input>
           </b-form-group>
           <b-form-group label="Testimoni">
             <b-form-input v-model="editData.content" required></b-form-input>

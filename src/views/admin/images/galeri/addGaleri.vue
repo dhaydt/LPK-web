@@ -24,12 +24,22 @@
             ></b-progress>
           </b-alert>
           <b-form @submit="onSubmit">
-            <b-input-group prepend="Judul" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-input-group
+              prepend="Judul Group"
+              class="mb-2 mt-4 mr-sm-2 mb-sm-0"
+            >
               <b-form-input
                 id="name"
                 v-model="formFields.title"
                 required
               ></b-form-input>
+            </b-input-group>
+
+            <b-input-group
+              prepend="Deskripsi Group"
+              class="mb-2 mt-4 mr-sm-2 mb-sm-0"
+            >
+              <b-form-input v-model="formFields.desc" required></b-form-input>
             </b-input-group>
             <b-input-group prepend="Tanggal" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-input
@@ -75,6 +85,7 @@ export default {
       formFields: {
         title: null,
         date: "",
+        desc: "",
         img: [],
       },
       file: null,
@@ -99,6 +110,7 @@ export default {
       let formData = new FormData();
 
       formData.append("title", this.formFields.title);
+      formData.append("desc", this.formFields.desc);
       formData.append("date", this.formFields.date);
       for (var i = 0; i < this.formFields.img.length; i++) {
         var file = this.formFields.img[i];
@@ -120,6 +132,7 @@ export default {
         });
       this.formFields.title = "";
       this.formFields.date = "";
+      this.formFields.desc = "";
       this.$refs.imgs.reset();
       this.formFields.img = [];
       this.loading = false;

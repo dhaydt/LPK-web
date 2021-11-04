@@ -93,6 +93,7 @@ const index = function(req, res) {
     var post = req.body;
     var title = post.title;
     var date = post.date;
+    var desc = post.desc;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
@@ -110,8 +111,10 @@ const index = function(req, res) {
           if (err) return res.status(500).send(err);
         });
         var sql =
-          "INSERT INTO `galeri`(`title`,`date`,`img`) VALUES ('" +
+          "INSERT INTO `galeri`(`title`,`desc`,`date`,`img`) VALUES ('" +
           title +
+          "','" +
+          desc +
           "','" +
           date +
           "','" +
@@ -139,8 +142,10 @@ const index = function(req, res) {
       files.mv(`public/images/newGaleri/` + name, (err) => {
         if (err) return res.status(500).send(err);
         var sql =
-          "INSERT INTO `galeri`(`title`,`date`,`img`) VALUES ('" +
+          "INSERT INTO `galeri`(`title`,`desc`,`date`,`img`) VALUES ('" +
           title +
+          "','" +
+          desc +
           "','" +
           date +
           "','" +

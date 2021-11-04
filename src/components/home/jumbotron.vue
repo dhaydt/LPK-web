@@ -29,7 +29,7 @@
         ></b-button
       >
     </b-jumbotron>
-    <section id="home">
+    <section id="home" class="d-none d-md-block">
       <b-row no-gutters class="justify-content-center">
         <b-col md="3" sm="12" class="mr-2">
           <b-img-lazy
@@ -66,18 +66,53 @@
         /></b-col>
       </b-row>
     </section>
+
+    <section id="home-sm" class="d-block d-md-none">
+      <b-row no-gutters class="justify-content-center">
+        <b-col class="mr-2">
+          <Flicking
+            ref="flicking"
+            :options="{
+              align: 'next',
+              defaultIndex: 0,
+              circular: true,
+              duration: 1100,
+            }"
+          >
+            <div class="item" v-for="(img, i) in images" :key="i">
+              <b-card no-body :img-src="img.img" class="img-sm"></b-card>
+            </div>
+          </Flicking>
+        </b-col>
+      </b-row>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      images: [
+        { img: "/assets/images/potrait1.png" },
+        { img: "/assets/images/land1.png" },
+        { img: "/assets/images/land2.png" },
+        { img: "/assets/images/potrait2.png" },
+      ],
+    };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.item {
+  margin-right: 20px;
+}
+.item .img-sm .card-img {
+  width: 250px;
+  height: 300px;
+  background-color: transparent;
+}
 .imgPort {
   max-width: 340px;
   max-height: 500px;
@@ -167,7 +202,17 @@ span {
   background-color: #07a148;
 }
 
-section {
+section#home {
   margin-top: -380px;
+}
+
+section#home-sm {
+  margin-top: -236px;
+}
+
+@media (max-width: 575.98px) {
+  .jumbotron {
+    height: 650px;
+  }
 }
 </style>

@@ -166,6 +166,7 @@ export default {
         { key: "imgTitle", sortable: true, label: "Judul" },
         { key: "imgDesc", sortable: true, label: "Deskripsi" },
         { key: "title", sortable: true, label: "Grup" },
+        { key: "desc", sortable: true, label: "Deskripsi Grup" },
         { key: "date", sortable: true, label: "Tanggal" },
         { key: "img", label: "Foto" },
         { key: "action" },

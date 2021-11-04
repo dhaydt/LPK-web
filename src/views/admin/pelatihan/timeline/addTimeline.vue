@@ -109,6 +109,7 @@
                   <b-form-input
                     id="url"
                     v-model="formFields.url"
+                    placeholder="ex: https://www.facebook.com"
                     required
                   ></b-form-input>
                 </b-input-group>

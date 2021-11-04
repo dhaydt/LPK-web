@@ -1,9 +1,18 @@
 // Extra small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   // HOME SECTION
+  .navbar.navfront.navbar-dark.navbar-expand-lg {
+    width: 99vw;
+  }
   .navbar-brand.logoPaz img {
     height: 40px;
     margin-left: 20px;
+  }
+  #shape {
+    display: none;
+  }
+  #moon {
+    display: none;
   }
 
   #nav-collapse ul.navbar-nav {
@@ -304,20 +313,11 @@
         font-size: 28px;
       }
 
-      .card-body {
-        .row {
-          h5.student {
-            font-size: 40px;
-            margin-top: 10px;
-            margin-left: 0;
-          }
-        }
-      }
-
       .tree ul ul[data-v-9ce92132]::before,
       .tree li[data-v-9ce92132]:before,
       .tree li[data-v-9ce92132]:after {
-        display: none;
+        // display: none;
+        border-top: 3px solid #bdbdbd;
       }
 
       .tree {
@@ -1369,15 +1369,9 @@
     .eventCard {
       margin-top: -200px;
 
-      #MultiCarousel1 {
-        .btn.leftLst {
-          right: 26vw;
-          top: 71px;
-        }
-
-        .btn.rightLst {
-          right: 10vw;
-          top: 71px;
+      #offCard {
+        padding-left: 30px;
+        .card-offline {
         }
       }
     }

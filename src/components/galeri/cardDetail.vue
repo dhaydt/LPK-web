@@ -98,7 +98,7 @@ export default {
       console.log(data);
       this.titles = {
         title: data[0].title,
-        desc: data[0].imgDesc,
+        desc: data[0].desc,
         date: data[0].date,
       };
       this.$emit("titles", this.titles);
@@ -111,7 +111,7 @@ export default {
       this.images = data;
       this.titles = {
         title: data[0].title,
-        desc: data[0].imgDesc,
+        desc: data[0].desc,
         date: data[0].date,
       };
       this.$emit("titles", this.titles);

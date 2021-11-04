@@ -60,6 +60,30 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .card-body {
+    h4.card-title {
+      font-size: 30px;
+    }
+    p.card-text {
+      font-size: 20px;
+      margin-top: 30px !important;
+    }
+  }
+
+  .card-body.text-center {
+    margin-top: 0 !important;
+    .row {
+      h5.student {
+        font-size: 40px;
+      }
+      p.text-muted {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
 section {
   margin-top: 100px;
 }

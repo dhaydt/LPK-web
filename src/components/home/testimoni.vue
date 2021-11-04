@@ -7,7 +7,7 @@
           <div class="head">
             <span>TESTIMONI</span>
           </div>
-          <h2 class="mt-4">
+          <h2 class="mt-4 card-sub">
             Apa yang para mereka katakan tentang program pelatihan PAZ
           </h2>
           <b-button
@@ -47,6 +47,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .col-md-7 {
+    h2.card-sub {
+      font-size: 30px;
+    }
+  }
+}
 .col-md-12 {
   z-index: 1;
 }

@@ -71,18 +71,15 @@
             </b-input-group>
 
             <b-input-group
-              prepend="Video"
+              prepend="URL Youtube"
               v-if="formFields.tipe == `video`"
               class="mb-2 mt-4 mr-sm-2 mb-sm-0"
             >
-              <b-form-file
-                type="file"
-                v-on:change="onSelected()"
-                accept="video/mp4, video/x-matroska, video/3gpp"
-                name="image"
-                :required="true"
-                id="image"
-              />
+              <b-form-input
+                v-model="formFields.video"
+                placeholder="ex: https://www.youtube.com/watch?v=3iRbrV36h7I"
+                required
+              ></b-form-input>
             </b-input-group>
 
             <b-button type="submit" variant="success" class="mt-4"
@@ -108,7 +105,7 @@ export default {
       formFields: {
         name: "",
         tipe: "null",
-        video: null,
+        video: "",
         address: "",
         content: "",
         img: null,
@@ -116,7 +113,7 @@ export default {
       tipe: [
         { text: "Pilih tipe profil", value: "null" },
         { text: "Image", value: "image" },
-        { text: "Video", value: "video" },
+        { text: "Youtube", value: "video" },
       ],
       file: null,
       legalUrl: "",
@@ -162,16 +159,12 @@ export default {
       this.formFields.name = "";
       this.formFields.address = "";
       this.formFields.content = "";
+      this.formFields.video = "";
       this.loading = false;
     },
     onSelect() {
       // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
       this.formFields.img = event.target.files[0];
-    },
-
-    onSelected() {
-      // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
-      this.formFields.video = event.target.files[0];
     },
 
     countDownChanged(dismissCountDown) {

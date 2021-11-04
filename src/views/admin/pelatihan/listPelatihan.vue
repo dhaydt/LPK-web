@@ -175,6 +175,7 @@
             <b-form-input
               v-model="editData.url"
               type="text"
+              placeholder="https://www.facebook.com"
               required
             ></b-form-input> </b-form-group
           ><b-form-group

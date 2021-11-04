@@ -113,7 +113,7 @@ span {
 }
 
 section.eventCard {
-  margin-top: -500px;
+  margin-top: -481px;
 }
 
 .eventOnline {

@@ -47,6 +47,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .col-md-6 {
+    .reg h5 {
+      font-size: 18px;
+    }
+
+    .title {
+      h1 {
+        font-size: 30px;
+        line-height: 1.3;
+      }
+    }
+  }
+  .col-md-6 {
+    .ket {
+      margin-top: 10px;
+      span {
+        font-size: 18px;
+      }
+    }
+  }
+  section#pelatihan {
+    margin-top: -232px;
+  }
+}
 section {
   margin-top: 100px;
 }

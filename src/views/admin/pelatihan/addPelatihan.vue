@@ -94,7 +94,7 @@
               <b-form-input
                 id="url"
                 v-model="formFields.url"
-                placeholder="Masa berlaku pelatihan"
+                placeholder="ex: https://www.facebook.com"
                 required
               ></b-form-input>
             </b-input-group>

@@ -19,19 +19,6 @@
                 aliquam, purus sit amet luctus venenatis, lectus magna fringilla
                 urna
               </b-card-text>
-              <!-- <b-button
-                variant="outline-success seemore"
-                to="/galeri_detail"
-                class="mt-4 px-4"
-                ><span
-                  ><img
-                    src="../../assets/images/pict.svg"
-                    alt="info"
-                    height="25"
-                  />
-                  Lihat semua foto</span
-                ></b-button
-              > -->
             </b-card-body>
           </b-card>
         </b-col>
@@ -57,6 +44,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .card-body {
+    h4.card-title {
+      font-size: 30px;
+    }
+    p.card-text {
+      font-size: 20px;
+      line-height: 1.8;
+    }
+  }
+}
 #moon {
   font-size: 20em;
   display: inline-block;

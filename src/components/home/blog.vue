@@ -7,7 +7,7 @@
           <div class="head">
             <span>berita terkini</span>
           </div>
-          <h2 class="mt-5">
+          <h2 class="mt-5 card-sub">
             Dapatkan informasi tentang kegiatan yang telah kami selenggarakan
             disini
           </h2>
@@ -47,6 +47,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
+@media (max-width: 575.98px) {
+  .col-md-7 {
+    h2.card-sub {
+      font-size: 30px;
+    }
+  }
+}
 #shape {
   position: absolute;
   right: 0px;

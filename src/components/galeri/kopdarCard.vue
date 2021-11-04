@@ -22,7 +22,7 @@
                   >{{ im[0].date }}
                 </b-card-text>
                 <div class="detail text-left px-2">
-                  ><router-link
+                  <router-link
                     :to="'/galeri_detail/kopdar/' + im[0].title"
                     class="card-link"
                     >Lihat detail -></router-link

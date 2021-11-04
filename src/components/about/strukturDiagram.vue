@@ -169,6 +169,14 @@ export default {
 };
 </script>
 <style lang="scss">
+@media (max-width: 575.98px) {
+  .tree ul ul[data-v-9ce92132]::before,
+  .tree li[data-v-9ce92132]:before,
+  .tree li[data-v-9ce92132]:after {
+    // display: none;
+    border-top: 3px solid #bdbdbd;
+  }
+}
 .tree ul.parPeserta {
   position: relative;
 

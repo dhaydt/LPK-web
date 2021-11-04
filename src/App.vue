@@ -7,8 +7,8 @@
 export default {
   data() {
     return {
-      apiUrl: "http://localhost:3001",
-      // apiUrl: "https://api.generasiunggul.com",
+      // apiUrl: "http://localhost:3001",
+      apiUrl: "https://api.generasiunggul.com",
     };
   },
 
@@ -38,5 +38,12 @@ export default {
       color: #42b983;
     }
   }
+}
+
+body {
+  width: 100vw;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
 }
 </style>

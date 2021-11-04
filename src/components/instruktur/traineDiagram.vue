@@ -1,6 +1,6 @@
 <template>
   <div class="traineDiagram">
-    <b-row cols-md="5" cols-sm="2" cols="1" no-gutters>
+    <b-row cols-md="5" cols-sm="2" cols="1" no-gutters class="d-none d-md-flex">
       <b-col v-for="(ins, i) in instruktur.slice(0, 10)" :key="i">
         <b-card no-body>
           <b-card-img-lazy :src="imgUrl + ins.img"> </b-card-img-lazy>
@@ -10,6 +10,31 @@
           </div>
         </b-card>
       </b-col>
+    </b-row>
+    <b-row no-gutters class="d-flex d-md-none mt-4">
+      <Flicking
+        ref="flicking"
+        :options="{
+          align: 'center',
+          defaultIndex: 0,
+          circular: true,
+          duration: 1100,
+        }"
+      >
+        <div
+          v-for="(ins, i) in instruktur.slice(0, 10)"
+          :key="i"
+          class="ins-sm"
+        >
+          <b-card no-body>
+            <b-card-img-lazy :src="imgUrl + ins.img"> </b-card-img-lazy>
+            <div class="overflow">
+              <b-card-title>{{ ins.name }} </b-card-title>
+              <b-card-text>{{ ins.address }} </b-card-text>
+            </div>
+          </b-card>
+        </div>
+      </Flicking>
     </b-row>
   </div>
 </template>
@@ -43,6 +68,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ins-sm {
+  padding: 0 10px;
+  .card {
+    padding: 0 !important;
+    position: relative;
+    .card-img {
+      height: 200px;
+      width: 150px;
+    }
+    .overflow {
+      position: absolute;
+      bottom: 0;
+      margin-bottom: 20px !important;
+
+      .card-title {
+        font-size: 14px;
+      }
+
+      .card-text {
+        font-size: 12px;
+      }
+    }
+  }
+}
 .card {
   position: relative;
 }

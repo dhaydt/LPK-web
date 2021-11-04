@@ -7,13 +7,13 @@
           <div class="head">
             <span>Alumni Pelatihan PAZ</span>
           </div>
-          <h2 class="mt-5">
+          <h2 class="mt-5 card-sub">
             Mari bergabung dengan kami dan menjadi partner Pengobatan Akhir
             Zaman
           </h2>
         </b-col>
       </b-row>
-      <b-row cols-md="4" cols-sm="2" class="row-al">
+      <b-row cols-md="4" cols-sm="2" class="row-al d-none d-md-flex">
         <b-col sm="5" class="col-al" v-for="(lok, i) in lokers" :key="i">
           <b-card class="inner-border h-100">
             <b-avatar :src="lok.img" class="card-img-top" size="96"></b-avatar>
@@ -21,6 +21,29 @@
             <b-card-text>{{ lok.address }} </b-card-text>
           </b-card>
         </b-col>
+      </b-row>
+      <b-row no-gutters class="d-flex d-md-none mt-4">
+        <Flicking
+          ref="flicking"
+          :options="{
+            align: 'next',
+            defaultIndex: 0,
+            circular: true,
+            duration: 1100,
+          }"
+        >
+          <div class="item" v-for="(lok, i) in lokers" :key="i">
+            <b-card class="inner-border h-100">
+              <b-avatar
+                :src="lok.img"
+                class="card-img-top"
+                size="96"
+              ></b-avatar>
+              <b-card-title>{{ lok.name }} </b-card-title>
+              <b-card-text>{{ lok.address }} </b-card-text>
+            </b-card>
+          </div>
+        </Flicking>
       </b-row>
     </b-container>
     <div id="shape">
@@ -61,6 +84,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .col-md-7 {
+    h2.card-sub {
+      font-size: 30px;
+      margin-top: 40px !important;
+    }
+  }
+}
+.item {
+  margin-right: 20px;
+  .card {
+    height: 261px;
+    width: 250px;
+  }
+}
 #moon {
   font-size: 20em;
   display: inline-block;
