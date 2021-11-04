@@ -46,4 +46,8 @@ body {
   overflow-x: hidden;
   padding: 0;
 }
+
+.wrapper .flicking-viewport .flicking-camera {
+  display: flex !important;
+}
 </style>
