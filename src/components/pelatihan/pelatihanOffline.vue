@@ -1,11 +1,11 @@
 <template>
   <div class="container-fluid" id="offCard">
     <div class="row no-gutters">
-      <b-col class="w-100">
+      <b-col class="w-100" style="overflow: hidden;">
         <div class="card-offline w-100">
           <b-row class="navFlick">
             <b-col md="10" sm="8">
-              <div class="card-title-event titileFlick">
+              <div class="card-title-event titleFlick">
                 Pelatihan offline
               </div>
             </b-col>
@@ -134,6 +134,16 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
+
+@media (max-width: 575.98px) {
+  .card-title-event.titleFlick {
+    font-size: 30px;
+  }
+
+  .naviFlick {
+    display: none !important;
+  }
+}
 
 .container-fluid {
   margin-right: 0px;

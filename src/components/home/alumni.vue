@@ -22,28 +22,30 @@
           </b-card>
         </b-col>
       </b-row>
-      <b-row no-gutters class="d-flex d-md-none mt-4">
-        <Flicking
-          ref="flicking"
-          :options="{
-            align: 'next',
-            defaultIndex: 0,
-            circular: true,
-            duration: 1100,
-          }"
-        >
-          <div class="item" v-for="(lok, i) in lokers" :key="i">
-            <b-card class="inner-border h-100">
-              <b-avatar
-                :src="lok.img"
-                class="card-img-top"
-                size="96"
-              ></b-avatar>
-              <b-card-title>{{ lok.name }} </b-card-title>
-              <b-card-text>{{ lok.address }} </b-card-text>
-            </b-card>
-          </div>
-        </Flicking>
+      <b-row no-gutters class="d-flex d-md-none mt-4" style="overflow: hidden;">
+        <div class="wrapper">
+          <Flicking
+            ref="flicking"
+            :options="{
+              align: 'prev',
+              defaultIndex: 0,
+              circular: true,
+              duration: 1100,
+            }"
+          >
+            <div class="item" v-for="(lok, i) in lokers" :key="i">
+              <b-card class="inner-border h-100">
+                <b-avatar
+                  :src="lok.img"
+                  class="card-img-top"
+                  size="96"
+                ></b-avatar>
+                <b-card-title>{{ lok.name }} </b-card-title>
+                <b-card-text>{{ lok.address }} </b-card-text>
+              </b-card>
+            </div>
+          </Flicking>
+        </div>
       </b-row>
     </b-container>
     <div id="shape">

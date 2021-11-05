@@ -1,5 +1,8 @@
 <template>
-  <div class="galeri justify-content-center w-100 row">
+  <div
+    class="galeri justify-content-center w-100 row"
+    style="overflow: hidden;"
+  >
     <b-col md="11" class="px-4 d-none d-md-flex">
       <div class="card-body text-center">
         <b-row>
@@ -15,28 +18,30 @@
       </div>
     </b-col>
     <b-col class="d-block d-md-none p-0">
-      <Flicking
-        ref="flicking"
-        :options="{
-          align: 'next',
-          defaultIndex: 0,
-          circular: true,
-          duration: 1100,
-        }"
-      >
-        <b-card
-          class="galeri-sm"
-          no-body
-          v-for="img in images.slice(0, 4)"
-          :key="img.id"
+      <div class="wrapper">
+        <Flicking
+          ref="flicking"
+          :options="{
+            align: 'prev',
+            defaultIndex: 0,
+            circular: true,
+            duration: 1100,
+          }"
         >
-          <b-img
-            :src="imgUrl + img.img"
-            alt="galeri-home"
-            class="card-img"
-          ></b-img>
-        </b-card>
-      </Flicking>
+          <b-card
+            class="galeri-sm"
+            no-body
+            v-for="img in images.slice(0, 4)"
+            :key="img.id"
+          >
+            <b-img
+              :src="imgUrl + img.img"
+              alt="galeri-home"
+              class="card-img"
+            ></b-img>
+          </b-card>
+        </Flicking>
+      </div>
     </b-col>
   </div>
 </template>

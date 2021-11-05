@@ -1,5 +1,5 @@
 <template>
-  <div class="traineDiagram">
+  <div class="traineDiagram" style="overflow: hidden;">
     <b-row cols-md="5" cols-sm="2" cols="1" no-gutters class="d-none d-md-flex">
       <b-col v-for="(ins, i) in instruktur.slice(0, 10)" :key="i">
         <b-card no-body>
@@ -11,11 +11,11 @@
         </b-card>
       </b-col>
     </b-row>
-    <b-row no-gutters class="d-flex d-md-none mt-4">
+    <b-row no-gutters class="wrapper d-flex d-md-none mt-4">
       <Flicking
         ref="flicking"
         :options="{
-          align: 'center',
+          align: 'prev',
           defaultIndex: 0,
           circular: true,
           duration: 1100,

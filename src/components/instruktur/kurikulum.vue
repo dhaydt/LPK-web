@@ -128,33 +128,40 @@ export default {
 };
 </script>
 <style lang="scss">
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #f5f5f5;
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #e9e9e9;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #d1cece;
-}
 #modalBasic {
   display: flex !important;
   align-items: center;
 
+  .desc::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  .desc::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #f5f5f5;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  .desc::-webkit-scrollbar-thumb {
+    background: #e9e9e9;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  .desc::-webkit-scrollbar-thumb:hover {
+    background: #d1cece;
+  }
+
   .modal-content {
     width: 600px;
+    .modal-body {
+      .body {
+        .desc {
+          /* width */
+        }
+      }
+    }
   }
 
   .card-side {

@@ -12,11 +12,14 @@
             ></b-button>
           </b-row>
 
-          <div class="wrapper flicking-wrap container mt-4 pt-3 w-100">
+          <div
+            class="wrapper flicking-wrap container mt-4 pt-3 w-100"
+            style="overflow: hidden;"
+          >
             <Flicking
               ref="flicking"
               :options="{
-                align: 'next',
+                align: 'prev',
                 defaultIndex: 0,
                 circular: true,
                 duration: 1100,

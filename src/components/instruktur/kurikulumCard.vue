@@ -13,7 +13,7 @@
             </div>
           </b-col>
         </b-row>
-        <b-row>
+        <b-row style="overflow: hidden;">
           <div class="card-offline w-100">
             <b-row class="navFlick justify-content-end">
               <b-col

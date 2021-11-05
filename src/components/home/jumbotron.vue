@@ -69,20 +69,22 @@
 
     <section id="home-sm" class="d-block d-md-none">
       <b-row no-gutters class="justify-content-center">
-        <b-col class="mr-2">
-          <Flicking
-            ref="flicking"
-            :options="{
-              align: 'next',
-              defaultIndex: 0,
-              circular: true,
-              duration: 1100,
-            }"
-          >
-            <div class="item" v-for="(img, i) in images" :key="i">
-              <b-card no-body :img-src="img.img" class="img-sm"></b-card>
-            </div>
-          </Flicking>
+        <b-col class="">
+          <div class="wrapper">
+            <Flicking
+              ref="flicking"
+              :options="{
+                align: 'next',
+                defaultIndex: 0,
+                circular: true,
+                duration: 1100,
+              }"
+            >
+              <div class="item" v-for="(img, i) in images" :key="i">
+                <b-card no-body :img-src="img.img" class="img-sm"></b-card>
+              </div>
+            </Flicking>
+          </div>
         </b-col>
       </b-row>
     </section>
