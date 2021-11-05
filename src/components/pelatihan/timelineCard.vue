@@ -12,9 +12,12 @@
               <b-card no-body>
                 <div class="cropped">
                   <b-img
+                    @click="pushLink('wa ini')"
                     :src="imgUrl + l.img"
                     class="card-img"
+                    ref="img1"
                     v-img:group
+                    :alt="l.title"
                   ></b-img>
                 </div>
                 <div class="card-body">
@@ -35,6 +38,7 @@
                   <b-img
                     :src="imgUrl + l.img"
                     class="card-img"
+                    :alt="l.title"
                     v-img:group1
                   ></b-img>
                 </div>
@@ -57,6 +61,7 @@
                     :src="imgUrl + l.img"
                     class="card-img"
                     v-img:group2
+                    :alt="l.title"
                   ></b-img>
                 </div>
                 <div class="card-body">
@@ -78,6 +83,7 @@
                     :src="imgUrl + l.img"
                     class="card-img"
                     v-img:group3
+                    :alt="l.title"
                   ></b-img>
                 </div>
                 <div class="card-body">
@@ -88,6 +94,7 @@
             </div>
           </div>
         </div>
+        <div class="wa" v-if="wa">{{ waUrl }}</div>
         <div class="swiper-pagination"></div>
       </div>
     </section>
@@ -96,9 +103,12 @@
 
 <script>
 import axios from "axios";
+import $ from "jquery";
 export default {
   data() {
     return {
+      wa: false,
+      waUrl: "",
       mainUrl: "",
       imgUrl: "",
       getOnUrl: "",
@@ -122,6 +132,21 @@ export default {
   },
 
   methods: {
+    async pushLink(val) {
+      console.log(val);
+      this.wa = !this.wa;
+      function appendWa() {
+        // var txt1 = "<div>Text.</div>"; // Create element with HTML
+        // var txt2 = $("<p></p>").text("Text."); // Create with jQuery
+        var txt3 = document.createElement("div"); // Create with DOM
+        txt3.innerHTML = val;
+        $(".content-v-img")
+          .append(txt3)
+          .find("div")
+          .addClass("waOverlay"); // Append the new elements
+      }
+      await appendWa();
+    },
     async getTab() {
       const resp = await axios.get(this.getOnUrl);
       const dataGroup = resp.data.data;
@@ -156,6 +181,15 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
+
+.waOverlay {
+  // position: absolute;
+  width: 300px;
+  background-color: red;
+  // z-index: 99999;
+  font-size: 60px;
+  font-weight: 900;
+}
 .cropped {
   height: 128px;
   overflow: hidden;

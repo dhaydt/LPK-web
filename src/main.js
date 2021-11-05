@@ -14,6 +14,8 @@ import BootstrapVue from "bootstrap-vue";
 import Flicking from "@egjs/vue-flicking";
 import VueFormWizard from "vue-form-wizard";
 import vueAwesomeCountdown from "vue-awesome-countdown";
+import CoolLightBox from "vue-cool-lightbox";
+import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
 import "element-ui/lib/theme-chalk/index.css";
@@ -28,6 +30,8 @@ const vueImgConfig = {
   openOn: "click",
   thumbnails: false,
 };
+
+Vue.use(CoolLightBox);
 
 Vue.use(vueAwesomeCountdown, "vac");
 Vue.config.productionTip = false;

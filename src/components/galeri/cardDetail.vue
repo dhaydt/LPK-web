@@ -1,7 +1,21 @@
 <template>
   <div class="lokerCard">
+    <CoolLightBox
+      :items="items"
+      :index="index"
+      loop
+      @close="index = null"
+      :effect="'fade'"
+    >
+    </CoolLightBox>
+
     <b-container fluid>
-      <b-row cols-sm="1" cols-md="3" class="px-5 pt-0 mb-4" id="itemList">
+      <b-row
+        cols-sm="1"
+        cols-md="3"
+        class="px-5 pt-0 mb-4 images-wrapper"
+        id="itemList"
+      >
         <b-col
           v-for="(image, imageIndex) in paginatedItems"
           :key="imageIndex"
@@ -9,12 +23,12 @@
         >
           <b-card :sub-title="image.title" no-body>
             <b-img
-              class="card-img-top w-100"
+              class="card-img-top w-100 gal-img"
               :src="imgUrl + image.img"
               :alt="image.title"
-              v-img:group
+              @click="setIndex(imageIndex)"
             ></b-img>
-            <b-card-title class="p-4">{{ image.title }}</b-card-title>
+            <b-card-title class="p-4">{{ image.imgTitle }}</b-card-title>
           </b-card>
         </b-col>
       </b-row>
@@ -53,6 +67,7 @@ export default {
     return {
       index: null,
       images: [],
+      items: [],
       currentPage: 1,
       perPage: 9,
       totalRows: "",
@@ -91,6 +106,9 @@ export default {
   },
 
   methods: {
+    setIndex(index) {
+      this.index = index;
+    },
     async getData() {
       const resp = await axios.get(this.getUrl);
       const data = resp.data.data;
@@ -104,6 +122,7 @@ export default {
       this.$emit("titles", this.titles);
       this.getPaginate();
       this.$root.$emit("titles", data[0].title);
+      this.getImg(data);
     },
     async getKopdar() {
       const resp = await axios.get(this.kopdarUrl);
@@ -117,6 +136,25 @@ export default {
       this.$emit("titles", this.titles);
       this.getPaginate();
       this.$root.$emit("titles", data[0].title);
+
+      this.getImg(data);
+    },
+    getImg(val) {
+      const img = val;
+      console.log(val);
+      var itemSet = [];
+      var newImg = img.map((map) => [map.img, map.imgTitle, map.imgDesc]);
+      for (var idx = 0; idx < newImg.length; idx++) {
+        var data = {
+          src: this.imgUrl + newImg[idx][0],
+          title: newImg[idx][1],
+          description: newImg[idx][2],
+        };
+        itemSet.push(data);
+      }
+      console.log(itemSet);
+
+      this.items = itemSet;
     },
     paginate(page_size, page_number) {
       let itemsToParse = this.images;
@@ -136,7 +174,15 @@ export default {
   },
 };
 </script>
-
+<style lang="scss">
+.cool-lightbox-caption h6 {
+  color: white;
+  position: absolute;
+  top: -87vh;
+  margin-left: 20px;
+  text-transform: uppercase;
+}
+</style>
 <style lang="scss" scoped>
 .card {
   background: #ffffff;
@@ -145,10 +191,14 @@ export default {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04), 0px 2px 6px rgba(0, 0, 0, 0.04),
     0px 0px 1px rgba(0, 0, 0, 0.04);
   border-radius: 8px;
+  min-width: 330px;
   min-height: 254px;
   .card-img-top {
     height: 240px;
     width: 356px;
+  }
+  .card-img-top:hover {
+    cursor: pointer;
   }
 }
 
