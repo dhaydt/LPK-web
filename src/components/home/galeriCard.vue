@@ -17,7 +17,7 @@
         </b-row>
       </div>
     </b-col>
-    <b-col class="d-block d-md-none p-0">
+    <div class="d-block d-md-none p-0">
       <div class="wrapper">
         <Flicking
           ref="flicking"
@@ -42,7 +42,7 @@
           </b-card>
         </Flicking>
       </div>
-    </b-col>
+    </div>
   </div>
 </template>
 
