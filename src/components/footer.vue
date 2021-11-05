@@ -89,6 +89,23 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  footer {
+    .floating {
+      right: 20px;
+      bottom: 66px;
+      .btn {
+        padding-right: 20px;
+        font-size: 16px;
+
+        .fab {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
 .row.foots {
   padding: 72px 76px 32px 76px;
 }

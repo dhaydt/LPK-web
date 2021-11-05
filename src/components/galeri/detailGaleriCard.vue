@@ -75,6 +75,43 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .detailGaleri {
+    .galeriess {
+      .card-title {
+        font-size: 28px;
+        line-height: 1.5;
+      }
+
+      .card-body {
+        .card-text {
+          font-size: 20px;
+        }
+        .head span {
+          text-transform: capitalize;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  footer {
+    .floating {
+      right: 20px;
+      bottom: 66px;
+      .btn {
+        padding-right: 20px;
+        font-size: 16px;
+
+        .fab {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+}
+
 #moon {
   font-size: 20em;
   display: inline-block;

@@ -11,7 +11,9 @@
             </template>
             <div id="moon"></div>
             <b-card-body>
-              <b-card-title>Daftar kantor cabang LKP PAZ Al Kasaw</b-card-title>
+              <b-card-title class="main-title"
+                >Daftar kantor cabang LKP PAZ Al Kasaw</b-card-title
+              >
             </b-card-body>
           </b-card>
         </b-col>
@@ -89,6 +91,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  section.cabang {
+    .card-title.main-title {
+      font-size: 30px;
+      line-height: 1;
+    }
+  }
+}
 .overlay-bg {
   background-color: rgba(26, 30, 39, 0.7);
   position: absolute;

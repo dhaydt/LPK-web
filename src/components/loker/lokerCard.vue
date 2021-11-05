@@ -53,7 +53,11 @@
         id="itemList"
         v-if="!search"
       >
-        <div v-for="lok in paginatedItems" :key="lok.id" class="mt-5 col">
+        <div
+          v-for="lok in paginatedItems"
+          :key="lok.id"
+          class="mt-5 col lokCard"
+        >
           <b-card :sub-title="lok.kriteria" class="inner-border h-100" no-body>
             <b-card-title class="px-4 pt-4">{{ lok.judul }}</b-card-title>
             <div class="card-subtitle px-4 mt-0" style="min-height: 80px">
@@ -253,6 +257,14 @@ export default {
 </style>
 
 <style lang="scss">
+@media (max-width: 575.98px) {
+  .lokCard {
+    .card.inner-border {
+      min-width: 216px;
+    }
+  }
+}
+
 li.page-item:first-child {
   .page-link {
     margin-right: 25px;

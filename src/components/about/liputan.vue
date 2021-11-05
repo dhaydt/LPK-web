@@ -6,7 +6,7 @@
           <div class="head">
             <span>liputan media</span>
           </div>
-          <h2 class="mt-4 pt-2">
+          <h2 class="mt-4 pt-2 titles">
             Dapatkan informasi tentang kegiatan yang telah kami selenggarakan
             disini
           </h2>
@@ -37,6 +37,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  section.liputan {
+    h2.titles {
+      font-size: 28px;
+      line-height: 1.3;
+    }
+    p.text-muted {
+      margin-bottom: 20px !important;
+      font-size: 18px;
+    }
+  }
+}
+
 #moon {
   font-size: 20em;
   display: inline-block;

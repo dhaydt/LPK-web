@@ -62,6 +62,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  section#struktur {
+    h5.student {
+      font-size: 30px;
+      line-height: 1;
+    }
+    p.text-muted {
+      margin-bottom: 20px !important;
+      font-size: 18px;
+    }
+  }
+}
+
 section {
   margin-top: 100px;
   margin-bottom: 80px;
