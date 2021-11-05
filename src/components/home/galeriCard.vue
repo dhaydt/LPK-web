@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="galeri justify-content-center w-100 row"
-    style="overflow: hidden;"
-  >
+  <div class="galeri justify-content-center w-100 row">
     <b-col md="11" class="px-4 d-none d-md-flex">
       <div class="card-body text-center">
         <b-row>
@@ -17,31 +14,34 @@
         </b-row>
       </div>
     </b-col>
-    <div class="d-block d-md-none p-0">
-      <div class="wrapper">
-        <Flicking
-          ref="flicking"
-          :options="{
-            align: 'prev',
-            defaultIndex: 0,
-            circular: true,
-            duration: 1100,
-          }"
-        >
-          <b-card
-            class="galeri-sm"
-            no-body
-            v-for="img in images.slice(0, 4)"
-            :key="img.id"
-          >
-            <b-img
-              :src="imgUrl + img.img"
-              alt="galeri-home"
-              class="card-img"
-            ></b-img>
-          </b-card>
-        </Flicking>
-      </div>
+    <div class="d-block d-md-none p-0 w-100" style="overflow: hidden;">
+      <b-row no-gutters class="justify-content-center">
+        <b-col>
+          <div class="wrapper">
+            <Flicking
+              ref="flicking"
+              :options="{
+                align: 'center',
+                defaultIndex: 0,
+                circular: true,
+                duration: 1100,
+              }"
+            >
+              <div
+                class="galeri-sm"
+                v-for="img in images.slice(0, 4)"
+                :key="img.id"
+              >
+                <b-img
+                  :src="imgUrl + img.img"
+                  alt="galeri-home"
+                  class="card-img"
+                ></b-img>
+              </div>
+            </Flicking>
+          </div>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
@@ -82,7 +82,6 @@ export default {
     height: 308px;
     object-fit: cover;
     object-position: 20% 10%; /* try 20px 10px */
-    transition: 0.6s;
     border-radius: 4px;
   }
 }
