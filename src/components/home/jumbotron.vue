@@ -67,7 +67,7 @@
       </b-row>
     </section>
 
-    <section id="home-sm" class="d-block d-md-none">
+    <section id="home-sm" class="d-block d-md-none" style="overflow: hidden;">
       <b-row no-gutters class="justify-content-center">
         <b-col class="">
           <div class="wrapper">
