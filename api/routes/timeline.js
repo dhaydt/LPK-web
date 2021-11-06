@@ -35,53 +35,53 @@ router.put("/timeline/:id", update);
 
 // GROUP
 
-router.get("/groupFront", (req, res) => {
-  db.query(
-    "SELECT * FROM gallery_group ORDER BY id desc LIMIT 3",
-    (err, rows) => {
-      var data = rows.map((row) => row.lokasi);
-      var sql = `SELECT * FROM gallery WHERE lokasi IN (?, ?, ?)`;
-      db.query(sql, [data[0], data[1], data[2]], (error, resp) => {
-        if (error) {
-          return res.status(400).send({
-            msg: error,
-          });
-        } else {
-          //render ke view posts index
-          return res.status(200).send({
-            dataImg: resp, // <-- data posts
-            dataGroup: rows, // <-- data posts
-          });
-        }
-      });
-    }
-  );
-});
+// router.get("/groupFront", (req, res) => {
+//   db.query(
+//     "SELECT * FROM gallery_group ORDER BY id desc LIMIT 3",
+//     (err, rows) => {
+//       var data = rows.map((row) => row.lokasi);
+//       var sql = `SELECT * FROM gallery WHERE lokasi IN (?, ?, ?)`;
+//       db.query(sql, [data[0], data[1], data[2]], (error, resp) => {
+//         if (error) {
+//           return res.status(400).send({
+//             msg: error,
+//           });
+//         } else {
+//           //render ke view posts index
+//           return res.status(200).send({
+//             dataImg: resp, // <-- data posts
+//             dataGroup: rows, // <-- data posts
+//           });
+//         }
+//       });
+//     }
+//   );
+// });
 
-router.get("/detail/:id", (req, res) => {
-  db.query(
-    "SELECT * FROM gallery_group WHERE id = ?",
-    [req.params.id],
-    (err, rows) => {
-      var data = rows[0].lokasi;
-      console.log(data);
-      var sql = `SELECT * FROM gallery WHERE lokasi = ?`;
-      db.query(sql, [data], (error, resp) => {
-        if (error) {
-          return res.status(400).send({
-            msg: error,
-          });
-        } else {
-          //render ke view posts index
-          return res.status(200).send({
-            dataImg: resp, // <-- data posts
-            dataGroup: rows, // <-- data posts
-          });
-        }
-      });
-    }
-  );
-});
+// router.get("/detail/:id", (req, res) => {
+//   db.query(
+//     "SELECT * FROM gallery_group WHERE id = ?",
+//     [req.params.id],
+//     (err, rows) => {
+//       var data = rows[0].lokasi;
+//       console.log(data);
+//       var sql = `SELECT * FROM gallery WHERE lokasi = ?`;
+//       db.query(sql, [data], (error, resp) => {
+//         if (error) {
+//           return res.status(400).send({
+//             msg: error,
+//           });
+//         } else {
+//           //render ke view posts index
+//           return res.status(200).send({
+//             dataImg: resp, // <-- data posts
+//             dataGroup: rows, // <-- data posts
+//           });
+//         }
+//       });
+//     }
+//   );
+// });
 
 //----------------------------------------GALERI-GROUP
 

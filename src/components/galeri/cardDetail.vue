@@ -175,12 +175,15 @@ export default {
 };
 </script>
 <style lang="scss">
-.cool-lightbox-caption h6 {
-  color: white;
-  position: absolute;
-  top: -87vh;
-  margin-left: 20px;
-  text-transform: uppercase;
+.cool-lightbox-caption {
+  display: flex;
+  justify-content: center;
+  h6 {
+    color: white;
+    top: -85vh;
+    position: absolute;
+    text-transform: uppercase;
+  }
 }
 </style>
 <style lang="scss" scoped>

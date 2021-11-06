@@ -132,7 +132,7 @@
               id="input-112"
               v-model="editData.url"
               type="text"
-              placeholder="https://www.facebook.com"
+              placeholder="ex: https://www.facebook.com"
               required
             ></b-form-input>
           </b-form-group>

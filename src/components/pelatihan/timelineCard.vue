@@ -1,5 +1,41 @@
 <template>
   <div class="timelineCard">
+    <CoolLightBox
+      :items="items"
+      :index="index"
+      loop
+      @close="index = null"
+      :effect="'fade'"
+      id="lightBoxs"
+    >
+    </CoolLightBox>
+    <CoolLightBox
+      :items="items1"
+      :index="index1"
+      loop
+      @close="index1 = null"
+      :effect="'fade'"
+      id="lightBoxs1"
+    >
+    </CoolLightBox>
+    <CoolLightBox
+      :items="items2"
+      :index="index2"
+      loop
+      @close="index2 = null"
+      :effect="'fade'"
+      id="lightBoxs2"
+    >
+    </CoolLightBox>
+    <CoolLightBox
+      :items="items3"
+      :index="index3"
+      loop
+      @close="index3 = null"
+      :effect="'fade'"
+      id="lightBoxs3"
+    >
+    </CoolLightBox>
     <section class="time-line-box">
       <div class="swiper-container text-center">
         <div class="swiper-wrapper w-100 row">
@@ -8,15 +44,18 @@
             <div class="status pt-4">
               <span>{{ group[3] }} </span>
             </div>
-            <div class="content mt-4 pr-2" v-for="l in col4" :key="l.i">
+            <div
+              class="content mt-4 pr-2"
+              v-for="(l, imageIndex) in col4"
+              :key="imageIndex"
+            >
               <b-card no-body>
                 <div class="cropped">
                   <b-img
-                    @click="pushLink('wa ini')"
+                    @click="setIndex(imageIndex)"
                     :src="imgUrl + l.img"
                     class="card-img"
                     ref="img1"
-                    v-img:group
                     :alt="l.title"
                   ></b-img>
                 </div>
@@ -32,14 +71,14 @@
             <div class="status pt-4">
               <span>{{ group[2] }}</span>
             </div>
-            <div class="content mt-4 pr-2" v-for="l in col3" :key="l.i">
+            <div class="content mt-4 pr-2" v-for="(l, i) in col3" :key="i">
               <b-card no-body>
                 <div class="cropped">
                   <b-img
+                    @click="setIndex1(i)"
                     :src="imgUrl + l.img"
                     class="card-img"
                     :alt="l.title"
-                    v-img:group1
                   ></b-img>
                 </div>
                 <div class="card-body">
@@ -54,13 +93,13 @@
             <div class="status pt-4">
               <span>{{ group[1] }}</span>
             </div>
-            <div class="content mt-4 pr-2" v-for="l in col2" :key="l.i">
+            <div class="content mt-4 pr-2" v-for="(l, i2) in col2" :key="i2">
               <b-card no-body>
                 <div class="cropped">
                   <b-img
+                    @click="setIndex2(i2)"
                     :src="imgUrl + l.img"
                     class="card-img"
-                    v-img:group2
                     :alt="l.title"
                   ></b-img>
                 </div>
@@ -76,13 +115,13 @@
             <div class="status pt-4">
               <span>{{ group[0] }}</span>
             </div>
-            <div class="content mt-4 pr-2" v-for="l in col1" :key="l.i">
+            <div class="content mt-4 pr-2" v-for="(l, i3) in col1" :key="i3">
               <b-card no-body>
                 <div class="cropped">
                   <b-img
+                    @click="setIndex3(i3)"
                     :src="imgUrl + l.img"
                     class="card-img"
-                    v-img:group3
                     :alt="l.title"
                   ></b-img>
                 </div>
@@ -94,7 +133,6 @@
             </div>
           </div>
         </div>
-        <div class="wa" v-if="wa">{{ waUrl }}</div>
         <div class="swiper-pagination"></div>
       </div>
     </section>
@@ -107,8 +145,14 @@ import $ from "jquery";
 export default {
   data() {
     return {
-      wa: false,
-      waUrl: "",
+      index: null,
+      index1: null,
+      index2: null,
+      index3: null,
+      items: [],
+      items1: [],
+      items2: [],
+      items3: [],
       mainUrl: "",
       imgUrl: "",
       getOnUrl: "",
@@ -132,21 +176,151 @@ export default {
   },
 
   methods: {
-    async pushLink(val) {
-      console.log(val);
-      this.wa = !this.wa;
-      function appendWa() {
-        // var txt1 = "<div>Text.</div>"; // Create element with HTML
-        // var txt2 = $("<p></p>").text("Text."); // Create with jQuery
-        var txt3 = document.createElement("div"); // Create with DOM
-        txt3.innerHTML = val;
-        $(".content-v-img")
-          .append(txt3)
-          .find("div")
-          .addClass("waOverlay"); // Append the new elements
+    setIndex(index) {
+      this.index = index;
+      // console.log(divs);
+      // var items = this.items;
+      var data = {
+        i: index,
+        items: this.items,
+      };
+      function appendWa(data) {
+        console.log("ite", data);
+        var items = data.items;
+        var ind = data.i;
+        var anchor = items[ind].url;
+        console.log(anchor);
+        var txt3 = document.createElement("a"); // Create with DOM
+        var span = document.createElement("span");
+        span.innerHTML = "Hubungi WA";
+        txt3.setAttribute("href", anchor);
+        txt3.setAttribute("target", "_blank");
+        txt3.setAttribute("class", "waOverlay fab fa-whatsapp");
+        span.setAttribute("class", "ml-2");
+        txt3.append(span);
+        $(".cool-lightbox-caption").append(txt3);
+        // Append the new elements
       }
-      await appendWa();
+      var checkExist = setInterval(function() {
+        if ($("#lightBoxs").length) {
+          var divs = document.getElementById("lightBoxs");
+          console.log(divs);
+
+          appendWa(data);
+
+          clearInterval(checkExist);
+        }
+      }, 100);
     },
+    setIndex1(index) {
+      this.index1 = index;
+      // console.log(divs);
+      // var items = this.items;
+      var data = {
+        i: index,
+        items: this.items1,
+      };
+      function appendWa(data) {
+        console.log("ite", data);
+        var items = data.items;
+        var ind = data.i;
+        var anchor = items[ind].url;
+        console.log(anchor);
+        var txt3 = document.createElement("a"); // Create with DOM
+        var span = document.createElement("span");
+        span.innerHTML = "Hubungi WA";
+        txt3.setAttribute("href", anchor);
+        txt3.setAttribute("target", "_blank");
+        txt3.setAttribute("class", "waOverlay fab fa-whatsapp");
+        span.setAttribute("class", "ml-2");
+        txt3.append(span);
+        $(".cool-lightbox-caption").append(txt3);
+        // Append the new elements
+      }
+      var checkExist = setInterval(function() {
+        if ($("#lightBoxs1").length) {
+          var divs = document.getElementById("lightBoxs1");
+          console.log(divs);
+
+          appendWa(data);
+
+          clearInterval(checkExist);
+        }
+      }, 100);
+    },
+    setIndex2(index) {
+      this.index2 = index;
+      // console.log(divs);
+      // var items = this.items;
+      var data = {
+        i: index,
+        items: this.items2,
+      };
+      function appendWa(data) {
+        console.log("ite", data);
+        var items = data.items;
+        var ind = data.i;
+        var anchor = items[ind].url;
+        console.log(anchor);
+        var txt3 = document.createElement("a"); // Create with DOM
+        var span = document.createElement("span");
+        span.innerHTML = "Hubungi WA";
+        txt3.setAttribute("href", anchor);
+        txt3.setAttribute("target", "_blank");
+        txt3.setAttribute("class", "waOverlay fab fa-whatsapp");
+        span.setAttribute("class", "ml-2");
+        txt3.append(span);
+        $(".cool-lightbox-caption").append(txt3);
+        // Append the new elements
+      }
+      var checkExist = setInterval(function() {
+        if ($("#lightBoxs2").length) {
+          var divs = document.getElementById("lightBoxs2");
+          console.log(divs);
+
+          appendWa(data);
+
+          clearInterval(checkExist);
+        }
+      }, 100);
+    },
+    setIndex3(index) {
+      this.index3 = index;
+      // console.log(divs);
+      // var items = this.items;
+      var data = {
+        i: index,
+        items: this.items3,
+      };
+      function appendWa(data) {
+        console.log("ite", data);
+        var items = data.items;
+        var ind = data.i;
+        var anchor = items[ind].url;
+        console.log(anchor);
+        var txt3 = document.createElement("a"); // Create with DOM
+        var span = document.createElement("span");
+        span.innerHTML = "Hubungi WA";
+        txt3.setAttribute("href", anchor);
+        txt3.setAttribute("target", "_blank");
+        txt3.setAttribute("class", "waOverlay fab fa-whatsapp");
+        span.setAttribute("class", "ml-2");
+        txt3.append(span);
+        $(".cool-lightbox-caption").append(txt3);
+        // Append the new elements
+      }
+      var checkExist = setInterval(function() {
+        if ($("#lightBoxs3").length) {
+          var divs = document.getElementById("lightBoxs3");
+          console.log(divs);
+
+          appendWa(data);
+
+          clearInterval(checkExist);
+        }
+      }, 100);
+    },
+
     async getTab() {
       const resp = await axios.get(this.getOnUrl);
       const dataGroup = resp.data.data;
@@ -173,31 +347,140 @@ export default {
       const resp3 = await axios.get(this.getCol4);
       const data3 = resp3.data.data;
       this.col4 = data3;
-      console.log(this.col1);
+      // console.log(this.col1);
+      this.getImg(data3);
+      this.getImg1(data2);
+      this.getImg2(data1);
+      this.getImg3(data);
+    },
+
+    getImg(val) {
+      const img = val;
+      console.log("col4", val);
+      var itemSet = [];
+      var newImg = img.map((map) => [map.img, map.url, map.title]);
+      for (var idx = 0; idx < newImg.length; idx++) {
+        var data = {
+          description: " ",
+          src: this.imgUrl + newImg[idx][0],
+          url: newImg[idx][1],
+          title: newImg[idx][2],
+        };
+        itemSet.push(data);
+      }
+      console.log(itemSet);
+
+      this.items = itemSet;
+    },
+    getImg1(val) {
+      const img = val;
+      console.log("col4", val);
+      var itemSet = [];
+      var newImg = img.map((map) => [map.img, map.url, map.title]);
+      for (var idx = 0; idx < newImg.length; idx++) {
+        var data = {
+          description: " ",
+          src: this.imgUrl + newImg[idx][0],
+          url: newImg[idx][1],
+          title: newImg[idx][2],
+        };
+        itemSet.push(data);
+      }
+      console.log(itemSet);
+
+      this.items1 = itemSet;
+    },
+    getImg2(val) {
+      const img = val;
+      console.log("col4", val);
+      var itemSet = [];
+      var newImg = img.map((map) => [map.img, map.url, map.title]);
+      for (var idx = 0; idx < newImg.length; idx++) {
+        var data = {
+          description: " ",
+          src: this.imgUrl + newImg[idx][0],
+          url: newImg[idx][1],
+          title: newImg[idx][2],
+        };
+        itemSet.push(data);
+      }
+      console.log(itemSet);
+
+      this.items2 = itemSet;
+    },
+    getImg3(val) {
+      const img = val;
+      console.log("col4", val);
+      var itemSet = [];
+      var newImg = img.map((map) => [map.img, map.url, map.title]);
+      for (var idx = 0; idx < newImg.length; idx++) {
+        var data = {
+          description: " ",
+          src: this.imgUrl + newImg[idx][0],
+          url: newImg[idx][1],
+          title: newImg[idx][2],
+        };
+        itemSet.push(data);
+      }
+      console.log(itemSet);
+
+      this.items3 = itemSet;
     },
   },
 };
 </script>
+<style lang="scss">
+@import "@/assets/main.scss";
+#lightBoxs,
+#lightBoxs1,
+#lightBoxs2,
+#lightBoxs3 {
+  .cool-lightbox-caption {
+    display: flex;
+    justify-content: center;
+    h6 {
+      margin-top: 20px;
+    }
+    .waOverlay {
+      color: #fff;
+      height: 40px;
+      width: 178px;
+      justify-content: center;
+      border-radius: 4px;
+      background-color: #07a148;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      transition: 0.5s;
+      span {
+        font-weight: 600;
+        font-size: 16px;
+        letter-spacing: 0.04em;
+      }
+    }
+
+    .waOverlay:hover {
+      background-color: $paz-secondary;
+    }
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
 
-.waOverlay {
-  // position: absolute;
-  width: 300px;
-  background-color: red;
-  // z-index: 99999;
-  font-size: 60px;
-  font-weight: 900;
-}
 .cropped {
   height: 128px;
   overflow: hidden;
 }
+
 .cropped .card-img {
   margin-top: -100px;
 }
 
+.cropped .card-img:hover {
+  cursor: pointer;
+}
 .card-title {
   font-style: normal;
   font-weight: 600;

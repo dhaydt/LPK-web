@@ -38,10 +38,6 @@ export default {
 
   created() {
     window.scrollTo(0, 0);
-    const mainUrl = localStorage.getItem("apiUrl");
-    this.dataUrl = mainUrl + "/groupFront";
-
-    this.getData();
   },
 
   methods: {
