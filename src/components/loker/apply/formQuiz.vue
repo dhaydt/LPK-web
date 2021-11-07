@@ -93,7 +93,6 @@
         </ul> -->
       </b-card>
     </b-col>
-    {{ userResponses }}
   </b-row>
 </template>
 
