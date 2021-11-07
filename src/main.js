@@ -13,13 +13,13 @@ import VueCarousel from "vue-carousel";
 import BootstrapVue from "bootstrap-vue";
 import Flicking from "@egjs/vue-flicking";
 import VueFormWizard from "vue-form-wizard";
-import vueAwesomeCountdown from "vue-awesome-countdown";
 import CoolLightBox from "vue-cool-lightbox";
+import vueAwesomeCountdown from "vue-awesome-countdown";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 
 import "vue-form-wizard/dist/vue-form-wizard.min.css";
-import "element-ui/lib/theme-chalk/index.css";
 import "@egjs/vue-flicking/dist/flicking.css";
+import "element-ui/lib/theme-chalk/index.css";
 import "@/assets/responsive.scss";
 import "@/assets/scss/app.scss";
 import "@/assets/main.scss";
@@ -31,8 +31,6 @@ const vueImgConfig = {
   thumbnails: false,
 };
 
-Vue.use(CoolLightBox);
-
 Vue.use(vueAwesomeCountdown, "vac");
 Vue.config.productionTip = false;
 Vue.use(require("vue-script2"));
@@ -41,6 +39,7 @@ Vue.use(VueImg, vueImgConfig);
 Vue.use(VueFormWizard);
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVue);
+Vue.use(CoolLightBox);
 Vue.use(VueCarousel);
 Vue.use(VueAppend);
 Vue.use(ElementUI);

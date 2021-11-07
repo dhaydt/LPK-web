@@ -39,20 +39,19 @@
           v-show="accepted"
           class="kuis"
         >
-          <div class="qu-is" v-for="(q, i) in kuis" :key="i">
+          <div class="qu-is text-left" v-for="(q, i) in kuis" :key="i">
             <p>Pertanyaan {{ i + 1 }} dari {{ kuis.length }} pertanyaan</p>
             <el-form-item :label="q.text" class="d-block question">
-              <b-row cols-md="2" cols="1">
-                <b-col>
-                  <el-radio
-                    v-model="userResponses[i]"
-                    v-for="(o, index) in JSON.parse(q.responses)"
-                    :key="index"
-                    class="options ml-1 text-left kuisRadio"
-                    :label="o"
-                    border
-                    >{{ o.text }}
-                  </el-radio>
+              <b-row cols-md="2" cols="1" cols-lg="2">
+                <b-col
+                  v-for="(o, index) in JSON.parse(q.responses)"
+                  :key="index"
+                >
+                  <el-radio-group v-model="userResponses[i]">
+                    <el-radio-button :label="o">
+                      <span>{{ o.text }} </span>
+                    </el-radio-button>
+                  </el-radio-group>
                 </b-col>
               </b-row>
             </el-form-item>
@@ -94,6 +93,7 @@
         </ul> -->
       </b-card>
     </b-col>
+    {{ userResponses }}
   </b-row>
 </template>
 
@@ -271,6 +271,36 @@ export default {
 </script>
 
 <style lang="scss">
+.el-radio-group {
+  width: 100%;
+  .el-radio-button {
+    width: 100%;
+    .el-radio-button__inner {
+      width: 100%;
+
+      text-align: left;
+      span {
+        text-transform: capitalize;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        color: #757682;
+      }
+    }
+
+    .el-radio-button__inner:hover {
+      color: #07a148;
+    }
+
+    .el-radio-button__orig-radio:checked + .el-radio-button__inner {
+      background-color: transparent !important;
+      color: #07a148;
+      border: 1px solid #07a148;
+    }
+  }
+}
+
 .el-radio.options.ml-1.text-left.kuisRadio.is-focus.is-bordered {
   border: 1px solid #48a248;
 
@@ -349,6 +379,7 @@ span.titleCard {
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
+  text-transform: capitalize;
   line-height: 28px;
   color: #121527;
 }
