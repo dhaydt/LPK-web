@@ -1,5 +1,5 @@
 <template>
-  <section class="mb-4 tlPelatihan">
+  <section class="mb-4 tlPelatihan" id="timeline">
     <b-container>
       <b-row class="justify-content-center">
         <b-col lg="9">

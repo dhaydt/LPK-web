@@ -102,7 +102,11 @@
                 ></el-input>
               </el-form-item>
 
-              <el-form-item label="Pas Foto" prop="foto" class="text-left">
+              <el-form-item
+                label="Pas Foto (JPG/PNG)"
+                prop="foto"
+                class="text-left"
+              >
                 <div class="custom-file">
                   <input
                     type="file"
@@ -121,7 +125,11 @@
                 </div>
               </el-form-item>
 
-              <el-form-item label="Foto Ijazah" prop="ijazah" class="text-left">
+              <el-form-item
+                label="Foto Ijazah (JPG/PNG)"
+                prop="ijazah"
+                class="text-left"
+              >
                 <div class="custom-file">
                   <input
                     type="file"
@@ -141,7 +149,7 @@
               </el-form-item>
 
               <el-form-item
-                label="Foto SKCK (Optional)"
+                label="Foto SKCK (Optional) (JPG/PNG)"
                 prop="skck"
                 class="text-left"
               >
@@ -273,7 +281,11 @@
                 ></el-input>
               </el-form-item>
 
-              <el-form-item label="Foto KTP/SIM" prop="ktp" class="text-left">
+              <el-form-item
+                label="Foto KTP/SIM (JPG/PNG)"
+                prop="ktp"
+                class="text-left"
+              >
                 <div class="custom-file">
                   <input
                     type="file"
@@ -293,7 +305,7 @@
               </el-form-item>
 
               <el-form-item
-                label="Foto Sertifikat Pelatihan"
+                label="Foto Sertifikat Pelatihan (JPG/PNG)"
                 prop="sertifikat"
                 class="text-left"
               >
@@ -316,7 +328,7 @@
               </el-form-item>
 
               <el-form-item
-                label="Portfolio / Berkas Pendukung"
+                label="Portfolio / Berkas Pendukung (PDF)"
                 prop="portfolio"
                 class="text-left"
               >

@@ -237,9 +237,11 @@ export default {
     previous() {
       this.$refs.wizard.prevTab();
       this.kuis = false;
+      window.scrollTo(0, 0);
     },
     nextTab() {
       this.$refs.wizard.nextTab();
+      window.scrollTo(0, 0);
     },
 
     async getKuis() {

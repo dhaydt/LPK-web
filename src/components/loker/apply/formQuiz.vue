@@ -77,20 +77,6 @@
             >Review Jawaban</b-button
           >
         </b-col>
-        <!-- <ul class="columns is-mobile is-centered">
-          <li v-for="(time, index) in times" :key="index" class="column time">
-            <a
-              v-on:click.prevent="setTime(time.sec)"
-              :class="[
-                'button',
-                'is-link',
-                { 'is-active': time.sec === selectedTime && endTime !== 0 },
-              ]"
-            >
-              {{ time.display }}
-            </a>
-          </li>
-        </ul> -->
       </b-card>
     </b-col>
   </b-row>
