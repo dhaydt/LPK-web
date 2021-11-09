@@ -60,7 +60,16 @@
                   ></b-img>
                 </div>
                 <div class="card-body">
-                  <b-card-text>{{ l.date_range }} </b-card-text>
+                  <b-card-text class="d-flex justify-content-between"
+                    >{{ l.date_range }}
+                    <a :href="imgUrl + l.img" target="_blank"
+                      ><i
+                        class="fas fa-download"
+                        v-b-tooltip.hover
+                        title="Download Brosur"
+                      ></i
+                    ></a>
+                  </b-card-text>
                   <b-card-title>{{ l.title }} </b-card-title>
                 </div>
               </b-card>
@@ -82,7 +91,16 @@
                   ></b-img>
                 </div>
                 <div class="card-body">
-                  <b-card-text>{{ l.date_range }} </b-card-text>
+                  <b-card-text class="d-flex justify-content-between"
+                    >{{ l.date_range }}
+                    <a :href="imgUrl + l.img" target="_blank"
+                      ><i
+                        class="fas fa-download"
+                        v-b-tooltip.hover
+                        title="Download Brosur"
+                      ></i
+                    ></a>
+                  </b-card-text>
                   <b-card-title>{{ l.title }} </b-card-title>
                 </div>
               </b-card>
@@ -104,7 +122,16 @@
                   ></b-img>
                 </div>
                 <div class="card-body">
-                  <b-card-text>{{ l.date_range }} </b-card-text>
+                  <b-card-text class="d-flex justify-content-between"
+                    >{{ l.date_range }}
+                    <a :href="imgUrl + l.img" target="_blank"
+                      ><i
+                        class="fas fa-download"
+                        v-b-tooltip.hover
+                        title="Download Brosur"
+                      ></i
+                    ></a>
+                  </b-card-text>
                   <b-card-title>{{ l.title }} </b-card-title>
                 </div>
               </b-card>
@@ -126,7 +153,15 @@
                   ></b-img>
                 </div>
                 <div class="card-body">
-                  <b-card-text>{{ l.date_range }} </b-card-text>
+                  <b-card-text class="d-flex justify-content-between"
+                    >{{ l.date_range }}
+                    <a :href="imgUrl + l.img" target="_blank"
+                      ><i
+                        class="fas fa-download"
+                        v-b-tooltip.hover
+                        title="Download Brosur"
+                      ></i></a
+                  ></b-card-text>
                   <b-card-title>{{ l.title }} </b-card-title>
                 </div>
               </b-card>
@@ -505,6 +540,14 @@ export default {
   text-align: left;
   line-height: 20px;
   color: #07a148;
+
+  i {
+    color: #07a148;
+  }
+
+  i:hover {
+    color: $paz-secondary;
+  }
 }
 
 .time-line-box {

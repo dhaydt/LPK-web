@@ -31,7 +31,8 @@
             >
               <div class="imgBox">
                 <b-card-img :src="imgUrl + card.img" class="w-100"></b-card-img>
-                <div class="overlay"></div>
+
+                <div class="overlay" @click="showSingle(card.img)"></div>
                 <div class="button">
                   <b-row>
                     <b-col>
