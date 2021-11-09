@@ -32,6 +32,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  #aboutJumbotron {
+    .jumbotron {
+      height: 388px;
+      .row {
+        margin-top: 0;
+      }
+    }
+  }
+}
 #moon {
   font-size: 20em;
   display: inline-block;
@@ -64,7 +74,6 @@ export default {
   // background-color: #07a148;
   border-radius: 0;
   height: 589px;
-  min-height: 528px;
   background: linear-gradient(
     181.98deg,
     #07a148 26.57%,

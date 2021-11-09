@@ -189,6 +189,25 @@
               required
             ></b-form-input>
           </b-form-group>
+
+          <b-form-group label="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-img
+              :src="imgUrl + editData.img"
+              alt="editImage"
+              height="100"
+              class="d-block"
+            />
+            <label class="mt-2">Ganti Foto</label>
+            <b-form-file
+              type="file"
+              ref="imgEdit"
+              @change="onEdit()"
+              accept="image/jpeg, image/png, image/gif"
+              name="image"
+              :required="true"
+              id="imageEdit"
+            />
+          </b-form-group>
         </div>
         <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
         <b-button
@@ -196,7 +215,12 @@
           variant="outline-success"
           block
           @click="SaveUsers"
-          >Simpan</b-button
+          ><div v-if="loading">
+            <b-spinner small variant="primary"></b-spinner> Mengupdate...
+          </div>
+          <span v-if="!loading"
+            ><i class="fa fa-save"></i> Update</span
+          ></b-button
         >
       </b-modal>
     </b-card>
@@ -227,14 +251,14 @@ export default {
       fields: [
         { key: "id", sortable: true, label: "ID" },
         { key: "title", sortable: true, label: "Judul" },
-        { key: "url", sortable: true, label: "URL" },
+        // { key: "url", sortable: true, label: "URL" },
         { key: "jenis", sortable: true, label: "Jenis Pelatihan" },
-        { key: "subtitle", sortable: true, label: "Sub Judul" },
+        // { key: "subtitle", sortable: true, label: "Sub Judul" },
         { key: "img", label: "Foto" },
         { key: "tempat", sortable: true, label: "Tempat" },
-        { key: "waktu", sortable: true, label: "Waktu pelaksanaan" },
-        { key: "akses", sortable: true, label: "Waktu akses" },
-        { key: "expire", sortable: true, label: "Berlaku" },
+        // { key: "waktu", sortable: true, label: "Waktu pelaksanaan" },
+        // { key: "akses", sortable: true, label: "Waktu akses" },
+        // { key: "expire", sortable: true, label: "Berlaku" },
         { key: "action" },
       ],
       visiUrl: "",
@@ -269,16 +293,37 @@ export default {
   },
 
   methods: {
+    onEdit() {
+      // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+      // this.formFields.img = event.target.files[0];
+      var files = event.target.files;
+      this.editData.img2 = files[0];
+      console.log("edit", this.editData);
+    },
+
     async SaveUsers() {
+      this.loading = true;
+      let formData = new FormData();
+
+      formData.append("title", this.editData.title);
+      formData.append("subtitle", this.editData.subtitle);
+      formData.append("tempat", this.editData.tempat);
+      formData.append("jenis", this.editData.jenis);
+      formData.append("waktu", this.editData.waktu);
+      formData.append("akses", this.editData.akses);
+      formData.append("url", this.editData.url);
+      formData.append("expire", this.editData.expire);
+      formData.append("img", this.editData.img2);
+
       await axios
-        .put(this.visiUrl + "/" + this.editData.id, this.editData)
+        .put(this.visiUrl + "/" + this.editData.id, formData)
         .then((response) => {
           this.messages = "Data berhasil diubah";
           this.getLegal();
           this.showAlert();
           console.log("data", response);
           this.$refs["users"].hide();
-          // this.loading = false;
+          this.loading = false;
         })
         .catch((error) => {
           console.log(error);

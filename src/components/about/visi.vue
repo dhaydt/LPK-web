@@ -82,6 +82,24 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
 
+@media (max-width: 575.98px) {
+  .visi {
+    h5 {
+      font-size: 16px !important;
+    }
+
+    h1 {
+      font-weight: 700;
+      line-height: 43px;
+    }
+  }
+
+  .misi span {
+    font-size: 16px !important;
+    font-weight: 500 !important;
+  }
+}
+
 .visi {
   background: #ecfef4;
   height: 803px;

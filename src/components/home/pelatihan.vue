@@ -50,13 +50,15 @@ export default {
 @media (max-width: 575.98px) {
   .col-md-6 {
     .reg h5 {
-      font-size: 18px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 26px;
     }
 
     .title {
       h1 {
         font-size: 30px;
-        line-height: 1.3;
+        line-height: 43px;
       }
     }
   }
@@ -64,7 +66,7 @@ export default {
     .ket {
       margin-top: 10px;
       span {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
   }

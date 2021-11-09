@@ -44,6 +44,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  section#timeline {
+    .card {
+      .card-body {
+        h4.card-title {
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 43px;
+          padding-top: 20px;
+        }
+        p.card-text {
+          font-size: 16px;
+          line-height: 1.8;
+        }
+      }
+    }
+  }
+}
 #moon {
   font-size: 20em;
   display: inline-block;

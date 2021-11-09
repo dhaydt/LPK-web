@@ -128,6 +128,28 @@ export default {
 };
 </script>
 <style lang="scss">
+@media (max-width: 575.98px) {
+  section.kurikulum {
+    .card-body {
+      h4.card-title {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 43px;
+        padding-top: 20px;
+      }
+    }
+    .anatomi {
+      .card-body {
+        h4.card-title {
+          font-size: 26px !important;
+        }
+        p.card-text {
+          font-size: 16px !important;
+        }
+      }
+    }
+  }
+}
 #modalBasic {
   display: flex !important;
   align-items: center;

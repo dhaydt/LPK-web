@@ -71,7 +71,7 @@
               <b-button
                 @click="updateStatus"
                 class="mt-2"
-                variant="outline-warning"
+                variant="outline-success"
                 block
                 >Update Status</b-button
               >

@@ -95,7 +95,9 @@ export default {
   section.cabang {
     .card-title.main-title {
       font-size: 30px;
-      line-height: 1;
+      line-height: 43px;
+      font-weight: 700;
+      padding-top: 20px;
     }
   }
 }

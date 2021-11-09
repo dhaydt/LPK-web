@@ -142,6 +142,11 @@ export default {
   .naviFlick {
     display: none !important;
   }
+  .flicking-wrap {
+    p.card-text {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .container-fluid {

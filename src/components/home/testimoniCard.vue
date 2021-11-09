@@ -39,7 +39,7 @@
                     v-if="slide.video"
                     max-width="376px"
                     aspect-ratio="16:11"
-                    thumbnail-quality="standard"
+                    thumbnail-quality="medium"
                   />
                   <div class="card-body">
                     <b-col sm="9" class="text-left px-0">

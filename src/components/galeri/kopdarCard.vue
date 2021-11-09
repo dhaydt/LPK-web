@@ -137,6 +137,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .galeri.kopdar-card {
+    .row-detail {
+      h4.card-title {
+        font-size: 20px !important;
+        font-weight: 700;
+      }
+      p.card-text {
+        font-size: 16px !important;
+        margin-top: 0 !important;
+      }
+      .detail.text-left a {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}
 .card {
   box-shadow: none;
 }

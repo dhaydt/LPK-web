@@ -91,6 +91,8 @@ export default {
     h2.card-sub {
       font-size: 30px;
       margin-top: 40px !important;
+      font-weight: 700;
+      line-height: 43px;
     }
   }
 }

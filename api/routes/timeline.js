@@ -6,29 +6,74 @@ const fs = require("fs");
 const update = (req, res) => {
   console.log(req);
   // title`,`lokasi`,`bulan`,`date_range`,
-  var sql = `UPDATE timeline SET title = ?, lokasi = ?, bulan = ?, date_range = ?, url = ? WHERE id = ?;`;
-  db.query(
-    sql,
-    [
-      req.body.title,
-      req.body.lokasi,
-      req.body.bulan,
-      req.body.date_range,
-      req.body.url,
-      req.params.id,
-    ],
-    (err, result) => {
-      if (err) {
-        return res.status(400).send({
-          msg: err,
+  if (!req.files) {
+    var sql = `UPDATE timeline SET title = ?, lokasi = ?, bulan = ?, date_range = ?, url = ? WHERE id = ?;`;
+    db.query(
+      sql,
+      [
+        req.body.title,
+        req.body.lokasi,
+        req.body.bulan,
+        req.body.date_range,
+        req.body.url,
+        req.params.id,
+      ],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       }
-      return res.status(201).send({
-        msg: "Legalitas tersimpan",
-        data: result,
+    );
+  } else {
+    var post = req.body;
+    var title = post.title;
+    var lokasi = post.lokasi;
+    var bulan = post.bulan;
+    var date_range = post.date_range;
+    var url = post.url;
+    var id = req.params.id;
+
+    var files = req.files.img;
+    var name = Date.now() + files.name;
+
+    db.query("SELECT * FROM timeline WHERE id = ?", [id], (err, row) => {
+      if (err) {
+        console.log(err);
+      } else {
+        var imgName = row[0].img;
+      }
+      console.log(imgName);
+
+      const DIR_LEGAL = "public/images/timeline";
+      const imgDir = DIR_LEGAL + "/" + imgName;
+      if (fs.existsSync(imgDir)) {
+        fs.unlinkSync(imgDir);
+      }
+
+      files.mv(`public/images/timeline/` + name, (err) => {
+        if (err) return res.status(500).send(err);
+        var sqlImg =
+          "UPDATE timeline SET title = ?, lokasi = ?, bulan = ?, date_range = ?, url = ?, img = ? WHERE id = ?;";
+        db.query(
+          sqlImg,
+          [title, lokasi, bulan, date_range, url, name, id],
+          (err, rows) => {
+            if (err) {
+              res.send(err);
+            } else {
+              res.send(rows);
+            }
+          }
+        );
       });
-    }
-  );
+    });
+  }
 };
 
 router.put("/timeline/:id", update);

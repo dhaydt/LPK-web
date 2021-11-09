@@ -39,9 +39,15 @@
                 >
               </el-form-item>
 
-              <el-form-item label="Nomor WhatsApp" prop="wa">
+              <el-form-item
+                label="Nomor WhatsApp (Ex: 823 1233 2233)"
+                prop="wa"
+              >
                 <el-input
                   v-model="model.wa"
+                  type="number"
+                  show-word-limit
+                  maxlength="12"
                   placeholder="Masukkan nomor whatsappmu"
                 ></el-input>
               </el-form-item>

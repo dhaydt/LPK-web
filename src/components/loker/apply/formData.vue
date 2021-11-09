@@ -287,9 +287,8 @@ export default {
       console.log("model", model);
       await axios.post(this.applyUrl, model);
       this.modalAkhir = true;
-      // this.$router.push("/loker");
-      // alert("Lamaran anda sudah kami terima!!!");
-      // window.location.href = "/loker";
+      alert("Lamaran anda sudah kami terima!!!");
+      window.location.href = "/loker";
     },
     validate(ref) {
       return this.$refs[ref].validate();

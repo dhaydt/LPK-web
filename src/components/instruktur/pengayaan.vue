@@ -97,6 +97,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .pengayaan {
+    .header {
+      h1.d-block {
+        font-size: 28px;
+        font-weight: 700;
+        padding-bottom: 20px;
+      }
+      h4.d-block {
+        font-size: 16px;
+      }
+    }
+  }
+}
 .card-side {
   .card-title {
     font-style: normal;

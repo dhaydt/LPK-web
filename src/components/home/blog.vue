@@ -51,6 +51,8 @@ export default {
   .col-md-7 {
     h2.card-sub {
       font-size: 30px;
+      font-weight: 700;
+      line-height: 43px;
     }
   }
 }

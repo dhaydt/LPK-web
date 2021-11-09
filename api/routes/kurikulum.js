@@ -69,29 +69,75 @@ router.delete("/kurikulum/:img", (req, res) => {
 
 const update = (req, res) => {
   console.log(req);
-  var sql = `UPDATE kurikulum SET name = ?, subtitle = ?, penyakit = ?, konten = ?, tipe = ? WHERE id = ?;`;
-  db.query(
-    sql,
-    [
-      req.body.name,
-      req.body.subtitle,
-      req.body.penyakit,
-      req.body.konten,
-      req.body.tipe,
-      req.params.id,
-    ],
-    (err, result) => {
-      if (err) {
-        return res.status(400).send({
-          msg: err,
+
+  if (!req.files) {
+    var sql = `UPDATE kurikulum SET name = ?, subtitle = ?, penyakit = ?, konten = ?, tipe = ? WHERE id = ?;`;
+    db.query(
+      sql,
+      [
+        req.body.name,
+        req.body.subtitle,
+        req.body.penyakit,
+        req.body.konten,
+        req.body.tipe,
+        req.params.id,
+      ],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       }
-      return res.status(201).send({
-        msg: "Legalitas tersimpan",
-        data: result,
+    );
+  } else {
+    var post = req.body;
+    var named = post.name;
+    var subtitle = post.subtitle;
+    var penyakit = post.penyakit;
+    var konten = post.konten;
+    var tipe = post.tipe;
+    var id = req.params.id;
+
+    var files = req.files.img;
+    var name = Date.now() + files.name;
+
+    db.query("SELECT * FROM kurikulum WHERE id = ?", [id], (err, row) => {
+      if (err) {
+        console.log(err);
+      } else {
+        var imgName = row[0].img;
+      }
+      console.log(imgName);
+
+      const DIR_LEGAL = "public/images/kurikulum";
+      const imgDir = DIR_LEGAL + "/" + imgName;
+      if (fs.existsSync(imgDir)) {
+        fs.unlinkSync(imgDir);
+      }
+
+      files.mv(`public/images/kurikulum/` + name, (err) => {
+        if (err) return res.status(500).send(err);
+        var sqlImg =
+          "UPDATE kurikulum SET name = ?, subtitle = ?,penyakit = ?,konten = ?,tipe = ?, img = ? WHERE id = ?;";
+        db.query(
+          sqlImg,
+          [named, subtitle, penyakit, konten, tipe, name, id],
+          (err, rows) => {
+            if (err) {
+              res.send(err);
+            } else {
+              res.send(rows);
+            }
+          }
+        );
       });
-    }
-  );
+    });
+  }
 };
 
 router.put("/kurikulum/:id", update);

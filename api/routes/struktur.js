@@ -5,29 +5,69 @@ const fs = require("fs");
 
 const update = (req, res) => {
   console.log(req);
-  var sql = `UPDATE struktur SET name = ?, title = ?, telp = ?, nip = ?, prefix = ?  WHERE id = ?;`;
-  db.query(
-    sql,
-    [
-      req.body.name,
-      req.body.title,
-      req.body.telp,
-      req.body.nip,
-      req.body.prefix,
-      req.params.id,
-    ],
-    (err, result) => {
-      if (err) {
-        return res.status(400).send({
-          msg: err,
+  if (!req.files) {
+    var sql = `UPDATE struktur SET name = ?, title = ?, telp = ?, nip = ?, prefix = ?  WHERE id = ?;`;
+    db.query(
+      sql,
+      [
+        req.body.name,
+        req.body.title,
+        req.body.telp,
+        req.body.nip,
+        req.body.prefix,
+        req.params.id,
+      ],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       }
-      return res.status(201).send({
-        msg: "Legalitas tersimpan",
-        data: result,
+    );
+  } else {
+    var post = req.body;
+    var named = post.name;
+    var title = post.title;
+    var nip = post.nip;
+    var prefix = post.prefix;
+    var id = req.params.id;
+
+    var files = req.files.img;
+    var name = Date.now() + files.name;
+
+    db.query("SELECT * FROM struktur WHERE id = ?", [id], (err, row) => {
+      if (err) {
+        console.log(err);
+      } else {
+        var imgName = row[0].img;
+      }
+      console.log(imgName);
+
+      const DIR_LEGAL = "public/images/struktur";
+      const imgDir = DIR_LEGAL + "/" + imgName;
+      if (fs.existsSync(imgDir)) {
+        fs.unlinkSync(imgDir);
+      }
+
+      files.mv(`public/images/struktur/` + name, (err) => {
+        if (err) return res.status(500).send(err);
+        var sqlImg =
+          "UPDATE struktur SET name = ?, title = ?, nip = ?, prefix = ?, img = ? WHERE id = ?;";
+        db.query(sqlImg, [named, title, nip, prefix, name, id], (err, rows) => {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send(rows);
+          }
+        });
       });
-    }
-  );
+    });
+  }
 };
 
 router.put("/struktur/:id", update);

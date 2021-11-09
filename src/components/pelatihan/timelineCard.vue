@@ -38,8 +38,8 @@
     </CoolLightBox>
     <section class="time-line-box">
       <div class="swiper-container text-center">
-        <div class="swiper-wrapper w-100 row">
-          <div class="swiper-slide col-md-3 p-0">
+        <div class="swiper-wrapper w-100">
+          <div class="swiper-slide p-0">
             <div class="timestamp"><span class="date">.</span></div>
             <div class="status pt-4">
               <span>{{ group[3] }} </span>
@@ -66,7 +66,7 @@
               </b-card>
             </div>
           </div>
-          <div class="swiper-slide col-md-3 p-0">
+          <div class="swiper-slide p-0">
             <div class="timestamp"><span class="date">.</span></div>
             <div class="status pt-4">
               <span>{{ group[2] }}</span>
@@ -88,7 +88,7 @@
               </b-card>
             </div>
           </div>
-          <div class="swiper-slide col-md-3 p-0">
+          <div class="swiper-slide p-0">
             <div class="timestamp"><span class="date">.</span></div>
             <div class="status pt-4">
               <span>{{ group[1] }}</span>
@@ -110,7 +110,7 @@
               </b-card>
             </div>
           </div>
-          <div class="swiper-slide col-md-3 p-0">
+          <div class="swiper-slide p-0">
             <div class="timestamp"><span class="date">.</span></div>
             <div class="status pt-4">
               <span>{{ group[0] }}</span>
@@ -468,6 +468,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
+.timelineCard {
+  overflow-x: scroll;
+  width: 100%;
+  section.time-line-box {
+    width: 1116px;
+  }
+}
 
 .cropped {
   height: 128px;

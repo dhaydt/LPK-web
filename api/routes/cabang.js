@@ -5,22 +5,60 @@ const fs = require("fs");
 
 const update = (req, res) => {
   console.log(req);
-  var sql = `UPDATE cabang SET name = ?, address = ?, telp = ? WHERE id = ?;`;
-  db.query(
-    sql,
-    [req.body.name, req.body.address, req.body.telp, req.params.id],
-    (err, result) => {
-      if (err) {
-        return res.status(400).send({
-          msg: err,
+  if (!req.files) {
+    var sql = `UPDATE cabang SET name = ?, address = ?, telp = ? WHERE id = ?;`;
+    db.query(
+      sql,
+      [req.body.name, req.body.address, req.body.telp, req.params.id],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       }
-      return res.status(201).send({
-        msg: "Legalitas tersimpan",
-        data: result,
-      });
+    );
+  }
+  var post = req.body;
+  var named = post.name;
+  var address = post.address;
+  var telp = post.telp;
+  var id = req.params.id;
+
+  var files = req.files.img;
+  var name = Date.now() + files.name;
+
+  db.query("SELECT * FROM cabang WHERE id = ?", [id], (err, row) => {
+    if (err) {
+      console.log(err);
+    } else {
+      var imgName = row[0].img;
     }
-  );
+    console.log(imgName);
+
+    const DIR_LEGAL = "public/images/cabang";
+    const imgDir = DIR_LEGAL + "/" + imgName;
+    if (fs.existsSync(imgDir)) {
+      fs.unlinkSync(imgDir);
+    }
+
+    files.mv(`public/images/cabang/` + name, (err) => {
+      if (err) return res.status(500).send(err);
+      var sqlImg =
+        "UPDATE cabang SET name = ?, address = ?,telp = ?, img = ? WHERE id = ?;";
+      db.query(sqlImg, [named, address, telp, name, id], (err, rows) => {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(rows);
+        }
+      });
+    });
+  });
 };
 
 router.put("/cabang/:id", update);

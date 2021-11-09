@@ -74,6 +74,64 @@
             >
           </template>
 
+          <template v-slot:cell(notifikasi)="data" class="d-flex">
+            <div class="actions" style="min-width: 50px">
+              <a
+                :href="
+                  `https://wa.me/62${data.item.wa}?text=${notif.pembuka}%20${data.item.nama}%2C%0A${notif.proses}`
+                "
+                target="_blank"
+                v-if="data.item.status === 'Proses ADM'"
+              >
+                <b-badge
+                  variant="primary"
+                  size="md"
+                  v-b-tooltip.hover
+                  title="Kirim Notifikasi Proses ADM"
+                  class="ml-2 btn"
+                  style="text-transform: capitalize; padding: 8px; border-radius: 50%;"
+                >
+                  <i class="fab fa-whatsapp"></i>
+                </b-badge>
+              </a>
+              <a
+                :href="
+                  `https://wa.me/62${data.item.wa}?text=${notif.pembuka}%20${data.item.nama}%2C%0A${notif.interview}`
+                "
+                target="_blank"
+                v-if="data.item.status === 'Interview'"
+              >
+                <b-badge
+                  variant="warning"
+                  size="md"
+                  v-b-tooltip.hover
+                  title="Kirim Notifikasi Interview"
+                  class="ml-2 btn"
+                  style="text-transform: capitalize; padding: 8px; border-radius: 50%;"
+                >
+                  <i class="fab fa-whatsapp"></i>
+                </b-badge>
+              </a>
+              <a
+                :href="
+                  `https://wa.me/62${data.item.wa}?text=${notif.pembuka}%20${data.item.nama}%2C%0A${notif.pengumuman}`
+                "
+                target="_blank"
+                v-if="data.item.status === 'Pengumuman'"
+              >
+                <b-badge
+                  variant="success"
+                  size="md"
+                  v-b-tooltip.hover
+                  title="Kirim Notifikasi Pengumuman"
+                  class="ml-2 btn"
+                  style="text-transform: capitalize; padding: 8px; border-radius: 50%;"
+                >
+                  <i class="fab fa-whatsapp"></i>
+                </b-badge>
+              </a>
+            </div>
+          </template>
           <template v-slot:cell(action)="data" class="d-flex">
             <div class="actions" style="min-width: 100px">
               <router-link
@@ -121,13 +179,16 @@ import axios from "axios";
 export default {
   data() {
     return {
+      waText: `selamat \${data.item.name}`,
       tableData: [],
+      linkWA: "https://wa.me",
       totalRows: 1,
       currentPage: 1,
       perPage: 10,
       pageOptions: [10, 25, 50, 100],
       filter: null,
       filterOn: [],
+      notif: {},
       sortBy: "id",
       sortDesc: false,
       fields: [
@@ -140,9 +201,11 @@ export default {
         { key: "portfolio", sortable: true, label: "Portfolio" },
         { key: "judul", sortable: true, label: "Loker" },
         { key: "status", sortable: true, label: "status" },
+        { key: "Notifikasi" },
         { key: "action" },
       ],
       visiUrl: "",
+      notifUrl: "",
       loading: "",
       pdfUrl: "",
       dismissSecs: 5,
@@ -170,6 +233,7 @@ export default {
     const mainUrl = localStorage.getItem("apiUrl");
     this.visiUrl = mainUrl + "/apply";
     this.pdfUrl = mainUrl + "/documents/apply/";
+    this.notifUrl = mainUrl + "/notif";
     this.getVisi();
   },
 
@@ -180,8 +244,13 @@ export default {
         .catch((error) => console.log(error));
       this.tableData = resp.data.data;
       console.log(resp.data.data);
+      this.getNotif();
     },
-
+    async getNotif() {
+      const resp = await axios.get(this.notifUrl);
+      this.notif = resp.data.data[0];
+      console.log(this.notif);
+    },
     async deleteVisi(id) {
       this.loading = true;
       console.log(id);

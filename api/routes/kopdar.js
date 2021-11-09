@@ -25,22 +25,60 @@ router.get("/kopdar/:id", (req, res) => {
 
 const newGal = (req, res) => {
   console.log(req);
-  var sql = `UPDATE kopdar SET imgTitle = ?, imgDesc = ? WHERE id = ?;`;
-  db.query(
-    sql,
-    [req.body.imgTitle, req.body.imgDesc, req.params.id],
-    (err, result) => {
-      if (err) {
-        return res.status(400).send({
-          msg: err,
+  if (!req.files) {
+    var sql = `UPDATE kopdar SET imgTitle = ?, imgDesc = ? WHERE id = ?;`;
+    db.query(
+      sql,
+      [req.body.imgTitle, req.body.imgDesc, req.params.id],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       }
-      return res.status(201).send({
-        msg: "Legalitas tersimpan",
-        data: result,
+    );
+  } else {
+    var post = req.body;
+    var title = post.imgTitle;
+    var desc = post.imgDesc;
+    var id = req.params.id;
+
+    var files = req.files.img;
+    var name = Date.now() + files.name;
+
+    db.query("SELECT * FROM kopdar WHERE id = ?", [id], (err, row) => {
+      if (err) {
+        console.log(err);
+      } else {
+        var imgName = row[0].img;
+      }
+      console.log(imgName);
+
+      const DIR_LEGAL = "public/images/kopdar";
+      const imgDir = DIR_LEGAL + "/" + imgName;
+      if (fs.existsSync(imgDir)) {
+        fs.unlinkSync(imgDir);
+      }
+
+      files.mv(`public/images/kopdar/` + name, (err) => {
+        if (err) return res.status(500).send(err);
+        var sqlImg =
+          "UPDATE kopdar SET imgTitle = ?, imgDesc = ?, img = ? WHERE id = ?;";
+        db.query(sqlImg, [title, desc, name, id], (err, rows) => {
+          if (err) {
+            res.send(err);
+          } else {
+            res.send(rows);
+          }
+        });
       });
-    }
-  );
+    });
+  }
 };
 
 router.put("/kopdar/:id", newGal);

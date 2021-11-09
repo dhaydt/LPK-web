@@ -42,6 +42,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  .jumbotron {
+    height: 430px !important;
+    min-height: 430px !important;
+    #header {
+      h1 {
+        margin-top: 40px !important;
+      }
+    }
+  }
+
+  .eventOnline {
+    margin-top: 50px !important;
+  }
+}
 #moon {
   font-size: 20em;
   display: inline-block;

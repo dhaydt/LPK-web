@@ -162,6 +162,18 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
 @media (max-width: 575.98px) {
+  .kurikulumUpgrading {
+    .card {
+      h4.card-title {
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .card-subtitle {
+        font-size: 16px;
+      }
+    }
+  }
   .card-offline {
     .naviFlick {
       display: none !important;
@@ -176,6 +188,8 @@ export default {
 }
 
 .naviFlick {
+  // position: relative;
+  position: absolute;
   .btnNav {
     border-radius: 50%;
     background-color: $paz-main;

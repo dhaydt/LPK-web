@@ -160,7 +160,7 @@ export default {
       fields: [
         { key: "id", sortable: true, label: "ID" },
         { key: "text", sortable: true, label: "Pertanyaan" },
-        { key: "responses", sortable: true, label: "Pilihan" },
+        // { key: "responses", sortable: true, label: "Pilihan" },
         { key: "status", sortable: true, label: "Status" },
         { key: "action" },
       ],

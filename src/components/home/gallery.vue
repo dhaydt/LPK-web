@@ -48,10 +48,13 @@ export default {
   .card-body {
     h4.card-title {
       font-size: 30px;
+      font-weight: 700;
+      line-height: 43px;
     }
     p.card-text {
-      font-size: 20px;
-      line-height: 1.8;
+      font-size: 16px;
+      line-height: 38px;
+      margin-top: 20px !important;
     }
   }
 }

@@ -64,13 +64,21 @@ export default {
 <style lang="scss" scoped>
 @media (max-width: 575.98px) {
   section#struktur {
+    .card-body {
+      padding-top: 40px;
+      h4.card-title {
+        font-size: 30px;
+        line-height: 43px;
+        font-weight: 700;
+      }
+    }
     h5.student {
       font-size: 30px;
       line-height: 1;
     }
     p.text-muted {
       margin-bottom: 20px !important;
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 }

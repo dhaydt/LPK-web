@@ -40,8 +40,10 @@ export default {
 @media (max-width: 575.98px) {
   section.liputan {
     h2.titles {
-      font-size: 28px;
-      line-height: 1.3;
+      font-size: 30px;
+      line-height: 43px;
+      font-weight: 700;
+      margin-top: 40px !important;
     }
     p.text-muted {
       margin-bottom: 20px !important;

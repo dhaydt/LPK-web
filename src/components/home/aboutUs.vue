@@ -64,21 +64,24 @@ export default {};
   .card-body {
     h4.card-title {
       font-size: 30px;
+      font-weight: 700;
     }
     p.card-text {
-      font-size: 20px;
-      margin-top: 30px !important;
+      font-size: 16px;
+      margin-top: 20px !important;
     }
   }
 
   .card-body.text-center {
+    padding-top: 0;
+
     margin-top: 0 !important;
     .row {
       h5.student {
-        font-size: 40px;
+        font-size: 30px;
       }
       p.text-muted {
-        font-size: 18px;
+        font-size: 16px;
       }
     }
   }

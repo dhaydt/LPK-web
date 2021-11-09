@@ -130,6 +130,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
+@media (max-width: 575.98px) {
+  .calender {
+    margin-top: 10px !important;
+  }
+}
 .naviFlick {
   .btnNav {
     border-radius: 50%;

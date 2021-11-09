@@ -5,32 +5,80 @@ const fs = require("fs");
 
 const update = (req, res) => {
   console.log(req);
-  var sql = `UPDATE pelatihan SET title = ?, jenis = ?, subtitle = ?,waktu = ?,akses = ?,expire = ?, tempat = ?, url = ? WHERE id = ?;`;
-  db.query(
-    sql,
-    [
-      req.body.title,
-      req.body.jenis,
-      req.body.subtitle,
-      req.body.waktu,
-      req.body.akses,
-      req.body.expire,
-      req.body.tempat,
-      req.body.url,
-      req.params.id,
-    ],
-    (err, result) => {
-      if (err) {
-        return res.status(400).send({
-          msg: err,
+  if (!req.files) {
+    var sql = `UPDATE pelatihan SET title = ?, jenis = ?, subtitle = ?,waktu = ?,akses = ?,expire = ?, tempat = ?, url = ? WHERE id = ?;`;
+    db.query(
+      sql,
+      [
+        req.body.title,
+        req.body.jenis,
+        req.body.subtitle,
+        req.body.waktu,
+        req.body.akses,
+        req.body.expire,
+        req.body.tempat,
+        req.body.url,
+        req.params.id,
+      ],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       }
-      return res.status(201).send({
-        msg: "Legalitas tersimpan",
-        data: result,
+    );
+  } else {
+    var post = req.body;
+    var title = post.title;
+    var jenis = post.jenis;
+    var subtitle = post.subtitle;
+    var waktu = post.waktu;
+    var akses = post.akses;
+    var expire = post.expire;
+    var tempat = post.tempat;
+    var url = post.url;
+    var id = req.params.id;
+
+    var files = req.files.img;
+    var name = Date.now() + files.name;
+
+    db.query("SELECT * FROM pelatihan WHERE id = ?", [id], (err, row) => {
+      if (err) {
+        console.log(err);
+      } else {
+        var imgName = row[0].img;
+      }
+      console.log(imgName);
+
+      const DIR_LEGAL = "public/images/pelatihan";
+      const imgDir = DIR_LEGAL + "/" + imgName;
+      if (fs.existsSync(imgDir)) {
+        fs.unlinkSync(imgDir);
+      }
+
+      files.mv(`public/images/pelatihan/` + name, (err) => {
+        if (err) return res.status(500).send(err);
+        var sqlImg =
+          "UPDATE pelatihan SET title = ?, jenis = ?, subtitle = ?, waktu = ?, akses = ?, expire = ?, tempat = ?, url = ?, img = ? WHERE id = ?;";
+        db.query(
+          sqlImg,
+          [title, jenis, subtitle, waktu, akses, expire, tempat, url, name, id],
+          (err, rows) => {
+            if (err) {
+              res.send(err);
+            } else {
+              res.send(rows);
+            }
+          }
+        );
       });
-    }
-  );
+    });
+  }
 };
 
 router.put("/pelatihan/:id", update);

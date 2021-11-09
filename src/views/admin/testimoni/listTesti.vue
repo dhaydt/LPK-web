@@ -83,7 +83,7 @@
                 v-if="data.item.video"
                 max-width="376px"
                 aspect-ratio="16:11"
-                thumbnail-quality="standard"
+                thumbnail-quality="medium"
               />
             </div>
           </template>
@@ -143,6 +143,25 @@
           <b-form-group label="Testimoni">
             <b-form-input v-model="editData.content" required></b-form-input>
           </b-form-group>
+
+          <b-form-group label="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-img
+              :src="imgUrl + editData.img"
+              alt="editImage"
+              height="100"
+              class="d-block"
+            />
+            <label class="mt-2">Ganti Foto</label>
+            <b-form-file
+              type="file"
+              ref="imgEdit"
+              @change="onEdit()"
+              accept="image/jpeg, image/png, image/gif"
+              name="image"
+              :required="true"
+              id="imageEdit"
+            />
+          </b-form-group>
         </div>
         <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
         <b-button
@@ -150,7 +169,12 @@
           variant="outline-success"
           block
           @click="SaveUsers"
-          >Simpan</b-button
+          ><div v-if="loading">
+            <b-spinner small variant="primary"></b-spinner> Mengupdate...
+          </div>
+          <span v-if="!loading"
+            ><i class="fa fa-save"></i> Update</span
+          ></b-button
         >
       </b-modal>
     </b-card>
@@ -177,9 +201,9 @@ export default {
         { key: "id", sortable: true, label: "ID" },
         { key: "name", sortable: true, label: "Nama" },
         { key: "img", label: "Foto" },
-        { key: "video", label: "Video" },
+        // { key: "video", label: "Video" },
         { key: "address", sortable: true, label: "Alamat" },
-        { key: "content", sortable: true, label: "Testimoni" },
+        // { key: "content", sortable: true, label: "Testimoni" },
         { key: "action" },
       ],
       visiUrl: "",
@@ -214,16 +238,33 @@ export default {
   },
 
   methods: {
+    onEdit() {
+      // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+      // this.formFields.img = event.target.files[0];
+      var files = event.target.files;
+      this.editData.img2 = files[0];
+      console.log("edit", this.editData);
+    },
+
     async SaveUsers() {
+      this.loading = true;
+      let formData = new FormData();
+
+      formData.append("name", this.editData.name);
+      formData.append("address", this.editData.address);
+      formData.append("video", this.editData.video);
+      formData.append("content", this.editData.content);
+      formData.append("img", this.editData.img2);
+
       await axios
-        .put(this.visiUrl + "/" + this.editData.id, this.editData)
+        .put(this.visiUrl + "/" + this.editData.id, formData)
         .then((response) => {
           this.messages = "Data berhasil diubah";
           this.getLegal();
           this.showAlert();
           console.log("data", response);
           this.$refs["users"].hide();
-          // this.loading = false;
+          this.loading = false;
         })
         .catch((error) => {
           console.log(error);

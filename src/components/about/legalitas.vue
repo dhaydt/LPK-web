@@ -40,6 +40,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@media (max-width: 575.98px) {
+  section {
+    margin-top: 50px !important;
+
+    .card-body {
+      padding-top: 40px;
+      h4.card-title {
+        font-size: 30px;
+        font-weight: 700;
+        line-height: 43px;
+      }
+    }
+  }
+}
 section {
   margin-top: 100px;
 }

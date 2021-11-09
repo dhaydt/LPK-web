@@ -65,6 +65,21 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
+@media (max-width: 575.98px) {
+  .jumbotron {
+    min-height: 388px !important;
+    height: 388px !important;
+
+    #header h1 {
+      font-weight: 700;
+      line-height: 43px !important;
+    }
+
+    #subheader p {
+      font-size: 16px !important;
+    }
+  }
+}
 #moon {
   font-size: 20em;
   display: inline-block;
