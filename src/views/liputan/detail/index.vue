@@ -36,7 +36,7 @@ export default {
           to: "/liputan",
         },
         {
-          text: "",
+          text: "Detail",
           active: true,
         },
       ],
@@ -50,7 +50,7 @@ export default {
   },
 
   mounted() {
-    this.$root.$on("getId", this.updateLip);
+    // this.$root.$on("getId", this.updateLip);
   },
 
   methods: {
@@ -63,7 +63,7 @@ export default {
       const data = resp.data.data[0];
       console.log("data", this.liputanUrl);
       this.news = data;
-      this.items[2].text = data.title;
+      // this.items[2].text = data.title;
     },
   },
 };
