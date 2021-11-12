@@ -10,7 +10,7 @@
               <b-img
                 :src="imgUrl + modalData.img"
                 :alt="modalData.name"
-                class="h-100"
+                class="struktur-img-modal"
               ></b-img>
             </b-col>
             <b-col sm="7" class="justify-content-center">
@@ -208,6 +208,12 @@ export default {
     .modal-content {
       height: 177px;
       min-width: 477px;
+
+      .struktur-img-modal {
+        height: 145px;
+        max-height: 145px;
+        max-width: 174px;
+      }
 
       .card-title {
         font-style: normal;
