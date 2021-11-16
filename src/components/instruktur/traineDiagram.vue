@@ -98,6 +98,8 @@ export default {
 
 .card-img {
   height: 100%;
+  min-height: 228px;
+  max-height: 228px;
 }
 
 .card .overflow {

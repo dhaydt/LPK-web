@@ -143,8 +143,8 @@ export default {
   position: relative;
   .naviFlick {
     position: absolute;
-    width: 95vw;
-    left: -4vw;
+    width: 113%;
+    left: -5%;
     top: 40%;
     justify-content: space-between;
     .btnNav {
