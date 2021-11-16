@@ -111,7 +111,7 @@ export default {
   border-radius: 4px;
   left: 0;
   right: 0;
-  bottom: 30px;
+  bottom: 8px;
 
   .card-title {
     font-style: normal;
