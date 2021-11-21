@@ -40,7 +40,7 @@
                 <b-card-text class="mb-0">{{
                   n.date | moment("DD/MM/YYYY")
                 }}</b-card-text>
-                <router-link :to="`/liputan/` + liput.id"
+                <router-link :to="`/liputan/` + n.id"
                   ><span>Selengkapnya </span><i class="fas fa-arrow-right"></i
                 ></router-link>
               </b-card-body>

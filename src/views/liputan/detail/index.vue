@@ -50,7 +50,7 @@ export default {
   },
 
   mounted() {
-    // this.$root.$on("getId", this.updateLip);
+    this.$root.$on("getId", this.updateLip);
   },
 
   methods: {
