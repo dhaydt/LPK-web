@@ -7,7 +7,7 @@
           <div class="head">
             <span>Alumni Pelatihan PAZ</span>
           </div>
-          <h2 class="mt-5 card-sub">
+          <h2 class="mt-5 card-sub mb-5">
             Mari bergabung dengan kami dan menjadi partner Pengobatan Akhir
             Zaman
           </h2>
@@ -95,6 +95,9 @@ export default {
       line-height: 43px;
     }
   }
+  section {
+    margin-top: 85px;
+  }
 }
 .item {
   margin-right: 20px;
@@ -137,7 +140,7 @@ export default {
   opacity: 0.1;
 }
 section {
-  margin-top: 110px;
+  margin-top: 150px;
   position: relative;
 }
 .head {

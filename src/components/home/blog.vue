@@ -22,10 +22,7 @@
           >
         </b-col>
       </b-row>
-      <b-row
-        class="mt-4 w-100 justify-content-center"
-        style="max-height: 434px !important;"
-      >
+      <b-row class="mt-4 w-100 justify-content-center liputan-card-row">
         <LiputanCard></LiputanCard>
       </b-row>
     </b-container>
@@ -48,6 +45,11 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/main.scss";
 @media (max-width: 575.98px) {
+  .row.liputan-card-row {
+    max-height: 1500px !important;
+    height: 1500px !important;
+    overflow: auto;
+  }
   .col-md-7 {
     h2.card-sub {
       font-size: 30px;
@@ -150,13 +152,11 @@ h2 {
   font-weight: normal;
   font-size: 12px;
   margin-left: 10px;
-  // line-height: 140%;
-  /* or 22px */
-
-  // letter-spacing: 0.5px;
-
-  /* Black/2 */
   text-align: left;
   color: #757682;
+}
+
+.liputan-card-row {
+  max-height: 434px !important;
 }
 </style>
