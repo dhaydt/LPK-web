@@ -95,8 +95,8 @@ export default {
       line-height: 43px;
     }
   }
-  section {
-    margin-top: 85px;
+  section#alumni {
+    margin-top: 85px !important;
   }
 }
 .item {
