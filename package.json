@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "push": "sh deploy.sh"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^2.0.0-rc",
