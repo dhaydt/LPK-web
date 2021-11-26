@@ -33,7 +33,7 @@
       <b-row no-gutters class="justify-content-center">
         <b-col md="3" sm="12" class="mr-2">
           <b-img-lazy
-            src="/assets/images/potrait1.png"
+            src="/assets/images/potrait1.webp"
             fluid-grow
             alt="Responsive image"
             class="h-100 w-100 imgPort"
@@ -42,7 +42,7 @@
         <b-col md="4" sm="12">
           <b-row style="height:50%; width: 100%;" class="mb-2" no-gutters>
             <b-img-lazy
-              src="/assets/images/land1.png"
+              src="/assets/images/land1.webp"
               fluid
               alt="Responsive image"
               class="h-100 imgLand w-100"
@@ -50,7 +50,7 @@
           </b-row>
           <b-row style="height: 48%; width: 100%;" no-gutters>
             <b-img-lazy
-              src="/assets/images/land2.png"
+              src="/assets/images/land2.webp"
               fluid
               alt="Responsive image"
               class="h-100 imgLand w-100"
@@ -59,7 +59,7 @@
         </b-col>
         <b-col md="3" sm="12"
           ><b-img-lazy
-            src="/assets/images/potrait2.png"
+            src="/assets/images/potrait2.webp"
             fluid
             alt="Responsive image"
             class="w-100 h-100 imgPort last"
@@ -96,10 +96,10 @@ export default {
   data() {
     return {
       images: [
-        { img: "/assets/images/potrait1.png" },
-        { img: "/assets/images/land1.png" },
-        { img: "/assets/images/land2.png" },
-        { img: "/assets/images/potrait2.png" },
+        { img: "/assets/images/potrait1.webp" },
+        { img: "/assets/images/land1.webp" },
+        { img: "/assets/images/land2.webp" },
+        { img: "/assets/images/potrait2.webp" },
       ],
     };
   },
