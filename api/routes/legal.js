@@ -3,6 +3,11 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const multer = require("multer");
+const sharp = require("sharp");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 const update = (req, res) => {
   console.log(req);
   if (!req.files) {
@@ -103,46 +108,65 @@ const get = (req, res) => {
 router.get("/legal", get);
 
 // STORE IMG
-const index = function(req, res) {
+const index = async (req, res) => {
   if (req.method == "POST") {
     var post = req.body;
-    console.log(req.files);
     var name = post.name;
     var instansi = post.instansi;
 
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
     var file = req.files.img;
-    var img = Date.now() + file.name;
+    var img = Date.now() + ".webp";
+    var dir = "public/images/legal/";
 
     if (
       file.mimetype == "image/jpeg" ||
       file.mimetype == "image/png" ||
       file.mimetype == "image/gif"
     ) {
-      file.mv(`public/images/legal/` + img, (err) => {
-        if (err) return res.status(500).send(err);
-        var sql =
-          "INSERT INTO `legalitas`(`name`,`instansi`,`img`) VALUES ('" +
-          name +
-          "','" +
-          instansi +
-          "','" +
-          img +
-          "')";
+      fs.access(dir, (err) => {
+        if (err) {
+          fs.mkdirSync(dir);
+        }
+      });
 
-        db.query(sql, (err, result) => {
-          if (err) {
-            return res.status(400).send({
-              msg: err,
-            });
-          }
-          return res.status(201).send({
-            msg: "Legalitas tersimpan",
-            data: result,
+      try {
+        const { data } = file;
+        await sharp(data)
+          .webp({ quality: 5 })
+          .toFile(dir + img);
+      } catch (e) {
+        return res.status(500).send({
+          msg: e,
+        });
+      }
+
+      var sql =
+        "INSERT INTO `legalitas`(`name`,`instansi`,`img`) VALUES ('" +
+        name +
+        "','" +
+        instansi +
+        "','" +
+        img +
+        "')";
+
+      db.query(sql, (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
           });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       });
+
+      // file.mv(`public/images/legal/` + img, (err) => {
+      //   if (err) return res.status(500).send(err);
+
+      // });
     } else {
       const message =
         "This format is not allowed , please upload file with '.png','.gif','.jpg'";
@@ -154,5 +178,23 @@ const index = function(req, res) {
 };
 
 router.post("/legal", index);
+
+// COMPRESS IMAGE
+// router.post("/newImg", upload.single("picture"), async (req, res) => {
+//   fs.access("public/newImages", (error) => {
+//     if (error) {
+//       fs.mkdirSync("public/newImages");
+//     }
+//   });
+//   console.log(req.files);
+//   const { data, name } = req.files.picture;
+//   const timestamp = new Date().toISOString();
+//   const ref = `${timestamp}.webp`;
+//   await sharp(data)
+//     .webp({ quality: 5 })
+//     .toFile("public/newImages/" + ref);
+//   const link = `http://localhost:3000/${ref}`;
+//   return res.json({ link });
+// });
 
 module.exports = router;
