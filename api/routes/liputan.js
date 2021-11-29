@@ -3,6 +3,11 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const multer = require("multer");
+const sharp = require("sharp");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 const update = (req, res) => {
   console.log(req);
   if (!req.files) {
@@ -175,7 +180,7 @@ const getId = (req, res) => {
 router.get("/liputan/:id", getId);
 
 // STORE LIPUTAN
-const index = function(req, res) {
+const index = async (req, res) => {
   if (req.method == "POST") {
     var post = req.body;
     console.log(req.files);
@@ -191,46 +196,61 @@ const index = function(req, res) {
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
     var file = req.files.img;
-    var img = Date.now() + file.name;
+    var img = Date.now() + ".webp";
+    var dir = "public/images/liputan/";
 
     if (
       file.mimetype == "image/jpeg" ||
       file.mimetype == "image/png" ||
       file.mimetype == "image/gif"
     ) {
-      file.mv(`public/images/liputan/` + img, (err) => {
-        if (err) return res.status(500).send(err);
-        var sql =
-          "INSERT INTO `liputan`(`title`,`subtitle`,`date`,`quote`,`content`,`content2`,`tag`,`user_id`,`img`) VALUES ('" +
-          title +
-          "','" +
-          subtitle +
-          "','" +
-          date +
-          "','" +
-          quote +
-          "','" +
-          content +
-          "','" +
-          content2 +
-          "','" +
-          tag +
-          "','" +
-          user_id +
-          "','" +
-          img +
-          "')";
+      fs.access(dir, (err) => {
+        if (err) {
+          fs.mkdirSync(dir);
+        }
+      });
 
-        db.query(sql, (err, result) => {
-          if (err) {
-            return res.status(400).send({
-              msg: err,
-            });
-          }
-          return res.status(201).send({
-            msg: "Liputan tersimpan",
-            data: result,
+      try {
+        const { data } = file;
+        await sharp(data)
+          .webp({ quality: 5 })
+          .toFile(dir + img);
+      } catch (e) {
+        return res.status(500).send({
+          msg: e,
+        });
+      }
+
+      var sql =
+        "INSERT INTO `liputan`(`title`,`subtitle`,`date`,`quote`,`content`,`content2`,`tag`,`user_id`,`img`) VALUES ('" +
+        title +
+        "','" +
+        subtitle +
+        "','" +
+        date +
+        "','" +
+        quote +
+        "','" +
+        content +
+        "','" +
+        content2 +
+        "','" +
+        tag +
+        "','" +
+        user_id +
+        "','" +
+        img +
+        "')";
+
+      db.query(sql, (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
           });
+        }
+        return res.status(201).send({
+          msg: "Liputan tersimpan",
+          data: result,
         });
       });
     } else {

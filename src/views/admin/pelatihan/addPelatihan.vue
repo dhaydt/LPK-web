@@ -183,7 +183,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.loading = false;
-          this.messages = "Galeri tersimpan";
+          this.messages = "Pelatihan tersimpan";
           this.variant = "success";
           this.showAlert();
           this.$root.$emit("getImg");

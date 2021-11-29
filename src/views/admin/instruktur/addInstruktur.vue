@@ -124,7 +124,7 @@ export default {
         .then((res) => {
           console.log(res);
           this.loading = false;
-          this.messages = "Testimoni tersimpan";
+          this.messages = "Instruktur tersimpan";
           this.variant = "success";
           this.showAlert();
           this.$root.$emit("getImg");

@@ -3,6 +3,10 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const multer = require("multer");
+const sharp = require("sharp");
+const storage = multer.memoryStorage();
+
 const update = (req, res) => {
   console.log(req);
 
@@ -116,7 +120,7 @@ const get = (req, res) => {
 router.get("/instruktur", get);
 
 // STORE IMG
-const index = function(req, res) {
+const index = async (req, res) => {
   if (req.method == "POST") {
     var post = req.body;
     console.log(req.files);
@@ -128,38 +132,53 @@ const index = function(req, res) {
     if (!req.files) return res.status(400).send("No files were uploaded.");
 
     var file = req.files.img;
-    var img = Date.now() + file.name;
+    var img = Date.now() + ".webp";
+    var dir = "public/images/instruktur/";
 
     if (
       file.mimetype == "image/jpeg" ||
       file.mimetype == "image/png" ||
       file.mimetype == "image/gif"
     ) {
-      file.mv(`public/images/instruktur/` + img, (err) => {
-        if (err) return res.status(500).send(err);
-        var sql =
-          "INSERT INTO `instruktur`(`name`,`title`,`address`,`telp`,`img`) VALUES ('" +
-          name +
-          "','" +
-          title +
-          "','" +
-          address +
-          "','" +
-          telp +
-          "','" +
-          img +
-          "')";
+      fs.access(dir, (err) => {
+        if (err) {
+          fs.mkdirSync(dir);
+        }
+      });
 
-        db.query(sql, (err, result) => {
-          if (err) {
-            return res.status(400).send({
-              msg: err,
-            });
-          }
-          return res.status(201).send({
-            msg: "Cabang tersimpan",
-            data: result,
+      try {
+        const { data } = file;
+        await sharp(data)
+          .webp({ quality: 5 })
+          .toFile(dir + img);
+      } catch (e) {
+        return res.status(500).send({
+          msg: e,
+        });
+      }
+
+      var sql =
+        "INSERT INTO `instruktur`(`name`,`title`,`address`,`telp`,`img`) VALUES ('" +
+        name +
+        "','" +
+        title +
+        "','" +
+        address +
+        "','" +
+        telp +
+        "','" +
+        img +
+        "')";
+
+      db.query(sql, (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
           });
+        }
+        return res.status(201).send({
+          msg: "Cabang tersimpan",
+          data: result,
         });
       });
     } else {

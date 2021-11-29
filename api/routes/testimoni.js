@@ -3,6 +3,11 @@ const db = require("../config/db.js");
 const router = Router();
 const fs = require("fs");
 
+const multer = require("multer");
+const sharp = require("sharp");
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
 const update = (req, res) => {
   console.log(req);
   if (!req.files) {
@@ -115,7 +120,7 @@ const get = (req, res) => {
 router.get("/testi", get);
 
 // STORE IMG
-const index = function(req, res) {
+const index = async (req, res) => {
   if (req.method == "POST") {
     var post = req.body;
     console.log(req.files);
@@ -127,36 +132,52 @@ const index = function(req, res) {
 
     if (req.body.tipe == "image") {
       var file = req.files.img;
-      var img = Date.now() + file.name;
-      file.mv(`public/images/testi/` + img, (err) => {
-        if (err) return res.status(500).send(err);
-        var sql =
-          "INSERT INTO `testimoni`(`name`,`img`,`address`, `content`, `tipe`) VALUES ('" +
-          name +
-          "','" +
-          img +
-          "','" +
-          address +
-          "','" +
-          content +
-          "','" +
-          tipe +
-          "')";
+      var img = Date.now() + ".webp";
+      var dir = "public/images/testi/";
 
-        db.query(sql, (err, result) => {
-          if (err) {
-            return res.status(400).send({
-              msg: err,
-            });
-          }
-          return res.status(201).send({
-            msg: "Legalitas tersimpan",
-            data: result,
+      fs.access(dir, (err) => {
+        if (err) {
+          fs.mkdirSync(dir);
+        }
+      });
+
+      try {
+        const { data } = file;
+        await sharp(data)
+          .webp({ quality: 5 })
+          .toFile(dir + img);
+      } catch (e) {
+        return res.status(500).send({
+          msg: e,
+        });
+      }
+
+      var sql =
+        "INSERT INTO `testimoni`(`name`,`img`,`address`, `content`, `tipe`) VALUES ('" +
+        name +
+        "','" +
+        img +
+        "','" +
+        address +
+        "','" +
+        content +
+        "','" +
+        tipe +
+        "')";
+
+      db.query(sql, (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
           });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
         });
       });
     } else if (req.body.tipe === "video") {
-      var sql =
+      var sql2 =
         "INSERT INTO `testimoni`(`name`,`video`,`address`, `content`, `tipe`) VALUES ('" +
         name +
         "','" +
@@ -169,7 +190,7 @@ const index = function(req, res) {
         tipe +
         "')";
 
-      db.query(sql, (err, result) => {
+      db.query(sql2, (err, result) => {
         if (err) {
           return res.status(400).send({
             msg: err,
