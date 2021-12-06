@@ -1,5 +1,8 @@
 npm run build
 
 git add .
-git commit -m "auto push"
+
+read -p "Enter commit name: " x
+
+git commit -m "${x}"
 git push -u origin main

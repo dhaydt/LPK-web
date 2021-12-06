@@ -16,7 +16,9 @@
                 >{{ n.text }}
               </b-badge>
             </div>
-            <b-card-img :src="imgUrl + news.img" v-if="news.img"></b-card-img>
+            <div class="img">
+              <b-img-lazy :src="imgUrl + news.img" v-if="news.img"></b-img-lazy>
+            </div>
             <div class="card-body mt-4">
               <b-row cols-md="2" cols-sm="1">
                 <b-col md="11" sm="12" class="mb-3">
@@ -121,10 +123,16 @@ export default {
     color: #757682;
   }
 
-  .card-img {
+  .img {
     height: 512px;
+  img {
+    // height: 512px;
+    max-height: 100%;
+    width: auto;
     margin-top: 20px;
   }
+  }
+
 
   .card-body {
     .body-title {
