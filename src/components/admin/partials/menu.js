@@ -136,6 +136,12 @@ export const menuItems = [
     ],
   },
   {
+    id:998,
+    label: "Alumni",
+    icon: "ri-feedback-line",
+    link: "/admin/alumni",
+    role: "hrd staff",
+  }, {
     id: 8,
     label: "Testimoni",
     icon: "ri-feedback-line",

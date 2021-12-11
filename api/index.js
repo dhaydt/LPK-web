@@ -1,76 +1,78 @@
-const express = require("express");
+const fileUpload = require("express-fileupload");
 const bodyParser = require("body-parser");
+const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const fileUpload = require("express-fileupload");
 const corsOptions = {
   // origin: "http://localhost:8080",
   origin: "https://generasiunggul.com",
-  credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
+  credentials: true,
 };
-// const fileURLToPath = require("url");
-// Create express instance
+
 const app = express();
-// const dir = dirname(fileURLToPath());
+
 // Require API routes
-const users = require("./routes/users");
-const test = require("./routes/test");
 const auth = require("./routes/auth");
+const test = require("./routes/test");
 const visi = require("./routes/visi");
+const kuis = require("./routes/kuis");
+const users = require("./routes/users");
 const legal = require("./routes/legal");
-const liputan = require("./routes/liputan");
-const cabang = require("./routes/cabang");
 const image = require("./routes/image");
-const pelatihan = require("./routes/pelatihan");
-const testi = require("./routes/testimoni");
 const loker = require("./routes/loker");
 const apply = require("./routes/apply");
-const kuis = require("./routes/kuis");
-const struktur = require("./routes/struktur");
-const timeline = require("./routes/timeline");
-const instruktur = require("./routes/instruktur");
-const kurikulum = require("./routes/kurikulum");
+const alumni = require("./routes/alumni");
 const kopdar = require("./routes/kopdar");
+const cabang = require("./routes/cabang");
+const footer = require("./routes/footer");
+const liputan = require("./routes/liputan");
+const testi = require("./routes/testimoni");
+const timeline = require("./routes/timeline");
+const struktur = require("./routes/struktur");
+const kurikulum = require("./routes/kurikulum");
+const pelatihan = require("./routes/pelatihan");
+const instruktur = require("./routes/instruktur");
 const notifikasi = require("./routes/notifikasi");
 
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
 // UPLOAD
-app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
 app.use(fileUpload());
 // app.use(cors(corsOptions));
 // Import API Routes
-app.use(users);
+app.use(kuis);
 app.use(test);
 app.use(auth);
 app.use(visi);
+app.use(users);
 app.use(legal);
-app.use(liputan);
-app.use(cabang);
 app.use(image);
-app.use(pelatihan);
 app.use(testi);
 app.use(loker);
 app.use(apply);
-app.use(kuis);
+app.use(footer);
+app.use(cabang);
+app.use(alumni);
+app.use(kopdar);
+app.use(liputan);
 app.use(struktur);
 app.use(timeline);
-app.use(instruktur);
 app.use(kurikulum);
-app.use(kopdar);
+app.use(pelatihan);
+app.use(instruktur);
 app.use(notifikasi);
 
 // Export express app
 module.exports = app;
 
-// Start standalone server if directly running
+
 if (require.main === module) {
   const port = process.env.PORT || 3001;
   app.listen(port, () => {
-    // eslint-disable-next-line no-console
     console.log(`API server listening on port ${port}`);
   });
 }

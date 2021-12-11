@@ -32,6 +32,7 @@ import Alumni from "../views/admin/images/alumni.vue";
 import Loker from "../views/admin/loker";
 import ViewApply from "../views/admin/loker/status/viewApply.vue";
 import Testimoni from "../views/admin/testimoni";
+import AlumniAdmin from "../views/admin/alumni";
 import Status from "../views/admin/loker/status.vue";
 import Kuis from "../views/admin/loker/kuis.vue";
 import Setting from "../views/admin/setting";
@@ -184,6 +185,9 @@ const routes = [
       {
         path: "/admin/testimoni",
         component: Testimoni,
+      },{
+        path: "/admin/alumni",
+        component: AlumniAdmin,
       },
       {
         path: "/admin/setting",

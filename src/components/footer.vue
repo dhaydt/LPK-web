@@ -49,13 +49,13 @@
         <b-row class="flex-column text-left">
           <p>
             <i class="fas fa-map-marker-alt mr-3"></i>
-            <em>https://g.page/ayubcamp</em>
+            <em>{{footer.location}}</em>
           </p>
           <p>
-            <i class="fas fa-envelope mr-3"></i><em>mail@generasiunggul.com</em>
+            <i class="fas fa-envelope mr-3"></i><em>{{footer.email}}</em>
           </p>
           <p>
-            <i class="fas fa-mobile-alt mr-3 px-2"></i><em>020-10 00 15</em>
+            <i class="fas fa-mobile-alt mr-3 px-2"></i><em>{{footer.telp}}</em>
           </p>
         </b-row>
         <b-row>
@@ -85,7 +85,30 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  data() {
+    return {
+      footer: {},
+      footerUrl: "",
+    };
+  },
+
+  mounted() {
+    const mainUrl = localStorage.getItem("apiUrl");
+    this.footerUrl = mainUrl + "/footer";
+    this.getFooter();
+  },
+
+  methods: {
+    async getFooter() {
+      const resp = await axios.get(this.footerUrl);
+
+      // console.log(resp.data.data[0])
+      this.footer = resp.data.data[0];
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

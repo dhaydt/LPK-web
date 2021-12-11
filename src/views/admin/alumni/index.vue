@@ -3,11 +3,11 @@
     <Header :title="title" :items="items"></Header>
     <b-card>
       <b-tabs content-class="mt-3" fill>
-        <b-tab title="Notification" active>
-          <Notif></Notif>
+        <b-tab title="List Alumni" active>
+          <ListAlumni></ListAlumni>
         </b-tab>
-        <b-tab title="Footer">
-          <Footer></Footer>
+        <b-tab title="Add Alumni">
+          <AddAlumni></AddAlumni>
         </b-tab>
       </b-tabs>
     </b-card>
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import Footer from './footer'
-import Notif from './notif'
+import AddAlumni from './addAlumni'
+import ListAlumni from './listAlumni'
 import Header from "../../../components/admin/partials/page-header.vue";
 export default {
   data() {
@@ -31,8 +31,8 @@ export default {
     };
   },
   components: {
-    Footer,
-    Notif,
+    AddAlumni,
+    ListAlumni,
     Header,
   },
 };
