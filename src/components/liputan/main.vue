@@ -4,7 +4,25 @@
       <h1>Liputan Media</h1>
       <b-row cols="1" cols-md="3" class="px-5 pt-0 mb-4" id="itemList">
         <b-col v-for="lok in paginatedItems" :key="lok.id" class="mt-5">
-          <b-card :img-src="imgUrl + lok.img" img-top no-body>
+          <b-card img-top no-body>
+            <b-img-lazy :src="imgUrl + lok.img" v-if="lok.img" height="300px"></b-img-lazy>
+             <div v-if="lok.video" class="pt-4 video">
+                <b-embed
+                  type="iframe"
+                  aspect="21by9"
+                  allowfullscreen
+                  :src="imgUrl + lok.video"
+                ></b-embed>
+              </div>
+             <div class="youtube-vid w-100 pt-4" v-if="lok.youtube">
+
+        <LazyYoutube
+          ref="vimeoLazyVideo"
+          :src="lok.youtube"
+          
+          aspect-ratio="21:12"
+          thumbnail-quality="medium"
+        /> </div>
             <b-card-title class="px-4 pt-4"
               ><h5>{{ lok.title }}</h5></b-card-title
             >

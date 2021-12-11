@@ -1,5 +1,5 @@
 <template>
-  <div class="lainnya">
+  <div class="lainnya w-100">
     <b-container>
       <b-card no-body>
         <b-card-title class="text-left mb-4"
