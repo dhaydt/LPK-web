@@ -10,7 +10,24 @@
             <b-card no-body>
               <b-row no-gutters cols-md="6" cols="1">
                 <b-col md="5" sm="5">
-                  <b-card-img :src="imgUrl + n.img" height="120"></b-card-img>
+                  <b-card-img :src="imgUrl + n.img" height="120" v-if="n.img"></b-card-img>
+                   <div v-if="n.video" class="pt-4 video">
+                <b-embed
+                  type="iframe"
+                  aspect="21by9"
+                  allowfullscreen
+                  :src="imgUrl + n.video"
+                ></b-embed>
+              </div>
+             <div class="youtube-vid w-100 pt-4" v-if="n.youtube">
+
+        <LazyYoutube
+          ref="vimeoLazyVideo"
+          :src="n.youtube"
+          
+          aspect-ratio="21:12"
+          thumbnail-quality="medium"
+        /> </div>
                 </b-col>
                 <b-col
                   md="7"

@@ -18,6 +18,23 @@
             </div>
             <div class="img">
               <b-img-lazy :src="imgUrl + news.img" v-if="news.img"></b-img-lazy>
+              <div v-if="news.video" class="pt-4 video">
+                <b-embed
+                  type="iframe"
+                  aspect="21by9"
+                  allowfullscreen
+                  :src="imgUrl + news.video"
+                ></b-embed>
+              </div>
+             <div class="youtube-vid w-100 pt-4" v-if="news.youtube">
+
+        <LazyYoutube
+          ref="vimeoLazyVideo"
+          :src="news.youtube"
+          
+          aspect-ratio="21:12"
+          thumbnail-quality="medium"
+        /> </div>
             </div>
             <div class="card-body mt-4">
               <b-row cols-md="2" cols-sm="1">
@@ -125,14 +142,13 @@ export default {
 
   .img {
     height: 512px;
-  img {
-    // height: 512px;
-    max-height: 100%;
-    width: auto;
-    margin-top: 20px;
+    img {
+      // height: 512px;
+      max-height: 100%;
+      width: auto;
+      margin-top: 20px;
+    }
   }
-  }
-
 
   .card-body {
     .body-title {
