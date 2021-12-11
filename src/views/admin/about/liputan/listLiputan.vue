@@ -84,7 +84,23 @@
           </template>
 
           <template v-slot:cell(img)="data">
-            <b-img-lazy :src="imgUrl + data.item.img" height="50"></b-img-lazy>
+            <b-img-lazy
+              v-if="data.item.img"
+              :src="imgUrl + data.item.img"
+              height="50"
+            ></b-img-lazy> </template
+          ><template v-slot:cell(video)="data">
+            <div class="vidDiv" style="min-width: 200px;">
+              <b-embed
+            v-if="data.item.video"
+              type="iframe"
+              aspect="16by9"
+              allowfullscreen
+              :src="imgUrl + data.item.video"
+            ></b-embed>
+              </div></template
+          ><template v-slot:cell(youtube)="data">
+            <p v-if="data.item.youtube">{{ data.item.youtube }}</p>
           </template>
           <template v-slot:cell(action)="data" class="d-flex">
             <div class="actions" style="min-width: 100px">
@@ -102,7 +118,7 @@
                 class="text-danger"
                 v-b-tooltip.hover
                 title="Delete"
-                @click="deleteVisi(data.item.img)"
+                @click="deleteVisi(data.item.id)"
               >
                 <b-spinner v-if="loading" small variant="primary"></b-spinner>
                 <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
@@ -248,6 +264,8 @@ export default {
         // { key: "quote", sortable: true, label: "Quote" },
         // { key: "content2", sortable: true, label: "Konten 2" },
         { key: "img", label: "Foto" },
+        { key: "video", label: "Video" },
+        { key: "youtube", label: "Yoututbe" },
         { key: "action" },
       ],
       visiUrl: "",

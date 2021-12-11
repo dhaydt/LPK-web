@@ -127,27 +127,71 @@ router.get("/liputanLast", getLast);
 
 // DELETE LIPUTAN
 const DIR_LEGAL = "public/images/liputan";
-router.delete("/liputan/:img", (req, res) => {
-  if (!req.params.img) {
+router.delete("/liputan/:id", (req, res) => {
+  if (!req.params.id) {
     console.log("No file received");
     var message = "Data img tidak diterima.";
   } else {
     console.log("file received");
-    console.log(req.params.img);
-    var sql = "DELETE FROM `liputan` WHERE `img`='" + req.params.img + "'";
-    db.query(sql, function(err, result) {
-      if (err) {
-        return res.status(400).send(err);
-      } else {
-        const imgDir = DIR_LEGAL + "/" + req.params.img;
-        if (fs.existsSync(imgDir)) {
-          fs.unlinkSync(imgDir);
+    console.log(req.params.id);
+    var get = `SELECT * FROM liputan WHERE id = ?`
+    db.query(get, [req.params.id], (err, rows) => {
+      if(err){
+        console.log(err)
+        res.send(err)
+      } {
+        var row = rows[0];
+        if(row.type == "image"){
+          console.log(row.img)
+          var sql = "DELETE FROM `liputan` WHERE `id`='" + row.id + "'";
+          db.query(sql, function(err, result) {
+            if (err) {
+              return res.status(400).send(err);
+            } else {
+              const imgDir = DIR_LEGAL + "/" + row.img;
+              if (fs.existsSync(imgDir)) {
+                fs.unlinkSync(imgDir);
+              }
+              console.log("Berhasil menghapus liputan");
+              // return res.status(200).send("Successfully! Image has been Deleted");
+              return res.send({ data: result, message: message });
+            }
+          });
+        } else if(row.type == "video"){
+          console.log(row.video)
+          var sql3 = "DELETE FROM `liputan` WHERE `id`='" + row.id + "'";
+          db.query(sql3, function(err, result) {
+            if (err) {
+              return res.status(400).send(err);
+            } else {
+              const imgDir = DIR_LEGAL + "/" + row.video;
+              if (fs.existsSync(imgDir)) {
+                fs.unlinkSync(imgDir);
+              }
+              console.log("Berhasil menghapus liputan");
+              // return res.status(200).send("Successfully! Image has been Deleted");
+              return res.send({ data: result, message: message });
+            }
+          });
+        } else {
+          console.log(row.youtube)
+          var sql2 = "DELETE FROM `liputan` WHERE `id`='" + row.id + "'";
+          db.query(sql2, function(err, result) {
+            if (err) {
+              return res.status(400).send(err);
+            } else {
+              // const imgDir = DIR_LEGAL + "/" + req.params.img;
+              // if (fs.existsSync(imgDir)) {
+              //   fs.unlinkSync(imgDir);
+              // }
+              console.log("Berhasil menghapus liputan");
+              // return res.status(200).send("Successfully! Image has been Deleted");
+              return res.send({ data: result, message: message });
+            }
+          });
         }
-        console.log("Berhasil menghapus liputan");
-        // return res.status(200).send("Successfully! Image has been Deleted");
-        res.send({ data: result, message: message });
       }
-    });
+    })
   }
 });
 
@@ -181,9 +225,9 @@ router.get("/liputan/:id", getId);
 
 // STORE LIPUTAN
 const index = async (req, res) => {
+  console.log(req.files);
   if (req.method == "POST") {
     var post = req.body;
-    console.log(req.files);
     var title = post.title;
     var subtitle = post.subtitle;
     var date = post.date;
@@ -192,18 +236,16 @@ const index = async (req, res) => {
     var content2 = post.content2;
     var user_id = post.user_id;
     var tag = post.tag;
+    var type = post.type;
+    var youtube = post.youtube;
 
-    if (!req.files) return res.status(400).send("No files were uploaded.");
+    // if (!req.files) return res.status(400).send("No files were uploaded.");
+    if(req.body.type == "image"){
+      var file = req.files.img;
+      var img = Date.now() + ".webp";
+      var dir = "public/images/liputan/";
 
-    var file = req.files.img;
-    var img = Date.now() + ".webp";
-    var dir = "public/images/liputan/";
 
-    if (
-      file.mimetype == "image/jpeg" ||
-      file.mimetype == "image/png" ||
-      file.mimetype == "image/gif"
-    ) {
       fs.access(dir, (err) => {
         if (err) {
           fs.mkdirSync(dir);
@@ -222,8 +264,10 @@ const index = async (req, res) => {
       }
 
       var sql =
-        "INSERT INTO `liputan`(`title`,`subtitle`,`date`,`quote`,`content`,`content2`,`tag`,`user_id`,`img`) VALUES ('" +
+        "INSERT INTO `liputan`(`title`,`type`,`subtitle`,`date`,`quote`,`content`,`content2`,`tag`,`user_id`,`img`) VALUES ('" +
         title +
+        "','" +
+        type +
         "','" +
         subtitle +
         "','" +
@@ -253,11 +297,96 @@ const index = async (req, res) => {
           data: result,
         });
       });
+      
+    } else if (req.body.type === "video"){
+
+      var filev = req.files.video;
+      var video = Date.now() + filev.name;
+      var dirs = "public/images/liputan/";
+
+
+      fs.access(dirs, (err) => {
+        if (err) {
+          fs.mkdirSync(dir);
+        }
+      });
+
+      filev.mv(dirs + video, (err) => {
+        if (err) return res.status(500).send(err);
+
+      var sql =
+        "INSERT INTO `liputan`(`title`,`type`,`subtitle`,`date`,`quote`,`content`,`content2`,`tag`,`user_id`,`video`) VALUES ('" +
+        title +
+        "','" +
+        type +
+        "','" +
+        subtitle +
+        "','" +
+        date +
+        "','" +
+        quote +
+        "','" +
+        content +
+        "','" +
+        content2 +
+        "','" +
+        tag +
+        "','" +
+        user_id +
+        "','" +
+        video +
+        "')";
+
+      db.query(sql, (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Liputan tersimpan",
+          data: result,
+        });
+      });
+    });
+
     } else {
-      const message =
-        "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-      res.send({ message: message });
+      var sql =
+      "INSERT INTO `liputan`(`title`,`type`,`subtitle`,`date`,`quote`,`content`,`content2`,`tag`,`user_id`,`youtube`) VALUES ('" +
+      title +
+      "','" +
+      type +
+      "','" +
+      subtitle +
+      "','" +
+      date +
+      "','" +
+      quote +
+      "','" +
+      content +
+      "','" +
+      content2 +
+      "','" +
+      tag +
+      "','" +
+      user_id +
+      "','" +
+      youtube +
+      "')";
+
+    db.query(sql, (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          msg: err,
+        });
+      }
+      return res.status(201).send({
+        msg: "Liputan tersimpan",
+        data: result,
+      });
+    });
     }
+
   } else {
     res.send("Legalitas tersimpan");
   }

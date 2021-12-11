@@ -3,8 +3,26 @@
     <b-col md="6" sm="12" class="px-0 w-100 h-100">
       <b-card class="card-overlay main mb-0 w-100 h-100" no-body>
         <b-card-img-lazy
+          v-if="liput.img"
           :src="imgUrl + (liput.img ? liput.img : 'default')"
         ></b-card-img-lazy>
+        <b-embed
+          v-if="liput.video"
+          type="iframe"
+          aspect="16by9"
+          allowfullscreen
+          :src="imgUrl + liput.video"
+        ></b-embed>
+        <div class="youtube-vid" v-if="liput.youtube">
+
+        <LazyYoutube
+          ref="vimeoLazyVideo"
+          :src="liput.youtube"
+          
+          aspect-ratio="21:12"
+          thumbnail-quality="medium"
+        />
+        </div>
         <div class="overlay-bg">
           <b-card-text class="date">
             {{ liput.date | moment("MMMM Do YYYY") }}
@@ -29,10 +47,26 @@
             <b-col md="5">
               <b-card-img-lazy
                 :src="imgUrl + n.img"
+                v-if="n.img"
                 alt="Image"
                 height="100"
                 class="rounded-0"
-              ></b-card-img-lazy>
+              ></b-card-img-lazy> <b-embed
+          v-if="n.video"
+          type="iframe"
+          aspect="16by9"
+          allowfullscreen
+          :src="imgUrl + n.video"
+        ></b-embed>
+        <div class="youtube-vid" v-if="n.youtube">
+
+        <LazyYoutube
+          ref="vimeoLazyVideo"
+          :src="n.youtube"
+          
+          aspect-ratio="21:12"
+          thumbnail-quality="medium"
+        /> </div>
             </b-col>
             <b-col md="7">
               <b-card-body class="px-4 py-0 childNews">
@@ -93,6 +127,9 @@ export default {
 <style lang="scss" scoped>
 .cardNews {
   margin-top: 70px;
+  // max-height: 434px !important;
+  min-width: 75%;
+  min-height: 265px;
 }
 
 .card-body {

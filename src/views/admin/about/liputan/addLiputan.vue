@@ -101,7 +101,15 @@
               ></ckeditor>
             </b-input-group>
 
-            <b-input-group prepend="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-input-group prepend="Tipe" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-select
+                v-model="formFields.type"
+                :options="tipe"
+                required
+              ></b-form-select>
+            </b-input-group>
+
+            <b-input-group v-if="formFields.type == `image`" prepend="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
               <b-form-file
                 type="file"
                 ref="img"
@@ -111,6 +119,30 @@
                 name="image"
                 id="image"
               />
+            </b-input-group>
+            
+            <b-input-group prepend="Video" v-if="formFields.type == `video`" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+              <b-form-file
+                type="file"
+                ref="video"
+                required
+                v-on:change="onPick()"
+                accept="video/mp4, video/mpeg"
+                name="video"
+                id="video"
+              />
+            </b-input-group>
+
+            <b-input-group
+              prepend="URL Youtube"
+              v-if="formFields.type == `youtube`"
+              class="mb-2 mt-4 mr-sm-2 mb-sm-0"
+            >
+              <b-form-input
+                v-model="formFields.youtube"
+                placeholder="ex: https://www.youtube.com/watch?v=3iRbrV36h7I"
+                required
+              ></b-form-input>
             </b-input-group>
 
             <b-button type="submit" variant="success" class="mt-4"
@@ -165,16 +197,26 @@ export default {
         showClose: true,
       },
 
+      tipe: [
+        { text: "Pilih tipe liputan", value: "" },
+        { text: "Image", value: "image" },
+        { text: "Video", value: "video" },
+        { text: "Youtube", value: "youtube" },
+      ],
+
       formFields: {
         title: null,
         subtitle: null,
         date: null,
+        type: '',
+        youtube: "",
         quote: "",
         content: "",
         content2: "",
         tag: [{ text: "" }],
         user_id: null,
         img: null,
+        video: null,
       },
       max: maxDate,
       editor: ClassicEditor,
@@ -234,6 +276,9 @@ export default {
       formData.append("content2", this.formFields.content2);
       formData.append("user_id", this.formFields.user_id);
       formData.append("tag", JSON.stringify(this.formFields.tag));
+      formData.append("type", this.formFields.type);
+      formData.append("video", this.formFields.video);
+      formData.append("youtube", this.formFields.youtube);
       formData.append("img", this.formFields.img);
       await axios
         .post(this.legalUrl, formData)
@@ -248,19 +293,33 @@ export default {
         .catch((err) => {
           console.log(err);
         });
+        window.scrollTo(0, 0);
       this.formFields.title = "";
       this.formFields.subtitle = "";
+      this.formFields.type = "";
       this.formFields.date = this.dateNow;
       this.formFields.quote = this.quote;
       this.formFields.content = "";
       this.formFields.content2 = "";
       this.formFields.tag = [{ text: "" }];
-      this.$refs.img.reset();
+      if(this.formFields.type === 'image'){
+        this.$refs.img.reset();
+      }else if(this.formFields.type ==="video"){
+        this.$refs.video.reset();
+      } else {
+        this.formFields.youtube = ""
+      }
       this.loading = false;
     },
     onSelect() {
       // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
       this.formFields.img = event.target.files[0];
+    },
+    
+    onPick() {
+      console.log(event.target.files[0]);
+      // const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+      this.formFields.video = event.target.files[0];
     },
 
     countDownChanged(dismissCountDown) {
