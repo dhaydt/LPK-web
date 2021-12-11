@@ -11,7 +11,8 @@ const upload = multer({ storage });
 const update = (req, res) => {
   console.log(req);
   if (!req.files) {
-    var youtube = req.body.youtube ? req.body.youtube : "NULL";
+    if(req.body.type == 'youtube'){
+    var youtube = req.body.youtube;
 
     var sql = `UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ?, youtube = ?  WHERE id = ?;`;
     db.query(
@@ -39,6 +40,34 @@ const update = (req, res) => {
         });
       }
     );
+    } else {
+
+    var sql5 = `UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ? WHERE id = ?;`;
+    db.query(
+      sql5,
+      [
+        req.body.title,
+        req.body.subtitle,
+        req.body.quote,
+        req.body.content,
+        req.body.content2,
+        // req.body.tag,
+        req.params.id,
+
+      ],
+      (err, result) => {
+        if (err) {
+          return res.status(400).send({
+            msg: err,
+          });
+        }
+        return res.status(201).send({
+          msg: "Legalitas tersimpan",
+          data: result,
+        });
+      }
+    );
+    }
   } else {
     var post = req.body;
     var title = post.title;
