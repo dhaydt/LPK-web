@@ -100,7 +100,15 @@
             ></b-embed>
               </div></template
           ><template v-slot:cell(youtube)="data">
-            <p v-if="data.item.youtube">{{ data.item.youtube }}</p>
+            <div class="vidDiv" style="min-width: 200px;">
+             <LazyYoutube v-if="data.item.youtube"
+          ref="vimeoLazyVideo"
+          :src="data.item.youtube"
+          
+          aspect-ratio="12:8"
+          thumbnail-quality="medium"
+        />
+            </div>
           </template>
           <template v-slot:cell(action)="data" class="d-flex">
             <div class="actions" style="min-width: 100px">
@@ -197,7 +205,8 @@
               required
             ></ckeditor>
           </b-form-group>
-          <b-form-group label="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+          <input type="hidden" :value="editData.type">
+          <b-form-group v-if="editData.img" label="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
             <b-img
               :src="imgUrl + editData.img"
               alt="editImage"
@@ -214,7 +223,39 @@
               :required="true"
               id="imageEdit"
             />
+          </b-form-group><b-form-group v-if="editData.youtube" label="URL Youtube" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+             <LazyYoutube
+          ref="vimeoLazyVideo"
+          :src="editData.youtube"
+          
+          aspect-ratio="4:3"
+          thumbnail-quality="medium"
+        />
+             <b-form-input
+              v-model="editData.youtube"
+              type="text"
+              required
+            ></b-form-input>
           </b-form-group>
+            <b-form-group v-if="editData.video" label="Video" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+            <b-embed
+              type="iframe"
+              aspect="16by9"
+              allowfullscreen
+              :src="imgUrl + editData.video"
+            ></b-embed>
+            <label class="mt-2">Ganti Video</label>
+            <b-form-file
+              type="file"
+              ref="imgEdit"
+              @change="onEditVideo()"
+              accept="video/mp4, video/mpeg"
+              name="image"
+              :required="true"
+              id="imageEdit"
+            />
+          </b-form-group>
+          
         </div>
         <!-- <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button> -->
         <b-button
@@ -313,6 +354,12 @@ export default {
       console.log("edit", this.editData);
     },
 
+    onEditVideo(){
+      var files = event.target.files;
+      this.editData.video2 = files[0];
+      console.log("edit", this.editData);
+    },
+
     async SaveUsers() {
       this.loading = true;
       let formData = new FormData();
@@ -320,9 +367,12 @@ export default {
       formData.append("title", this.editData.title);
       formData.append("subtitle", this.editData.subtitle);
       formData.append("quote", this.editData.quote);
+      formData.append("type", this.editData.type);
       formData.append("content", this.editData.content);
       formData.append("content2", this.editData.content2);
       formData.append("img", this.editData.img2);
+      formData.append("video", this.editData.video2);
+      formData.append("youtube", this.editData.youtube);
       await axios
         .put(this.visiUrl + "/" + this.editData.id, formData)
         .then((response) => {

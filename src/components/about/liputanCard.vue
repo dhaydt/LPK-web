@@ -128,8 +128,10 @@ export default {
 .cardNews {
   margin-top: 70px;
   // max-height: 434px !important;
-  min-width: 75%;
+  min-width: 90%;
   min-height: 265px;
+  max-height: 265px;
+
 }
 
 .card-body {

@@ -11,7 +11,9 @@ const upload = multer({ storage });
 const update = (req, res) => {
   console.log(req);
   if (!req.files) {
-    var sql = `UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ?  WHERE id = ?;`;
+    var youtube = req.body.youtube ? req.body.youtube : "NULL";
+
+    var sql = `UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ?, youtube = ?  WHERE id = ?;`;
     db.query(
       sql,
       [
@@ -20,8 +22,10 @@ const update = (req, res) => {
         req.body.quote,
         req.body.content,
         req.body.content2,
+        youtube,
         // req.body.tag,
         req.params.id,
+
       ],
       (err, result) => {
         if (err) {
@@ -43,41 +47,79 @@ const update = (req, res) => {
     var content = post.content;
     var content2 = post.content;
     var id = req.params.id;
+    
+    if(req.body.type == 'image'){
 
-    var files = req.files.img;
-    var name = Date.now() + files.name;
-
-    db.query("SELECT * FROM liputan WHERE id = ?", [id], (err, row) => {
-      if (err) {
-        console.log(err);
-      } else {
-        var imgName = row[0].img;
-      }
-      console.log(imgName);
-
-      const DIR_LEGAL = "public/images/liputan";
-      const imgDir = DIR_LEGAL + "/" + imgName;
-      if (fs.existsSync(imgDir)) {
-        fs.unlinkSync(imgDir);
-      }
-
-      files.mv(`public/images/liputan/` + name, (err) => {
-        if (err) return res.status(500).send(err);
-        var sqlImg =
-          "UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ?, img = ? WHERE id = ?;";
-        db.query(
-          sqlImg,
-          [title, subtitle, quote, content, content2, name, id],
-          (err, rows) => {
-            if (err) {
-              res.send(err);
-            } else {
-              res.send(rows);
+      var files = req.files.img;
+      var name = Date.now() + files.name;
+  
+      db.query("SELECT * FROM liputan WHERE id = ?", [id], (err, row) => {
+        if (err) {
+          console.log(err);
+        } else {
+          var imgName = row[0].img;
+        }
+        console.log(imgName);
+  
+        const DIR_LEGAL = "public/images/liputan";
+        const imgDir = DIR_LEGAL + "/" + imgName;
+        if (fs.existsSync(imgDir)) {
+          fs.unlinkSync(imgDir);
+        }
+  
+        files.mv(`public/images/liputan/` + name, (err) => {
+          if (err) return res.status(500).send(err);
+          var sqlImg =
+            "UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ?, img = ? WHERE id = ?;";
+          db.query(
+            sqlImg,
+            [title, subtitle, quote, content, content2, name, id],
+            (err, rows) => {
+              if (err) {
+                res.send(err);
+              } else {
+                res.send(rows);
+              }
             }
-          }
-        );
+          );
+        });
       });
-    });
+    } else if(req.body.type == 'video'){
+      var filesVideo = req.files.video;
+      var nameVideo = Date.now() + filesVideo.name;
+  
+      db.query("SELECT * FROM liputan WHERE id = ?", [id], (err, row) => {
+        if (err) {
+          console.log(err);
+        } else {
+          var imgName = row[0].video;
+        }
+        console.log(imgName);
+  
+        const DIR_LEGAL = "public/images/liputan";
+        const imgDir = DIR_LEGAL + "/" + imgName;
+        if (fs.existsSync(imgDir)) {
+          fs.unlinkSync(imgDir);
+        }
+  
+        filesVideo.mv(`public/images/liputan/` + nameVideo, (err) => {
+          if (err) return res.status(500).send(err);
+          var sqlVideo =
+            "UPDATE liputan SET title = ?, subtitle = ?, quote = ?, content = ?, content2 = ?, video = ? WHERE id = ?;";
+          db.query(
+            sqlVideo,
+            [title, subtitle, quote, content, content2, nameVideo, id],
+            (err, rows) => {
+              if (err) {
+                res.send(err);
+              } else {
+                res.send(rows);
+              }
+            }
+          );
+        });
+      });
+    }
   }
 };
 
