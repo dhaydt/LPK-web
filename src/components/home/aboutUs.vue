@@ -1,5 +1,5 @@
 <template>
-  <section class="aboutUs" id="aboutUs">
+  <section class="aboutUs" id="aboutus">
     <b-container>
       <div id="moon"></div>
       <b-row class="justify-content-center">
@@ -13,11 +13,14 @@
             <b-card-body>
               <b-card-title class="mt-2">LKP PAZ generasi unggul</b-card-title>
               <b-card-text class="mt-5">
-                <em>"</em> Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Rerum officiis ipsam natus aspernatur eaque dolor adipisci
-                neque aliquid voluptates quaerat, voluptatum, quibusdam
-                doloribus alias vitae, explicabo consectetur et. Vero,
-                commodi.<em>"</em>
+                <em>"</em> Secara rutin dan periodik digelar pelatihan ilmu
+                pengobatan paz al kasaw secara online maupun offline. Beberapa
+                kota sudah dipilih menjadi tuan rumah seperti Klaten, Surakarta,
+                Yogyakarta, Purwokerto, Surabaya, Malang, Pati, Semarang,
+                Cirebon, Jakarta, Bandung, Pamekasan, Denpasar, Mataram,
+                Makassar, Kendari, Ternate, Balikpapan, Banjarmasin, Samarinda,
+                Pontianak, Banda Aceh, Medan, Batam, Pekanbaru, Jambi,
+                Palembang, Lampung, Dumai, dan beberapa kota lainnya<em>"</em>
               </b-card-text>
             </b-card-body>
 
@@ -88,7 +91,8 @@ export default {};
 }
 
 section {
-  margin-top: 100px;
+  padding-top: 100px;
+  transition: 0.5s;
 }
 
 #moon {

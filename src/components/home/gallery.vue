@@ -12,12 +12,10 @@
             <div id="moon"></div>
             <b-card-body>
               <b-card-title class="mt-3"
-                >pelatihan yang kami selenggarakan</b-card-title
+                >Sekilas dokumentasi gambar pelatihan yang kami selenggarakan</b-card-title
               >
               <b-card-text class="mt-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-                aliquam, purus sit amet luctus venenatis, lectus magna fringilla
-                urna
+                Setiap kota yang terpilih PAZ Generasi Unggul, membuka pelatihan BASIC dan pelatihan tingkat lanjut yang disebut Upgrading.
               </b-card-text>
             </b-card-body>
           </b-card>

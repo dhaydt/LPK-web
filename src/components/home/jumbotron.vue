@@ -22,12 +22,14 @@
         </b-row>
       </template>
 
-      <b-button variant="outline-light" href="#" class="mt-2"
+     <a href="#aboutus">
+        <b-button variant="outline-light" class="mt-2"
         ><span
           ><img src="../../assets/images/info.svg" alt="info" height="25" />
           Pelajari lebih lanjut</span
         ></b-button
       >
+     </a>
     </b-jumbotron>
     <section id="home" class="d-none d-md-block">
       <b-row no-gutters class="justify-content-center">
