@@ -122,6 +122,11 @@ export default {
     letter-spacing: 0.01em;
     color: #ffffff;
   }
+
+  img{
+    max-height: 374px;
+    min-height: 374px;
+  }
 }
 #moon {
   font-size: 20em;

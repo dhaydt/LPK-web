@@ -79,6 +79,9 @@ export default {
     #07a148 26.57%,
     rgba(7, 161, 72, 0) 283.01%
   );
+  .row {
+    margin-top: -48px;
+  }
 }
 
 h1 {

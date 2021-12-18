@@ -45,8 +45,8 @@
                   v-for="(slide, i) in upgrade"
                   :key="i"
                 >
-                  <b-card class="inner-border text-center sliderCard" no-body>
                     <a @click="modal(slide)" class="amodal">
+                  <b-card class="inner-border text-center sliderCard" no-body>
                       <b-img
                         :src="imgUrl + slide.img"
                         height="74"
@@ -57,8 +57,8 @@
                         <h5>{{ slide.name }}</h5>
                         <span>{{ slide.penyakit }}</span>
                       </b-col>
-                    </a>
                   </b-card>
+                    </a>
                 </div>
               </Flicking>
             </div>
@@ -66,7 +66,7 @@
         </b-row>
       </b-container>
 
-      <b-modal ref="my-modal" hide-footer hide-header id="modalBasic" size="md">
+      <b-modal ref="my-modal" hide-footer hide-header id="modalBasic" size="md" >
         <div class="body">
           <b-row>
             <b-col md="2"

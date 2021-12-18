@@ -47,15 +47,18 @@
           <h3>Kontak</h3>
         </b-row>
         <b-row class="flex-column text-left">
-          <p>
+          <a :href="footer.location" target="_blank">
+            <p class="map-font" v-b-tooltip.hover :title="footer.location">
             <i class="fas fa-map-marker-alt mr-3"></i>
-            <em>{{footer.location}}</em>
+            <em>{{ footer.location }}</em>
+          </p>
+          </a>
+          <p>
+            <i class="fas fa-envelope mr-3"></i><em>{{ footer.email }}</em>
           </p>
           <p>
-            <i class="fas fa-envelope mr-3"></i><em>{{footer.email}}</em>
-          </p>
-          <p>
-            <i class="fas fa-mobile-alt mr-3 px-2"></i><em>{{footer.telp}}</em>
+            <i class="fas fa-mobile-alt mr-3 px-2"></i
+            ><em>{{ footer.telp }}</em>
           </p>
         </b-row>
         <b-row>
@@ -212,6 +215,16 @@ p em {
   font-size: 16px;
   line-height: 24px;
   color: #757682;
+}
+
+p.map-font {
+  // em {
+    width: 100%;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  // }
 }
 
 .sosmed {
