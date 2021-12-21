@@ -68,6 +68,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.traineDiagram .row {
+  padding: 0 87px;
+}
 .ins-sm {
   padding: 0 10px;
   .card {
@@ -94,12 +97,12 @@ export default {
 }
 .card {
   position: relative;
-  padding: 10px;
+  margin-right: 10px;
 }
 
 .card-img {
-  min-height: 350px;
-  max-height: 350px;
+  min-height: 293px;
+  max-height: 293px;
 }
 
 .card .overflow {
