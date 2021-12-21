@@ -80,7 +80,7 @@ router.put("/struktur/:id", update);
 // get legal
 const getDir = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM struktur WHERE prefix = 'direktur'";
+  var sql = "SELECT * FROM struktur WHERE prefix = 'direktur' ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Cabang Kosong!";
 
@@ -93,7 +93,7 @@ router.get("/strukturDir", getDir);
 // get legal
 const getPel = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM struktur WHERE prefix = 'pelatih'";
+  var sql = "SELECT * FROM struktur WHERE prefix = 'pelatih' ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Cabang Kosong!";
 
@@ -106,7 +106,7 @@ router.get("/strukturPel", getPel);
 // get legal
 const getOp = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM struktur WHERE prefix = 'operasional'";
+  var sql = "SELECT * FROM struktur WHERE prefix = 'operasional' ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Cabang Kosong!";
 
@@ -119,7 +119,7 @@ router.get("/strukturOp", getOp);
 // get legal
 const getFin = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM struktur WHERE prefix = 'finance'";
+  var sql = "SELECT * FROM struktur WHERE prefix = 'finance' ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Cabang Kosong!";
 
@@ -132,7 +132,7 @@ router.get("/strukturFin", getFin);
 // get legal
 const getHum = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM struktur WHERE prefix = 'human'";
+  var sql = "SELECT * FROM struktur WHERE prefix = 'human' ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Cabang Kosong!";
 
@@ -145,7 +145,7 @@ router.get("/strukturHum", getHum);
 // get legal
 const getMar = (req, res) => {
   var message = "";
-  var sql = "SELECT * FROM struktur WHERE prefix = 'marketing'";
+  var sql = "SELECT * FROM struktur WHERE prefix = 'marketing' ORDER BY id DESC";
   db.query(sql, function(err, result) {
     if (result.length <= 0) message = "Cabang Kosong!";
 
