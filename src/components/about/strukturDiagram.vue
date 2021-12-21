@@ -25,7 +25,7 @@
         <ul>
           <li class="direktur">
             <a @click="modal(direktur)" class="d-flex header"
-              ><img v-if="direktur.img" :src="imgUrl + direktur.img" alt="child" /><span
+              ><img :src="imgUrl + direktur.img" alt="child" /><span
                 class="my-auto"
                 >{{ direktur.title }}
                 <h5 class="mt-2">{{ direktur.name }}</h5></span
@@ -35,7 +35,7 @@
             <ul class="lev-1">
               <li>
                 <a @click="modal(pelatihan)"
-                  ><img v-if="pelatihan.img" :src="imgUrl + pelatihan.img" alt="child" /><span
+                  ><img :src="imgUrl + pelatihan.img" alt="child" /><span
                     class="my-auto"
                     >{{ pelatihan.title }}
                     <h5 class="mt-2">{{ pelatihan.name }}</h5></span
@@ -67,7 +67,7 @@
               </li>
               <li class="levli">
                 <a @click="modal(operasional)"
-                  ><img v-if="operasional.img" :src="imgUrl + operasional.img" alt="child" /><span
+                  ><img :src="imgUrl + operasional.img" alt="child" /><span
                     class="my-auto"
                     >{{ operasional.title }}
                     <h5 class="mt-2">{{ operasional.name }}</h5></span
@@ -76,7 +76,7 @@
               </li>
               <li class="levli">
                 <a @click="modal(finance)"
-                  ><img v-if="finance.img" :src="imgUrl + finance.img" alt="child" /><span
+                  ><img :src="imgUrl + finance.img" alt="child" /><span
                     class="my-auto"
                     >{{ finance.title }}
                     <h5 class="mt-2">{{ finance.name }}</h5></span
@@ -85,7 +85,7 @@
               </li>
               <li class="levli">
                 <a @click="modal(human)"
-                  ><img v-if="human.img" :src="imgUrl + human.img" alt="child" /><span
+                  ><img :src="imgUrl + human.img" alt="child" /><span
                     class="my-auto"
                     >{{ human.title }}
                     <h5 class="mt-2">{{ human.name }}</h5></span
@@ -94,7 +94,7 @@
               </li>
               <li class="levli">
                 <a @click="modal(marketing)"
-                  ><img v-if="marketing.img" :src="imgUrl + marketing.img" alt="child" /><span
+                  ><img :src="imgUrl + marketing.img" alt="child" /><span
                     class="my-auto"
                     >{{ marketing.title }}
                     <h5 class="mt-2">{{ marketing.name }}</h5></span
