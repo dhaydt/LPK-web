@@ -94,12 +94,12 @@ export default {
 }
 .card {
   position: relative;
+  padding: 10px;
 }
 
 .card-img {
-  height: 100%;
-  min-height: 228px;
-  max-height: 228px;
+  min-height: 350px;
+  max-height: 350px;
 }
 
 .card .overflow {
