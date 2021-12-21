@@ -24,8 +24,8 @@
       <div class="tree">
         <ul>
           <li class="direktur">
-            <a @click="modal(direktur)" class="d-flex header"
-              ><img :src="imgUrl + direktur.img" alt="child" /><span
+            <a @click="modal(direktur)" class="d-flex header" v-if="direktur"
+              ><b-img :src="imgUrl + direktur.img" alt="child" /><span
                 class="my-auto"
                 >{{ direktur.title }}
                 <h5 class="mt-2">{{ direktur.name }}</h5></span
@@ -34,8 +34,8 @@
 
             <ul class="lev-1">
               <li>
-                <a @click="modal(pelatihan)"
-                  ><img :src="imgUrl + pelatihan.img" alt="child" /><span
+                <a @click="modal(pelatihan)" v-if="pelatihan"
+                  ><b-img :src="imgUrl + pelatihan.img" alt="child" /><span
                     class="my-auto"
                     >{{ pelatihan.title }}
                     <h5 class="mt-2">{{ pelatihan.name }}</h5></span
@@ -66,8 +66,8 @@
                 </ul>
               </li>
               <li class="levli">
-                <a @click="modal(operasional)"
-                  ><img :src="imgUrl + operasional.img" alt="child" /><span
+                <a @click="modal(operasional)" v-if="operasional"
+                  ><b-img :src="imgUrl + operasional.img" alt="child" /><span
                     class="my-auto"
                     >{{ operasional.title }}
                     <h5 class="mt-2">{{ operasional.name }}</h5></span
@@ -75,8 +75,8 @@
                 >
               </li>
               <li class="levli">
-                <a @click="modal(finance)"
-                  ><img :src="imgUrl + finance.img" alt="child" /><span
+                <a @click="modal(finance)" v-if="finance"
+                  ><b-img :src="imgUrl + finance.img" alt="child" /><span
                     class="my-auto"
                     >{{ finance.title }}
                     <h5 class="mt-2">{{ finance.name }}</h5></span
@@ -84,8 +84,8 @@
                 >
               </li>
               <li class="levli">
-                <a @click="modal(human)"
-                  ><img :src="imgUrl + human.img" alt="child" /><span
+                <a @click="modal(human)" v-if="human"
+                  ><b-img :src="imgUrl + human.img" alt="child" /><span
                     class="my-auto"
                     >{{ human.title }}
                     <h5 class="mt-2">{{ human.name }}</h5></span
@@ -93,8 +93,8 @@
                 >
               </li>
               <li class="levli">
-                <a @click="modal(marketing)"
-                  ><img :src="imgUrl + marketing.img" alt="child" /><span
+                <a @click="modal(marketing)" v-if="marketing"
+                  ><b-img :src="imgUrl + (marketing.img ? marketing.img : 'undefined')" alt="child" /><span
                     class="my-auto"
                     >{{ marketing.title }}
                     <h5 class="mt-2">{{ marketing.name }}</h5></span
