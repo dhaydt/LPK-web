@@ -146,7 +146,7 @@ export default {
 
   methods: {
     modal(val) {
-      console.log(val);
+      console.log(this.pelatihan);
       this.modalData = val;
       this.$refs["my-modal"].show();
     },
