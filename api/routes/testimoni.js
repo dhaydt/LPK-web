@@ -8,18 +8,22 @@ const sharp = require("sharp");
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
+
 const update = (req, res) => {
-  console.log(req);
-  if (!req.files) {
-    var sql = `UPDATE testimoni SET name = ?, address = ?, content = ?, video = ? WHERE id = ?;`;
+    if(req.body.tipe == 'video'){
+    var youtube = req.body.video;
+
+    var sql = `UPDATE testimoni SET name = ?, address = ?, content = ?, video = ?  WHERE id = ?;`;
     db.query(
       sql,
       [
         req.body.name,
         req.body.address,
         req.body.content,
-        req.body.video,
+        youtube,
+        // req.body.tag,
         req.params.id,
+
       ],
       (err, result) => {
         if (err) {
@@ -33,16 +37,18 @@ const update = (req, res) => {
         });
       }
     );
-  } else {
+    }  else {
     var post = req.body;
-    var named = post.name;
+    var name = post.name;
     var address = post.address;
     var content = post.content;
-    var video = post.video;
     var id = req.params.id;
+    
+    
 
     var files = req.files.img;
-    var name = Date.now() + files.name;
+    console.log('imges', files)
+    var img = Date.now() + files.name;
 
     db.query("SELECT * FROM testimoni WHERE id = ?", [id], (err, row) => {
       if (err) {
@@ -58,13 +64,13 @@ const update = (req, res) => {
         fs.unlinkSync(imgDir);
       }
 
-      files.mv(`public/images/testi/` + name, (err) => {
+      files.mv(`public/images/testi/` + img, (err) => {
         if (err) return res.status(500).send(err);
         var sqlImg =
-          "UPDATE testimoni SET name = ?, address = ?, content = ?, video = ?, img = ? WHERE id = ?;";
+          "UPDATE testimoni SET name = ?, address = ?, content = ?, img = ? WHERE id = ?;";
         db.query(
           sqlImg,
-          [named, address, content, video, name, id],
+          [name, address, content, img, id],
           (err, rows) => {
             if (err) {
               res.send(err);
@@ -78,31 +84,58 @@ const update = (req, res) => {
   }
 };
 
-router.put("/testi/:id", update);
+router.put("/testi/:id", update)
 
 // del legal
 const DIR_LEGAL = "public/images/testi";
-router.delete("/testi/:id/:img", (req, res) => {
-  if (!req.params.img) {
+router.delete("/testi/:id", (req, res) => {
+  if (!req.params.id) {
     console.log("No file received");
     var message = "Data img tidak diterima.";
   } else {
     console.log("file received");
-    console.log(req.params.img);
-    var sql = "DELETE FROM `testimoni` WHERE `id`='" + req.params.id + "'";
-    db.query(sql, function(err, result) {
-      if (err) {
-        return res.status(400).send(err);
-      } else {
-        const imgDir = DIR_LEGAL + "/" + req.params.img;
-        if (fs.existsSync(imgDir)) {
-          fs.unlinkSync(imgDir);
+    console.log(req.params.id);
+    var get = `SELECT * FROM testimoni WHERE id = ?`
+    db.query(get, [req.params.id], (err, rows) => {
+      if(err){
+        console.log(err)
+        res.send(err)
+      } {
+        var row = rows[0];
+        if(row.tipe == "image"){
+          console.log(row.img)
+          var sql = "DELETE FROM `testimoni` WHERE `id`='" + row.id + "'";
+          db.query(sql, function(err, result) {
+            if (err) {
+              return res.status(400).send(err);
+            } else {
+              const imgDir = DIR_LEGAL + "/" + row.img;
+              if (fs.existsSync(imgDir)) {
+                fs.unlinkSync(imgDir);
+              }
+              console.log("Berhasil menghapus liputan");
+              // return res.status(200).send("Successfully! Image has been Deleted");
+              return res.send({ data: result, message: message });
+            }
+          });
+        } else {
+          var sql2 = "DELETE FROM `testimoni` WHERE `id`='" + row.id + "'";
+          db.query(sql2, function(err, result) {
+            if (err) {
+              return res.status(400).send(err);
+            } else {
+              // const imgDir = DIR_LEGAL + "/" + req.params.img;
+              // if (fs.existsSync(imgDir)) {
+              //   fs.unlinkSync(imgDir);
+              // }
+              console.log("Berhasil menghapus liputan");
+              // return res.status(200).send("Successfully! Image has been Deleted");
+              return res.send({ data: result, message: message });
+            }
+          });
         }
-        console.log("Berhasil menghapus legalitas");
-        // return res.status(200).send("Successfully! Image has been Deleted");
-        res.send({ data: result, message: message });
       }
-    });
+    })
   }
 });
 

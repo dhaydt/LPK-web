@@ -103,7 +103,7 @@
                 class="text-danger"
                 v-b-tooltip.hover
                 title="Delete"
-                @click="deleteVisi(data.item)"
+                @click="deleteVisi(data.item.id)"
               >
                 <b-spinner v-if="loading" small variant="primary"></b-spinner>
                 <i v-if="!loading" class="mdi mdi-trash-can font-size-18"></i>
@@ -137,14 +137,14 @@
               v-model="editData.address"
               required
             ></b-form-input> </b-form-group
-          ><b-form-group label="URL Youtube">
+          ><b-form-group v-if="editData.tipe == 'video'" label="URL Youtube">
             <b-form-input v-model="editData.video" required></b-form-input>
           </b-form-group>
           <b-form-group label="Testimoni">
             <b-form-input v-model="editData.content" required></b-form-input>
           </b-form-group>
 
-          <b-form-group label="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
+          <b-form-group v-if="editData.tipe == 'image'" label="Foto" class="mb-2 mt-4 mr-sm-2 mb-sm-0">
             <b-img
               :src="imgUrl + editData.img"
               alt="editImage"
@@ -252,6 +252,7 @@ export default {
 
       formData.append("name", this.editData.name);
       formData.append("address", this.editData.address);
+      formData.append("tipe", this.editData.tipe);
       formData.append("video", this.editData.video);
       formData.append("content", this.editData.content);
       formData.append("img", this.editData.img2);
@@ -286,31 +287,15 @@ export default {
 
     async deleteVisi(val) {
       this.loading = true;
-      console.log(val);
-      if (val.img) {
-        console.log("file gambar");
-        try {
-          await axios.delete(this.visiUrl + `/${val.id}` + `/${val.img}`);
-          this.messages = "Data terhapus";
-          this.getLegal();
-          this.showAlert();
-          this.loading = false;
-        } catch (err) {
-          console.log(err);
-          this.loading = false;
-        }
-      } else {
-        console.log("file video");
-        try {
-          await axios.delete(this.visiUrl + `/${val.id}` + `/${val.video}`);
-          this.messages = "Data terhapus";
-          this.getLegal();
-          this.showAlert();
-          this.loading = false;
-        } catch (err) {
-          console.log(err);
-          this.loading = false;
-        }
+      try {
+        await axios.delete(this.visiUrl + `/${val}`);
+        this.messages = "Data terhapus";
+        this.getLegal();
+        this.showAlert();
+        this.loading = false;
+      } catch (err) {
+        console.log(err);
+        this.loading = false;
       }
     },
 
