@@ -164,6 +164,13 @@ export default {
       this.finance = resp3.data.data[0];
       this.human = resp4.data.data[0];
       this.marketing = resp5.data.data[0];
+
+      console.log('dir',this.direktur);
+      console.log('op',this.operasional);
+      console.log('fin',this.finance);
+      console.log('hum',this.human);
+      console.log('pel',this.pelatihan);
+      console.log('mar',this.marketing);
     },
   },
 };
